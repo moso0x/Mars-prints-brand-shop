@@ -47,21 +47,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        brand: {
-          navy: "hsl(var(--brand-navy))",
-          purple: "hsl(var(--brand-purple))",
-          blue: "hsl(var(--brand-blue))",
-        },
-      },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-hero': 'var(--gradient-hero)',
       },
       boxShadow: {
         'sm': 'var(--shadow-sm)',
         'md': 'var(--shadow-md)',
         'lg': 'var(--shadow-lg)',
-        'xl': 'var(--shadow-xl)',
       },
       borderRadius: {
         lg: "var(--radius)",
