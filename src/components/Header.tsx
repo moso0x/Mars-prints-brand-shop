@@ -1,6 +1,7 @@
 import { Search, Mail, Phone, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -50,19 +51,41 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="flex items-center gap-1 pb-3 overflow-x-auto">
-          <Button variant="ghost" className="whitespace-nowrap">Marketing Materials</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Mugs & Water Bottles</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Banners</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Vinyl Stickers</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Label Stickers</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Cards</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Calendars</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Letterheads</Button>
-          <Button variant="ghost" className="whitespace-nowrap">Stationery</Button>
-          <Button variant="ghost" className="text-accent whitespace-nowrap">Feedback</Button>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 whitespace-nowrap">
-            Contact us
-          </Button>
+          <Link to="/marketing-materials">
+            <Button variant="ghost" className="whitespace-nowrap">Marketing Materials</Button>
+          </Link>
+          <Link to="/mugs">
+            <Button variant="ghost" className="whitespace-nowrap">Mugs & Water Bottles</Button>
+          </Link>
+          <Link to="/banners">
+            <Button variant="ghost" className="whitespace-nowrap">Banners</Button>
+          </Link>
+          <Link to="/vinyl-stickers">
+            <Button variant="ghost" className="whitespace-nowrap">Vinyl Stickers</Button>
+          </Link>
+          <Link to="/label-stickers">
+            <Button variant="ghost" className="whitespace-nowrap">Label Stickers</Button>
+          </Link>
+          <Link to="/cards">
+            <Button variant="ghost" className="whitespace-nowrap">Cards</Button>
+          </Link>
+          <Link to="/calendars">
+            <Button variant="ghost" className="whitespace-nowrap">Calendars</Button>
+          </Link>
+          <Link to="/letterheads">
+            <Button variant="ghost" className="whitespace-nowrap">Letterheads</Button>
+          </Link>
+          <Link to="/stationery">
+            <Button variant="ghost" className="whitespace-nowrap">Stationery</Button>
+          </Link>
+          <Link to="/feedback">
+            <Button variant="ghost" className="text-accent whitespace-nowrap">Feedback</Button>
+          </Link>
+          <Link to="/contact">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 whitespace-nowrap">
+              Contact us
+            </Button>
+          </Link>
         </nav>
       </div>
     </header>
