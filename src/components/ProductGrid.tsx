@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const products = [
   {
@@ -65,34 +67,56 @@ const products = [
 ];
 
 export const ProductGrid = () => {
+  const handleOrderClick = (productTitle: string) => {
+    toast.success(`${productTitle} added to cart!`, {
+      icon: '🛒',
+    });
+  };
+
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-bold mb-4">Featured Printed Materials</h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="overflow-hidden hover:shadow-lg transition-shadow group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="aspect-square overflow-hidden bg-secondary">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-bold text-lg mb-2">{product.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">{product.price}</p>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  Order Now
-                </Button>
-              </div>
-            </Card>
+              <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
+                <div className="aspect-square overflow-hidden bg-secondary">
+                  <motion.img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-lg mb-2">{product.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">{product.price}</p>
+                  <Button 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={() => handleOrderClick(product.title)}
+                  >
+                    Order Now
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
