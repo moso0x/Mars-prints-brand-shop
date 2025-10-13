@@ -1,8 +1,14 @@
-import { Search, Mail, Phone } from "lucide-react";
+import { Search, Mail, Phone, Clock, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { Cart } from "@/components/Cart";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Header = () => {
   return (
@@ -10,15 +16,19 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         {/* Top bar with contact info */}
         <div className="flex items-center justify-between py-3 border-b">
-          <div className="flex items-center gap-6">
-            <a href="mailto:info@bettyjelimo.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-              <Mail className="h-4 w-4" />
-              <span className="hidden sm:inline">info@bettyjelimo.com</span>
-            </a>
-            <a href="tel:+254712345678" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <div className="flex items-center gap-4 md:gap-6 flex-wrap">
+            <a href="tel:+254746174084" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
               <Phone className="h-4 w-4" />
-              <span className="hidden sm:inline">0746174084</span>
+              <span className="hidden sm:inline">+254 746 174 084</span>
             </a>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4" />
+              <span className="hidden md:inline">Nairobi, Kenya</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Clock className="h-4 w-4" />
+              <span className="hidden lg:inline">Mon - Sat: 8am - 6pm</span>
+            </div>
           </div>
           <Cart />
         </div>
@@ -46,41 +56,41 @@ export const Header = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex items-center gap-1 pb-3 overflow-x-auto">
-          <Link to="/marketing-materials">
-            <Button variant="ghost" className="whitespace-nowrap">Marketing Materials</Button>
+        <nav className="flex items-center gap-2 pb-3 overflow-x-auto">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <span>Shop by Categories</span>
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuItem asChild>
+                <Link to="/marketing-materials" className="w-full cursor-pointer">Marketing Materials</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/cards" className="w-full cursor-pointer">Business Cards</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/stationery" className="w-full cursor-pointer">Business Stationery</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/mugs" className="w-full cursor-pointer">Apparel & Accessories</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/banners" className="w-full cursor-pointer">Outdoor Branding</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          <Link to="/">
+            <Button variant="ghost" className="whitespace-nowrap">Home</Button>
           </Link>
-          <Link to="/mugs">
-            <Button variant="ghost" className="whitespace-nowrap">Mugs & Water Bottles</Button>
-          </Link>
-          <Link to="/banners">
-            <Button variant="ghost" className="whitespace-nowrap">Banners</Button>
-          </Link>
-          <Link to="/vinyl-stickers">
-            <Button variant="ghost" className="whitespace-nowrap">Vinyl Stickers</Button>
-          </Link>
-          <Link to="/label-stickers">
-            <Button variant="ghost" className="whitespace-nowrap">Label Stickers</Button>
-          </Link>
-          <Link to="/cards">
-            <Button variant="ghost" className="whitespace-nowrap">Cards</Button>
-          </Link>
-          <Link to="/calendars">
-            <Button variant="ghost" className="whitespace-nowrap">Calendars</Button>
-          </Link>
-          <Link to="/letterheads">
-            <Button variant="ghost" className="whitespace-nowrap">Letterheads</Button>
-          </Link>
-          <Link to="/stationery">
-            <Button variant="ghost" className="whitespace-nowrap">Stationery</Button>
+          <Link to="/contact">
+            <Button variant="ghost" className="whitespace-nowrap">Contact Us</Button>
           </Link>
           <Link to="/feedback">
             <Button variant="ghost" className="text-accent whitespace-nowrap">Feedback</Button>
-          </Link>
-          <Link to="/contact">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 whitespace-nowrap">
-              Contact us
-            </Button>
           </Link>
         </nav>
       </div>

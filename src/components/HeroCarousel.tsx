@@ -1,28 +1,40 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-printing.jpg";
 import mugsImage from "@/assets/mugs-hero.jpg";
 import tshirtsImage from "@/assets/tshirts-hero.jpg";
 import toteBagsImage from "@/assets/tote-bags-hero.jpg";
 
 const slides = [
   {
+    image: heroImage,
+    title: "Printing Bright Ideas",
+    description: "We're a print company set on creating remarkable products with uncompromised high standards",
+    buttonText: "Shop Now",
+    link: "/",
+  },
+  {
     image: mugsImage,
-    title: "Personalized Mugs",
-    description: "Get amazing discounts on Mugs printing. We brand ceramic mugs, enamel mugs, Travel Mugs, Magic Mugs and tumblers.",
-    buttonText: "Place order",
+    title: "Custom Mugs & Water Bottles",
+    description: "Perfect for corporate gifts and promotional events",
+    buttonText: "Explore Mugs",
+    link: "/mugs",
   },
   {
     image: tshirtsImage,
-    title: "Branded T-shirts",
-    description: "T-shirt printing services at an affordable price",
-    buttonText: "View options",
+    title: "Branded T-Shirts",
+    description: "High-quality custom t-shirts for your team",
+    buttonText: "View Collection",
+    link: "/marketing-materials",
   },
   {
     image: toteBagsImage,
-    title: "Branded Tote Bags",
-    description: 'Make a "tote-ally" smart choice by ordering customized tote bags for marketing your brand. They are made of cotton or canvas materials',
-    buttonText: "Shop Now",
+    title: "Tote Bags & Apparel",
+    description: "Eco-friendly branded merchandise for your business",
+    buttonText: "Shop Apparel",
+    link: "/marketing-materials",
   },
 ];
 
@@ -63,13 +75,15 @@ export const HeroCarousel = () => {
               <p className="text-xl mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 {slide.description}
               </p>
-              <Button 
-                size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 animate-fade-in"
-                style={{ animationDelay: "0.2s" }}
-              >
-                {slide.buttonText}
-              </Button>
+              <Link to={slide.link}>
+                <Button 
+                  size="lg" 
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 animate-fade-in"
+                  style={{ animationDelay: "0.2s" }}
+                >
+                  {slide.buttonText}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
