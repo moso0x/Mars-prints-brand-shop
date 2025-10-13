@@ -1,7 +1,8 @@
-import { Search, Mail, Phone, ShoppingCart } from "lucide-react";
+import { Search, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import { Cart } from "@/components/Cart";
 
 export const Header = () => {
   return (
@@ -19,12 +20,7 @@ export const Header = () => {
               <span className="hidden sm:inline">0746174084</span>
             </a>
           </div>
-          <Button variant="ghost" size="icon" className="relative">
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center">
-              0
-            </span>
-          </Button>
+          <Cart />
         </div>
 
         {/* Main header with logo and search */}

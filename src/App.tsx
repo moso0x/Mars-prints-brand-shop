@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster as HotToaster } from "react-hot-toast";
+import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MarketingMaterials from "./pages/MarketingMaterials";
@@ -17,15 +18,17 @@ import Letterheads from "./pages/Letterheads";
 import Stationery from "./pages/Stationery";
 import Feedback from "./pages/Feedback";
 import Contact from "./pages/Contact";
+import Checkout from "./pages/Checkout";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <HotToaster 
+    <CartProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <HotToaster
         position="top-right"
         toastOptions={{
           duration: 3000,
@@ -56,11 +59,13 @@ const App = () => (
           <Route path="/stationery" element={<Stationery />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/checkout" element={<Checkout />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </CartProvider>
   </QueryClientProvider>
 );
 

@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import toast from "react-hot-toast";
+import { useCart } from "@/contexts/CartContext";
 
 const products = [
   {
@@ -67,11 +67,7 @@ const products = [
 ];
 
 export const ProductGrid = () => {
-  const handleOrderClick = (productTitle: string) => {
-    toast.success(`${productTitle} added to cart!`, {
-      icon: '🛒',
-    });
-  };
+  const { addToCart } = useCart();
 
   return (
     <section className="py-16 bg-background">
@@ -110,9 +106,9 @@ export const ProductGrid = () => {
                   <p className="text-muted-foreground text-sm mb-4">{product.price}</p>
                   <Button 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                    onClick={() => handleOrderClick(product.title)}
+                    onClick={() => addToCart(product)}
                   >
-                    Order Now
+                    Add to Cart
                   </Button>
                 </div>
               </Card>
