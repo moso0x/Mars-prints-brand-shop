@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
@@ -17,12 +17,36 @@ const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState("mpesa");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
   });
+
+  useEffect(() => {
+    // Check if user is logged in
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        toast.error("Please login to proceed with checkout");
+        navigate("/auth");
+      } else {
+        // Pre-fill form with user data if available
+        if (session.user.email) {
+          setFormData(prev => ({
+            ...prev,
+            email: session.user.email,
+          }));
+        }
+        setCheckingAuth(false);
+      }
+    };
+    
+    checkAuth();
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,6 +113,20 @@ const Checkout = () => {
       setLoading(false);
     }
   };
+
+  if (checkingAuth) {
+    return (
+      <PageTransition>
+        <div className="min-h-screen">
+          <Header />
+          <main className="container mx-auto px-4 py-12 flex items-center justify-center">
+            <p className="text-muted-foreground">Loading...</p>
+          </main>
+          <FooterNew />
+        </div>
+      </PageTransition>
+    );
+  }
 
   if (items.length === 0) {
     return (
