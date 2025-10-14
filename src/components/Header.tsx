@@ -1,7 +1,8 @@
-import { Search, Mail, Phone, Clock, MapPin, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, Mail, Phone, Clock, MapPin, ChevronDown, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Cart } from "@/components/Cart";
 import {
   DropdownMenu,
@@ -9,8 +10,38 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "react-hot-toast";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 export const Header = () => {
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error("Error signing out");
+    } else {
+      toast.success("Signed out successfully");
+      navigate("/");
+    }
+  };
+
   return (
     <header className="bg-background border-b sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -30,7 +61,22 @@ export const Header = () => {
               <span className="hidden lg:inline">Mon - Sat: 8am - 6pm</span>
             </div>
           </div>
-          <Cart />
+          <div className="flex items-center gap-4">
+            {user ? (
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
+            ) : (
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/auth">
+                  <User className="h-4 w-4 mr-2" />
+                  <span className="hidden sm:inline">Login</span>
+                </Link>
+              </Button>
+            )}
+            <Cart />
+          </div>
         </div>
 
         {/* Main header with logo and search */}
