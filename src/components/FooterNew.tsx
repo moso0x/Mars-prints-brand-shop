@@ -48,3 +48,5 @@ export const FooterNew = () => {
     </footer>
   );
 };
+
+export default FooterNew;
