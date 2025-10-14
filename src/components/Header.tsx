@@ -132,6 +132,9 @@ export const Header = () => {
           <Link to="/">
             <Button variant="ghost" className="whitespace-nowrap">Home</Button>
           </Link>
+          <Link to="/price-list">
+            <Button variant="ghost" className="whitespace-nowrap">Price List</Button>
+          </Link>
           <Link to="/contact">
             <Button variant="ghost" className="whitespace-nowrap">Contact Us</Button>
           </Link>
