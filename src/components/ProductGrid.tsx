@@ -2,67 +2,73 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
+import totebags from "@/assets/tote-bags-hero.jpg";
+import calenders from "@/assets/calenders.jpg"
+import custom_shirt from "@/assets/custom.jpg"
+import flyers from "@/assets/a5flyer.jpg"
+import rollup from "@/assets/rollup-banner.jpg"
+import caps from "@/assets/caps.jpg"
+import hoodie from "@/assets/hoodie.jpg"
+import mounted from "@/assets/mounted-photo.jpg"
+import corporate from "@/assets/corporate.jpg"
+import mug from "@/assets/mugs.jpg"
 
 const products = [
   {
-    title: "Bookmarks printing",
-    price: "Starting at Ksh. 25",
-    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=300&fit=crop",
+    title: "Tote Bags Printing",
+    price: "Starting at Ksh. 300",
+    image: totebags, // tote bag
   },
   {
-    title: "2026 Calendar printing",
-    price: "From Ksh. 90 per piece",
-    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=300&h=300&fit=crop",
+    title: "2026 Calendar Printing",
+    price: "From Ksh. 100 per piece",
+    image: calenders
   },
   {
-    title: "Postcards printing",
-    price: "From Ksh. 25 per card",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    title: "custom shirt Printing",
+    price: "From Ksh. 250 per card",
+    image: custom_shirt
   },
   {
-    title: "A5 Flyers printing",
-    price: "From Ksh. 15 per flyer",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=300&h=300&fit=crop",
+    title: "A5 Flyers Printing",
+    price: "From Ksh. 150 per flyer",
+    image:flyers, // flyers
   },
   {
-    title: "Receipt books printing",
-    price: "From Ksh. 500 per book",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=300&h=300&fit=crop",
+    title: "Caps Printing",
+    price: "From Ksh. 200 per book",
+    image: caps, // receipt books
   },
   {
-    title: "Roll up Banner printing",
-    price: "From Ksh. 6,000 per piece",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    title: "Roll-up Banner Printing",
+    price: "From Ksh. 2000 per piece",
+    image: rollup, // roll-up banner
+  },
+  // {
+  //   title: "New Baby Cards",
+  //   price: "From Ksh. 25 per piece",
+  //   image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&h=300&fit=crop", // baby card
+  // },
+  {
+    title: "Hoodies Printing",
+    price: "From Ksh. 500 per piece",
+    image:hoodie, // X-banner
+  },
+
+  {
+    title: "Mounted Photos Printing",
+    price: "From Ksh. 700",
+    image: mounted, // mounted photo
   },
   {
-    title: "New Baby Cards",
-    price: "From Ksh. 25 per piece",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=300&h=300&fit=crop",
-  },
-  {
-    title: "X-Banner Stands printing",
-    price: "From Ksh. 5800 per piece",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
-  },
-  {
-    title: "Envelopes printing",
-    price: "From Ksh. 40 per piece",
-    image: "https://images.unsplash.com/photo-1526048598645-62b31f82c7a6?w=300&h=300&fit=crop",
-  },
-  {
-    title: "Mounted Photos printing",
-    price: "from Ksh. 700",
-    image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&h=300&fit=crop",
-  },
-  {
-    title: "Business Cards Printing",
+    title: "Custom mugs  Printing",
     price: "From Ksh. 14 per card",
-    image: "https://images.unsplash.com/photo-1589330273594-fade1ee91647?w=300&h=300&fit=crop",
+    image:mug, // business cards
   },
   {
-    title: "Branded T-shirt",
+    title: "Corpotate Gifts",
     price: "From Ksh. 580",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop",
+    image: corporate, // T-shirt
   },
 ];
 
@@ -79,7 +85,12 @@ export const ProductGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-4">Featured Printed Materials</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">
+            Featured Printed Materials
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            From custom tote bags to elegant business cards, explore top-quality print products crafted to make your brand stand out.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -91,14 +102,12 @@ export const ProductGrid = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow group">
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <motion.img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-4">

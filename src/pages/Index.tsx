@@ -3,6 +3,8 @@ import { HeroCarousel } from "@/components/HeroCarousel";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProductGrid } from "@/components/ProductGrid";
+import { RatingsSection } from "@/components/RatingsSection";
+import { EcoFriendlySection } from "@/components/EcoFriendlySection";
 import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
 
@@ -15,6 +17,8 @@ const Index = () => {
           <HeroCarousel />
           <FeaturesSection />
           <ProductGrid />
+          <RatingsSection />
+          <EcoFriendlySection />
           <AboutSection />
         </main>
         <FooterNew />

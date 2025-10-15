@@ -10,9 +10,9 @@ import toteBagsImage from "@/assets/tote-bags-hero.jpg";
 const slides = [
   {
     image: heroImage,
-    title: "Printing Bright Ideas",
-    description: "We're a print company set on creating remarkable products with uncompromised high standards",
-    buttonText: "Shop Now",
+    title: "Where Your Brand Comes Alive.",
+    description: "We transform your ideas into powerful merchandise and experiences that connect, inspire, and leave a mark",
+    buttonText: "Explore our Featured Work",
     link: "/",
   },
   {

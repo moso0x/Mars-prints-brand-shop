@@ -21,6 +21,8 @@ import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import PriceList from "./pages/PriceList";
+import Shop from "./pages/Shop";
+import RouteChangeLoader from "@/components/RouteChangeLoader"; 
 
 const queryClient = new QueryClient();
 
@@ -64,6 +66,7 @@ const App = () => (
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/price-list" element={<PriceList />} />
+          <Route path="/shop" element={<Shop />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

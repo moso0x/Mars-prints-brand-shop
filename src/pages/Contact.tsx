@@ -65,7 +65,7 @@ const Contact = () => {
                   <Mail className="h-6 w-6 text-accent mt-1" />
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@bettyjelimo.com</p>
+                    <p className="text-muted-foreground">jelimocreatives@gmail.com</p>
                   </div>
                 </div>
                 
@@ -73,7 +73,7 @@ const Contact = () => {
                   <Phone className="h-6 w-6 text-accent mt-1" />
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <p className="text-muted-foreground">0746174084</p>
+                    <p className="text-muted-foreground">+254 704-904-678</p>
                   </div>
                 </div>
                 

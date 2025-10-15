@@ -93,7 +93,7 @@ const PriceList = () => {
           </div>
 
           {/* Price Categories */}
-          <div className="space-y-12">
+          {/* <div className="space-y-12">
             {categories.map((category, categoryIndex) => (
               <div key={category.title} className="animate-fade-in" style={{ animationDelay: `${categoryIndex * 0.1}s` }}>
                 <div className="mb-6">
@@ -132,7 +132,7 @@ const PriceList = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
 
           {/* Call to Action */}
           <Card className="mt-12 bg-accent/10 border-accent/20 animate-fade-in">
