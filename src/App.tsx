@@ -22,7 +22,7 @@ import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import PriceList from "./pages/PriceList";
 import Shop from "./pages/Shop";
-import RouteChangeLoader from "@/components/RouteChangeLoader"; 
+import RouteChangeLoader from "@/components/RouteChangeLoader"; // Assuming you added it
 
 const queryClient = new QueryClient();
 
@@ -30,48 +30,51 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <CartProvider>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <HotToaster
-        position="top-right"
-        toastOptions={{
-          duration: 3000,
-          style: {
-            background: 'hsl(var(--card))',
-            color: 'hsl(var(--card-foreground))',
-            border: '1px solid hsl(var(--border))',
-          },
-          success: {
-            iconTheme: {
-              primary: 'hsl(var(--accent))',
-              secondary: 'hsl(var(--accent-foreground))',
-            },
-          },
-        }}
-      />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/marketing-materials" element={<MarketingMaterials />} />
-          <Route path="/mugs" element={<Mugs />} />
-          <Route path="/banners" element={<Banners />} />
-          <Route path="/vinyl-stickers" element={<VinylStickers />} />
-          <Route path="/label-stickers" element={<LabelStickers />} />
-          <Route path="/cards" element={<Cards />} />
-          <Route path="/calendars" element={<Calendars />} />
-          <Route path="/letterheads" element={<Letterheads />} />
-          <Route path="/stationery" element={<Stationery />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/price-list" element={<PriceList />} />
-          <Route path="/shop" element={<Shop />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+        <div className="overflow-x-hidden">
+          <Toaster />
+          <Sonner />
+          <HotToaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: 'hsl(var(--card))',
+                color: 'hsl(var(--card-foreground))',
+                border: '1px solid hsl(var(--border))',
+              },
+              success: {
+                iconTheme: {
+                  primary: 'hsl(var(--accent))',
+                  secondary: 'hsl(var(--accent-foreground))',
+                },
+              },
+            }}
+          />
+          <BrowserRouter>
+            <RouteChangeLoader />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/marketing-materials" element={<MarketingMaterials />} />
+              <Route path="/mugs" element={<Mugs />} />
+              <Route path="/banners" element={<Banners />} />
+              <Route path="/vinyl-stickers" element={<VinylStickers />} />
+              <Route path="/label-stickers" element={<LabelStickers />} />
+              <Route path="/cards" element={<Cards />} />
+              <Route path="/calendars" element={<Calendars />} />
+              <Route path="/letterheads" element={<Letterheads />} />
+              <Route path="/stationery" element={<Stationery />} />
+              <Route path="/feedback" element={<Feedback />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/price-list" element={<PriceList />} />
+              <Route path="/shop" element={<Shop />} />
+              {/* Catch-all */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </TooltipProvider>
     </CartProvider>
   </QueryClientProvider>
 );
