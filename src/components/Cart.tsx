@@ -21,7 +21,7 @@ export const Cart = () => {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-lg">
+      <SheetContent className="w-full sm:max-w-lg bg-white">
         <SheetHeader>
           <SheetTitle>Shopping Cart ({getTotalItems()} items)</SheetTitle>
         </SheetHeader>

@@ -1,45 +1,45 @@
-import { Shirt, Gift, Palette, Globe, Users, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
+import merch from "@/assets/merch.jpg"
+import gifts from "@/assets/custom-gifts.jpg"
+import event  from "@/assets/event.png"
+import delivery from "@/assets/delivery.jpg"
+import eco from "@/assets/ecofriendly.jpg"
+import designsupport from "@/assets/designsupport.jpg"
+import offer from "@/assets/offer.jpg"
 
 const features = [
   {
-    icon: Shirt,
-    color: "text-blue-500",
+    image: merch,
     title: "Custom Merchandise & Branded Apparel",
     description:
       "Bring your vision to life with custom gear that makes a statement. From T-shirts and hoodies to caps and uniforms, we design and produce apparel that proudly showcases your brand.",
   },
   {
-    icon: Gift,
-    color: "text-green-500",
+    image: gifts,
     title: "Gifts & Promotional Items",
     description:
       "Leave a lasting impression with custom mugs, calendars, stationery, and unique corporate gifts. Every item is designed to connect, impress, and inspire.",
   },
   {
-    icon: Palette,
-    color: "text-yellow-500",
+    image: designsupport,
     title: "Full Design Support",
     description:
       "Whether you're launching a new product or rebranding, our creative team helps you design merchandise that stands out — from concept to print-ready perfection.",
   },
   {
-    icon: Users,
-    color: "text-blue-600",
+    image: event,
     title: "Event Promotion & Purpose-Driven Collaborations",
     description:
       "We specialize in promoting and partnering on events and campaigns that inspire action, build community, and amplify meaningful causes.",
   },
   {
-    icon: Globe,
-    color: "text-green-600",
+    image: delivery,
     title: "Nationwide Reach",
     description:
       "We deliver across Kenya — bringing your brand to every corner of the country. Regional delivery is coming soon, expanding your reach even further.",
   },
   {
-    icon: Leaf,
-    color: "text-yellow-600",
+    image: eco,
     title: "Eco-Friendly & Social Impact Campaigns",
     description:
       "Champion sustainability and social causes through meaningful collaborations that promote positive change and responsible branding.",
@@ -50,7 +50,7 @@ export const FeaturesSection = () => {
   return (
     <section className="py-16 bg-secondary">
       <div className="container mx-auto px-4">
-        {/* Intro Text */}
+        {/* Intro */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
@@ -74,17 +74,30 @@ export const FeaturesSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="text-center p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition"
+              className="relative group rounded-2xl overflow-hidden shadow-md cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mx-auto mb-4">
-                <feature.icon className={`h-8 w-8 ${feature.color}`} />
-              </div>
-              <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground text-sm">{feature.description}</p>
+              {/* Background Image */}
+              <img
+                src={feature.image}
+                alt={feature.title}
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+
+              {/* Overlay on Hover */}
+              <motion.div
+                className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center text-center px-4"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                <h3 className="text-white text-xl font-bold mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-200 text-sm">{feature.description}</p>
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -105,6 +118,15 @@ export const FeaturesSection = () => {
           >
             Contact Us to Start Your Creative Journey
           </a>
+          <div className="flex justify-around ">
+          
+            <div>
+              <img src={offer} alt="" className="h-[600px] flex mx-auto items-center justify-center" />
+            </div>
+                
+
+          </div>
+      
         </motion.div>
       </div>
     </section>

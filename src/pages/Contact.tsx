@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import toast from "react-hot-toast";
+import contact from "@/assets/contact-icon.jpg";
 
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,6 +21,7 @@ const Contact = () => {
     <PageTransition>
       <div className="min-h-screen">
         <Header />
+        <div> <img src={contact} className="mx-auto flex justify-center items-center w-[300px]" alt="" /></div>
         <main className="container mx-auto px-4 py-12">
           <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
           <p className="text-muted-foreground mb-12">

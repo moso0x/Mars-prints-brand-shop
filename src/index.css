@@ -24,141 +24,46 @@ All colors MUST be HSL.
   .animate-marquee-rtl:hover {
     animation-play-state: paused;
   }
-.poppins-thin {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.poppins-extralight {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.poppins-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.poppins-regular {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.poppins-medium {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.poppins-semibold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.poppins-bold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.poppins-extrabold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.poppins-black {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.poppins-thin-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.poppins-extralight-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: italic;
-}
-
-.poppins-light-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.poppins-regular-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.poppins-medium-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.poppins-semibold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.poppins-bold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.poppins-extrabold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: italic;
-}
-
-.poppins-black-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
 
 
-@layer base {
+
+layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 13%;
+    /* Base Backgrounds */
+    --background: 0 0% 99.6%; /* White */
+    --foreground: 0 0% 13%; /* Dark gray text */
 
-    --card: 0 0% 100%;
+    /* Cards / Popovers */
+    --card: 225 68% 90%; /* Light blue tint */
     --card-foreground: 0 0% 13%;
 
-    --popover: 0 0% 100%;
+    --popover: 225 68% 90%;
     --popover-foreground: 0 0% 13%;
 
-    --primary: 0 0% 13%;
+    /* Primary (Deep Blue from Logo) */
+    --primary: 230 82% 63%; /* #597CEB */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 13%;
+    /* Secondary (Darker Blue Accent) */
+    --secondary: 228 98% 45%; /* #0433E1 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    /* Muted (light gray/blue tone) */
+    --muted: 225 40% 90%;
+    --muted-foreground: 225 10% 35%;
 
-    --accent: 0 85% 55%;
+    /* Accent (Neon Green Smile) */
+    --accent: 152 97% 36%; /* #05B45E */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    /* Destructive (Orange) */
+    --destructive: 14 65% 55%; /* #D26749 */
     --destructive-foreground: 0 0% 100%;
 
+    /* Additional colors for design consistency */
+    --info: 225 82% 63%; /* same as blue tone */
+    --success: 152 97% 36%; /* same as accent green */
+    --warning: 30 80% 55%; /* complementary orange */
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 0 85% 55%;

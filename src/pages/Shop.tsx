@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, LayoutGrid, List } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
+import shop_img from "@/assets/shop.jpg"
 
 const categories = [
   "All Products",
