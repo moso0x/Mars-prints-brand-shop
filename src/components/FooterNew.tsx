@@ -101,7 +101,7 @@ export const FooterNew = () => {
             . All rights reserved. Made with{" "}
             <span className="text-[#D26749]">❤️</span> by{" "}
             <a
-              href="https://anansi.tech"
+              href="https://anansiwebworks.netlify.app/#"
               className="text-[#05B45E] hover:underline hover:text-white transition-colors"
             >
               Anansi Web Works
