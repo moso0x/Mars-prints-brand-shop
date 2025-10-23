@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const ToastProvider = ToastPrimitives.Provider;
 
+// ✅ Toast Viewport fixed to top-right corner
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Viewport>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
@@ -13,7 +14,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-5 right-5 z-[100] flex flex-col gap-3 w-full max-w-sm",
+      "fixed top-5 right-5 z-[100] flex flex-col gap-3 w-full max-w-sm pointer-events-none", // right aligned
       className
     )}
     {...props}
@@ -21,17 +22,16 @@ const ToastViewport = React.forwardRef<
 ));
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
-// ✅ Updated Variants (Green for success, Red for error)
+// ✅ Toast variants with right slide animations
 const toastVariants = cva(
   "group pointer-events-auto relative flex w-full items-start justify-between overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all " +
-    "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full",
+    "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-80 " +
+    "data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-right-full", // slide in/out from right
   {
     variants: {
       variant: {
-        success:
-          "bg-[#05B45E] border-[#05B45E] text-white", // ✅ Jelimo Green
-        error:
-          "bg-[hsl(var(--destructive))] border-[hsl(var(--destructive))] text-white", // ❌ Red
+        success: "bg-[#05B45E] border-[#05B45E] text-white", // Jelimo Green
+        error: "bg-[hsl(var(--destructive))] border-[hsl(var(--destructive))] text-white", // Red
       },
     },
     defaultVariants: {
@@ -102,8 +102,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "inline-flex h-8 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors " +
-        "bg-white/20 hover:bg-white/30 text-white",
+      "inline-flex h-8 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors bg-white/20 hover:bg-white/30 text-white",
       className
     )}
     {...props}

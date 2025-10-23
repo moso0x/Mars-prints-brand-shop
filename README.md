@@ -81,3 +81,170 @@ Merchandise & Lifestyle Items
 Eco-Friendly Branding
 Creative & Digital Design Services
 Specialty & Custom Finishes
+
+
+🧢 Apparel & Wearables
+
+T-shirt printing (DTG, screen printing, vinyl, sublimation)
+
+Hoodies and sweatshirts branding
+
+Polo shirts embroidery
+
+Caps and hats printing
+
+Uniform branding (corporate, school, security, hospitality)
+
+Reflector jackets printing
+
+Jerseys and sportswear customization
+
+Workwear branding (overalls, aprons, coats)
+
+📦 Packaging & Labeling
+
+Custom product packaging design
+
+Branded boxes and bags
+
+Sticker and label printing
+
+Food packaging branding
+
+Cosmetic and bottle label printing
+
+Tamper-proof seals and holographic stickers
+
+🎁 Promotional & Corporate Gifts
+
+Custom mugs and bottles
+
+Branded notebooks and diaries
+
+Keychains and lanyards
+
+Umbrellas and tote bags
+
+Power banks and flash drives with logo
+
+Pens and stationery branding
+
+Desk calendars and wall calendars
+
+Custom badges and name tags
+
+🖨️ Marketing & Advertising Materials
+
+Flyers, brochures, and leaflets
+
+Business cards and loyalty cards
+
+Posters and banners (vinyl, fabric, mesh)
+
+Pull-up banners and roll-up stands
+
+Billboards and large-format prints
+
+Catalogs and product manuals
+
+Presentation folders and envelopes
+
+🚗 Vehicle & Outdoor Branding
+
+Vehicle wraps and decals
+
+Car stickers and window graphics
+
+Motorbike and matatu branding
+
+Outdoor billboards
+
+Building wraps and wall branding
+
+Directional and safety signage
+
+Roadside signs and shop signage
+
+🏢 Indoor & Office Branding
+
+Reception wall logos and acrylic signs
+
+Frosted glass and wall murals
+
+Door labels and office plaques
+
+Floor graphics and decals
+
+Indoor posters and backdrops
+
+3D illuminated signage
+
+🎤 Event Branding
+
+Event backdrops and stage branding
+
+Branded tents and canopies
+
+Flags and teardrop banners
+
+Wristbands and entry tags
+
+Step-and-repeat media walls
+
+Directional event signage
+
+Branded podiums and stage décor
+
+🛍️ Merchandise & Lifestyle Items
+
+Tote bags and backpacks
+
+Phone cases and pop sockets
+
+Mouse pads and desk mats
+
+Face masks and aprons
+
+Towels and blankets
+
+Wristbands and accessories
+
+🌿 Eco-Friendly Branding
+
+Recyclable packaging
+
+Bamboo pens and mugs
+
+Eco tote bags and notebooks
+
+Sustainable apparel printing
+
+Compostable stickers and labels
+
+💡 Creative & Digital Design Services
+
+Logo and brand identity design
+
+Brand style guide development
+
+Social media branding kits
+
+Digital mockups and print previews
+
+Marketing campaign visuals
+
+Custom illustration and vectorization
+
+🕓 Specialty & Custom Finishes
+
+Embroidery and 3D puff embroidery
+
+Foil stamping and embossing
+
+UV spot printing
+
+Metallic and holographic finishes
+
+Glow-in-the-dark or reflective prints
+
+Heat transfer and sublimation printing

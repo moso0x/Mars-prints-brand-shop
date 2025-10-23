@@ -3,73 +3,29 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import totebags from "@/assets/tote-bags-hero.jpg";
-import calenders from "@/assets/calenders.jpg"
-import custom_shirt from "@/assets/custom.jpg"
-import flyers from "@/assets/a5flyer.jpg"
-import rollup from "@/assets/rollup-banner.jpg"
-import caps from "@/assets/caps.jpg"
-import hoodie from "@/assets/hoodie.jpg"
-import mounted from "@/assets/mounted-photo.jpg"
-import corporate from "@/assets/corporate.jpg"
-import mug from "@/assets/mugs.jpg"
+import calenders from "@/assets/calenders.jpg";
+import custom_shirt from "@/assets/custom.jpg";
+import flyers from "@/assets/a5flyer.jpg";
+import rollup from "@/assets/rollup-banner.jpg";
+import caps from "@/assets/caps.jpg";
+import hoodie from "@/assets/hoodie.jpg";
+import mounted from "@/assets/mounted-photo.jpg";
+import corporate from "@/assets/corporate.jpg";
+import mug from "@/assets/mugs.jpg";
 
 const products = [
-  {
-    title: "Tote Bags Printing",
-    price: "Starting at Ksh. 300",
-    image: totebags, // tote bag
-  },
-  {
-    title: "2026 Calendar Printing",
-    price: "From Ksh. 100 per piece",
-    image: calenders
-  },
-  {
-    title: "custom shirt Printing",
-    price: "From Ksh. 250 per card",
-    image: custom_shirt
-  },
-  {
-    title: "A5 Flyers Printing",
-    price: "From Ksh. 150 per flyer",
-    image:flyers, // flyers
-  },
-  {
-    title: "Caps Printing",
-    price: "From Ksh. 200 per book",
-    image: caps, // receipt books
-  },
-  {
-    title: "Roll-up Banner Printing",
-    price: "From Ksh. 2000 per piece",
-    image: rollup, // roll-up banner
-  },
-  // {
-  //   title: "New Baby Cards",
-  //   price: "From Ksh. 25 per piece",
-  //   image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&h=300&fit=crop", // baby card
-  // },
-  {
-    title: "Hoodies Printing",
-    price: "From Ksh. 500 per piece",
-    image:hoodie, // X-banner
-  },
-
-  {
-    title: "Mounted Photos Printing",
-    price: "From Ksh. 700",
-    image: mounted, // mounted photo
-  },
-  {
-    title: "Custom mugs  Printing",
-    price: "From Ksh. 14 per card",
-    image:mug, // business cards
-  },
-  {
-    title: "Corpotate Gifts",
-    price: "From Ksh. 580",
-    image: corporate, // T-shirt
-  },
+  { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
+  { title: "2026 Calendar Printing", price: "From Ksh. 100 per piece", image: calenders },
+  { title: "Custom Shirt Printing", price: "From Ksh. 250 per card", image: custom_shirt },
+  { title: "A5 Flyers Printing", price: "From Ksh. 150 per flyer", image: flyers },
+  { title: "Caps Printing", price: "From Ksh. 200 per piece", image: caps },
+  { title: "Roll-up Banner Printing", price: "From Ksh. 2000 per piece", image: rollup },
+  { title: "Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie },
+  { title: "Mounted Photos Printing", price: "From Ksh. 700", image: mounted },
+  { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
+  { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
+    { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
+  { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
 ];
 
 export const ProductGrid = () => {
@@ -78,7 +34,7 @@ export const ProductGrid = () => {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,11 +45,13 @@ export const ProductGrid = () => {
             Featured Printed Materials
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            From custom tote bags to elegant business cards, explore top-quality print products crafted to make your brand stand out.
+            From custom tote bags to elegant business cards, explore top-quality print
+            products crafted to make your brand stand out.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Adjusted Grid — 5 columns on large screens */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-5">
           {products.map((product, index) => (
             <motion.div
               key={index}
@@ -102,19 +60,22 @@ export const ProductGrid = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="overflow-hidden hover:shadow-xl transition-shadow group">
-                <div className="aspect-square overflow-hidden bg-secondary">
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow group rounded-lg">
+                <div className="overflow-hidden bg-secondary">
                   <motion.img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-36 md:h-40 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-4">
-                  <h3 className="font-bold text-lg mb-2">{product.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{product.price}</p>
-                  <Button 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                <div className="p-3 text-center">
+                  <h3 className="font-semibold text-sm md:text-base mb-1">{product.title}</h3>
+                  <p className="text-muted-foreground text-xs md:text-sm mb-3">
+                    {product.price}
+                  </p>
+                  <Button
+                    size="sm"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-xs md:text-sm"
                     onClick={() => addToCart(product)}
                   >
                     Add to Cart
