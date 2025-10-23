@@ -1,48 +1,96 @@
 import { motion } from "framer-motion";
-import merch from "@/assets/merch.jpg"
-import gifts from "@/assets/custom-gifts.jpg"
-import event  from "@/assets/event.png"
-import delivery from "@/assets/delivery.jpg"
-import eco from "@/assets/ecofriendly.jpg"
-import designsupport from "@/assets/designsupport.jpg"
-import offer from "@/assets/offer.jpg"
+import merch from "@/assets/merch.jpg";
+import gifts from "@/assets/custom-gifts.jpg";
+import event from "@/assets/event.png";
+import delivery from "@/assets/delivery.jpg";
+import eco from "@/assets/ecofriendly.jpg";
+import designsupport from "@/assets/designsupport.jpg";
+import offer from "@/assets/offer.jpg";
+import printing from "@/assets/printing.jpg";
+import branding from "@/assets/branding.jpg";
+import signage from "@/assets/signage.jpg";
+import cards from "@/assets/cards.jpg";
+import vehicle from "@/assets/vehicle.jpg";
+import stationery from "@/assets/stationery.jpg";
 
 const features = [
   {
     image: merch,
     title: "Custom Merchandise & Branded Apparel",
     description:
-      "Bring your vision to life with custom gear that makes a statement. From T-shirts and hoodies to caps and uniforms, we design and produce apparel that proudly showcases your brand.",
+      "Bring your vision to life with custom gear that makes a statement.",
   },
   {
     image: gifts,
     title: "Gifts & Promotional Items",
     description:
-      "Leave a lasting impression with custom mugs, calendars, stationery, and unique corporate gifts. Every item is designed to connect, impress, and inspire.",
+      "Custom mugs, calendars, and corporate gifts designed to impress.",
   },
   {
     image: designsupport,
-    title: "Full Design Support",
+    title: "Creative Design Support",
     description:
-      "Whether you're launching a new product or rebranding, our creative team helps you design merchandise that stands out — from concept to print-ready perfection.",
+      "We help you create strong visuals that represent your brand.",
   },
   {
-    image: event,
-    title: "Event Promotion & Purpose-Driven Collaborations",
+    image: printing,
+    title: "Digital & Offset Printing",
     description:
-      "We specialize in promoting and partnering on events and campaigns that inspire action, build community, and amplify meaningful causes.",
+      "Quality printing services for flyers, posters, and business materials.",
   },
   {
-    image: delivery,
-    title: "Nationwide Reach",
+    image: branding,
+    title: "Corporate Branding Solutions",
     description:
-      "We deliver across Kenya — bringing your brand to every corner of the country. Regional delivery is coming soon, expanding your reach even further.",
+      "Transform your company’s presence with full visual identity design.",
+  },
+  {
+    image: cards,
+    title: "Business Cards & Stationery",
+    description:
+      "Professional cards and office stationery designed for impact.",
+  },
+  {
+    image: signage,
+    title: "Outdoor & Indoor Signage",
+    description:
+      "Eye-catching banners, displays, and wayfinding signs that attract.",
+  },
+  {
+    image: vehicle,
+    title: "Vehicle Branding & Wraps",
+    description:
+      "Turn company vehicles into moving billboards for brand awareness.",
+  },
+  {
+    image: stationery,
+    title: "Corporate Stationery Printing",
+    description:
+      "Letterheads, envelopes, and branded office essentials to impress.",
   },
   {
     image: eco,
-    title: "Eco-Friendly & Social Impact Campaigns",
+    title: "Eco-Friendly Campaigns",
     description:
-      "Champion sustainability and social causes through meaningful collaborations that promote positive change and responsible branding.",
+      "Promote sustainability with reusable and recyclable materials.",
+  },
+  {
+    image: event,
+    title: "Event Promotion & Collaborations",
+    description:
+      "We brand, design, and promote events that leave a lasting impact.",
+  },
+  {
+    image: delivery,
+    title: "Nationwide & Regional Delivery",
+    description:
+      "Fast delivery across Kenya with expanding regional coverage.",
+  },
+  {
+    image: offer,
+    title: "Special Offers & Discounts",
+    description:
+      "Seasonal promotions and packages for startups and loyal clients.",
   },
 ];
 
@@ -59,74 +107,67 @@ export const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl font-bold mb-4">
-            Let’s Create Together — From Custom Merchandise to Meaningful Events
+            Explore Our Creative & Branding Solutions
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            At Jelimo Creatives, we help brands make real-world connections
-            through personalized merchandise, inspired designs, and impactful
-            collaborations. Whether you’re launching a clothing line, promoting
-            an event, or supporting a cause — we bring your ideas to life.
+            At Jelimo Creatives, we provide a full range of branding, design, and
+            printing services — from promotional items to complete brand
+            identity development.
           </p>
         </motion.div>
 
         {/* Feature Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="relative group rounded-2xl overflow-hidden shadow-md cursor-pointer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              {/* Background Image */}
-              <img
-                src={feature.image}
-                alt={feature.title}
-                className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {features.map((feature, index) => {
+            const shortDescription = feature.description
+              .split(" ")
+              .slice(0, 3)
+              .join(" ") + "...";
 
-              {/* Overlay on Hover */}
+            return (
               <motion.div
-                className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center text-center px-4"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
+                key={index}
+                whileHover={{ y: -6, scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200, damping: 12 }}
+                className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
               >
-                <h3 className="text-white text-xl font-bold mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-200 text-sm">{feature.description}</p>
+                <motion.img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
+                />
+                <div className="p-3 text-center transition-colors duration-300 hover:bg-gray-50">
+                  <h3 className="text-base font-semibold mb-1 text-primary">
+                    {feature.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-snug mb-2">
+                    {shortDescription}
+                  </p>
+                  <button className="text-xs font-medium text-green-600 hover:text-green-700 underline transition">
+                    Read More
+                  </button>
+                </div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* CTA */}
         <motion.div
-          className="text-center mt-12"
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <p className="text-lg font-semibold mb-4">
-            Have an idea for a product line, an event, or a campaign?
+            Have an idea or project you’d like to bring to life?
           </p>
           <a
             href="/contact"
             className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition"
           >
-            Contact Us to Start Your Creative Journey
+            Let’s Collaborate
           </a>
-          <div className="flex justify-around ">
-          
-            <div>
-              <img src={offer} alt="" className="h-[600px] flex mx-auto items-center justify-center" />
-            </div>
-                
-
-          </div>
-      
         </motion.div>
       </div>
     </section>

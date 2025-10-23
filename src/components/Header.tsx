@@ -86,7 +86,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 font-sans">
         {/* --- Top Bar --- */}
         <div
-          className={`flex items-center justify-between border-b border-gray-300/20 pb-2 flex-wrap gap-2 transition-all duration-300 ${
+          className={`flex items-center justify-between border-b border-gray-300/50 pb-2 flex-wrap gap-2 transition-all duration-300 ${
             scrolled ? "text-sm text-gray-800" : "text-base text-gray-900"
           }`}
         >
@@ -96,17 +96,17 @@ export const Header = () => {
               href="tel:+254704904678"
               className="flex items-center gap-2 hover:opacity-80"
             >
-              <Phone className="h-[50px] w-[50px]" style={{ color: "black" }} />
+              <Phone className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]"  />
               <span className="font-medium text-black text-lg">+254 704-904-678</span>
             </a>
 
             <div className="flex items-center gap-2">
-              <MapPin className="h-[50px] w-[50px]" style={{ color: "black" }} />
+              <MapPin className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]" />
               <span className="font-medium text-black text-lg">Mombasa, Kenya</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <Clock className="h-[50px] w-[50px]" style={{ color: "black" }} />
+              <Clock className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]"  />
               <span className="font-medium text-black text-lg">Mon - Sat: 8am - 6pm</span>
             </div>
           </div>
@@ -118,9 +118,9 @@ export const Header = () => {
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="transition-colors text-black"
+                className="transition-colors text-[#D26749]"
               >
-                <LogOut className="h-6 w-6 mr-1" />
+                <LogOut className="h-6 w-6 mr-1 text-[#D26749]" />
                 <span className="text-lg font-medium">Logout</span>
               </Button>
             ) : (
@@ -131,7 +131,7 @@ export const Header = () => {
                 className="transition-colors text-black"
               >
                 <Link to="/auth">
-                  <User className="h-6 w-6 mr-1" />
+                  <User className="h-6 w-6 mr-1 text-[#D26749]" />
                   <span className="text-lg font-medium">Login</span>
                 </Link>
               </Button>
@@ -139,7 +139,7 @@ export const Header = () => {
 
             <Cart />
             <Button variant="ghost" className="text-black p-0">
-              <Heart className="h-6 w-6" />
+              <Heart className="h-6 w-6 text-[#D26749]" />
             </Button>
           </div>
         </div>
@@ -185,13 +185,16 @@ export const Header = () => {
                   <ChevronDown className="h-4 w-4 ml-2" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56 bg-white">
+              <DropdownMenuContent align="start" className="w-56 bg-white text-[#05B45E] hover-">
                 {[
-                  ["Custom Caps", "/marketing-materials"],
-                  ["Custom Merch", "/cards"],
-                  ["Hoodies", "/stationery"],
-                  ["Apparel & Accessories", "/mugs"],
-                  ["Outdoor Branding", "/banners"],
+                  ["Apparel & Wearables", "/marketing-materials"],
+                  ["Packaging & Labeling", "/cards"],
+                  ["Promotional & Corporate Gifts", "/stationery"],
+                  ["Marketing & Advertising Materials", "/mugs"],
+                  ["Merchandise & Lifestyle Items", "/banners"],
+                  ["Eco-Friendly Branding", "/banners"],
+                  ["Creative & Digital Design Services", "/banners"],
+                  ["Specialty & Custom Finishes", "/banners"],
                 ].map(([label, link]) => (
                   <DropdownMenuItem asChild key={label}>
                     <Link to={link} className="w-full cursor-pointer">
@@ -274,11 +277,14 @@ export const Header = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-full">
                   {[
-                    ["Marketing Materials", "/marketing-materials"],
-                    ["Business Cards", "/cards"],
-                    ["Business Stationery", "/stationery"],
-                    ["Apparel & Accessories", "/mugs"],
-                    ["Outdoor Branding", "/banners"],
+                     ["Apparel & Wearables", "/marketing-materials"],
+                  ["Packaging & Labeling", "/cards"],
+                  ["Promotional & Corporate Gifts", "/stationery"],
+                  ["Marketing & Advertising Materials", "/mugs"],
+                  ["Merchandise & Lifestyle Items", "/banners"],
+                  ["Eco-Friendly Branding", "/banners"],
+                  ["Creative & Digital Design Services", "/banners"],
+                  ["Specialty & Custom Finishes", "/banners"],
                   ].map(([label, link]) => (
                     <DropdownMenuItem asChild key={label}>
                       <Link to={link}>{label}</Link>

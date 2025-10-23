@@ -7,7 +7,7 @@ import { Toaster as HotToaster } from "react-hot-toast";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import MarketingMaterials from "./pages/MarketingMaterials";
+import MarketingMaterials from "./pages/ApparelWearables";
 import Mugs from "./pages/Mugs";
 import Banners from "./pages/Banners";
 import VinylStickers from "./pages/VinylStickers";

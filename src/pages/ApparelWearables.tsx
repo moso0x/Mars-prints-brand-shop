@@ -11,9 +11,8 @@ import apparels1 from "@/assets/apparels.jpg";
 import apparels2 from "@/assets/apparels2.jpg";
 import apparels3 from "@/assets/apparels3.jpg";
 
-const Mugs = () => {
-
-    const carouselSettings = {
+const MarketingMaterials = () => {
+  const carouselSettings = {
     dots: true,
     infinite: true,
     speed: 600,
@@ -25,9 +24,7 @@ const Mugs = () => {
     adaptiveHeight: true,
   };
 
-
   return (
-    
     <PageTransition>
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -75,4 +72,4 @@ const Mugs = () => {
   );
 };
 
-export default Mugs;
+export default MarketingMaterials;

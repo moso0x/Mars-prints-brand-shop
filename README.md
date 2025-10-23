@@ -71,3 +71,13 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+
+Apparel & Wearables
+Packaging & Labeling
+Promotional & Corporate Gifts
+Marketing & Advertising Materials
+Merchandise & Lifestyle Items
+Eco-Friendly Branding
+Creative & Digital Design Services
+Specialty & Custom Finishes
