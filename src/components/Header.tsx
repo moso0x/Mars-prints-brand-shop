@@ -16,24 +16,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { Cart } from "@/components/Cart";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "react-hot-toast";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 import logo from "@/assets/logo.png";
+import AdvertRibbon from "./AdvertRibbon";
 
 export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
-  // Jelimo Creatives color palette
   const COLORS = {
     blue: "#597CEB",
     neonGreen: "#05B45E",
@@ -42,7 +37,6 @@ export const Header = () => {
     lightBlue: "#B9C4EF",
   };
 
-  // Auth session
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -55,7 +49,6 @@ export const Header = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Scroll shadow behavior
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
@@ -86,33 +79,35 @@ export const Header = () => {
       <div className="container mx-auto px-4 font-sans">
         {/* --- Top Bar --- */}
         <div
-          className={`flex items-center justify-between border-b border-gray-300/50 pb-2 flex-wrap gap-2 transition-all duration-300 ${
+          className={`flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-300/50 pb-2 transition-all duration-300 ${
             scrolled ? "text-sm text-gray-800" : "text-base text-gray-900"
           }`}
         >
           {/* Contact Info */}
-          <div className="flex items-center gap-4 md:gap-8 flex-wrap">
-            <a
-              href="tel:+254704904678"
-              className="flex items-center gap-2 hover:opacity-80"
-            >
-              <Phone className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]"  />
-              <span className="font-medium text-black text-lg">+254 704-904-678</span>
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8 text-xs sm:text-sm md:text-base">
+            <a href="tel:+254704904678" className="flex items-center gap-1 hover:opacity-80">
+              <Phone className="text-black w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-medium text-black">+254 704-904-678</span>
             </a>
 
-            <div className="flex items-center gap-2">
-              <MapPin className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]" />
-              <span className="font-medium text-black text-lg">Mombasa, Kenya</span>
+            <div className="flex items-center gap-1">
+              <MapPin className="text-black w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-medium text-black">Mombasa, Kenya</span>
             </div>
 
-            <div className="flex items-center gap-2">
-              <Clock className="md:h-[50px] md:w-[50px] w-[20px] text-[#05B45E]"  />
-              <span className="font-medium text-black text-lg">Mon - Sat: 8am - 6pm</span>
+            <div className="flex items-center gap-1">
+              <Clock className="text-black w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-medium text-black">Mon - Sat: 8am - 6pm</span>
             </div>
           </div>
 
+          {/* Advertisement Ribbon (centered full width below contact info) */}
+          <div className="w-[400px] mt-2 md:mt-0 mx-auto md:mx-0">
+            <AdvertRibbon />
+          </div>
+
           {/* User, Cart & Wishlist */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center md:justify-end gap-3 mt-3 md:mt-0">
             {user ? (
               <Button
                 variant="ghost"
@@ -120,26 +115,21 @@ export const Header = () => {
                 onClick={handleLogout}
                 className="transition-colors text-[#D26749]"
               >
-                <LogOut className="h-6 w-6 mr-1 text-[#D26749]" />
-                <span className="text-lg font-medium">Logout</span>
+                <LogOut className="h-5 w-5 mr-1 text-[#D26749]" />
+                <span className="font-medium">Logout</span>
               </Button>
             ) : (
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="transition-colors text-black"
-              >
+              <Button variant="ghost" size="sm" asChild className="transition-colors text-black">
                 <Link to="/auth">
-                  <User className="h-6 w-6 mr-1 text-[#D26749]" />
-                  <span className="text-lg font-medium">Login</span>
+                  <User className="h-5 w-5 mr-1 text-[#D26749]" />
+                  <span className="font-medium">Login</span>
                 </Link>
               </Button>
             )}
 
             <Cart />
             <Button variant="ghost" className="text-black p-0">
-              <Heart className="h-6 w-6 text-[#D26749]" />
+              <Heart className="h-5 w-5 text-[#D26749]" />
             </Button>
           </div>
         </div>
@@ -152,18 +142,11 @@ export const Header = () => {
           }`}
         >
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex-shrink-0 flex items-center justify-center"
-          >
+          <Link to="/" className="flex-shrink-0 flex items-center justify-center">
             <motion.img
               src={logo}
               alt="Jelimo Creatives Logo"
-              className={`object-contain transition-all drop-shadow-md ${
-                scrolled
-                  ? "h-[150px] sm:h-[150px] md:[150px] lg:[150px]"
-                  : "h-[150px] sm:[150px] md:[150px] lg:[150px]"
-              }`}
+              className="object-contain transition-all drop-shadow-md h-[120px] sm:h-[150px]"
               whileHover={{ scale: 1.05 }}
             />
           </Link>
@@ -173,38 +156,59 @@ export const Header = () => {
             layout
             className="hidden md:flex items-center gap-3 flex-1 justify-center text-[1rem] font-medium"
           >
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  className="text-white"
-                  style={{
-                    backgroundColor: COLORS.orange,
-                  }}
+            {/* Hoverable Dropdown */}
+            <div
+              className="relative group"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <Button
+                className="text-white flex items-center"
+                style={{ backgroundColor: COLORS.orange }}
+              >
+                <span>Shop by Categories</span>
+                <motion.div
+                  animate={{ rotate: isHovered ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span>Shop by Categories</span>
                   <ChevronDown className="h-4 w-4 ml-2" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56 bg-white text-[#05B45E] hover-">
-                {[
-                  ["Apparel & Wearables", "/marketing-materials"],
-                  ["Packaging & Labeling", "/cards"],
-                  ["Promotional & Corporate Gifts", "/stationery"],
-                  ["Marketing & Advertising Materials", "/mugs"],
-                  ["Merchandise & Lifestyle Items", "/banners"],
-                  ["Eco-Friendly Branding", "/banners"],
-                  ["Creative & Digital Design Services", "/banners"],
-                  ["Specialty & Custom Finishes", "/banners"],
-                ].map(([label, link]) => (
-                  <DropdownMenuItem asChild key={label}>
-                    <Link to={link} className="w-full cursor-pointer">
-                      {label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                </motion.div>
+              </Button>
 
+              <AnimatePresence>
+                {isHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute left-0 mt-2 w-60 rounded-lg bg-blue-600 text-white shadow-xl z-[9999]"
+                  >
+                    {[
+                      ["Apparel & Wearables", "/marketing-materials"],
+                      ["Packaging & Labeling", "/cards"],
+                      ["Promotional & Corporate Gifts", "/stationery"],
+                      ["Marketing & Advertising Materials", "/mugs"],
+                      ["Merchandise & Lifestyle Items", "/banners"],
+                      ["Eco-Friendly Branding", "/banners"],
+                      ["Creative & Digital Design Services", "/banners"],
+                      ["Specialty & Custom Finishes", "/banners"],
+                    ].map(([label, link]) => (
+                      <Link
+                        key={label}
+                        to={link}
+                        className="block px-4 py-2 text-sm hover:bg-blue-700 transition-all relative group"
+                      >
+                        {label}
+                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Static Nav Links with underline hover */}
             {[
               ["Home", "/"],
               ["Price List", "/price-list"],
@@ -212,18 +216,17 @@ export const Header = () => {
               ["Contact Us", "/contact"],
               ["Feedback", "/feedback"],
             ].map(([label, link]) => (
-              <Link to={link} key={label}>
+              <Link to={link} key={label} className="relative group">
                 <Button
                   variant="ghost"
-                  className="transition text-[1rem]"
+                  className="transition text-[1rem] relative"
                   style={{
                     color:
-                      label === "Feedback"
-                        ? COLORS.neonGreen
-                        : COLORS.deepBlue,
+                      label === "Feedback" ? COLORS.neonGreen : COLORS.deepBlue,
                   }}
                 >
                   {label}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                 </Button>
               </Link>
             ))}
@@ -237,7 +240,7 @@ export const Header = () => {
             />
             <Input
               placeholder="Find a product... Cards, Flyers, Labels, Mugs, ..."
-              className="pl-10 border rounded-lg text-[1rem] focus:ring-2"
+              className="pl-10 border italic rounded-lg text-[1rem] focus:ring-2"
               style={{
                 borderColor: COLORS.lightBlue,
                 outlineColor: COLORS.blue,
@@ -254,70 +257,6 @@ export const Header = () => {
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </motion.button>
         </motion.div>
-
-        {/* --- Mobile Navigation --- */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="flex flex-col md:hidden gap-2 pb-4 text-[1rem]"
-            >
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    className="text-white w-full justify-between"
-                    style={{ backgroundColor: COLORS.orange }}
-                  >
-                    <span>Shop by Categories</span>
-                    <ChevronDown className="h-4 w-4 ml-2" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-full">
-                  {[
-                     ["Apparel & Wearables", "/marketing-materials"],
-                  ["Packaging & Labeling", "/cards"],
-                  ["Promotional & Corporate Gifts", "/stationery"],
-                  ["Marketing & Advertising Materials", "/mugs"],
-                  ["Merchandise & Lifestyle Items", "/banners"],
-                  ["Eco-Friendly Branding", "/banners"],
-                  ["Creative & Digital Design Services", "/banners"],
-                  ["Specialty & Custom Finishes", "/banners"],
-                  ].map(([label, link]) => (
-                    <DropdownMenuItem asChild key={label}>
-                      <Link to={link}>{label}</Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {[
-                ["Home", "/"],
-                ["Price List", "/price-list"],
-                ["Shop", "/shop"],
-                ["Contact Us", "/contact"],
-                ["Feedback", "/feedback"],
-              ].map(([label, link]) => (
-                <Link to={link} key={label}>
-                  <Button
-                    variant="ghost"
-                    className="w-full transition text-[1rem]"
-                    style={{
-                      color:
-                        label === "Feedback"
-                          ? COLORS.neonGreen
-                          : COLORS.deepBlue,
-                    }}
-                  >
-                    {label}
-                  </Button>
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </motion.header>
   );
