@@ -103,7 +103,7 @@ export const AboutSection = () => {
       {/* PRODUCT DETAILS */}
 <div className="bg-white rounded-2xl shadow-lg p-8 max-w-5xl mx-auto border border-[#00BFA6]/10 text-center">
   <h3 className="text-2xl font-bold mb-6 text-[#6C63FF]">
-    Get Plain and Customized T-shirts, Jerseys & More
+    Our Customization Services Include:
   </h3>
 
   <div className="grid md:grid-cols-2 gap-8 items-center justify-center">
@@ -127,11 +127,11 @@ export const AboutSection = () => {
     <ul className="space-y-3 text-gray-700 justify-center">
       <li className="flex items-center justify-center gap-2">
         <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
-        Round Neck T-shirts
+        T-shirts, hoodies, and caps
       </li>
       <li className="flex items-center justify-center gap-2">
         <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
-        V-neck T-shirts
+  mugs, calendars, stationery, and unique corporate gifts
       </li>
       <li className="flex items-center justify-center gap-2">
         <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
