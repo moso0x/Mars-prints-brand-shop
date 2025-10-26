@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
+import logo from "@/assets/logo.png"; // ← replace with actual logo
 import color from "@/assets/colors.jpg";
 import customer_1 from "@/assets/customer1.jpg";
 import customer_2 from "@/assets/customer2.jpg";
@@ -24,131 +25,147 @@ const productImages = [
 
 export const AboutSection = () => {
   return (
-    <section className="py-16 bg-secondary">
+    <section className="py-20 bg-gradient-to-br from-[#f9f9ff] via-[#f5fdfc] to-white">
       <div className="container mx-auto px-4">
-        {/* HEADER */}
-        <div className="text-center mb-12">
-          <img
-            src={color}
-            alt="Printing Services"
-            className="mx-auto mb-6 w-32 h-32 object-cover border-accent rounded-full shadow"
-          />
-          <h1 className="text-4xl font-bold mb-4">
-           Jelimo Creatives Custom Printing & Branding  Services in Kenya | Affordable & High Quality printing.
-          </h1>
-          <h3 className="text-xl text-muted-foreground mb-2">
-           T-shirts, hoodies, and caps designed to be worn with pride.
-          </h3>
-          <p className="text-lg text-accent font-semibold">
-            Place order, we deliver to major parts of Kenya.
-          </p>
+        {/* HEADER ROW: Image + Text side by side */}
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 flex justify-center"
+          >
+            <div className="relative">
+              <img
+                src={color}
+                alt="Jelimo Creatives"
+                className="w-64 h-64 object-cover rounded-full border-4 border-[#6C63FF]/60 shadow-xl"
+              />
+              <img
+                src={logo}
+                alt="Jelimo Creatives Logo"
+                className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full border-4 border-white shadow-lg bg-white p-2"
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 text-center md:text-left"
+          >
+            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] bg-clip-text text-transparent">
+              Jelimo Creatives — Printing & Branding Services in Kenya
+            </h1>
+            <h3 className="text-lg text-gray-600 mb-3">
+              Custom T-shirts, hoodies, and caps designed to be worn with pride.
+            </h3>
+            <p className="text-[#00BFA6] font-semibold">
+              Place your order — we deliver across Kenya.
+            </p>
+          </motion.div>
         </div>
 
         {/* ABOUT CARD */}
-        <Card className="p-8 max-w-4xl mx-auto mb-12">
-          <h2 className="text-2xl font-bold mb-4">
-             Jelimo Creatives | Printing and Branding Services
+        <Card className="p-8 max-w-5xl mx-auto mb-12 shadow-lg border border-[#6C63FF]/10">
+          <h2 className="text-2xl font-bold mb-4 text-[#6C63FF]">
+            Jelimo Creatives | Custom Printing & Branding
           </h2>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              <strong>Custom Merchandise & Branded Apparel:</strong> Bring your vision to life with custom gear that makes a statement. We handle everything from design to production, ensuring your brand looks its best on high-quality products. Whether you're outfitting your team, launching a clothing line, or creating memorable gifts, we've got you covered.
+              <strong>Custom Merchandise & Branded Apparel:</strong> Bring your
+              vision to life with custom gear that makes a statement. From
+              design to production, we ensure your brand shines on high-quality
+              products.
             </p>
             <p>
-              <strong>Our Customization Services Include:</strong> Apparel: T-shirts, hoodies, and caps designed to be worn with pride. Gifts & Promotional Items: Custom mugs, calendars, stationery, and unique corporate gifts that leave a lasting impression. Full Design Support: We can work with your existing brand or help you create a compelling design from scratch to ensure your merchandise stands out.
+              <strong>Our Customization Services Include:</strong> Apparel:
+              T-shirts, hoodies, and caps designed to be worn with pride. Gifts &
+              Promotional Items: mugs, calendars, stationery, and unique
+              corporate gifts that leave a lasting impression. Full Design
+              Support: we can work with your brand or create one from scratch.
             </p>
             <p>
-              <strong>Event Promotion & Purpose-Driven Collaborations:</strong> Let's create experiences that resonate. We specialize in promoting and partnering on events and campaigns that build community and drive positive change.
+              <strong>Event Promotion & Purpose-Driven Collaborations:</strong>{" "}
+              We partner with clients to create memorable, community-driven
+              campaigns that inspire engagement and connection.
             </p>
             <p>
-              Our team is always ready to bring your ideas to life. We deliver high-quality prints that are sure to impress. So, whether you need to promote your business or create personalized gifts, we've got you covered!
-            </p>
-            <p>
-              At Betty Jelimo Printing, we believe that every print job is unique. That's why we offer personalized printing services to cater to your specific needs. Our creative team will create designs that are as individual as you are.
-            </p>
-            <p>
-              We understand that time is of the essence, which is why we pride ourselves on our fast turnaround times. Need those flyers printed and delivered fast? No problem! We'll get them done in a flash, without compromising on quality.
-            </p>
-            <p>
-              And the best part? Our printing services won't break the bank! We offer competitive pricing to suit all budgets. From bold and colorful to sleek and sophisticated, we've got a design to match every style.
-            </p>
-            <p>
-              We're not just about delivering great prints. We're all about providing awesome customer service too! Our team is friendly, approachable, and always ready to help you out. Get in touch with us today and let's get printing!
+              We believe every print tells a story — yours deserves to be bold,
+              creative, and unforgettable.
             </p>
           </div>
         </Card>
 
         {/* PRODUCT DETAILS */}
-        <div className="bg-card rounded-lg p-8 max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6">
-            Get plain and customized T-shirts, Jerseys
+        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-5xl mx-auto border border-[#00BFA6]/10">
+          <h3 className="text-2xl font-bold mb-6 text-[#6C63FF]">
+            Get Plain and Customized T-shirts, Jerseys & More
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  100% Cotton
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Locally Made
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Sizes from S to 2XL
-                </li>
-              </ul>
-            </div>
-            <div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Round Neck T-shirts
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  V-neck T-shirts
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
-                  Polo T-shirts
-                </li>
-              </ul>
-            </div>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
+                100% Cotton
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
+                Locally Made
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
+                Sizes from S to 2XL
+              </li>
+            </ul>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
+                Round Neck T-shirts
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
+                V-neck T-shirts
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
+                Polo T-shirts
+              </li>
+            </ul>
           </div>
-          <Button className="mt-6 bg-accent text-accent-foreground hover:bg-accent/90">
+
+          <Button className="mt-8 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] text-white font-medium hover:opacity-90 transition-all">
             See Price List
           </Button>
         </div>
 
-        {/* DELIVERY LOCATIONS */}
-       <div className="flex mx-auto font-bold text-5xl justify-center ">Happy Clients </div>
+        {/* CLIENTS MARQUEE SECTION */}
+        <div className="text-center font-bold text-4xl mt-20 mb-8 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] bg-clip-text text-transparent">
+          Happy Clients
+        </div>
 
-        {/* MARQUEE SECTION WITH MOTION */}
-        <div className="mt-20 space-y-6 overflow-hidden">
+        <div className="mt-10 space-y-8 overflow-hidden">
           {/* Row 1: Left → Right */}
           <motion.div
-            className="marquee-container"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
           >
             <motion.div
               className="flex"
               animate={{ x: ["0%", "-100%"] }}
               transition={{
                 repeat: Infinity,
-                duration: 25,
+                duration: 30,
                 ease: "linear",
               }}
             >
               {productImages.concat(productImages).map((src, idx) => (
                 <img
-                  key={`marquee-1-${idx}`}
+                  key={`row1-${idx}`}
                   src={src}
                   alt={`Product ${idx}`}
-                  className="w-40 h-40 object-cover mx-4 rounded-lg shadow"
+                  className="w-44 h-44 object-cover mx-4 rounded-xl shadow-md border border-[#6C63FF]/10"
                 />
               ))}
             </motion.div>
@@ -156,27 +173,25 @@ export const AboutSection = () => {
 
           {/* Row 2: Right → Left */}
           <motion.div
-            className="marquee-container"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.div
               className="flex"
               animate={{ x: ["-100%", "0%"] }}
               transition={{
                 repeat: Infinity,
-                duration: 25,
+                duration: 30,
                 ease: "linear",
               }}
             >
               {productImages.concat(productImages).map((src, idx) => (
                 <img
-                  key={`marquee-2-${idx}`}
+                  key={`row2-${idx}`}
                   src={src}
                   alt={`Product ${idx}`}
-                  className="w-40 h-40 object-cover mx-4 rounded-lg shadow"
+                  className="w-44 h-44 object-cover mx-4 rounded-xl shadow-md border border-[#00BFA6]/10"
                 />
               ))}
             </motion.div>
