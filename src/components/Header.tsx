@@ -29,7 +29,7 @@ export const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
-  // ✅ Jelimo Creatives brand colors from logo
+  // ✅ Jelimo Creatives brand colors
   const COLORS = {
     brightBlue: "#1E57F0",
     lightBlue: "#7DB9FF",
@@ -61,7 +61,7 @@ export const Header = () => {
 
   return (
     <header className="w-full font-sans">
-      {/* --- Scrollable Top Section --- */}
+      {/* --- Top Bar --- */}
       <div className="bg-white border-b border-gray-200 py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-gray-800">
           {/* Contact Info */}
@@ -119,40 +119,48 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* --- Sticky Navigation Section --- */}
+      {/* --- Main Navigation --- */}
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg"
       >
-        <div className="container mx-auto px-4 flex items-center justify-between flex-wrap gap-4 py-3">
+        <div className="container mx-auto px-4 flex items-center justify-between py-3">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center justify-center">
             <motion.img
               src={logo}
               alt="Jelimo Creatives Logo"
-              className="h-[120px] sm:h-[140px] object-contain"
+              className="h-[100px] sm:h-[120px] object-contain"
               whileHover={{ scale: 1.05 }}
             />
           </Link>
 
-          {/* Navigation Links */}
+          {/* Desktop Nav */}
           <motion.nav
             layout
             className="hidden md:flex items-center gap-3 flex-1 justify-center text-[1rem] font-medium"
           >
-            {/* Dropdown Menu */}
             <div
               className="relative group"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               <Button
-                className="text-white flex items-center"
+                className="text-white flex items-center overflow-hidden relative"
                 style={{ backgroundColor: COLORS.orange }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
               >
-                <span>Shop by Categories</span>
+                <motion.span
+                  whileHover={{ scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Shop by Categories
+                </motion.span>
                 <motion.div
                   animate={{ rotate: isHovered ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -169,7 +177,7 @@ export const Header = () => {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
                     className="absolute left-0 mt-2 w-60 rounded-lg shadow-xl z-[9999]"
-                    style={{ backgroundColor: COLORS.brightBlue }}
+                    style={{ backgroundColor: COLORS.lightBlue }}
                   >
                     {[
                       ["Apparel & Wearables", "/marketing-materials"],
@@ -184,10 +192,10 @@ export const Header = () => {
                       <Link
                         key={label}
                         to={link}
-                        className="block px-4 py-2 text-sm hover:bg-blue-700 transition-all relative group"
+                        className="block px-4 py-2 text-sm hover:bg-blue-200 transition-all relative group"
                       >
                         {label}
-                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 w-0 h-0.5  transition-all duration-300 group-hover:w-full"></span>
                       </Link>
                     ))}
                   </motion.div>
@@ -204,38 +212,46 @@ export const Header = () => {
               ["Feedback", "/feedback"],
             ].map(([label, link]) => (
               <Link to={link} key={label} className="relative group">
-                <Button
-                  variant="ghost"
-                  className="transition text-[1rem]"
-                  style={{
-                    color:
-                      label === "Feedback"
-                        ? COLORS.limeGreen
-                        : COLORS.deepNavy,
+                <motion.div
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: COLORS.lightBlue,
+                    transition: { duration: 0.3 },
                   }}
+                  className="px-3 py-2 rounded-lg"
                 >
-                  {label}
-                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#1E57F0] transition-all duration-300 group-hover:w-full"></span>
-                </Button>
+                  <motion.span
+                    whileHover={{ scale: 0.9 }}
+                    className="transition"
+                    style={{
+                      color:
+                        label === "Feedback"
+                          ? COLORS.limeGreen
+                          : COLORS.deepNavy,
+                    }}
+                  >
+                    {label}
+                  </motion.span>
+                </motion.div>
               </Link>
             ))}
           </motion.nav>
 
-          {/* Search Bar */}
-          <motion.div layout className="hidden md:flex max-w-sm w-full relative">
-            <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5"
-              style={{ color: COLORS.deepNavy }}
-            />
-            <Input
-              placeholder="Find a product... Cards, Flyers, Labels, Mugs, ..."
-              className="pl-10 border italic rounded-lg text-[1rem] focus:ring-2"
-              style={{
-                borderColor: COLORS.lightBlue,
-                outlineColor: COLORS.brightBlue,
-              }}
-            />
-          </motion.div>
+   {/* Search */}
+            <motion.div layout className="hidden md:flex max-w-sm w-full relative">
+              <Search
+                className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5"
+                style={{ color: COLORS.deepNavy }}
+              />
+              <Input
+                placeholder="Find a product... Cards, Flyers, Labels, Mugs, ..."
+                className="pl-10 italic text-[1rem] rounded-full border border-gray-200 focus:ring-0 focus:outline-none"
+                style={{
+                  borderColor: COLORS.lightBlue,
+                  boxShadow: "none",
+                }}
+              />
+            </motion.div>
 
           {/* Mobile Menu Toggle */}
           <motion.button
@@ -246,6 +262,36 @@ export const Header = () => {
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </motion.button>
         </div>
+
+        {/* --- Mobile Menu --- */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white shadow-lg flex flex-col items-center gap-2 pb-4"
+            >
+              {[
+                ["Home", "/"],
+                ["Price List", "/price-list"],
+                ["Shop", "/shop"],
+                ["Contact Us", "/contact"],
+                ["Feedback", "/feedback"],
+              ].map(([label, link]) => (
+                <Link
+                  key={label}
+                  to={link}
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full text-center py-2 font-medium hover:bg-gray-100 transition"
+                >
+                  {label}
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </header>
   );

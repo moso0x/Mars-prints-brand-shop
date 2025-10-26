@@ -3,45 +3,73 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
-
 interface AdvertProps {
   id: number;
   image: string;
   title: string;
   subtitle: string;
   link?: string;
+  animation?: string;
 }
 
 const advertisements: AdvertProps[] = [
   {
     id: 1,
     image: "/src/assets/hero-banner.jpg",
-    title: "Apparel: T-shirts, hoodies, and caps ",
+    title: "Apparel: T-shirts, hoodies, and caps",
     subtitle: "Designed to be worn with pride!",
     link: "/products",
+    animation: "slideRight",
   },
   {
     id: 2,
     image: "/src/assets/products-showcase.jpg",
-    title: " Custom mugs, calendars, stationery",
+    title: "Custom mugs, calendars, stationery",
     subtitle: "Corporate gifts that leave a lasting impression",
     link: "/services",
+    animation: "fadeUp",
   },
   {
     id: 3,
     image: "/src/assets/printing.jpg",
-    title: "Safaris & Adventure  ",
-    subtitle: "Inspiring a spirit of discoverys!",
+    title: "Safaris & Adventure",
+    subtitle: "Inspiring a spirit of discovery!",
     link: "/branding",
+    animation: "zoomIn",
   },
   {
     id: 4,
     image: "/src/assets/merch.jpg",
-    title: "Event Promotion ",
+    title: "Event Promotion",
     subtitle: "Purpose-Driven Collaborations!",
     link: "/merch",
+    animation: "flipY",
   },
 ];
+
+// Define transition variants for each style
+const adVariants: Record<string, any> = {
+  slideRight: {
+    initial: { x: 100, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: -100, opacity: 0 },
+  },
+  fadeUp: {
+    initial: { y: 40, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -40, opacity: 0 },
+  },
+  zoomIn: {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { scale: 1, opacity: 1 },
+    exit: { scale: 0.8, opacity: 0 },
+  },
+  flipY: {
+    initial: { rotateY: 90, opacity: 0 },
+    animate: { rotateY: 0, opacity: 1 },
+    exit: { rotateY: -90, opacity: 0 },
+  },
+};
 
 const AdvertRibbon = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -49,23 +77,18 @@ const AdvertRibbon = () => {
 
   useEffect(() => {
     if (!isVisible) return;
-
     const interval = setInterval(() => {
       setCurrentAd((prev) => (prev + 1) % advertisements.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [isVisible]);
 
   if (!isVisible) return null;
 
-  const nextAd = () => {
-    setCurrentAd((prev) => (prev + 1) % advertisements.length);
-  };
+  const nextAd = () => setCurrentAd((prev) => (prev + 1) % advertisements.length);
+  const prevAd = () => setCurrentAd((prev) => (prev - 1 + advertisements.length) % advertisements.length);
 
-  const prevAd = () => {
-    setCurrentAd((prev) => (prev - 1 + advertisements.length) % advertisements.length);
-  };
+  const currentAnimation = advertisements[currentAd].animation ?? "slideRight";
 
   return (
     <motion.div
@@ -79,14 +102,15 @@ const AdvertRibbon = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentAd}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
+            variants={adVariants[currentAnimation]}
+            initial="initial"
+            animate="animate"
+            exit="exit"
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="absolute inset-0 flex items-center justify-center"
           >
             <div className="flex items-center gap-4 max-w-6xl mx-auto px-4 w-full">
-              {/* Image with subtle motion */}
+              {/* Image */}
               <motion.div
                 initial={{ scale: 0.8, rotate: -5 }}
                 animate={{ scale: 1, rotate: 0 }}
@@ -102,7 +126,7 @@ const AdvertRibbon = () => {
                 </div>
               </motion.div>
 
-              {/* Text Content */}
+              {/* Text */}
               <div className="flex-1 text-center sm:text-left">
                 <motion.h3
                   initial={{ y: 10, opacity: 0 }}
@@ -122,7 +146,7 @@ const AdvertRibbon = () => {
                 </motion.p>
               </div>
 
-              {/* Navigation arrows */}
+              {/* Navigation */}
               {advertisements.length > 1 && (
                 <div className="hidden sm:flex items-center gap-2">
                   <Button
@@ -147,7 +171,7 @@ const AdvertRibbon = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Close button */}
+        {/* Close Button */}
         <Button
           variant="ghost"
           size="sm"
@@ -157,7 +181,7 @@ const AdvertRibbon = () => {
           <X className="h-3 w-3" />
         </Button>
 
-        {/* Dots indicator */}
+        {/* Dots Indicator */}
         {advertisements.length > 1 && (
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
             {advertisements.map((_, index) => (

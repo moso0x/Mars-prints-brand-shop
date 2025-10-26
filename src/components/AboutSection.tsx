@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import logo from "@/assets/logo.png"; // ← replace with actual logo
 
 import logo_banner from "@/assets/logo-banner.jpg"
+import banner from "@/assets/advert-banner.png";
 import customer_1 from "@/assets/customer1.jpg";
 import customer_2 from "@/assets/customer2.jpg";
 import customer_7 from "@/assets/customer7.jpg";
@@ -99,46 +100,61 @@ export const AboutSection = () => {
           </div>
         </Card>
 
-        {/* PRODUCT DETAILS */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-5xl mx-auto border border-[#00BFA6]/10">
-          <h3 className="text-2xl font-bold mb-6 text-[#6C63FF]">
-            Get Plain and Customized T-shirts, Jerseys & More
-          </h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
-                100% Cotton
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
-                Locally Made
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
-                Sizes from S to 2XL
-              </li>
-            </ul>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
-                Round Neck T-shirts
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
-                V-neck T-shirts
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
-                Polo T-shirts
-              </li>
-            </ul>
-          </div>
+      {/* PRODUCT DETAILS */}
+<div className="bg-white rounded-2xl shadow-lg p-8 max-w-5xl mx-auto border border-[#00BFA6]/10 text-center">
+  <h3 className="text-2xl font-bold mb-6 text-[#6C63FF]">
+    Get Plain and Customized T-shirts, Jerseys & More
+  </h3>
 
-          <Button className="mt-8 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] text-white font-medium hover:opacity-90 transition-all">
-            See Price List
-          </Button>
-        </div>
+  <div className="grid md:grid-cols-2 gap-8 items-center justify-center">
+    {/* Column 1 */}
+    <ul className="space-y-3 text-gray-700 justify-center">
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
+        100% Cotton
+      </li>
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
+        Locally Made
+      </li>
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
+        Sizes from S to 2XL
+      </li>
+    </ul>
+
+    {/* Column 2 */}
+    <ul className="space-y-3 text-gray-700 justify-center">
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#00BFA6] rounded-full"></span>
+        Round Neck T-shirts
+      </li>
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#6C63FF] rounded-full"></span>
+        V-neck T-shirts
+      </li>
+      <li className="flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[#FF6B6B] rounded-full"></span>
+        Polo T-shirts
+      </li>
+    </ul>
+  </div>
+
+  {/* Image */}
+  <div className="flex justify-center mt-8">
+    <img
+      src={banner}
+      alt="Product Banner"
+      className="w-[300px] sm:w-[400px] rounded-lg"
+    />
+  </div>
+
+  {/* Button */}
+  <Button className="mt-8 bg-[#FF6B6B] text-white font-medium hover:opacity-80 transition-all rounded-full px-6">
+    See Price List
+  </Button>
+</div>
+
 
         {/* CLIENTS MARQUEE SECTION */}
         <div className="text-center font-bold text-4xl mt-20 mb-8 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] bg-clip-text text-transparent">
