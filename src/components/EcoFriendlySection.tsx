@@ -4,27 +4,33 @@ import { motion } from "framer-motion";
 import { Leaf, TreePine, Recycle, Droplets } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+const brandColors = {
+  primary: "#0B6E4F", // Jelimo Creatives dark green-teal
+  secondary: "#F1EFE7", // soft cream
+  accent: "#1A3C34", // deep forest tone
+};
+
 const causes = [
   {
     icon: TreePine,
     title: "Plant a Tree",
-    description: "For every 100 prints, we plant a tree in partnership with local conservation groups.",
+    description:
+      "For every 100 prints, we plant a tree in partnership with local conservation groups.",
     amount: "Add Ksh. 50",
-    color: "text-green-600",
   },
   {
     icon: Recycle,
     title: "Recycled Paper",
-    description: "Choose 100% recycled paper for your prints and reduce environmental impact.",
+    description:
+      "Choose 100% recycled paper for your prints and reduce environmental impact.",
     amount: "Add Ksh. 30",
-    color: "text-blue-600",
   },
   {
     icon: Droplets,
     title: "Water Conservation",
-    description: "Support water-saving printing technologies and sustainable ink production.",
+    description:
+      "Support water-saving printing technologies and sustainable ink production.",
     amount: "Add Ksh. 40",
-    color: "text-cyan-600",
   },
 ];
 
@@ -32,7 +38,12 @@ export const EcoFriendlySection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
+    <section
+      className="py-16"
+      style={{
+        backgroundColor: brandColors.secondary,
+      }}
+    >
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
@@ -42,17 +53,25 @@ export const EcoFriendlySection = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Leaf className="w-8 h-8 text-green-600" />
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+            <Leaf
+              className="w-8 h-8"
+              style={{ color: brandColors.primary }}
+            />
+            <h2
+              className="text-3xl font-bold"
+              style={{ color: brandColors.accent }}
+            >
               Print with Purpose
             </h2>
           </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Make your prints count! Support environmental causes while getting high-quality printing services.
-            Every choice makes a difference for our planet.
+            Make your prints count! Support environmental causes while getting
+            high-quality printing services. Every choice makes a difference for
+            our planet.
           </p>
         </motion.div>
 
+        {/* Compact Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {causes.map((cause, index) => {
             const Icon = cause.icon;
@@ -64,26 +83,49 @@ export const EcoFriendlySection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 group">
+                <Card
+                  className="p-5 h-full border hover:shadow-lg transition-all duration-300 rounded-xl"
+                  style={{
+                    borderColor: brandColors.primary + "33", // subtle border
+                    backgroundColor: "#ffffff",
+                  }}
+                >
                   <div className="flex flex-col items-center text-center">
-                    <div className="mb-4 p-4 bg-secondary rounded-full group-hover:scale-110 transition-transform duration-300">
-                      <Icon className={`w-8 h-8 ${cause.color}`} />
+                    <div
+                      className="mb-3 p-3 rounded-full transition-transform duration-300"
+                      style={{
+                        backgroundColor: brandColors.secondary,
+                      }}
+                    >
+                      <Icon
+                        className="w-7 h-7"
+                        style={{ color: brandColors.primary }}
+                      />
                     </div>
-                    <h3 className="font-bold text-xl mb-3">{cause.title}</h3>
-                    <p className="text-muted-foreground mb-4 flex-grow">
+                    <h3
+                      className="font-bold text-lg mb-2"
+                      style={{ color: brandColors.accent }}
+                    >
+                      {cause.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3 flex-grow">
                       {cause.description}
                     </p>
-                    <div className="w-full">
-                      <p className="text-sm font-semibold text-primary mb-3">
-                        {cause.amount}
-                      </p>
-                      <Button 
-                        className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white"
-                        onClick={() => navigate('/support-cause')}
-                      >
-                        Support This Cause
-                      </Button>
-                    </div>
+                    <p
+                      className="text-sm font-semibold mb-3"
+                      style={{ color: brandColors.primary }}
+                    >
+                      {cause.amount}
+                    </p>
+                    <Button
+                      className="w-full text-white font-medium py-2 rounded-md transition-colors"
+                      style={{
+                        backgroundColor: brandColors.primary,
+                      }}
+                      onClick={() => navigate("/support-cause")}
+                    >
+                      Support This Cause
+                    </Button>
                   </div>
                 </Card>
               </motion.div>
@@ -91,6 +133,7 @@ export const EcoFriendlySection = () => {
           })}
         </div>
 
+        {/* Commitment Section */}
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -98,19 +141,38 @@ export const EcoFriendlySection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Card className="p-8 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-200 dark:border-green-800">
+          <Card
+            className="p-8 border rounded-xl"
+            style={{
+              borderColor: brandColors.primary + "40",
+              backgroundColor: "#ffffff",
+            }}
+          >
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-left">
-                <h3 className="text-2xl font-bold mb-2">Our Environmental Commitment</h3>
+                <h3
+                  className="text-2xl font-bold mb-2"
+                  style={{ color: brandColors.accent }}
+                >
+                  Our Environmental Commitment
+                </h3>
                 <p className="text-muted-foreground">
-                  We are Venturing in promoting Environmental conservation  <span className="font-bold text-green-600">through our eco-friendly initiatives.</span> 
-                  saved <span className="font-bold text-blue-600"></span>
+                  We are venturing in promoting environmental conservation{" "}
+                  <span
+                    className="font-bold"
+                    style={{ color: brandColors.primary }}
+                  >
+                    through our eco-friendly initiatives.
+                  </span>
                 </p>
               </div>
-              <Button 
+              <Button
                 size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white px-8"
-                onClick={() => navigate('/support-cause')}
+                className="text-white font-medium px-8 rounded-md"
+                style={{
+                  backgroundColor: brandColors.primary,
+                }}
+                onClick={() => navigate("/support-cause")}
               >
                 Learn More
               </Button>

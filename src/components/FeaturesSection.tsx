@@ -10,7 +10,7 @@ import printing from "@/assets/printing.jpg";
 import branding from "@/assets/branding.jpg";
 import signage from "@/assets/signage.jpg";
 import cards from "@/assets/cards.jpg";
-import vehicle from "@/assets/vehicle.jpg";
+
 import stationery from "@/assets/stationery.jpg";
 
 const features = [
@@ -56,12 +56,7 @@ const features = [
     description:
       "Eye-catching banners, displays, and wayfinding signs that attract.",
   },
-  {
-    image: vehicle,
-    title: "Vehicle Branding & Wraps",
-    description:
-      "Turn company vehicles into moving billboards for brand awareness.",
-  },
+
   {
     image: stationery,
     title: "Corporate Stationery Printing",

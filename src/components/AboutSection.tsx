@@ -3,7 +3,8 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 import logo from "@/assets/logo.png"; // ← replace with actual logo
-import color from "@/assets/colors.jpg";
+
+import logo_banner from "@/assets/logo-banner.jpg"
 import customer_1 from "@/assets/customer1.jpg";
 import customer_2 from "@/assets/customer2.jpg";
 import customer_7 from "@/assets/customer7.jpg";
@@ -37,14 +38,14 @@ export const AboutSection = () => {
           >
             <div className="relative">
               <img
-                src={color}
+                src={logo_banner}
                 alt="Jelimo Creatives"
-                className="w-64 h-64 object-cover rounded-full border-4 border-[#6C63FF]/60 shadow-xl"
+                className="w-64 h-64 object-cover l border-4 border-[#6C63FF]/60 shadow-xl"
               />
               <img
                 src={logo}
                 alt="Jelimo Creatives Logo"
-                className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full border-4 border-white shadow-lg bg-white p-2"
+                className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full border-1 border-white shadow-lg  p-2"
               />
             </div>
           </motion.div>
@@ -55,7 +56,7 @@ export const AboutSection = () => {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center md:text-left"
           >
-            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#6C63FF] via-[#00BFA6] to-[#FF6B6B] bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold mb-4  t">
               Jelimo Creatives — Printing & Branding Services in Kenya
             </h1>
             <h3 className="text-lg text-gray-600 mb-3">
