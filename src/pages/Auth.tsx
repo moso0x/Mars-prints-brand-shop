@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "react-hot-toast";
 import { Header } from "@/components/Header";
 import { FooterNew } from "@/components/FooterNew";
+import lock from "@/assets/lock.jpg";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -20,19 +21,16 @@ const Auth = () => {
   const [signupFullName, setSignupFullName] = useState("");
 
   useEffect(() => {
-    // Check if user is already logged in
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        navigate("/");
-      }
+      if (session) navigate("/");
     };
     checkUser();
   }, [navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!loginEmail || !loginPassword) {
       toast.error("Please fill in all fields");
       return;
@@ -48,14 +46,12 @@ const Auth = () => {
       if (error) {
         if (error.message.includes("Invalid login credentials")) {
           toast.error("Invalid email or password");
-        } else {
-          toast.error(error.message);
-        }
+        } else toast.error(error.message);
       } else {
         toast.success("Successfully logged in!");
         navigate("/");
       }
-    } catch (error: any) {
+    } catch {
       toast.error("An unexpected error occurred");
     } finally {
       setLoading(false);
@@ -64,7 +60,7 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!signupEmail || !signupPassword || !signupFullName) {
       toast.error("Please fill in all fields");
       return;
@@ -81,9 +77,7 @@ const Auth = () => {
         email: signupEmail,
         password: signupPassword,
         options: {
-          data: {
-            full_name: signupFullName,
-          },
+          data: { full_name: signupFullName },
           emailRedirectTo: `${window.location.origin}/`,
         },
       });
@@ -91,14 +85,12 @@ const Auth = () => {
       if (error) {
         if (error.message.includes("already registered")) {
           toast.error("This email is already registered");
-        } else {
-          toast.error(error.message);
-        }
+        } else toast.error(error.message);
       } else {
         toast.success("Account created successfully!");
         navigate("/");
       }
-    } catch (error: any) {
+    } catch {
       toast.error("An unexpected error occurred");
     } finally {
       setLoading(false);
@@ -106,23 +98,46 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#F8FBFF]">
       <Header />
       <main className="flex-1 flex items-center justify-center px-4 py-12">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md shadow-lg border border-[#6BB7FF]/30 rounded-2xl">
           <CardHeader>
-            <CardTitle className="text-2xl">Welcome</CardTitle>
-            <CardDescription>Sign in to your account or create a new one</CardDescription>
+            <div>
+              <img
+                src={lock}
+                className="mx-auto flex justify-center items-center w-[100px]"
+                alt="lock"
+              />
+            </div>
+            <CardTitle className="text-2xl text-center text-[#005DFF] font-bold">
+              Welcome
+            </CardTitle>
+            <CardDescription className="text-center text-gray-500">
+              Sign in to your account or create a new one
+            </CardDescription>
           </CardHeader>
+
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-[#EAF4FF] rounded-full p-1">
+                <TabsTrigger
+                  value="login"
+                  className="data-[state=active]:bg-[#005DFF] data-[state=active]:text-white rounded-full transition-all duration-300"
+                >
+                  Login
+                </TabsTrigger>
+                <TabsTrigger
+                  value="signup"
+                  className="data-[state=active]:bg-[#00D45A] data-[state=active]:text-white rounded-full transition-all duration-300"
+                >
+                  Sign Up
+                </TabsTrigger>
               </TabsList>
-              
+
+              {/* LOGIN TAB */}
               <TabsContent value="login">
-                <form onSubmit={handleLogin} className="space-y-4">
+                <form onSubmit={handleLogin} className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <Label htmlFor="login-email">Email</Label>
                     <Input
@@ -147,14 +162,22 @@ const Auth = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+
+                  {/* Solid Blue Button */}
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#005DFF] hover:bg-[#0046C0] text-white font-semibold 
+                               shadow-md hover:shadow-lg transition-all duration-300 rounded-full py-2"
+                    disabled={loading}
+                  >
                     {loading ? "Signing in..." : "Sign In"}
                   </Button>
                 </form>
               </TabsContent>
-              
+
+              {/* SIGNUP TAB */}
               <TabsContent value="signup">
-                <form onSubmit={handleSignup} className="space-y-4">
+                <form onSubmit={handleSignup} className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <Label htmlFor="signup-name">Full Name</Label>
                     <Input
@@ -172,7 +195,7 @@ const Auth = () => {
                     <Input
                       id="signup-email"
                       type="email"
-                      placeholder="Enter your email "
+                      placeholder="Enter your email"
                       value={signupEmail}
                       onChange={(e) => setSignupEmail(e.target.value)}
                       disabled={loading}
@@ -192,7 +215,14 @@ const Auth = () => {
                       minLength={6}
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+
+                  {/* Solid Green Button */}
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#00D45A] hover:bg-[#00B84F] text-white font-semibold 
+                               shadow-md hover:shadow-lg transition-all duration-300 rounded-full py-2"
+                    disabled={loading}
+                  >
                     {loading ? "Creating account..." : "Create Account"}
                   </Button>
                 </form>

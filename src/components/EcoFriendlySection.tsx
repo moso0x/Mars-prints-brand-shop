@@ -79,7 +79,7 @@ export const EcoFriendlySection = () => {
                       </p>
                       <Button 
                         className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white"
-                        onClick={() => navigate('/contact')}
+                        onClick={() => navigate('/support-cause')}
                       >
                         Support This Cause
                       </Button>
@@ -110,7 +110,7 @@ export const EcoFriendlySection = () => {
               <Button 
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white px-8"
-                onClick={() => navigate('/contact')}
+                onClick={() => navigate('/support-cause')}
               >
                 Learn More
               </Button>

@@ -3,7 +3,7 @@ import logo from "@/assets/logo.png"
 
 export const FooterNew = () => {
   return (
-    <footer className="bg-black text-blsck py-14 relative overflow-hidden">
+    <footer className="bg-gray-100 text-blsck py-14 relative overflow-hidden">
       {/* Decorative splash glow */}
       <div className="absolute inset-0 bg- to-transparent pointer-events-none" />
 
@@ -12,17 +12,17 @@ export const FooterNew = () => {
           {/* Brand Section */}
           <div>
           <img src={logo} alt="" className="w-[100px] h-[100px]"/>
-            <p className="text-sm text-blue-100 leading-relaxed">
+            <p className="text-lg text-black font-bold leading-relaxed">
               Professional printing and branding services that transform your vision into reality.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-sm text-blue-100">
+            <ul className="space-y-2 text-sm text-black">
               {["About Us", "Services", "Contact", "Feedback"].map((link) => (
                 <li key={link}>
                   <a
@@ -38,10 +38,10 @@ export const FooterNew = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
               Services
             </h4>
-            <ul className="space-y-2 text-sm text-blue-100">
+            <ul className="space-y-2 text-sm text-black">
               {[
                 "Business Cards",
                 "Flyers & Brochures",
@@ -63,13 +63,13 @@ export const FooterNew = () => {
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
               Contact Us
             </h4>
-            <ul className="space-y-2 text-sm text-blue-100">
-              <li>📞 +254 704-904-678</li>
-              <li>✉️ jelimocreatives@gmail.com</li>
-              <li>📍 Nairobi, Kenya</li>
+            <ul className="space-y-2   text-black ">
+              <li>+254 704-904-678</li>
+              <li> jelimocreatives@gmail.com</li>
+              <li> Nairobi, Kenya</li>
             </ul>
 
             {/* Social Icons */}
@@ -83,7 +83,7 @@ export const FooterNew = () => {
                 <a
                   key={i}
                   href="#"
-                  className="text-blue-100 hover:scale-110 transition-transform duration-200"
+                  className="text-black hover:scale-110 transition-transform duration-200"
                   style={{ color }}
                 >
                   <Icon size={22} />
@@ -94,10 +94,10 @@ export const FooterNew = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="text-center text-sm text-blue-100 border-t border-white/20 pt-6">
+        <div className="text-center text-sm text-black  border-t border-white/20 pt-6">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <span className="text-white font-medium">Betty Jelimo Printing</span>
+            <span className="text-black font-medium"> Jelimo Creatives Custom Printing</span>
             . All rights reserved. Made with{" "}
             <span className="text-[#D26749]">❤️</span> by{" "}
             <a

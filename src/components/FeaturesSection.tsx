@@ -106,7 +106,7 @@ export const FeaturesSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Explore Our Creative & Branding Solutions
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
@@ -119,10 +119,8 @@ export const FeaturesSection = () => {
         {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {features.map((feature, index) => {
-            const shortDescription = feature.description
-              .split(" ")
-              .slice(0, 3)
-              .join(" ") + "...";
+            const shortDescription =
+              feature.description.split(" ").slice(0, 3).join(" ") + "...";
 
             return (
               <motion.div
@@ -143,7 +141,10 @@ export const FeaturesSection = () => {
                   <p className="text-xs text-muted-foreground leading-snug mb-2">
                     {shortDescription}
                   </p>
-                  <button className="text-xs font-medium text-green-600 hover:text-green-700 underline transition">
+                  <button
+                    className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 
+                               hover:bg-green-600 hover:text-white transition-all duration-300"
+                  >
                     Read More
                   </button>
                 </div>

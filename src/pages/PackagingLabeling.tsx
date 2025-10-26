@@ -11,6 +11,17 @@ import apparels1 from "@/assets/apparels.jpg";
 import apparels2 from "@/assets/apparels2.jpg";
 import apparels3 from "@/assets/apparels3.jpg";
 
+import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+const services = [
+"Custom product packaging design",
+"Branded boxes and bags",
+"Sticker and label printing",
+"Food packaging branding",
+"Cosmetic and bottle label printing",
+"Tamper-proof seals and holographic stickers"
+];
+
 const Stationery = () => {
   const carouselSettings = {
     dots: true,
@@ -23,6 +34,15 @@ const Stationery = () => {
     arrows: false,
     adaptiveHeight: true,
   };
+     // Animation variants for list tick effect
+  const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
 
   return (
     <PageTransition>
@@ -60,6 +80,30 @@ const Stationery = () => {
             </p>
           </div>
         </section>
+         <motion.ul
+              className="space-y-3 mb-8"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {services.map((service, index) => (
+                <motion.li
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-start gap-2 text-sm md:text-base text-gray-700"
+                >
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 10, delay: index * 0.15 }}
+                  >
+                    <CheckCircle2 className="text-green-600 flex-shrink-0 mt-[2px]" size={18} />
+                  </motion.span>
+                  <span>{service}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
 
         {/* Product Grid */}
         <main className="container mx-auto px-4 pb-12">

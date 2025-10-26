@@ -26,15 +26,12 @@ const Checkout = () => {
   });
 
   useEffect(() => {
-    // Check if user is logged in
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      
       if (!session) {
         toast.error("Please login to proceed with checkout");
         navigate("/auth");
       } else {
-        // Pre-fill form with user data if available
         if (session.user.email) {
           setFormData(prev => ({
             ...prev,
@@ -44,27 +41,22 @@ const Checkout = () => {
         setCheckingAuth(false);
       }
     };
-    
     checkAuth();
   }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (items.length === 0) {
       toast.error("Your cart is empty");
       return;
     }
-
     if (!formData.name || !formData.email || !formData.phone) {
       toast.error("Please fill in all fields");
       return;
     }
 
     setLoading(true);
-
     try {
-      // Create order in database
       const { data: order, error: orderError } = await supabase
         .from('orders')
         .insert({
@@ -80,7 +72,6 @@ const Checkout = () => {
 
       if (orderError) throw orderError;
 
-      // Create order items
       const orderItems = items.map(item => ({
         order_id: order.id,
         product_title: item.title,
@@ -95,13 +86,9 @@ const Checkout = () => {
       if (itemsError) throw itemsError;
 
       if (paymentMethod === 'mpesa') {
-        toast.success('Order placed! You will receive an M-Pesa prompt on your phone.', {
-          duration: 5000,
-        });
+        toast.success('Order placed! You will receive an M-Pesa prompt on your phone.', { duration: 5000 });
       } else {
-        toast.success('Order placed successfully! We will contact you shortly.', {
-          duration: 5000,
-        });
+        toast.success('Order placed successfully! We will contact you shortly.', { duration: 5000 });
       }
 
       clearCart();
@@ -134,13 +121,20 @@ const Checkout = () => {
         <div className="min-h-screen">
           <Header />
           <main className="container mx-auto px-4 py-12">
-            <Card>
+            <Card className="border-2 border-[#1E57F0] shadow-lg">
               <CardHeader>
-                <CardTitle>Your cart is empty</CardTitle>
-                <CardDescription>Add some items to your cart before checking out</CardDescription>
+                <CardTitle className="text-[#0D1B5E]">Your cart is empty</CardTitle>
+                <CardDescription className="text-[#1E57F0]">
+                  Add some items to your cart before checking out
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button onClick={() => navigate('/')}>Continue Shopping</Button>
+                <Button 
+                  onClick={() => navigate('/')} 
+                  className="bg-[#00FF66] text-black hover:bg-[#FF5B2E] transition"
+                >
+                  Continue Shopping
+                </Button>
               </CardContent>
             </Card>
           </main>
@@ -152,16 +146,18 @@ const Checkout = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-[#F8FAFC]">
         <Header />
         <main className="container mx-auto px-4 py-12">
-          <h1 className="text-4xl font-bold mb-8">Checkout</h1>
+          <h1 className="text-4xl font-bold mb-8 text-[#0D1B5E] border-b-4 border-[#00FF66] inline-block">
+            Checkout
+          </h1>
           
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <Card>
+              <Card className="border-2 border-[#1E57F0] shadow-md">
                 <CardHeader>
-                  <CardTitle>Customer Information</CardTitle>
+                  <CardTitle className="text-[#0D1B5E]">Customer Information</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -172,6 +168,7 @@ const Checkout = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required
+                        className="focus:border-[#00FF66]"
                       />
                     </div>
                     <div>
@@ -182,6 +179,7 @@ const Checkout = () => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
+                        className="focus:border-[#00FF66]"
                       />
                     </div>
                     <div>
@@ -193,45 +191,36 @@ const Checkout = () => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         required
+                        className="focus:border-[#00FF66]"
                       />
                     </div>
                   </form>
                 </CardContent>
               </Card>
 
-              <Card className="mt-6">
+              <Card className="mt-6 border-2 border-[#1E57F0]">
                 <CardHeader>
-                  <CardTitle>Payment Method</CardTitle>
+                  <CardTitle className="text-[#0D1B5E]">Payment Method</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 cursor-pointer hover:bg-accent">
+                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 cursor-pointer hover:bg-[#00FF6610]">
                       <RadioGroupItem value="mpesa" id="mpesa" />
-                      <Label htmlFor="mpesa" className="flex items-center gap-2 cursor-pointer flex-1">
-                        <Smartphone className="h-5 w-5 text-green-600" />
+                      <Label htmlFor="mpesa" className="flex items-center gap-2 flex-1 cursor-pointer">
+                        <Smartphone className="h-5 w-5 text-[#00FF66]" />
                         <div>
-                          <div className="font-semibold">M-Pesa</div>
-                          <div className="text-sm text-muted-foreground">Pay via M-Pesa</div>
+                          <div className="font-semibold text-[#0D1B5E]">M-Pesa</div>
+                          <div className="text-sm text-[#1E57F0]">Pay via M-Pesa</div>
                         </div>
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 cursor-pointer hover:bg-accent opacity-50">
+                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 opacity-50">
                       <RadioGroupItem value="card" id="card" disabled />
-                      <Label htmlFor="card" className="flex items-center gap-2 cursor-not-allowed flex-1">
-                        <CreditCard className="h-5 w-5" />
+                      <Label htmlFor="card" className="flex items-center gap-2 flex-1 cursor-not-allowed">
+                        <CreditCard className="h-5 w-5 text-[#1E57F0]" />
                         <div>
-                          <div className="font-semibold">Credit/Debit Card</div>
-                          <div className="text-sm text-muted-foreground">Coming soon</div>
-                        </div>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover:bg-accent opacity-50">
-                      <RadioGroupItem value="paypal" id="paypal" disabled />
-                      <Label htmlFor="paypal" className="flex items-center gap-2 cursor-not-allowed flex-1">
-                        <Wallet className="h-5 w-5" />
-                        <div>
-                          <div className="font-semibold">PayPal</div>
-                          <div className="text-sm text-muted-foreground">Coming soon</div>
+                          <div className="font-semibold text-[#0D1B5E]">Credit/Debit Card</div>
+                          <div className="text-sm text-[#1E57F0]">Coming soon</div>
                         </div>
                       </Label>
                     </div>
@@ -241,25 +230,25 @@ const Checkout = () => {
             </div>
 
             <div>
-              <Card>
+              <Card className="border-2 border-[#00FF66] shadow-md">
                 <CardHeader>
-                  <CardTitle>Order Summary</CardTitle>
+                  <CardTitle className="text-[#0D1B5E]">Order Summary</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {items.map((item) => (
-                    <div key={item.title} className="flex justify-between text-sm">
+                    <div key={item.title} className="flex justify-between text-sm text-[#0D1B5E]">
                       <span>{item.title} x {item.quantity}</span>
                       <span>{item.price}</span>
                     </div>
                   ))}
                   <div className="border-t pt-4">
-                    <div className="flex justify-between font-bold text-lg">
+                    <div className="flex justify-between font-bold text-lg text-[#0D1B5E]">
                       <span>Total</span>
                       <span>Ksh. {getTotalPrice().toLocaleString()}</span>
                     </div>
                   </div>
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full bg-[#00FF66] text-black hover:bg-[#FF5B2E] transition"
                     size="lg"
                     onClick={handleSubmit}
                     disabled={loading}

@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
+import { ShoppingCart } from "lucide-react";
 import totebags from "@/assets/tote-bags-hero.jpg";
 import calenders from "@/assets/calenders.jpg";
 import custom_shirt from "@/assets/custom.jpg";
@@ -24,7 +25,7 @@ const products = [
   { title: "Mounted Photos Printing", price: "From Ksh. 700", image: mounted },
   { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
-    { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
+  { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
 ];
 
@@ -32,8 +33,9 @@ export const ProductGrid = () => {
   const { addToCart } = useCart();
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 bg-gradient-to-b from-[#E8F1FF] to-[#F9FAFB]">
       <div className="container mx-auto px-4">
+        {/* Section Intro */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
@@ -41,16 +43,16 @@ export const ProductGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-4 text-primary">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#005DFF]">
             Featured Printed Materials
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto">
             From custom tote bags to elegant business cards, explore top-quality print
             products crafted to make your brand stand out.
           </p>
         </motion.div>
 
-        {/* Adjusted Grid — 5 columns on large screens */}
+        {/* Product Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-5">
           {products.map((product, index) => (
             <motion.div
@@ -60,7 +62,10 @@ export const ProductGrid = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="overflow-hidden hover:shadow-xl transition-shadow group rounded-lg">
+              <Card
+                className="overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all 
+                           bg-gradient-to-br from-[#6BB7FF]/20 to-[#005DFF]/10 border border-blue-100"
+              >
                 <div className="overflow-hidden bg-secondary">
                   <motion.img
                     src={product.image}
@@ -68,18 +73,34 @@ export const ProductGrid = () => {
                     className="w-full h-36 md:h-40 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
+
                 <div className="p-3 text-center">
-                  <h3 className="font-semibold text-sm md:text-base mb-1">{product.title}</h3>
-                  <p className="text-muted-foreground text-xs md:text-sm mb-3">
+                  <h3 className="font-semibold text-sm md:text-base mb-1 text-[#0046C0]">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-600 text-xs md:text-sm mb-3">
                     {product.price}
                   </p>
-                  <Button
-                    size="sm"
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-xs md:text-sm"
-                    onClick={() => addToCart(product)}
+
+                  {/* Add to Cart Button */}
+                  <motion.div
+                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
                   >
-                    Add to Cart
-                  </Button>
+                    <Button
+                      size="sm"
+                      onClick={() => addToCart(product)}
+                      className="w-full flex items-center justify-center gap-2 
+                                 bg-[#00D45A] text-white font-medium 
+                                 hover:bg-[#00B84F] shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
+                                 hover:shadow-[0_6px_20px_rgba(0,212,90,0.5)] 
+                                 transition-all duration-300 rounded-full py-2"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Add to Cart
+                    </Button>
+                  </motion.div>
                 </div>
               </Card>
             </motion.div>

@@ -52,42 +52,56 @@ const reviews = [
 ];
 
 const ReviewCard = ({ name, rating, comment, date }: typeof reviews[0]) => (
-  <div className="flex-shrink-0 w-80 bg-card border rounded-lg p-6 mx-4">
-    <div className="flex items-center gap-1 mb-2">
+  <div
+    className="flex-shrink-0 w-80 bg-white border border-[#005DFF]/30 
+               rounded-xl p-6 mx-4 shadow-sm hover:shadow-lg transition-all 
+               duration-300 hover:border-[#00D45A]/50"
+  >
+    <div className="flex items-center gap-1 mb-3">
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`h-4 w-4 ${
-            i < rating ? "fill-accent text-accent" : "text-muted"
+          className={`h-5 w-5 ${
+            i < rating ? "text-[#FF5B2E] fill-[#FF5B2E]" : "text-gray-300"
           }`}
         />
       ))}
     </div>
-    <p className="text-foreground mb-3 line-clamp-3">{comment}</p>
+    <p className="text-gray-700 mb-3 leading-relaxed line-clamp-3">
+      {comment}
+    </p>
     <div className="flex items-center justify-between text-sm">
-      <p className="font-semibold text-foreground">{name}</p>
-      <p className="text-muted-foreground">{date}</p>
+      <p className="font-semibold text-[#005DFF]">{name}</p>
+      <p className="text-gray-500">{date}</p>
     </div>
   </div>
 );
 
 export const RatingsSection = () => {
-  // Duplicate reviews for seamless loop
   const duplicatedReviews = [...reviews, ...reviews];
 
   return (
-    <section className="py-16 bg-secondary/50 overflow-hidden">
-      <div className="container mx-auto px-4 mb-8">
-        <h2 className="text-3xl font-bold text-center mb-2">What Our Customers Say</h2>
-        <p className="text-muted-foreground text-center">Trusted by hundreds of satisfied clients</p>
+    <section className="py-16 bg-[#F8FBFF] overflow-hidden">
+      <div className="container mx-auto px-4 mb-8 text-center">
+        <h2 className="text-3xl font-extrabold text-[#005DFF] mb-2">
+          What Our Customers Say
+        </h2>
+        <p className="text-gray-600">
+          Trusted by hundreds of satisfied clients
+        </p>
+        <div className="w-24 h-1 bg-[#00D45A] mx-auto mt-3 rounded-full" />
       </div>
-      
+
       <div className="relative">
         <div className="flex animate-marquee-rtl">
           {duplicatedReviews.map((review, index) => (
             <ReviewCard key={index} {...review} />
           ))}
         </div>
+
+        {/* Soft gradient overlay edges */}
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#F8FBFF] to-transparent pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#F8FBFF] to-transparent pointer-events-none" />
       </div>
     </section>
   );

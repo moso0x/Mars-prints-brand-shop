@@ -14,12 +14,14 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-5 right-5 z-[100] flex flex-col gap-3 w-full max-w-sm pointer-events-none", // right aligned
+      // ✅ Force right alignment
+      "fixed top-5 right-5 z-[100] flex flex-col items-end gap-3 w-full max-w-sm pointer-events-none",
       className
     )}
     {...props}
   />
 ));
+
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 // ✅ Toast variants with right slide animations
