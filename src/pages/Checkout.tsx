@@ -11,7 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Smartphone, CreditCard, Wallet } from "lucide-react";
+import { Smartphone, CreditCard } from "lucide-react";
 
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -23,7 +23,13 @@ const Checkout = () => {
     name: "",
     email: "",
     phone: "",
+    address: "",
+    city: "",
+    county: "",
+    notes: "",
   });
+
+  const tillNumber = "8817976";
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -33,10 +39,7 @@ const Checkout = () => {
         navigate("/auth");
       } else {
         if (session.user.email) {
-          setFormData(prev => ({
-            ...prev,
-            email: session.user.email,
-          }));
+          setFormData(prev => ({ ...prev, email: session.user.email }));
         }
         setCheckingAuth(false);
       }
@@ -51,21 +54,25 @@ const Checkout = () => {
       return;
     }
     if (!formData.name || !formData.email || !formData.phone) {
-      toast.error("Please fill in all fields");
+      toast.error("Please fill in all required fields");
       return;
     }
 
     setLoading(true);
     try {
       const { data: order, error: orderError } = await supabase
-        .from('orders')
+        .from("orders")
         .insert({
           customer_name: formData.name,
           customer_email: formData.email,
           customer_phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          county: formData.county,
+          delivery_notes: formData.notes,
           total_amount: getTotalPrice(),
           payment_method: paymentMethod,
-          payment_status: 'pending',
+          payment_status: "pending",
         })
         .select()
         .single();
@@ -80,22 +87,17 @@ const Checkout = () => {
       }));
 
       const { error: itemsError } = await supabase
-        .from('order_items')
+        .from("order_items")
         .insert(orderItems);
 
       if (itemsError) throw itemsError;
 
-      if (paymentMethod === 'mpesa') {
-        toast.success('Order placed! You will receive an M-Pesa prompt on your phone.', { duration: 5000 });
-      } else {
-        toast.success('Order placed successfully! We will contact you shortly.', { duration: 5000 });
-      }
-
+      toast.success("Order placed successfully!");
       clearCart();
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Order error:', error);
-      toast.error('Failed to place order. Please try again.');
+      console.error("Order error:", error);
+      toast.error("Failed to place order. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -104,12 +106,8 @@ const Checkout = () => {
   if (checkingAuth) {
     return (
       <PageTransition>
-        <div className="min-h-screen">
-          <Header />
-          <main className="container mx-auto px-4 py-12 flex items-center justify-center">
-            <p className="text-muted-foreground">Loading...</p>
-          </main>
-          <FooterNew />
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </PageTransition>
     );
@@ -118,20 +116,20 @@ const Checkout = () => {
   if (items.length === 0) {
     return (
       <PageTransition>
-        <div className="min-h-screen">
+        <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="container mx-auto px-4 py-12">
-            <Card className="border-2 border-[#1E57F0] shadow-lg">
+          <main className="flex-grow flex items-center justify-center px-4">
+            <Card className="border-2 border-[#1E57F0] shadow-lg p-6 text-center max-w-md">
               <CardHeader>
-                <CardTitle className="text-[#0D1B5E]">Your cart is empty</CardTitle>
-                <CardDescription className="text-[#1E57F0]">
-                  Add some items to your cart before checking out
+                <CardTitle className="text-[#0D1B5E] text-lg">Your cart is empty</CardTitle>
+                <CardDescription className="text-[#1E57F0] text-sm">
+                  Add items to your cart before checking out
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button 
                   onClick={() => navigate('/')} 
-                  className="bg-[#00FF66] text-black hover:bg-[#FF5B2E] transition"
+                  className="bg-[#00FF66] text-black hover:bg-[#FF5B2E]"
                 >
                   Continue Shopping
                 </Button>
@@ -146,82 +144,114 @@ const Checkout = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
         <Header />
-        <main className="container mx-auto px-4 py-12">
-          <h1 className="text-4xl font-bold mb-8 text-[#0D1B5E] border-b-4 border-[#00FF66] inline-block">
+        <main className="container mx-auto px-4 py-6 flex-grow">
+          <h1 className="text-2xl md:text-3xl font-bold mb-6 text-[#0D1B5E] border-b-2 border-[#00FF66] inline-block">
             Checkout
           </h1>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <Card className="border-2 border-[#1E57F0] shadow-md">
-                <CardHeader>
-                  <CardTitle className="text-[#0D1B5E]">Customer Information</CardTitle>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* LEFT: FORM SECTIONS */}
+            <div className="space-y-4">
+              {/* Customer Info */}
+              <Card className="border border-[#1E57F0]">
+                <CardHeader className="py-2">
+                  <CardTitle className="text-[#0D1B5E] text-lg">Customer Info</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
-                        className="focus:border-[#00FF66]"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        required
-                        className="focus:border-[#00FF66]"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="254712345678"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        required
-                        className="focus:border-[#00FF66]"
-                      />
-                    </div>
-                  </form>
+                <CardContent className="space-y-3">
+                  <Input placeholder="Full Name" value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}/>
+                  <Input type="email" placeholder="Email" value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}/>
+                  <Input type="tel" placeholder="254712345678" value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}/>
                 </CardContent>
               </Card>
 
-              <Card className="mt-6 border-2 border-[#1E57F0]">
-                <CardHeader>
-                  <CardTitle className="text-[#0D1B5E]">Payment Method</CardTitle>
+              {/* Shipping Info */}
+              <Card className="border border-[#1E57F0]">
+                <CardHeader className="py-2">
+                  <CardTitle className="text-[#0D1B5E] text-lg">Shipping</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <Input placeholder="Address" value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}/>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input placeholder="City" value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
+                    <Input placeholder="County" value={formData.county}
+                      onChange={(e) => setFormData({ ...formData, county: e.target.value })}/>
+                  </div>
+                  <Input placeholder="Delivery notes (optional)" value={formData.notes}
+                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}/>
+                </CardContent>
+              </Card>
+
+              {/* Payment Method */}
+              <Card className="border border-[#1E57F0]">
+                <CardHeader className="py-2">
+                  <CardTitle className="text-[#0D1B5E] text-lg">Payment</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 cursor-pointer hover:bg-[#00FF6610]">
-                      <RadioGroupItem value="mpesa" id="mpesa" />
-                      <Label htmlFor="mpesa" className="flex items-center gap-2 flex-1 cursor-pointer">
-                        <Smartphone className="h-5 w-5 text-[#00FF66]" />
-                        <div>
-                          <div className="font-semibold text-[#0D1B5E]">M-Pesa</div>
-                          <div className="text-sm text-[#1E57F0]">Pay via M-Pesa</div>
+                    <div
+                      className="flex flex-col border rounded-lg p-3 hover:bg-[#00FF6610] transition"
+                      onClick={() => setPaymentMethod("mpesa")}
+                    >
+                      <div className="flex items-center gap-2">
+                        <RadioGroupItem value="mpesa" id="mpesa" />
+                        <Label htmlFor="mpesa" className="flex items-center gap-2 cursor-pointer">
+                          <Smartphone className="h-5 w-5 text-[#00FF66]" />
+                          <span className="font-semibold text-[#0D1B5E]">M-Pesa</span>
+                        </Label>
+                      </div>
+
+                      {paymentMethod === "mpesa" && (
+                        <div className="mt-3 pl-5 text-sm space-y-3">
+                          <div className="border-t border-dashed border-[#00FF66]/30 pt-2">
+                            <p className="font-medium text-[#1E57F0] mb-2">
+                              Choose Payment Option:
+                            </p>
+                            {/* STK Push */}
+                            <div className="p-2 border rounded-md">
+                              <p className="text-xs text-[#0D1B5E] mb-2">
+                                Enter your phone number for STK Push:
+                              </p>
+                              <Input
+                                type="tel"
+                                placeholder="254712345678"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              />
+                              <Button
+                                size="sm"
+                                className="mt-2 bg-[#00FF66] text-black hover:bg-[#FF5B2E]"
+                                onClick={() => toast.success("STK push sent")}
+                              >
+                                Send STK Push
+                              </Button>
+                            </div>
+
+                            {/* Till Number */}
+                            <div className="p-2 border rounded-md mt-3 text-center">
+                              <p className="text-xs text-[#1E57F0] mb-1">
+                                Or pay via Till Number:
+                              </p>
+                              <p className="text-lg font-bold text-[#0D1B5E]">{tillNumber}</p>
+                              <p className="text-xs text-[#1E57F0]">Betty Jelimo Ngetich</p>
+                            </div>
+                          </div>
                         </div>
-                      </Label>
+                      )}
                     </div>
-                    <div className="flex items-center space-x-2 p-4 border rounded-lg mb-2 opacity-50">
+
+                    {/* Card Option Disabled */}
+                    <div className="flex items-center space-x-2 p-3 border rounded-lg opacity-50 mt-2">
                       <RadioGroupItem value="card" id="card" disabled />
-                      <Label htmlFor="card" className="flex items-center gap-2 flex-1 cursor-not-allowed">
+                      <Label htmlFor="card" className="flex items-center gap-2 cursor-not-allowed">
                         <CreditCard className="h-5 w-5 text-[#1E57F0]" />
-                        <div>
-                          <div className="font-semibold text-[#0D1B5E]">Credit/Debit Card</div>
-                          <div className="text-sm text-[#1E57F0]">Coming soon</div>
-                        </div>
+                        <span className="font-semibold text-[#0D1B5E]">Card (coming soon)</span>
                       </Label>
                     </div>
                   </RadioGroup>
@@ -229,31 +259,29 @@ const Checkout = () => {
               </Card>
             </div>
 
+            {/* RIGHT: SUMMARY */}
             <div>
-              <Card className="border-2 border-[#00FF66] shadow-md">
-                <CardHeader>
-                  <CardTitle className="text-[#0D1B5E]">Order Summary</CardTitle>
+              <Card className="border border-[#00FF66]">
+                <CardHeader className="py-2">
+                  <CardTitle className="text-[#0D1B5E] text-lg">Order Summary</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 text-sm">
                   {items.map((item) => (
-                    <div key={item.title} className="flex justify-between text-sm text-[#0D1B5E]">
+                    <div key={item.title} className="flex justify-between text-[#0D1B5E]">
                       <span>{item.title} x {item.quantity}</span>
                       <span>{item.price}</span>
                     </div>
                   ))}
-                  <div className="border-t pt-4">
-                    <div className="flex justify-between font-bold text-lg text-[#0D1B5E]">
-                      <span>Total</span>
-                      <span>Ksh. {getTotalPrice().toLocaleString()}</span>
-                    </div>
+                  <div className="border-t pt-3 flex justify-between font-bold text-[#0D1B5E] text-lg">
+                    <span>Total</span>
+                    <span>Ksh. {getTotalPrice().toLocaleString()}</span>
                   </div>
                   <Button
-                    className="w-full bg-[#00FF66] text-black hover:bg-[#FF5B2E] transition"
-                    size="lg"
+                    className="w-full bg-[#00FF66] text-black hover:bg-[#FF5B2E]"
                     onClick={handleSubmit}
                     disabled={loading}
                   >
-                    {loading ? 'Processing...' : 'Place Order'}
+                    {loading ? "Processing..." : "Place Order"}
                   </Button>
                 </CardContent>
               </Card>
