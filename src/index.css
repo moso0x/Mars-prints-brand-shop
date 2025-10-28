@@ -24,6 +24,23 @@ All colors MUST be HSL.
   .animate-marquee-rtl:hover {
     animation-play-state: paused;
   }
+  @keyframes textGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-text-gradient {
+  background-size: 200% auto;
+  animation: textGradient 4s ease infinite;
+}
+
 
 
 

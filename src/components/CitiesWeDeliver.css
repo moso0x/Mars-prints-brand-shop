@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+
+.cities-delivery-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #1E57F0; /* fallback background */
+  border-radius: 1rem;
+  color: #fff;
+}
+
+.delivery-title {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dropping-texts {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+  height: 40px;
+  position: relative;
+  vertical-align: -2px;
+}
+
+.dropping-texts > div {
+  font-size: 0px;
+  opacity: 0;
+  margin-left: -30px;
+  position: absolute;
+  font-weight: 300;
+  box-shadow: 0px 60px 25px -20px rgba(0,0,0,0.5);
+  font-family: 'Roboto', sans-serif;
+}
+
+.dropping-texts > div:nth-child(1) {
+  animation: roll 6s linear infinite 0s;
+}
+.dropping-texts > div:nth-child(2) {
+  animation: roll 6s linear infinite 1.2s;
+}
+.dropping-texts > div:nth-child(3) {
+  animation: roll 6s linear infinite 2.4s;
+}
+.dropping-texts > div:nth-child(4) {
+  animation: roll 6s linear infinite 3.6s;
+}
+.dropping-texts > div:nth-child(5) {
+  animation: roll2 6s linear infinite 4.8s;
+}
+
+@keyframes roll {
+  0% { font-size:0px; opacity:0; margin-left:-30px; margin-top:0px; transform:rotate(-25deg);}
+  3% { opacity:1; transform:rotate(0deg);}
+  5% { font-size:inherit; opacity:1; margin-left:0px; margin-top:0px;}
+  25% { opacity:1; transform:rotate(0deg);}
+  30% { font-size:0px; opacity:0; margin-left:20px; margin-top:100px;}
+  100% { font-size:0px; opacity:0; margin-left:-30px; margin-top:0px; transform:rotate(15deg);}
+}
+
+@keyframes roll2 {
+  0% { font-size:0px; opacity:0; margin-left:-30px; margin-top:0px; transform:rotate(-25deg);}
+  5% { font-size:inherit; opacity:1; margin-left:0px; margin-top:0px; transform:rotate(0deg);}
+  30% { opacity:1; transform:rotate(0deg);}
+  40% { font-size:1500px; opacity:0; margin-left:-1000px; margin-top:-800px;}
+  100% { font-size:0px; opacity:0; margin-left:-30px; margin-top:0px; transform:rotate(15deg);}
+}

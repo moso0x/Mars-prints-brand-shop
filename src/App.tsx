@@ -23,6 +23,8 @@ import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import PriceList from "./pages/PriceList";
 import Shop from "./pages/Shop";
+import Breadcrumbs from "@/components/Breadcrumbs"; 
+
 import SupportCause from "./pages/SupportCause";
 import RouteChangeLoader from "@/components/RouteChangeLoader"; // Assuming you added it
 
@@ -72,8 +74,10 @@ const App = () => (
 
           <BrowserRouter>
             <RouteChangeLoader />
+             <Breadcrumbs />
             <Routes>
               <Route path="/" element={<Index />} />
+              
               <Route path="/marketing-materials" element={<MarketingMaterials />} />
               <Route path="/mugs" element={<Mugs />} />
               <Route path="/banners" element={<Banners />} />

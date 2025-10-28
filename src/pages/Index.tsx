@@ -7,6 +7,11 @@ import { RatingsSection } from "@/components/RatingsSection";
 import { EcoFriendlySection } from "@/components/EcoFriendlySection";
 import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
+import CitiesWeDeliver from "@/components/CitiesWeDeliver";
+import { Accordion}  from "@/components/ui/accordion";
+
+
+
 
 const Index = () => {
   return (
@@ -20,10 +25,14 @@ const Index = () => {
           <RatingsSection />
           <EcoFriendlySection />
           <AboutSection />
+          <CitiesWeDeliver/>
+           <Accordion/>
         </main>
+       
         <FooterNew />
       </div>
     </PageTransition>
+
   );
 };
 
