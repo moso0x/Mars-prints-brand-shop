@@ -26,7 +26,9 @@ import Shop from "./pages/Shop";
 import Breadcrumbs from "@/components/Breadcrumbs"; 
 import { ProductPage } from "@/components/ProductPage";
 import { TicketsGallery } from "./pages/TicketsGallery";
-import { PaymentPage } from "./pages/PaymentPage";
+ import { PaymentPage } from "./pages/PaymentPage";
+
+import { EventDetails } from "@/pages/EventDetails";
 
 
 import SupportCause from "./pages/SupportCause";
@@ -101,6 +103,9 @@ const App = () => (
               <Route path="ticketsGallery" element={<TicketsGallery />} />
               <Route path="/payment/:id" element={<PaymentPage />} />
               <Route path="/product/:productSlug" element={<ProductPage />} />
+              <Route path="/event/:id" element={<EventDetails />} />
+              <Route path="/event-details/:id" element={<EventDetails />} />
+
            
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

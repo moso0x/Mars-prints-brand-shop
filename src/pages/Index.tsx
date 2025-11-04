@@ -9,6 +9,7 @@ import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
 import CitiesWeDeliver from "@/components/CitiesWeDeliver";
 import { Accordion}  from "@/components/ui/accordion";
+import { TicketsCarousel } from "@/components/TicketsCarousel";
 
 
 
@@ -22,11 +23,14 @@ const Index = () => {
           <HeroCarousel />
           <FeaturesSection />
           <ProductGrid />
-          <RatingsSection />
+          <TicketsCarousel />
+         
           <EcoFriendlySection />
           <AboutSection />
+           
           <CitiesWeDeliver/>
            <Accordion/>
+            <RatingsSection />
         </main>
        
         <FooterNew />
