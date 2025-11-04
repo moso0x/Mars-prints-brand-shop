@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 import merch from "@/assets/merch.jpg";
 import gifts from "@/assets/custom-gifts.jpg";
 import event from "@/assets/event.png";
@@ -10,7 +12,6 @@ import printing from "@/assets/printing.jpg";
 import branding from "@/assets/branding.jpg";
 import signage from "@/assets/signage.jpg";
 import cards from "@/assets/cards.jpg";
-
 import stationery from "@/assets/stationery.jpg";
 
 const features = [
@@ -56,7 +57,6 @@ const features = [
     description:
       "Eye-catching banners, displays, and wayfinding signs that attract.",
   },
-
   {
     image: stationery,
     title: "Corporate Stationery Printing",
@@ -101,8 +101,8 @@ export const FeaturesSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Explore Our Creative & Branding Solutions
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Explore Our Array of Creative Printing  & Branding Solutions
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             At Jelimo Creatives, we provide a full range of branding, design, and
@@ -116,6 +116,7 @@ export const FeaturesSection = () => {
           {features.map((feature, index) => {
             const shortDescription =
               feature.description.split(" ").slice(0, 3).join(" ") + "...";
+            const slug = feature.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
             return (
               <motion.div
@@ -136,12 +137,14 @@ export const FeaturesSection = () => {
                   <p className="text-xs text-muted-foreground leading-snug mb-2">
                     {shortDescription}
                   </p>
-                  <button
-                    className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 
-                               hover:bg-green-600 hover:text-white transition-all duration-300"
-                  >
-                    Read More
-                  </button>
+                  <Link to={`/product/${slug}`}>
+                    <button
+                      className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 
+                                 hover:bg-green-600 hover:text-white transition-all duration-300"
+                    >
+                      Read More
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
             );

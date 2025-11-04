@@ -36,6 +36,15 @@ npm i
 npm run dev
 ```
 
+#0052CC
+#00FF66
+#FF5C26
+#E53935
+#64B5F6
+#FFEB3B
+#212121
+
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).

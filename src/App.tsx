@@ -24,8 +24,13 @@ import Auth from "./pages/Auth";
 import PriceList from "./pages/PriceList";
 import Shop from "./pages/Shop";
 import Breadcrumbs from "@/components/Breadcrumbs"; 
+import { ProductPage } from "@/components/ProductPage";
+import { TicketsGallery } from "./pages/TicketsGallery";
+import { PaymentPage } from "./pages/PaymentPage";
+
 
 import SupportCause from "./pages/SupportCause";
+
 import RouteChangeLoader from "@/components/RouteChangeLoader"; // Assuming you added it
 
 const queryClient = new QueryClient();
@@ -74,7 +79,6 @@ const App = () => (
 
           <BrowserRouter>
             <RouteChangeLoader />
-             <Breadcrumbs />
             <Routes>
               <Route path="/" element={<Index />} />
               
@@ -94,6 +98,10 @@ const App = () => (
               <Route path="/price-list" element={<PriceList />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/support-cause" element={<SupportCause />} />
+              <Route path="ticketsGallery" element={<TicketsGallery />} />
+              <Route path="/payment/:id" element={<PaymentPage />} />
+              <Route path="/product/:productSlug" element={<ProductPage />} />
+           
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>

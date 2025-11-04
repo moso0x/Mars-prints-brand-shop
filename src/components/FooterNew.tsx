@@ -3,15 +3,15 @@ import logo from "@/assets/logo.png"
 
 export const FooterNew = () => {
   return (
-    <footer className="bg-gray-100 text-blsck py-14 relative overflow-hidden">
+    <footer className="bg-gray-100 text-black py-14 relative overflow-hidden font-poppins">
       {/* Decorative splash glow */}
-      <div className="absolute inset-0 bg- to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand Section */}
           <div>
-          <img src={logo} alt="" className="w-[100px] h-[100px]"/>
+            <img src={logo} alt="" className="w-[100px] h-[100px]"/>
             <p className="text-lg text-black font-bold leading-relaxed">
               Professional printing and branding services that transform your vision into reality.
             </p>
@@ -66,10 +66,10 @@ export const FooterNew = () => {
             <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
               Contact Us
             </h4>
-            <ul className="space-y-2   text-black ">
+            <ul className="space-y-2 text-black">
               <li>+254 704-904-678</li>
-              <li> jelimocreatives@gmail.com</li>
-              <li> Nairobi, Kenya</li>
+              <li>jelimocreatives@gmail.com</li>
+              <li>Nairobi, Kenya</li>
             </ul>
 
             {/* Social Icons */}
@@ -94,10 +94,10 @@ export const FooterNew = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="text-center text-sm text-black  border-t border-white/20 pt-6">
+        <div className="text-center text-sm text-black border-t border-white/20 pt-6">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <span className="text-black font-medium"> Jelimo Creatives Custom Printing</span>
+            <span className="text-black font-medium">Jelimo Creatives Custom Printing</span>
             . All rights reserved. Made with{" "}
             <span className="text-[#D26749]">❤️</span> by{" "}
             <a

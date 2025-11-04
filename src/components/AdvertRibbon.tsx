@@ -2,7 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-
+import apparels from "@/assets/headers-adverts-img/caps.jpeg"
+import events from "@/assets/headers-adverts-img/event.jpeg"
+import tshirt from "@/assets/headers-adverts-img/tshirts.jpg"
 interface AdvertProps {
   id: number;
   image: string;
@@ -15,7 +17,7 @@ interface AdvertProps {
 const advertisements: AdvertProps[] = [
   {
     id: 1,
-    image: "/src/assets/hero-banner.jpg",
+    image: apparels,
     title: "Apparel: T-shirts, hoodies, and caps",
     subtitle: "Designed to be worn with pride!",
     link: "/products",
@@ -31,16 +33,24 @@ const advertisements: AdvertProps[] = [
   },
   {
     id: 3,
-    image: "/src/assets/printing.jpg",
-    title: "Safaris & Adventure",
+    image: tshirt,
+    title: "Custom Apparels ",
+    subtitle: "Inspiring a spirit of discovery!",
+    link: "/branding",
+    animation: "zoomIn",
+  },
+  {
+    id: 3,
+    image: tshirt,
+    title: "Custom Apparels ",
     subtitle: "Inspiring a spirit of discovery!",
     link: "/branding",
     animation: "zoomIn",
   },
   {
     id: 4,
-    image: "/src/assets/merch.jpg",
-    title: "Event Promotion",
+    image: events,
+    title: "Event Promotion and Tickets booking ",
     subtitle: "Purpose-Driven Collaborations!",
     link: "/merch",
     animation: "flipY",
@@ -51,23 +61,73 @@ const advertisements: AdvertProps[] = [
 const adVariants: Record<string, any> = {
   slideRight: {
     initial: { x: 100, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: -100, opacity: 0 },
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 60,
+        damping: 15,
+        mass: 0.8,
+      },
+    },
+    exit: {
+      x: -100,
+      opacity: 0,
+      transition: { duration: 0.4, ease: "easeInOut" },
+    },
   },
+
   fadeUp: {
     initial: { y: 40, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: -40, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+    exit: {
+      y: -40,
+      opacity: 0,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
   },
+
   zoomIn: {
     initial: { scale: 0.8, opacity: 0 },
-    animate: { scale: 1, opacity: 1 },
-    exit: { scale: 0.8, opacity: 0 },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 90,
+        damping: 12,
+      },
+    },
+    exit: {
+      scale: 0.8,
+      opacity: 0,
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
   },
+
   flipY: {
     initial: { rotateY: 90, opacity: 0 },
-    animate: { rotateY: 0, opacity: 1 },
-    exit: { rotateY: -90, opacity: 0 },
+    animate: {
+      rotateY: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+    exit: {
+      rotateY: -90,
+      opacity: 0,
+      transition: { duration: 0.4, ease: "easeInOut" },
+    },
   },
 };
 
@@ -98,7 +158,7 @@ const AdvertRibbon = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="relative bg-white text-black overflow-hidden shadow-sm border-b border-gray-100"
     >
-      <div className="relative h-20 sm:h-24">
+      <div className="relative h-24 sm:h-28">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentAd}
@@ -127,7 +187,7 @@ const AdvertRibbon = () => {
               </motion.div>
 
               {/* Text */}
-              <div className="flex-1 text-center sm:text-left">
+              <div className="flex-1 text-center text-xs sm:text-left">
                 <motion.h3
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -136,6 +196,7 @@ const AdvertRibbon = () => {
                 >
                   {advertisements[currentAd].title}
                 </motion.h3>
+
                 <motion.p
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -144,6 +205,8 @@ const AdvertRibbon = () => {
                 >
                   {advertisements[currentAd].subtitle}
                 </motion.p>
+
+              
               </div>
 
               {/* Navigation */}

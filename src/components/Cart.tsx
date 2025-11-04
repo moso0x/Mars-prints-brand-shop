@@ -13,7 +13,7 @@ export const Cart = () => {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative hover:bg-[#00BFA6]/10 transition">
-          <ShoppingCart className="h-5 w-5 text-[#00BFA6]" />
+          <ShoppingCart className="h-5 w-5 text-[#FF5B2E]" />
           {getTotalItems() > 0 && (
             <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[#6C63FF] text-white border-2 border-white shadow-md">
               {getTotalItems()}
@@ -22,7 +22,7 @@ export const Cart = () => {
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 border-[#00BFA6]">
+      <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 ">
         <SheetHeader>
           <SheetTitle className="text-[#6C63FF] font-bold text-lg">
             Shopping Cart ({getTotalItems()} items)
