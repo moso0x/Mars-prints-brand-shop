@@ -14,6 +14,7 @@ export const EventDetails = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    phone: "",
     ticketType: "",
     mpesaRef: "",
   });
@@ -167,9 +168,9 @@ export const EventDetails = () => {
                   Tel  <span className="text-red-500">*</span>
                   </label>
                   <input
-                    type="text"
+                    type="tel"
                     name="phone"
-                    value={formData.email}
+                    value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                     placeholder="Enter Phone Number"

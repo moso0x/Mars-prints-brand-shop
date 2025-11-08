@@ -24,7 +24,7 @@ export const eventsData = [
   {
     id: 2,
     title: "Bonfire + Camping",
-    date: "Saturday 31st May (7PM till morning)",
+    date: "Saturday 31st May (7PM till morning) 2025",
     venue: "Bamba Kaya Campsite, Bofa Beach, Kilifi",
     description:
       "A cozy beach camping experience filled with warmth, food, fun, and friends. Relax under the stars and enjoy nature at its best.",

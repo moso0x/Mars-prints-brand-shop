@@ -245,6 +245,7 @@ const Shop = () => {
                 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" 
                 : "space-y-6"
               }>
+                <p className="text-2xl text-red-600">Shop Coming Soon...</p>
                 {filteredProducts.map((product, index) => (
                   <motion.div
                     key={index}
@@ -252,6 +253,7 @@ const Shop = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                   >
+                    
                     {/* <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${
                       viewMode === "list" ? "flex flex-row" : ""
                     }`}> */}

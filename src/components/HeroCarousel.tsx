@@ -3,18 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import "@fontsource-variable/nabla"; // ✅ Nabla colorful font
-import "@fontsource/eb-garamond"; // ✅ Garamond elegant serif font
+import "@fontsource-variable/nabla";
+import "@fontsource/eb-garamond";
 
-import heroImage from "@/assets/hero-printing.jpg";
-import mugsImage from "@/assets/mugs-hero.jpg";
-import tshirtsImage from "@/assets/tshirts-hero.jpg";
-import toteBagsImage from "@/assets/tote-bags-hero.jpg";
+import heroBackground from "@/assets/hero-printing.jpg";
+import { LogoUploadForm } from "./LogoUploadForm";
 
-// ✅ Carousel slides
 const slides = [
   {
-    image: heroImage,
     title: "Where Your Brand Comes Alive.",
     description:
       "We transform your ideas into powerful merchandise and experiences that connect, inspire, and leave a mark.",
@@ -23,7 +19,6 @@ const slides = [
     animation: "fade",
   },
   {
-    image: mugsImage,
     title: "Custom Mugs & Water Bottles",
     description: "Perfect for corporate gifts and promotional events.",
     buttonText: "Explore Mugs",
@@ -31,7 +26,6 @@ const slides = [
     animation: "zoom",
   },
   {
-    image: tshirtsImage,
     title: "Branded T-Shirts",
     description: "High-quality custom t-shirts for your team.",
     buttonText: "View Collection",
@@ -39,7 +33,6 @@ const slides = [
     animation: "slide",
   },
   {
-    image: toteBagsImage,
     title: "Tote Bags & Apparel",
     description: "Eco-friendly branded merchandise for your business.",
     buttonText: "Shop Apparel",
@@ -53,21 +46,21 @@ export const HeroCarousel = () => {
   const [direction, setDirection] = useState(1);
 
   useEffect(() => {
-    const t = setInterval(() => {
+    const interval = setInterval(() => {
       setDirection(1);
-      setCurrentSlide((s) => (s + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
-    return () => clearInterval(t);
+    return () => clearInterval(interval);
   }, []);
 
   const nextSlide = () => {
     setDirection(1);
-    setCurrentSlide((s) => (s + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setCurrentSlide((s) => (s - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const goTo = (index: number) => {
@@ -75,83 +68,66 @@ export const HeroCarousel = () => {
     setCurrentSlide(index);
   };
 
-  // ✅ Variants for animations
-  const variants = {
+  const textVariants = {
     fade: {
-      enter: { opacity: 0 },
-      center: { opacity: 1, transition: { duration: 1.2 } },
-      exit: { opacity: 0, transition: { duration: 0.8 } },
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { duration: 1.2, ease: "easeOut" } },
+      exit: { opacity: 0, transition: { duration: 0.8, ease: "easeIn" } },
     },
     zoom: {
-      enter: { scale: 1.1, opacity: 0 },
-      center: { scale: 1, opacity: 1, transition: { duration: 1, ease: "easeOut" } },
-      exit: { scale: 0.95, opacity: 0, transition: { duration: 0.8, ease: "easeIn" } },
+      hidden: { opacity: 0, scale: 0.9 },
+      visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: "easeOut" } },
+      exit: { opacity: 0, scale: 1.05, transition: { duration: 0.8, ease: "easeIn" } },
     },
     slide: {
-      enter: (dir: number) => ({ x: 300 * dir, opacity: 0 }),
-      center: { x: 0, opacity: 1, transition: { duration: 1, ease: "easeOut" } },
+      hidden: (dir: number) => ({ x: dir > 0 ? 100 : -100, opacity: 0 }),
+      visible: { x: 0, opacity: 1, transition: { duration: 1, ease: "easeOut" } },
       exit: (dir: number) => ({
-        x: -300 * dir,
+        x: dir > 0 ? -100 : 100,
         opacity: 0,
         transition: { duration: 0.8, ease: "easeIn" },
       }),
     },
   };
 
-  const currentAnim = slides[currentSlide].animation as keyof typeof variants;
-
-  const textVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.8, ease: "easeOut" } },
-  };
+  const currentAnim = slides[currentSlide].animation as keyof typeof textVariants;
 
   return (
-    <div className="relative w-full h-[60vh] overflow-hidden font-[EB Garamond]">
+    <div className="relative w-full h-[90vh] md:h-[60vh] overflow-hidden font-[EB Garamond]">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <img
+          src={heroBackground}
+          alt="Brand background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+      </div>
+
+      {/* Slide Content */}
       <AnimatePresence custom={direction} mode="wait">
         <motion.div
           key={currentSlide}
-          variants={variants[currentAnim]}
+          variants={textVariants[currentAnim]}
           custom={direction}
-          initial="enter"
-          animate="center"
+          initial="hidden"
+          animate="visible"
           exit="exit"
-          className="absolute inset-0"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6"
         >
-          <img
-            src={slides[currentSlide].image}
-            alt={slides[currentSlide].title}
-            className="w-full h-full object-cover"
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+          <motion.h2 className="text-4xl md:text-7xl font-[Nabla] font-bold mb-4 drop-shadow-[0_3px_6px_rgba(0,0,0,0.6)]">
+            {slides[currentSlide].title}
+          </motion.h2>
+          <motion.p className="text-lg md:text-2xl mb-8 max-w-2xl text-white/90">
+            {slides[currentSlide].description}
+          </motion.p>
+          <Link to={slides[currentSlide].link}>
+            <Button className="bg-[#6C63FF] hover:bg-[#00BFA6] text-white text-lg px-8 py-3 rounded-full shadow-xl transition-transform transform hover:scale-110 font-[EB Garamond]">
+              {slides[currentSlide].buttonText}
+            </Button>
+          </Link>
         </motion.div>
       </AnimatePresence>
-
-      {/* ✅ Text Overlay */}
-      <motion.div
-        variants={textVariant}
-        initial="hidden"
-        animate="visible"
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
-      >
-        <motion.h2
-          className="text-4xl md:text-7xl font-bold mb-4 font-[Nabla] animate-text-gradient text-[#FFFFF3]"
-        >
-          {slides[currentSlide].title}
-        </motion.h2>
-
-        <motion.p
-          className="text-lg md:text-2xl mb-8 max-w-2xl text-white font-[EB Garamond]"
-        >
-          {slides[currentSlide].description}
-        </motion.p>
-
-        <Link to={slides[currentSlide].link}>
-          <Button className="bg-[#6C63FF] hover:bg-[#00BFA6] text-white text-lg px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105 font-[EB Garamond]">
-            {slides[currentSlide].buttonText}
-          </Button>
-        </Link>
-      </motion.div>
 
       {/* Navigation Arrows */}
       <Button
@@ -159,23 +135,22 @@ export const HeroCarousel = () => {
         size="icon"
         aria-label="Previous slide"
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full"
+        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full backdrop-blur-sm"
       >
         <ChevronLeft className="h-8 w-8" />
       </Button>
-
       <Button
         variant="ghost"
         size="icon"
         aria-label="Next slide"
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full"
+        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full backdrop-blur-sm"
       >
         <ChevronRight className="h-8 w-8" />
       </Button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      {/* Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -185,6 +160,11 @@ export const HeroCarousel = () => {
             }`}
           />
         ))}
+      </div>
+
+      {/* Hanging Logo Upload Form */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-[28rem]">
+        <LogoUploadForm />
       </div>
     </div>
   );

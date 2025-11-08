@@ -62,7 +62,9 @@ export const TicketsGallery = () => {
 
       <div className="py-8 px-4 container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8 text-brand-dark">
-          Your Gateway to Unforgettable Events & Experiences!
+          Events & Tickets Booking 
+          <p className="text-sm text-gray-600 pt-4"> Jelimo Creative is your trusted partner in event organization and ticketing. <br /> We plan, host, and promote exciting experiences — and now, you can seamlessly book your event tickets directly through our online portal.
+       </p>
         </h2>
 
         {/* 🔎 Search & Filter Controls */}

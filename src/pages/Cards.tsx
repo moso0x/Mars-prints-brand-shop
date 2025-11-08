@@ -2,9 +2,10 @@ import { Header } from "@/components/Header";
 import { FooterNew } from "@/components/FooterNew";
 import { ProductGrid } from "@/components/ProductGrid";
 import { PageTransition } from "@/components/PageTransition";
-import apparels1 from "@/assets/apparels.jpg";
-import apparels2 from "@/assets/apparels2.jpg";
-import apparels3 from "@/assets/apparels3.jpg";
+import jersey1 from "@/assets/cartegories/jersey1.jpeg";
+import jersey2 from "@/assets/cartegories/jersey2.jpeg";
+import jersey3 from "@/assets/cartegories/jersey3.jpg";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -32,7 +33,7 @@ const Cards = () => {
           <div className="w-full md:w-1/2 flex justify-center">
             <div className="w-full max-w-[450px]">
               <Slider {...carouselSettings}>
-                {[apparels1, apparels2, apparels3].map((img, i) => (
+                {[jersey1, jersey2, jersey3].map((img, i) => (
                   <div key={i} className="flex justify-center">
                     <img
                       src={img}
@@ -48,7 +49,7 @@ const Cards = () => {
           {/* Text Section */}
           <div className="w-full md:w-1/2">
             <h1 className="text-5xl font-bold mb-6">
-             Jelimo Creatives Packaging & Labeling
+                Jersey Printing
             </h1>
             <p className="text-muted-foreground mb-8">
               Step out in style with our premium branded apparel that speaks your brand’s language.

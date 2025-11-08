@@ -12,8 +12,8 @@ export const Cart = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-[#00BFA6]/10 transition">
-          <ShoppingCart className="h-5 w-5 text-[#FF5B2E]" />
+        <Button variant="ghost" size="icon" className="relative hover:bg-[#64B5F6]/10 transition">
+          <ShoppingCart className="h-5 w-5 text-[#64B5F6]" />
           {getTotalItems() > 0 && (
             <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[#6C63FF] text-white border-2 border-white shadow-md">
               {getTotalItems()}
@@ -94,7 +94,7 @@ export const Cart = () => {
                 </div>
 
                 <Button
-                  className="w-full bg-gradient-to-r from-[#00BFA6] to-[#6C63FF] text-white font-semibold hover:opacity-90 transition"
+                  className="w-full bg-[#64B5F6] text-white font-semibold hover:opacity-90 transition"
                   size="lg"
                   onClick={() => navigate("/checkout")}
                 >

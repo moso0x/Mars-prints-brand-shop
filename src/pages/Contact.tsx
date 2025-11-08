@@ -25,7 +25,7 @@ const Contact = () => {
         <div className="flex justify-center py-6">
           <img
             src={contact}
-            className="w-[280px] rounded-2xl shadow-lg border-2 border-[#6C63FF]/30"
+            className="w-[180px] rounded-2xl shadow-lg border-2 border-[#6C63FF]/30"
             alt="Contact illustration"
           />
         </div>

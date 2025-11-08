@@ -20,76 +20,79 @@ const Feedback = () => {
     <PageTransition>
       <div className="min-h-screen bg-[#F8FBFF] flex flex-col">
         <Header />
-        <main className="flex-1 container mx-auto px-4 py-12">
+
+        <main className="flex-1 container mx-auto px-4 py-10">
           <div
-            className="max-w-2xl mx-auto bg-white border-2 border-[#005DFF]/40 
-                       rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 
-                       p-8 outline outline-1 outline-[#00D45A]/30 hover:outline-[#00D45A]/60"
+            className="max-w-xl mx-auto bg-white rounded-xl shadow-md hover:shadow-lg 
+                       transition-all duration-300 p-6"
           >
             {/* Image */}
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-3">
               <img
                 src={feedback}
-                className="w-[100px] drop-shadow-md"
+                className="w-[65px] drop-shadow-md"
                 alt="Feedback illustration"
               />
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl font-bold text-center text-[#005DFF] mb-4">
+            <h1 className="text-3xl font-bold text-center text-[#005DFF] mb-2">
               Feedback
             </h1>
-            <p className="text-center text-gray-600 mb-8">
+            <p className="text-center text-gray-600 mb-6 text-sm">
               We'd love to hear from you! Share your experience with us.
             </p>
 
             {/* Feedback Form */}
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <Label htmlFor="name" className="font-semibold text-gray-700">
+                <Label htmlFor="name" className="font-medium text-gray-700 text-sm">
                   Name
                 </Label>
                 <Input
                   id="name"
                   placeholder="Your name"
-                  className="focus-visible:ring-[#005DFF]"
+                  className="text-sm focus-visible:ring-[#005DFF] h-9"
                 />
               </div>
 
               <div>
-                <Label htmlFor="email" className="font-semibold text-gray-700">
+                <Label htmlFor="email" className="font-medium text-gray-700 text-sm">
                   Email
                 </Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="your@email.com"
-                  className="focus-visible:ring-[#005DFF]"
+                  className="text-sm focus-visible:ring-[#005DFF] h-9"
                 />
               </div>
 
               <div>
-                <Label htmlFor="feedback" className="font-semibold text-gray-700">
+                <Label htmlFor="feedback" className="font-medium text-gray-700 text-sm">
                   Your Feedback
                 </Label>
                 <Textarea
                   id="feedback"
                   placeholder="Tell us what you think..."
-                  rows={6}
-                  className="focus-visible:ring-[#005DFF]"
+                  rows={4}
+                  className="text-sm focus-visible:ring-[#005DFF]"
                 />
               </div>
 
-              <Button
-                className="w-full bg-[#00D45A] hover:bg-[#00B84F] text-white font-semibold 
-                           rounded-full py-2 transition-all duration-300 shadow-md hover:shadow-lg"
-                type="submit"
-              >
-                Submit Feedback
-              </Button>
+              <div className="flex justify-center pt-2">
+                <Button
+                  className="bg-[#00D45A] hover:bg-[#00B84F] text-white font-semibold 
+                             rounded-full px-6 py-2 text-sm shadow-md hover:shadow-lg transition-all"
+                  type="submit"
+                >
+                  Submit Feedback
+                </Button>
+              </div>
             </form>
           </div>
         </main>
+
         <FooterNew />
       </div>
     </PageTransition>

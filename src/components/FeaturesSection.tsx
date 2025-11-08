@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Heart, Share2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 import merch from "@/assets/merch.jpg";
 import gifts from "@/assets/custom-gifts.jpg";
@@ -15,81 +18,44 @@ import cards from "@/assets/cards.jpg";
 import stationery from "@/assets/stationery.jpg";
 
 const features = [
-  {
-    image: merch,
-    title: "Custom Merchandise & Branded Apparel",
-    description:
-      "Bring your vision to life with custom gear that makes a statement.",
-  },
-  {
-    image: gifts,
-    title: "Gifts & Promotional Items",
-    description:
-      "Custom mugs, calendars, and corporate gifts designed to impress.",
-  },
-  {
-    image: designsupport,
-    title: "Creative Design Support",
-    description:
-      "We help you create strong visuals that represent your brand.",
-  },
-  {
-    image: printing,
-    title: "Digital & Offset Printing",
-    description:
-      "Quality printing services for flyers, posters, and business materials.",
-  },
-  {
-    image: branding,
-    title: "Corporate Branding Solutions",
-    description:
-      "Transform your company’s presence with full visual identity design.",
-  },
-  {
-    image: cards,
-    title: "Business Cards & Stationery",
-    description:
-      "Professional cards and office stationery designed for impact.",
-  },
-  {
-    image: signage,
-    title: "Outdoor & Indoor Signage",
-    description:
-      "Eye-catching banners, displays, and wayfinding signs that attract.",
-  },
-  {
-    image: stationery,
-    title: "Corporate Stationery Printing",
-    description:
-      "Letterheads, envelopes, and branded office essentials to impress.",
-  },
-  {
-    image: eco,
-    title: "Eco-Friendly Campaigns",
-    description:
-      "Promote sustainability with reusable and recyclable materials.",
-  },
-  {
-    image: event,
-    title: "Event Promotion & Collaborations",
-    description:
-      "We brand, design, and promote events that leave a lasting impact.",
-  },
-  {
-    image: delivery,
-    title: "Nationwide & Regional Delivery",
-    description:
-      "Fast delivery across Kenya with expanding regional coverage.",
-  },
-  {
-    image: offer,
-    title: "Special Offers & Discounts",
-    description:
-      "Seasonal promotions and packages for startups and loyal clients.",
-  },
+  { image: merch, title: "Custom Merchandise & Branded Apparel", description: "Bring your vision to life with custom gear that makes a statement." },
+  { image: gifts, title: "Gifts & Promotional Items", description: "Custom mugs, calendars, and corporate gifts designed to impress." },
+  { image: designsupport, title: "Creative Design Support", description: "We help you create strong visuals that represent your brand." },
+  { image: printing, title: "Digital & Offset Printing", description: "Quality printing services for flyers, posters, and business materials." },
+  { image: branding, title: "Corporate Branding Solutions", description: "Transform your company’s presence with full visual identity design." },
+  { image: cards, title: "Business Cards & Stationery", description: "Professional cards and office stationery designed for impact." },
+  { image: signage, title: "Outdoor & Indoor Signage", description: "Eye-catching banners, displays, and wayfinding signs that attract." },
+  { image: stationery, title: "Corporate Stationery Printing", description: "Letterheads, envelopes, and branded office essentials to impress." },
+  { image: eco, title: "Eco-Friendly Campaigns", description: "Promote sustainability with reusable and recyclable materials." },
+  { image: event, title: "Event Promotion & Collaborations", description: "We brand, design, and promote events that leave a lasting impact." },
+  { image: delivery, title: "Nationwide & Regional Delivery", description: "Fast delivery across Kenya with expanding regional coverage." },
+  { image: offer, title: "Special Offers & Discounts", description: "Seasonal promotions and packages for startups and loyal clients." },
 ];
 
 export const FeaturesSection = () => {
+  const [wishlist, setWishlist] = useState<string[]>([]);
+
+  const handleWishlistToggle = (title: string) => {
+    setWishlist((prev) =>
+      prev.includes(title)
+        ? prev.filter((item) => item !== title)
+        : [...prev, title]
+    );
+    toast.success(
+      wishlist.includes(title)
+        ? "Removed from wishlist"
+        : "Added to wishlist ❤️"
+    );
+  };
+
+  const handleShare = (title: string) => {
+    const shareUrl = `${window.location.origin}/product/${title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")}`;
+    navigator.clipboard.writeText(shareUrl);
+    toast.success("Link copied to clipboard 📋");
+  };
+
   return (
     <section className="py-16 bg-secondary">
       <div className="container mx-auto px-4">
@@ -102,12 +68,11 @@ export const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Explore Our Array of Creative Printing  & Branding Solutions
+            Explore Our Array of Creative Printing & Branding Solutions
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             At Jelimo Creatives, we provide a full range of branding, design, and
-            printing services — from promotional items to complete brand
-            identity development.
+            printing services — from promotional items to complete brand identity development.
           </p>
         </motion.div>
 
@@ -123,13 +88,43 @@ export const FeaturesSection = () => {
                 key={index}
                 whileHover={{ y: -6, scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
               >
-                <motion.img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
-                />
+                <div className="relative">
+                  {/* Image */}
+                  <motion.img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
+                  />
+
+                  {/* Wishlist + Share Icons */}
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    {/* Wishlist */}
+                    <button
+                      onClick={() => handleWishlistToggle(feature.title)}
+                      className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
+                    >
+                      <Heart
+                        size={16}
+                        className={
+                          wishlist.includes(feature.title)
+                            ? "text-red-500 fill-red-500"
+                            : "text-gray-700"
+                        }
+                      />
+                    </button>
+
+                    {/* Share */}
+                    <button
+                      onClick={() => handleShare(feature.title)}
+                      className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
+                    >
+                      <Share2 size={16} className="text-gray-700" />
+                    </button>
+                  </div>
+                </div>
+
                 <div className="p-3 text-center transition-colors duration-300 hover:bg-gray-50">
                   <h3 className="text-base font-semibold mb-1 text-primary">
                     {feature.title}

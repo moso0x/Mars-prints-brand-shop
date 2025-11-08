@@ -8,10 +8,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Sample images
 import apparels1 from "@/assets/apparels.jpg";
 import apparels2 from "@/assets/apparels2.jpg";
 import apparels3 from "@/assets/apparels3.jpg";
+
 const services = [
   "T-shirt printing (DTG, screen printing, vinyl, sublimation)",
   "Hoodie branding",
@@ -36,7 +36,7 @@ const MarketingMaterials = () => {
     adaptiveHeight: true,
   };
 
-   // Animation variants for list tick effect
+  // Animation variants for list tick effect
   const listVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -54,6 +54,34 @@ const MarketingMaterials = () => {
     <PageTransition>
       <div className="min-h-screen flex flex-col">
         <Header />
+
+        {/* Custom styles for slick dots */}
+        <style>
+          {`
+          .slick-dots {
+            bottom: -25px;
+          }
+          .slick-dots li button:before {
+            font-size: 10px;
+            color: #0052CC; /* default dot color */
+            opacity: 0.4;
+            transition: all 0.3s ease;
+          }
+          .slick-dots li:nth-child(3n+1) button:before {
+            color: #0052CC;
+          }
+          .slick-dots li:nth-child(3n+2) button:before {
+            color: #00FF66;
+          }
+          .slick-dots li:nth-child(3n+3) button:before {
+            color: #FF5C26;
+          }
+          .slick-dots li.slick-active button:before {
+            opacity: 1 !important;
+            transform: scale(1.4);
+          }
+          `}
+        </style>
 
         {/* Image + Text Section */}
         <section className="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-10">
@@ -77,12 +105,12 @@ const MarketingMaterials = () => {
           {/* Text Section */}
           <div className="w-full md:w-1/2">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
-              Jelimo Creatives Apparels & Wearables
+              Apparels & Wearables
             </h1>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Step out in style with our premium branded apparel that speaks your
-              brand’s language.   wearables that blend comfort, creativity, and identity — helping you
-              look as professional as you feel.  From;
+              brand’s language. Wearables that blend comfort, creativity, and identity —
+              helping you look as professional as you feel. From:
             </p>
 
             {/* Animated Tick List */}
@@ -102,15 +130,22 @@ const MarketingMaterials = () => {
                   <motion.span
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10, delay: index * 0.15 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 10,
+                      delay: index * 0.15,
+                    }}
                   >
-                    <CheckCircle2 className="text-green-600 flex-shrink-0 mt-[2px]" size={18} />
+                    <CheckCircle2
+                      className="text-green-600 flex-shrink-0 mt-[2px]"
+                      size={18}
+                    />
                   </motion.span>
                   <span>{service}</span>
                 </motion.li>
               ))}
             </motion.ul>
-
           </div>
         </section>
 

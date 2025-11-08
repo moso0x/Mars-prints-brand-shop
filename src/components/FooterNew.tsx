@@ -11,10 +11,8 @@ export const FooterNew = () => {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand Section */}
           <div>
-            <img src={logo} alt="" className="w-[100px] h-[100px]"/>
-            <p className="text-lg text-black font-bold leading-relaxed">
-              Professional printing and branding services that transform your vision into reality.
-            </p>
+            <img src={logo} alt="" className="w-[200px] h-[200px]"/>
+         
           </div>
 
           {/* Quick Links */}

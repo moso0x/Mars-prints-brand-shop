@@ -14,6 +14,7 @@ import { TicketsCarousel } from "@/components/TicketsCarousel";
 
 
 
+
 const Index = () => {
   return (
     <PageTransition>
@@ -23,6 +24,7 @@ const Index = () => {
           <HeroCarousel />
           <FeaturesSection />
           <ProductGrid />
+        
           <TicketsCarousel />
          
           <EcoFriendlySection />
