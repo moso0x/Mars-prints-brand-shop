@@ -59,8 +59,8 @@ const FAQAccordion: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto p-6 md:p-12">
-      <h2 className="text-4xl font-bold text-center text-black mb-12">
-        Frequently Asked Questions
+      <h2 className="text-2xl font-bold text-center  text-[#64B5F6] mb-12">
+        FAQ(s)
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -75,13 +75,15 @@ const FAQAccordion: React.FC = () => {
                 className="w-full flex justify-between items-center p-4  transition-colors"
                 onClick={() => toggleAccordion(index)}
               >
-                <span className="font-semibold text-[#1E1E2E]">
+            
+
+                <span className="font-semibold text-sm text-[#1E1E2E]">
                   {item.question}
                 </span>
                 {isOpen ? (
-                  <Minus className="w-5 h-5 text-[#1E1E2E]" />
+                  <Minus className="w-5 h-5 text-[#64B5F6]" />
                 ) : (
-                  <Plus className="w-5 h-5 text-[#1E1E2E]" />
+                  <Plus className="w-5 h-5 text-[#FF5C26]" />
                 )}
               </button>
 
@@ -93,7 +95,7 @@ const FAQAccordion: React.FC = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="p-4 bg-white text-gray-700"
+                    className="p-4 bg-white text-sm text-gray-700"
                   >
                     {item.answer}
                   </motion.div>
