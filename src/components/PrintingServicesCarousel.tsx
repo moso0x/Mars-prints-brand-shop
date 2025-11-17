@@ -113,7 +113,7 @@ function ServiceRow({ service }) {
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 max-w-6xl mx-auto relative">
       <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-      <p className="text-gray-800 mb-6">{service.description}</p>
+      <p className="text-gray-600 mb-6">{service.description}</p>
 
       {/* IMAGE CAROUSEL */}
       <div className="relative">
@@ -148,19 +148,19 @@ function ServiceRow({ service }) {
       </div>
 
       {/* BULLET POINTS */}
-      <ul className="mb-1 pt-6 grid grid-cols-1 gap-y-1 text-sm font-semibold text-left text-black leading-tight">
-        {service.points?.map((item, i) => (
-          <li key={i} className="flex items-start gap-2">
-            <span className="text-green-500 text-base leading-none mt-[2px]">✔</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      <ul className="mb-1 pt-12 grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4 text-sm font-semibold text-left text-black leading-tight">
+  {service.points?.map((item, i) => (
+    <li key={i} className="flex items-start gap-2">
+      <span className="text-green-500 text-base leading-none mt-[2px]">✔</span>
+      <span>{item}</span>
+    </li>
+  ))}
+</ul>
 
       {/* EXPLORE BUTTON WITH CARET & FILL */}
       <div className="flex justify-center mt-6">
         <motion.button
-          className="relative px-7 py-2 rounded-full font-semibold flex items-center gap-2 overflow-hidden text-xs text-white bg-black group"
+          className="relative px-7 py-2 rounded-full font-semibold hover:bg-blue-500 flex items-center gap-2 overflow-hidden text-xs text-white bg-black group"
         >
           {/* Blue fill from right */}
           <motion.div
@@ -170,7 +170,7 @@ function ServiceRow({ service }) {
             transition={{ duration: 0.4, ease: "easeInOut" }}
           />
           {/* Text */}
-          <span className="relative z-10">Explore & Shop.</span>
+          <span className="relative z-10 ">Explore & Shop.</span>
           {/* Stretching caret */}
           <motion.span
             className="relative z-10 inline-block origin-left"

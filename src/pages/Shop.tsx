@@ -81,6 +81,34 @@ const allProducts = [
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
+    {
+    title: "A-frame Signs",
+    price: "Get a Quote",
+    image: totebags,
+    category: "Outdoor Branding",
+    description: "Want more walk-ins? Make your storefront stand out."
+  },
+    {
+    title: "A-frame Signs",
+    price: "Get a Quote",
+    image: totebags,
+    category: "Outdoor Branding",
+    description: "Want more walk-ins? Make your storefront stand out."
+  },
+    {
+    title: "A-frame Signs",
+    price: "Get a Quote",
+    image: totebags,
+    category: "Outdoor Branding",
+    description: "Want more walk-ins? Make your storefront stand out."
+  },
+    {
+    title: "A-frame Signs",
+    price: "Get a Quote",
+    image: totebags,
+    category: "Outdoor Branding",
+    description: "Want more walk-ins? Make your storefront stand out."
+  },
   {
     title: "A4 Size Flyer Printing",
     price: "From Ksh. 40",
@@ -318,7 +346,7 @@ const Shop = () => {
           {product.description && viewMode === "list" && (
             <p className="text-xs text-gray-500 mb-1">{product.description}</p>
           )}
-          <p className="text-[#FF5C26] font-medium text-sm mb-2">{product.price}</p>
+          <p className="text-black font-medium text-sm mb-2">{product.price}</p>
           <Button
             className="w-full bg-black hover:bg-[#e04e1e] text-white text-sm py-1 rounded-full"
             onClick={() => addToCart(product)}
