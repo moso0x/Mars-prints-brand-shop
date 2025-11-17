@@ -26,6 +26,13 @@ const printingData = [
     images: [promotion2, promotion3, promotion4, promotion5, promotion6],
     description:
       "Boost your brand visibility with high-quality promotional merchandise tailored for campaigns, marketing events, and corporate identity.",
+        labels: [
+      "Table Banner",
+      "Teardrop Banner",
+      "T-Shirt Print",
+      "Branded Umbrella",
+      "Adhesive Stickers"
+    ],
     points: [
       "Wide range of brandable merchandise",
       "Election & campaign promotional materials",
@@ -39,6 +46,13 @@ const printingData = [
     images: [promotion1, service2, service3, service4, service5],
     description:
       "Premium apparel printing for businesses, events, staff uniforms, and promotional activities.",
+             labels: [
+      "Custom Cap",
+      "Corporate Uniform",
+      "Reflective Jacket",
+      "Hoodie Print",
+      "Branded Caps Set"
+    ],
     points: [
       "High-quality screen & DTG printing",
       "Bulk printing for corporate & events",
@@ -46,12 +60,21 @@ const printingData = [
       "Durable prints that last long",
       "Custom designs for all occasions",
     ],
+    
   },
   {
     title: "Stationery Printing",
     images: [babyshower, bcards, pens, trifold, service1],
     description:
       "Professional stationery printing for business branding, events, and personal projects.",
+   labels: [
+      "Baby Shower Cards",
+      "Business Cards",
+      "Custom Pens",
+      "Tri-Fold Brochure",
+      "Corporate Diaries"
+    ],
+   
     points: [
       "Business cards, pens & notebooks",
       "Brochures, catalogs & corporate diaries",
@@ -117,34 +140,41 @@ function ServiceRow({ service }) {
 
       {/* IMAGE CAROUSEL */}
       <div className="relative">
-        <motion.button
+            <motion.button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md rounded-full p-2"
-          whileHover={{ scale: 1.2, backgroundColor: "#E5E7EB" }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-blue-600 text-white shadow-md rounded-full p-2"
+          whileHover={{ scale: 1.2, backgroundColor: "#1E40AF" }} // darker blue hover
         >
           <ArrowLeft size={22} />
         </motion.button>
 
-        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scroll-smooth py-2">
-          {service.images.map((img, i) => (
-            <motion.img
-              key={i}
-              src={img}
-              alt={`${service.title} ${i + 1}`}
-              className="w-48 md:w-52 flex-shrink-0 h-auto max-h-40 rounded-xl shadow-lg object-contain"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            />
-          ))}
-        </div>
+                      <div ref={scrollRef} className="flex gap-4 overflow-x-auto scroll-smooth py-2">
+                {service.images.map((img, i) => (
+                  <div key={i} className="flex-shrink-0 w-48 md:w-52">
+                    <motion.img
+                      src={img}
+                      alt={service.labels[i] || `${service.title} ${i + 1}`}
+                      className="w-full h-auto max-h-40 rounded-xl shadow-lg object-contain"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.3 }}
+                    />
 
-        <motion.button
-          onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md rounded-full p-2"
-          whileHover={{ scale: 1.2, backgroundColor: "#E5E7EB" }}
-        >
-          <ArrowRight size={22} />
-        </motion.button>
+                    {/* Custom Label */}
+                    <p className="text-center mt-2 text-xs font-semibold text-gray-800">
+                      {service.labels[i]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+
+              <motion.button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-blue-600 text-white shadow-md rounded-full p-2"
+            whileHover={{ scale: 1.2, backgroundColor: "#1E40AF" }}
+          >
+            <ArrowRight size={22} />
+          </motion.button>
       </div>
 
       {/* BULLET POINTS */}
