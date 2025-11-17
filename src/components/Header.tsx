@@ -27,6 +27,7 @@ export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // ✅ Added
   const navigate = useNavigate();
 
   const COLORS = {
@@ -35,6 +36,12 @@ export const Header = () => {
     limeGreen: "#00FF66",
     orange: "#FF5B2E",
     deepNavy: "#0D1B5E",
+  };
+
+  // ✅ Search handler
+  const handleSearch = () => {
+    if (!searchQuery.trim()) return;
+    navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
   };
 
   useEffect(() => {
@@ -63,8 +70,10 @@ export const Header = () => {
       {/* --- Top Bar --- */}
       <div className="bg-white border-b border-gray-200 py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-[#0D1B5E]">
+
           {/* Contact Info */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8">
+
             <a
               href="tel:+254704904678"
               className="flex items-center gap-1 hover:opacity-80"
@@ -78,14 +87,14 @@ export const Header = () => {
               <span className="font-medium text-sm ">Mombasa, Kenya</span>
             </div>
 
-            <div className="flex items-center gap-1">
+            {/* <div className="flex items-center gap-1">
               <Clock className="text-black w-4 h-4 md:w-8 md:h-8" />
               <span className="font-medium text-sm ">Mon - Sat: 8am - 6pm</span>
-            </div>
+            </div> */}
           </div>
 
-          {/* Advertisement Ribbon */}
-          <div className="w-[400px] mx-auto md:mx-0">
+          {/* Advertisement */}
+          <div className="w-[600px] mx-auto md:mx-0">
             <AdvertRibbon />
           </div>
 
@@ -98,14 +107,12 @@ export const Header = () => {
                 onClick={handleLogout}
                 className="text-[#FF5B2E]"
               >
-                <LogOut className="h-5 w-5 mr-1 text-[#FF5B2E]" />
-                Logout
+                <LogOut className="h-5 w-5 mr-1 text-[#FF5B2E]" /> Logout
               </Button>
             ) : (
               <Button variant="ghost" size="sm" asChild className="text-black">
                 <Link to="/auth">
-                  <User className="h-5 w-5 mr-1 text-[#FF5B2E]" />
-                  Login
+                  <User className="h-5 w-5 mr-1 text-[#FF5B2E]" /> Login
                 </Link>
               </Button>
             )}
@@ -126,6 +133,7 @@ export const Header = () => {
         className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg"
       >
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
+
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center justify-center">
             <motion.img
@@ -149,12 +157,8 @@ export const Header = () => {
               <Button
                 className="text-white flex items-center overflow-hidden relative"
                 style={{ backgroundColor: COLORS.orange }}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3 },
-                }}
               >
-                <motion.span whileHover={{ scale: 0.95 }} transition={{ duration: 0.3 }}>
+                <motion.span whileHover={{ scale: 0.95 }}>
                   Shop by Categories
                 </motion.span>
                 <motion.div
@@ -175,9 +179,9 @@ export const Header = () => {
                     className="absolute left-0 mt-2 w-60 rounded-lg shadow-xl z-[9999] bg-white"
                   >
                     {[
-                      ["Apparel & Wearables", "/marketing-materials"],
-                      ["Packaging & Labeling", "/cards"],
-                      ["Promotional & Corporate Gifts", "/stationery"],
+                      ["Apparel & Wearables", "/ApparelWearables"],
+                      ["Mugs  & Water Bottle ", "/MugsBottles"],
+                      ["Promotional & Corporate Gifts", "/PromotionalGifts"],
                       ["Marketing & Advertising Materials", "/mugs"],
                       ["Merchandise & Lifestyle Items", "/banners"],
                       ["Eco-Friendly Branding", "/banners"],
@@ -187,7 +191,7 @@ export const Header = () => {
                       <Link
                         key={label}
                         to={link}
-                        className="block px-4 py-2 text-sm hover:bg-white hover:text-[#0D1B5E] transition-all relative group"
+                        className="block px-4 py-2 text-sm hover:bg-white hover:text-[#0D1B5E]"
                       >
                         {label}
                       </Link>
@@ -211,19 +215,16 @@ export const Header = () => {
                   whileHover={{
                     scale: 0.8,
                     backgroundColor: COLORS.lightBlue,
+                    borderRadius: "9999px",
                     transition: { duration: 0.3 },
                   }}
                   className="px-3 py-2 rounded-lg relative"
                 >
-                  {/* ✅ Label with indicator over the 's' */}
                   <motion.span
                     whileHover={{ scale: 0.9 }}
-                    className="transition relative inline-block"
                     style={{
                       color:
-                        label === "Feedback"
-                          ? COLORS.limeGreen
-                          : COLORS.deepNavy,
+                        label === "Feedback" ? COLORS.limeGreen : COLORS.deepNavy,
                     }}
                   >
                     {label}
@@ -248,19 +249,21 @@ export const Header = () => {
             ))}
           </motion.nav>
 
-          {/* Search */}
+          {/* -------- SEARCH -------- */}
           <motion.div layout className="hidden md:flex max-w-sm w-full relative">
             <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5"
+              onClick={handleSearch}
+              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 cursor-pointer"
               style={{ color: COLORS.deepNavy }}
             />
+
             <Input
-              placeholder="Find a product... T-shirts, hoodies, caps, mugs..."
-              className="pl-10 italic text-[1rem] rounded-full border border-gray-200 focus:ring-0 focus:outline-none"
-              style={{
-                borderColor: COLORS.lightBlue,
-                boxShadow: "none",
-              }}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              placeholder="Search mugs, hoodies, t-shirts, caps, branding..."
+              className="pl-10 italic text-[1rem] rounded-full border border-gray-200 focus:ring-0"
+              style={{ borderColor: COLORS.lightBlue }}
             />
           </motion.div>
 

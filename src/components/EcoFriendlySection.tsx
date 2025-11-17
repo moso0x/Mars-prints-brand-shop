@@ -10,6 +10,7 @@ const brandColors = {
   accent: "#1A3C34", // deep forest tone
 };
 
+
 const causes = [
   {
     icon: TreePine,
@@ -39,10 +40,8 @@ export const EcoFriendlySection = () => {
 
   return (
     <section
-      className="py-16"
-      style={{
-        backgroundColor: brandColors.secondary,
-      }}
+      className="py-16 bg-blue-50"
+      
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -55,20 +54,21 @@ export const EcoFriendlySection = () => {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Leaf
               className="w-8 h-8"
-              style={{ color: brandColors.primary }}
+            
             />
             <h2
-              className="text-3xl font-bold"
-              style={{ color: brandColors.accent }}
+              className="text-3xl font-bold text-black"
+              
             >
-              Print with Purpose
+              Print with Purpose 🌱
             </h2>
           </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Make your prints count! Support environmental causes while getting
-            high-quality printing services. Every choice makes a difference for
-            our planet.
-          </p>
+          
+            Turn your ideas into impact! Enjoy top-quality printing services while supporting environmental 
+            initiatives. Every print you make contributes to a greener, healthier planet. Make your
+            prints count—because every choice matters.
+            </p>
         </motion.div>
 
         {/* Compact Cards */}
@@ -118,7 +118,7 @@ export const EcoFriendlySection = () => {
                       {cause.amount}
                     </p>
                     <Button
-                      className="w-full text-white font-medium py-2 rounded-md transition-colors"
+                      className="w-[60%] text-white font-medium py-2 rounded-full transition-colors"
                       style={{
                         backgroundColor: brandColors.primary,
                       }}

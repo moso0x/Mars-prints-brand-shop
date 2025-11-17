@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 import "@fontsource-variable/nabla";
 import "@fontsource/eb-garamond";
 
-import heroBackground from "@/assets/hero-printing.jpg";
+import heroBackground from "@/assets/hero-printing.png";
 import { LogoUploadForm } from "./LogoUploadForm";
 
 const slides = [
   {
-    title: "Where Your Brand Comes Alive.",
+    title: "Welcome at Jelimo Creatives.",
     description:
-      "We transform your ideas into powerful merchandise and experiences that connect, inspire, and leave a mark.",
+      "Branded printing services and safari ticket booking ",
     buttonText: "Explore our Featured Work",
     link: "/",
     animation: "fade",
@@ -40,7 +40,6 @@ const slides = [
     animation: "fade",
   },
 ];
-
 export const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -93,15 +92,21 @@ export const HeroCarousel = () => {
   const currentAnim = slides[currentSlide].animation as keyof typeof textVariants;
 
   return (
-    <div className="relative w-full h-[90vh] md:h-[60vh] overflow-hidden font-[EB Garamond]">
-      {/* Background */}
-      <div className="absolute inset-0">
+   <div className="relative w-[80%] mx-auto flex justify-center items-center h-[90vh] md:h-[60vh] overflow-hidden font-[EB Garamond] bg-center bg-cover">
+
+      {/* Background Image Centered */}
+      <div className="absolute inset-0 flex justify-center items-center">
         <img
           src={heroBackground}
           alt="Brand background"
-          className="w-full h-full object-cover"
+          className="w-[80%] md:w-full h-auto object-contain mx-auto"
         />
+
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+
+        {/* Color Overlay */}
+        <div className="absolute inset-0 bg-[#6C63FF]/40 mix-blend-multiply" />
       </div>
 
       {/* Slide Content */}
@@ -118,9 +123,11 @@ export const HeroCarousel = () => {
           <motion.h2 className="text-4xl md:text-7xl font-[Nabla] font-bold mb-4 drop-shadow-[0_3px_6px_rgba(0,0,0,0.6)]">
             {slides[currentSlide].title}
           </motion.h2>
+
           <motion.p className="text-lg md:text-2xl mb-8 max-w-2xl text-white/90">
             {slides[currentSlide].description}
           </motion.p>
+
           <Link to={slides[currentSlide].link}>
             <Button className="bg-[#6C63FF] hover:bg-[#00BFA6] text-white text-lg px-8 py-3 rounded-full shadow-xl transition-transform transform hover:scale-110 font-[EB Garamond]">
               {slides[currentSlide].buttonText}
@@ -139,6 +146,7 @@ export const HeroCarousel = () => {
       >
         <ChevronLeft className="h-8 w-8" />
       </Button>
+
       <Button
         variant="ghost"
         size="icon"
@@ -162,10 +170,6 @@ export const HeroCarousel = () => {
         ))}
       </div>
 
-      {/* Hanging Logo Upload Form */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-[28rem]">
-        <LogoUploadForm />
-      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const services = [
   "Workwear branding (overalls, aprons, coats)",
 ];
 
-const MarketingMaterials = () => {
+const ApparelWearables = () => {
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -36,7 +36,6 @@ const MarketingMaterials = () => {
     adaptiveHeight: true,
   };
 
-  // Animation variants for list tick effect
   const listVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -55,27 +54,20 @@ const MarketingMaterials = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
 
-        {/* Custom styles for slick dots */}
         <style>
           {`
           .slick-dots {
             bottom: -25px;
           }
           .slick-dots li button:before {
-            font-size: 10px;
-            color: #0052CC; /* default dot color */
+            font-size: 5px;
+            color: #0052CC;
             opacity: 0.4;
             transition: all 0.3s ease;
           }
-          .slick-dots li:nth-child(3n+1) button:before {
-            color: #0052CC;
-          }
-          .slick-dots li:nth-child(3n+2) button:before {
-            color: #00FF66;
-          }
-          .slick-dots li:nth-child(3n+3) button:before {
-            color: #FF5C26;
-          }
+          .slick-dots li:nth-child(3n+1) button:before { color: #0052CC; }
+          .slick-dots li:nth-child(3n+2) button:before { color: #00FF66; }
+          .slick-dots li:nth-child(3n+3) button:before { color: #FF5C26; }
           .slick-dots li.slick-active button:before {
             opacity: 1 !important;
             transform: scale(1.4);
@@ -83,10 +75,10 @@ const MarketingMaterials = () => {
           `}
         </style>
 
-        {/* Image + Text Section */}
         <section className="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-10">
-          {/* Carousel */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          
+          {/* Carousel + Thumbnails */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
             <div className="w-full max-w-[450px]">
               <Slider {...carouselSettings}>
                 {[apparels1, apparels2, apparels3].map((img, i) => (
@@ -94,26 +86,38 @@ const MarketingMaterials = () => {
                     <img
                       src={img}
                       alt={`Apparel ${i + 1}`}
-                      className="w-full h-[250px] md:h-[300px] object-contain rounded-lg shadow-md mx-auto"
+                      className="w-full h-[20px] md:h-[300px] object-contain rounded-lg shadow-md mx-auto"
                     />
                   </div>
                 ))}
               </Slider>
+
+              {/* --- Thumbnail Row --- */}
+              <div className="flex items-center justify-center gap-3 mt-8">
+                {[apparels1, apparels2, apparels3].map((thumb, i) => (
+                  <img
+                    key={i}
+                    src={thumb}
+                    alt="thumbnail"
+                    className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-300 hover:scale-105 transition-all shadow-sm"
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Text Section */}
           <div className="w-full md:w-1/2">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+            <h1 className="text-xl md:text-2xl font-bold mb-6 text-primary">
               Apparels & Wearables
             </h1>
+
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Step out in style with our premium branded apparel that speaks your
-              brand’s language. Wearables that blend comfort, creativity, and identity —
-              helping you look as professional as you feel. From:
+              Step out in style with our premium branded apparel that speaks
+              your brand’s language. Wearables that blend comfort, creativity,
+              and identity — helping you look as professional as you feel.
             </p>
 
-            {/* Animated Tick List */}
             <motion.ul
               className="space-y-3 mb-8"
               variants={listVariants}
@@ -127,21 +131,7 @@ const MarketingMaterials = () => {
                   variants={itemVariants}
                   className="flex items-start gap-2 text-sm md:text-base text-gray-700"
                 >
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 10,
-                      delay: index * 0.15,
-                    }}
-                  >
-                    <CheckCircle2
-                      className="text-green-600 flex-shrink-0 mt-[2px]"
-                      size={18}
-                    />
-                  </motion.span>
+                  <CheckCircle2 className="text-green-600 flex-shrink-0 mt-[2px]" size={18} />
                   <span>{service}</span>
                 </motion.li>
               ))}
@@ -149,7 +139,6 @@ const MarketingMaterials = () => {
           </div>
         </section>
 
-        {/* Product Grid */}
         <main className="container mx-auto px-4 pb-12">
           <ProductGrid />
         </main>
@@ -160,4 +149,4 @@ const MarketingMaterials = () => {
   );
 };
 
-export default MarketingMaterials;
+export default ApparelWearables;

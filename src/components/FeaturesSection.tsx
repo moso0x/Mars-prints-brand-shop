@@ -4,33 +4,32 @@ import { Link } from "react-router-dom";
 import { Heart, Share2 } from "lucide-react";
 import toast from "react-hot-toast";
 
-import merch from "@/assets/merch.jpg";
-import gifts from "@/assets/custom-gifts.jpg";
-import event from "@/assets/event.png";
-import delivery from "@/assets/delivery.jpg";
-import eco from "@/assets/ecofriendly.jpg";
-import designsupport from "@/assets/designsupport.jpg";
-import offer from "@/assets/offer.jpg";
-import printing from "@/assets/printing.jpg";
-import branding from "@/assets/branding.jpg";
-import signage from "@/assets/signage.jpg";
-import cards from "@/assets/cards.jpg";
-import stationery from "@/assets/stationery.jpg";
+import totebags from "@/assets/tote-bags-hero.jpg";
+import calenders from "@/assets/calenders.jpg";
+import custom_shirt from "@/assets/custom.jpg";
+import flyers from "@/assets/a5flyer.jpg";
+import rollup from "@/assets/rollup-banner.jpg";
+import caps from "@/assets/caps.jpg";
+import hoodie from "@/assets/hoodie.jpg";
+import mounted from "@/assets/mounted-photo.jpg";
+import corporate from "@/assets/corporate.jpg";
+import mug from "@/assets/mugs.jpg";
 
 const features = [
-  { image: merch, title: "Custom Merchandise & Branded Apparel", description: "Bring your vision to life with custom gear that makes a statement." },
-  { image: gifts, title: "Gifts & Promotional Items", description: "Custom mugs, calendars, and corporate gifts designed to impress." },
-  { image: designsupport, title: "Creative Design Support", description: "We help you create strong visuals that represent your brand." },
-  { image: printing, title: "Digital & Offset Printing", description: "Quality printing services for flyers, posters, and business materials." },
-  { image: branding, title: "Corporate Branding Solutions", description: "Transform your company’s presence with full visual identity design." },
-  { image: cards, title: "Business Cards & Stationery", description: "Professional cards and office stationery designed for impact." },
-  { image: signage, title: "Outdoor & Indoor Signage", description: "Eye-catching banners, displays, and wayfinding signs that attract." },
-  { image: stationery, title: "Corporate Stationery Printing", description: "Letterheads, envelopes, and branded office essentials to impress." },
-  { image: eco, title: "Eco-Friendly Campaigns", description: "Promote sustainability with reusable and recyclable materials." },
-  { image: event, title: "Event Promotion & Collaborations", description: "We brand, design, and promote events that leave a lasting impact." },
-  { image: delivery, title: "Nationwide & Regional Delivery", description: "Fast delivery across Kenya with expanding regional coverage." },
-  { image: offer, title: "Special Offers & Discounts", description: "Seasonal promotions and packages for startups and loyal clients." },
+    { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
+  { title: "2026 Calendar Printing", price: "From Ksh. 100 per piece", image: calenders },
+  { title: "Custom Shirt Printing", price: "From Ksh. 250 per card", image: custom_shirt },
+  { title: "A5 Flyers Printing", price: "From Ksh. 150 per flyer", image: flyers },
+  { title: "Caps Printing", price: "From Ksh. 200 per piece", image: caps },
+  { title: "Roll-up Banner Printing", price: "From Ksh. 2000 per piece", image: rollup },
+  { title: "Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie },
+  { title: "Mounted Photos Printing", price: "From Ksh. 700", image: mounted },
+  { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
+  { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
+//   { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
+//   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
 ];
+
 
 export const FeaturesSection = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
@@ -68,7 +67,7 @@ export const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Explore Our Array of Creative Printing & Branding Solutions
+             Creative Printing & Branding Solutions
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             At Jelimo Creatives, we provide a full range of branding, design, and
@@ -80,7 +79,7 @@ export const FeaturesSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {features.map((feature, index) => {
             const shortDescription =
-              feature.description.split(" ").slice(0, 3).join(" ") + "...";
+              feature.price.split(" ").slice(0, 3).join(" ") + "...";
             const slug = feature.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
             return (
@@ -137,7 +136,7 @@ export const FeaturesSection = () => {
                       className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 
                                  hover:bg-green-600 hover:text-white transition-all duration-300"
                     >
-                      Read More
+                     Order now 
                     </button>
                   </Link>
                 </div>
@@ -158,9 +157,9 @@ export const FeaturesSection = () => {
           </p>
           <a
             href="/contact"
-            className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+            className="inline-block rounded-full bg-black text-white font-semibold px-6 py-3  transition"
           >
-            Let’s Collaborate
+            Reach Us!
           </a>
         </motion.div>
       </div>

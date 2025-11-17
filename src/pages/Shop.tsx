@@ -10,6 +10,56 @@ import { Search, LayoutGrid, List } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import shop_img from "@/assets/shop.jpg"
+import totebags from "@/assets/tote-bags-hero.jpg";
+import totebag1 from "@/assets/thumbnails/totebag1.jpg";
+import totebag2 from "@/assets/thumbnails/totebag2.jpg";
+import cap1 from "@/assets/thumbnails/cap1.jpg";
+import cap2 from "@/assets/thumbnails/cap2.jpg";
+import cap3 from "@/assets/thumbnails/cap3.jpg";
+import cap4 from "@/assets/thumbnails/cap4.jpg";
+import rollup1 from "@/assets/thumbnails/rollup1.jpg";
+import rollup2 from "@/assets/thumbnails/rollup2.jpg"
+import rollup3 from "@/assets/thumbnails/rollup3.jpg"
+import mug1 from "@/assets/thumbnails/mug1.jpg";
+import mug2 from "@/assets/thumbnails/mug2.jpg";
+import mug3 from "@/assets/thumbnails/mug3.jpg";
+import mug4 from "@/assets/thumbnails/mug4.jpg";
+import mounted1 from "@/assets/thumbnails/mounted1.jpg"
+import mounted2 from "@/assets/thumbnails/mounted2.jpg"
+import hoodie1 from "@/assets/thumbnails/hoodie1.jpg"
+import hoodie2 from "@/assets/thumbnails/hoodie2.jpg"
+import hoodie3 from "@/assets/thumbnails/hoodie3.jpg"
+import hoodie4 from "@/assets/thumbnails/hoodie4.jpg"
+import custom_shirt from "@/assets/custom.jpg";
+import flyers from "@/assets/a5flyer.jpg";
+import flyer1 from "@/assets/thumbnails/flyer1.jpg";
+import flyer2 from "@/assets/thumbnails/flyer2.jpg";
+import shirt1 from "@/assets/thumbnails/shirt1.jpg";
+import shirt2 from "@/assets/thumbnails/shirt2.jpg";
+import shirt3 from "@/assets/thumbnails/shirt3.jpg";
+import shirt4 from "@/assets/thumbnails/shirt4.jpg";
+import rollup from "@/assets/rollup-banner.jpg";
+import caps from "@/assets/caps.jpg";
+import hoodie from "@/assets/hoodie.jpg";
+import mounted from "@/assets/thumbnails/mounted1.jpg";
+import corporate1 from "@/assets/thumbnails/corporate1.jpg";
+import corporate2 from "@/assets/thumbnails/corporate2.jpg";
+import corporate3 from "@/assets/thumbnails/corporate3.jpg";
+import corporate4 from "@/assets/thumbnails/corporate4.jpg";
+import corporate5 from "@/assets/thumbnails/corporate5.jpg";
+import corporate from "@/assets/thumbnails/corporate.jpg";
+import trifold from "@/assets/moreProducts-img/trifold.jpg";
+import poppup from "@/assets/moreProducts-img/poupup-banner.jpg";
+import reflectors from "@/assets/moreProducts-img/reflectors.jpg";
+import reciept from "@/assets/moreProducts-img/receipt.jpg";
+import bscards from "@/assets/moreProducts-img/bs-cards.jpg";
+
+import weddingcards from "@/assets/moreProducts-img/weddingcards.jpg";
+import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
+import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
+import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
+import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
+
 
 const categories = [
   "All Products",
@@ -27,92 +77,92 @@ const allProducts = [
   {
     title: "A-frame Signs",
     price: "Get a Quote",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    image: totebags,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
   {
     title: "A4 Size Flyer Printing",
     price: "From Ksh. 40",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=300&h=300&fit=crop",
+    image: cap1 ,
     category: "Stationery"
   },
   {
     title: "Acrylic Sign",
     price: "From Ksh. 2,500",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    image: mug1,
     category: "Outdoor Branding"
   },
   {
     title: "Bookmarks printing",
     price: "Starting at Ksh. 25",
-    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=300&fit=crop",
+    image: shirt1,
     category: "Stationery"
   },
   {
     title: "2026 Calendar printing",
     price: "From Ksh. 90 per piece",
-    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=300&h=300&fit=crop",
+    image: rollup,
     category: "Stationery"
   },
   {
     title: "Postcards printing",
     price: "From Ksh. 25 per card",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    image: hoodie,
     category: "Stationery"
   },
   {
     title: "A5 Flyers printing",
     price: "From Ksh. 15 per flyer",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=300&h=300&fit=crop",
+    image: mounted,
     category: "Stationery"
   },
   {
     title: "Receipt books printing",
     price: "From Ksh. 500 per book",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=300&h=300&fit=crop",
+    image: corporate,
     category: "Business Services"
   },
   {
     title: "Roll up Banner printing",
     price: "From Ksh. 6,000 per piece",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    image: corporate3,
     category: "Outdoor Branding"
   },
   {
     title: "New Baby Cards",
     price: "From Ksh. 25 per piece",
-    image: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=300&h=300&fit=crop",
+    image: flyers,
     category: "Gift Sets"
   },
   {
     title: "X-Banner Stands printing",
     price: "From Ksh. 5800 per piece",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop",
+    image:  custom_shirt ,
     category: "Outdoor Branding"
   },
   {
     title: "Envelopes printing",
     price: "From Ksh. 40 per piece",
-    image: "https://images.unsplash.com/photo-1526048598645-62b31f82c7a6?w=300&h=300&fit=crop",
+    image: rollup1 ,
     category: "Stationery"
   },
   {
     title: "Mounted Photos printing",
     price: "from Ksh. 700",
-    image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&h=300&fit=crop",
+    image:  adhesive ,
     category: "Home and Living"
   },
   {
     title: "Business Cards Printing",
     price: "From Ksh. 14 per card",
-    image: "https://images.unsplash.com/photo-1589330273594-fade1ee91647?w=300&h=300&fit=crop",
+    image: teardrop,
     category: "Business Services"
   },
   {
     title: "Branded T-shirt",
     price: "From Ksh. 580",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop",
+    image: umbrella,
     category: "Apparel"
   }
 ];
@@ -154,7 +204,7 @@ const Shop = () => {
         
         {/* Hero Section */}
         <section className="relative h-64 bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=400&fit=crop')] bg-cover bg-center opacity-20"></div>
+          <div className="absolute inset-0 bg-cover bg-center opacity-20"></div>
           <div className="relative text-center text-primary-foreground">
             <h1 className="text-5xl font-bold mb-2">Shop</h1>
             <p className="text-lg">Home / Shop</p>
@@ -241,48 +291,46 @@ const Shop = () => {
               </div>
 
               {/* Products Grid/List */}
-              <div className={viewMode === "grid" 
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" 
-                : "space-y-6"
-              }>
-                <p className="text-2xl text-red-600">Shop Coming Soon...</p>
-                {filteredProducts.map((product, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                  >
-                    
-                    {/* <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${
-                      viewMode === "list" ? "flex flex-row" : ""
-                    }`}> */}
-                      {/* <div className={`${viewMode === "list" ? "w-48" : "aspect-square"} overflow-hidden bg-secondary`}>
-                        <motion.img
-                          src={product.image}
-                          alt={product.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      </div> */}
-                      {/* <div className={`p-4 ${viewMode === "list" ? "flex-1" : ""}`}>
-                        <h3 className="font-bold text-lg mb-2">{product.title}</h3>
-                        {product.description && viewMode === "list" && (
-                          <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
-                        )}
-                        <p className="text-primary font-semibold text-sm mb-4">{product.price}</p>
-                        <Button 
-                          className="w-full"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart
-                        </Button>
-                    //   </div> */}
-                    {/* // </Card> */}
-                  </motion.div>
-                ))}
-              </div>
+<div className={viewMode === "grid" 
+  ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" 
+  : "space-y-4"
+}>
+  {filteredProducts.map((product, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: index * 0.03 }}
+    >
+      <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${viewMode === "list" ? "flex flex-row" : ""}`}>
+        <div className={`${viewMode === "list" ? "w-32" : "aspect-square"} overflow-hidden bg-gray-100`}>
+          <motion.img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
+
+        <div className={`p-3 ${viewMode === "list" ? "flex-1" : ""}`}>
+          <h3 className="font-semibold text-sm mb-1">{product.title}</h3>
+          {product.description && viewMode === "list" && (
+            <p className="text-xs text-gray-500 mb-1">{product.description}</p>
+          )}
+          <p className="text-[#FF5C26] font-medium text-sm mb-2">{product.price}</p>
+          <Button
+            className="w-full bg-black hover:bg-[#e04e1e] text-white text-sm py-1 rounded-full"
+            onClick={() => addToCart(product)}
+          >
+            Add to Cart
+          </Button>
+        </div>
+      </Card>
+    </motion.div>
+  ))}
+</div>
+
 
               {filteredProducts.length === 0 && (
                 <div className="text-center py-12">

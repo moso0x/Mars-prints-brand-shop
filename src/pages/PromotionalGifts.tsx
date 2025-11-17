@@ -22,7 +22,7 @@ const services = [
 "Tamper-proof seals and holographic stickers"
 ];
 
-const Stationery = () => {
+const PromotionalGifts = () => {
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -116,4 +116,4 @@ const Stationery = () => {
   );
 };
 
-export default Stationery;
+export default PromotionalGifts;

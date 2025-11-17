@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, FileText, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Header } from "./Header";
 
 export const LogoUploadForm = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -156,7 +157,7 @@ export const LogoUploadForm = () => {
             <input
               type="number"
               name="quantity"
-              value={formData.quantity}
+              value={formData.quantity} 
               onChange={handleChange}
               min="1"
               placeholder="Quantity"

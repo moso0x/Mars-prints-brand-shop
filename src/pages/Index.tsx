@@ -9,7 +9,9 @@ import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
 import CitiesWeDeliver from "@/components/CitiesWeDeliver";
 import { Accordion}  from "@/components/ui/accordion";
+import  PrintingServicesCarousel  from "@/components/PrintingServicesCarousel";
 import { TicketsCarousel } from "@/components/TicketsCarousel";
+import FAQAccordion from "@/components/Faq";
 
 
 
@@ -22,18 +24,22 @@ const Index = () => {
         <Header />
         <main>
           <HeroCarousel />
-          <FeaturesSection />
+       
+          <PrintingServicesCarousel/>
+           <FeaturesSection /> 
           <ProductGrid />
         
           <TicketsCarousel />
          
           <EcoFriendlySection />
           <AboutSection />
+       
            
           <CitiesWeDeliver/>
            <Accordion/>
             <RatingsSection />
         </main>
+        <FAQAccordion/>
        
         <FooterNew />
       </div>

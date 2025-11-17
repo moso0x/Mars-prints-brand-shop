@@ -3,7 +3,7 @@ import logo from "@/assets/logo.png"
 
 export const FooterNew = () => {
   return (
-    <footer className="bg-gray-100 text-black py-14 relative overflow-hidden font-poppins">
+    <footer className="bg-white text-black py-14 relative overflow-hidden font-poppins">
       {/* Decorative splash glow */}
       <div className="absolute inset-0 bg-to-transparent pointer-events-none" />
 
@@ -64,35 +64,55 @@ export const FooterNew = () => {
             <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
               Contact Us
             </h4>
-            <ul className="space-y-2 text-black">
+            <ul className="space-y-2 text-black text-sm">
               <li>+254 704-904-678</li>
               <li>jelimocreatives@gmail.com</li>
-              <li>Nairobi, Kenya</li>
+              <li>Mombasa, Kenya</li>
             </ul>
 
             {/* Social Icons */}
-            <div className="flex space-x-4 mt-6">
-              {[
-                { Icon: Facebook, color: "#1877F2" },
-                { Icon: Instagram, color: "#E4405F" },
-                { Icon: Twitter, color: "#1DA1F2" },
-                { Icon: Linkedin, color: "#0A66C2" },
-              ].map(({ Icon, color }, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="text-black hover:scale-110 transition-transform duration-200"
-                  style={{ color }}
-                >
-                  <Icon size={22} />
-                </a>
-              ))}
-            </div>
+<div className="flex space-x-4 mt-6">
+  {[
+    { 
+      Icon: Facebook, 
+      color: "#1877F2",
+      link: "https://www.facebook.com/Jelimo_creative" 
+    },
+    { 
+      Icon: Instagram, 
+      color: "#E4405F",
+      link: "https://www.instagram.com/jelimo_creative" 
+    },
+    { 
+      Icon: Twitter, 
+      color: "#1DA1F2",
+      link: "https://twitter.com/Jelimo_creative" 
+    },
+    { 
+      Icon: Linkedin, 
+      color: "#0A66C2",
+      link: "https://www.linkedin.com/company/jelimo-creative" 
+    },
+  ].map(({ Icon, color, link }, i) => (
+    <a
+      key={i}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-black hover:scale-110 transition-transform duration-200"
+      style={{ color }}
+    >
+      <Icon size={22} />
+    </a>
+  ))}
+</div>
+
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="text-center text-sm text-black border-t border-white/20 pt-6">
+       <div className="flex gap-2 pt-6 text-sm"> 
+        <div className="text-center text-xs text-black border-t border-white/20 ">
           <p>
             &copy; {new Date().getFullYear()}{" "}
             <span className="text-black font-medium">Jelimo Creatives Custom Printing</span>
@@ -106,6 +126,24 @@ export const FooterNew = () => {
             </a>
           </p>
         </div>
+      </div>
+              <div className="flex gap-2 pt-6 text-xs justify-end text-black">
+              <p className="hover:text-red-600 transition-colors cursor-pointer">Privacy Policy</p>
+              <span className="text-red-600">|</span>
+
+              <p className="hover:text-red-600 transition-colors cursor-pointer">Terms of Use</p>
+              <span className="text-red-600">|</span>
+
+              <p className="hover:text-red-600 transition-colors cursor-pointer">Return Policy</p>
+              <span className="text-red-600">|</span>
+
+              <p className="hover:text-red-600 transition-colors cursor-pointer">Cookie Policy</p>
+              <span className="text-red-600">|</span>
+
+              <p className="hover:text-red-600 transition-colors cursor-pointer">All Products</p>
+            </div>
+
+       
       </div>
     </footer>
   );

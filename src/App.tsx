@@ -8,15 +8,15 @@ import { CartProvider } from "@/contexts/CartContext";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import MarketingMaterials from "./pages/ApparelWearables";
+import ApparelWearables from "./pages/ApparelWearables";
 import Mugs from "./pages/Mugs";
 import Banners from "./pages/Banners";
 import VinylStickers from "./pages/VinylStickers";
 import LabelStickers from "./pages/LabelStickers";
-import Cards from "./pages/Cards";
+
 import Calendars from "./pages/Calendars";
 import Letterheads from "./pages/Letterheads";
-import Stationery from "./pages/PackagingLabeling";
+import PromotionalGifts from "./pages/PromotionalGifts";
 import Feedback from "./pages/Feedback";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
@@ -27,7 +27,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ProductPage } from "@/components/ProductPage";
 import { TicketsGallery } from "./pages/TicketsGallery";
  import { PaymentPage } from "./pages/PaymentPage";
-
+import ProductDetails from "./pages/ProductDetails";
 import { EventDetails } from "@/pages/EventDetails";
 
 
@@ -82,17 +82,16 @@ const App = () => (
           <BrowserRouter>
             <RouteChangeLoader />
             <Routes>
-              <Route path="/" element={<Index />} />
-              
-              <Route path="/marketing-materials" element={<MarketingMaterials />} />
+              <Route path="/" element={<Index />} />   
+              <Route path="/ApparelWearables" element={<ApparelWearables />} />
               <Route path="/mugs" element={<Mugs />} />
               <Route path="/banners" element={<Banners />} />
               <Route path="/vinyl-stickers" element={<VinylStickers />} />
               <Route path="/label-stickers" element={<LabelStickers />} />
-              <Route path="/cards" element={<Cards />} />
+            
               <Route path="/calendars" element={<Calendars />} />
               <Route path="/letterheads" element={<Letterheads />} />
-              <Route path="/stationery" element={<Stationery />} />
+              <Route path="/PromotionalGifts" element={<PromotionalGifts />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={<Checkout />} />
@@ -102,9 +101,10 @@ const App = () => (
               <Route path="/support-cause" element={<SupportCause />} />
               <Route path="ticketsGallery" element={<TicketsGallery />} />
               <Route path="/payment/:id" element={<PaymentPage />} />
-              <Route path="/product/:productSlug" element={<ProductPage />} />
+             
               <Route path="/event/:id" element={<EventDetails />} />
               <Route path="/event-details/:id" element={<EventDetails />} />
+                <Route path="/product/:slug" element={<ProductDetails />} />
 
            
               {/* Catch-all */}

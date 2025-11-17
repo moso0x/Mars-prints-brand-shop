@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import apparels from "@/assets/headers-adverts-img/caps.jpeg"
 import events from "@/assets/headers-adverts-img/event.jpeg"
 import tshirt from "@/assets/headers-adverts-img/tshirts.jpg"
+import mug from "@/assets/headers-adverts-img/mug.png"
 interface AdvertProps {
   id: number;
   image: string;
@@ -25,7 +26,7 @@ const advertisements: AdvertProps[] = [
   },
   {
     id: 2,
-    image: "/src/assets/products-showcase.jpg",
+    image: mug,
     title: "Custom mugs, calendars, stationery",
     subtitle: "Corporate gifts that leave a lasting impression",
     link: "/services",

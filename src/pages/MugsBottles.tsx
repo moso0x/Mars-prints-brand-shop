@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Cards = () => {
+const MugsBottles = () => {
     const carouselSettings = {
     dots: true,
     infinite: true,
@@ -70,4 +70,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default MugsBottles;

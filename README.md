@@ -35,8 +35,9 @@ npm i
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-#0052CC
+#FF5C26
+#64B5F6
+#FFEB3B
 #00FF66
 #FF5C26
 #E53935
@@ -257,3 +258,104 @@ Metallic and holographic finishes
 Glow-in-the-dark or reflective prints
 
 Heat transfer and sublimation printing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Apparels (Custom Shirts & Hoodies) – 5 Key Attributes
+
+Apparel Type (T-shirt, Polo, Hoodie, Sweatshirt, Jersey)
+
+Fabric & GSM (Cotton, Polyester, Blend, 160–300 GSM)
+
+Size Selection (S, M, L, XL, XXL, etc.)
+
+Print Type (Screen Print, DTG, Embroidery, Vinyl)
+
+Print Area / Sides (Front, Back, Sleeves)
+
+🧢 Caps – 5 Key Attributes
+
+Cap Type (Snapback, Trucker, Baseball, Bucket)
+
+Material (Cotton, Wool, Polyester, Mesh)
+
+Cap Color
+
+Logo Method (Embroidery, Patch, Vinyl Print)
+
+Print/Embroidery Position (Front, Side, Back)
+
+🖨️ Flyers – 5 Key Attributes
+
+Paper Size (A6, A5, A4, DL, Custom)
+
+Paper Thickness (130gsm, 170gsm, 250gsm)
+
+Print Sides (Single-sided / Double-sided)
+
+Finish (Matte, Gloss, Silk)
+
+Quantity
+
+🎬 Banners – 5 Key Attributes
+
+Banner Type (PVC, Mesh, Roll-Up, Fabric)
+
+Size (Width × Height)
+
+Finishing (Eyelets, Hemming, Pole Pockets, No Finish)
+
+Print Quality (Indoor / Outdoor)
+
+Quantity
+
+🖼️ Mounted Photos – 5 Key Attributes
+
+Photo Size (A4, A3, A2, 12×18, Custom)
+
+Mounting Material (Foamboard, MDF, Canvas)
+
+Frame Option (Framed / Frameless)
+
+Finish (Matte, Gloss, Satin)
+
+Orientation (Portrait / Landscape)
+
+☕ Mugs – 5 Key Attributes
+
+Mug Type (Ceramic, Magic Mug, Colored Rim, Travel Mug)
+
+Mug Color
+
+Print Type (Sublimation, Heat Transfer)
+
+Print Area (One-side, Two-side, Full Wrap)
+
+Upload Artwork
+Tote Bags – 5 Key Attributes
+
+Bag Type (Canvas, Cotton, Jute, Nylon, Eco-friendly Tote)
+
+Bag Size (Small / Medium / Large or Custom Dimensions)
+
+Bag Color
+
+Print Type (Screen Print, DTG, Heat Transfer, Embroidery)
+
+Print Area / Sides (Front Only / Back Only / Both Sides)

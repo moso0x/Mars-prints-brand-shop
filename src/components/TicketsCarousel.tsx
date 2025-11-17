@@ -1,105 +1,112 @@
-import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { eventsData } from "@/data/eventsData";
 import { Button } from "@/components/ui/button";
 
 export const TicketsCarousel = () => {
-  const tickets = eventsData.map((event) => ({
-    id: event.id,
-    image: event.image,
-  }));
-
-  const controls = useAnimation();
-  const [isPaused, setIsPaused] = useState(false);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setStarted(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-
-    const animateLoop = async () => {
-      const cardWidth = 288; // w-72 = 288px
-      const gap = 24; // gap-6 = 24px
-      const moveDistance = (cardWidth + gap) * 1; // Move 3 cards at a time
-
-      while (true) {
-        if (!isPaused) {
-          // Move left
-          await controls.start({
-            x: `-${moveDistance}px`,
-            transition: { duration: 2, ease: "easeInOut" },
-          });
-          
-          // Pause for 2 seconds
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          
-          // Reset to start
-          await controls.start({
-            x: "0px",
-            transition: { duration: 0 },
-          });
-          
-          // Short pause before next cycle
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        } else {
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        }
-      }
-    };
-
-    animateLoop();
-  }, [controls, started, isPaused]);
+  const images = eventsData.map((item) => item.image);
 
   return (
-    <div className="overflow-hidden w-full py-16 bg-gradient-to-b from-background to-secondary/20">
-      <div className="max-w-7xl mx-auto px-4 mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-foreground">
-          Upcoming Events
-        </h2>
-        <p className="text-center text-lg text-muted-foreground max-w-2xl mx-auto">
-          Discover and book tickets for exciting upcoming events
-        </p>
-      </div>
+    <div className="w-full py-16 px-4">
+      <h2 className="text-2xl md:text-5xl font-bold text-center mb-4 text-foreground">
+        Upcoming Events
+      </h2>
+      <p className="text-center text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+        “In addition to our printing services, we also offer a convenient ticket booking service right on our website—making it easy for you to book events anytime, anywhere.”
+      </p>
 
-      <div className="relative">
-        {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
-        <div className="flex overflow-hidden w-full justify-center">
-          <motion.div 
-            className="flex gap-6 cursor-pointer" 
-            animate={controls}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {tickets.concat(tickets).map((ticket, idx) => (
-              <div key={idx} className="flex-shrink-0 w-72 h-72 group">
-                <div className="relative bg-card rounded-xl overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)] transition-all duration-300 hover:scale-105">
-                  <img
-                    src={ticket.image}
-                    alt={`Event ${ticket.id}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+      <Carousel images={images} />
 
       <div className="mt-12 flex justify-center">
         <Button
           size="lg"
-          className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-[var(--shadow-hover)] transition-all duration-300"
+          className="bg-black hover:bg-primary/90 text-white font-semibold px-8 py-6 text-xs rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          Explore and Book Ticket Events
+          Go Ticket booking section
         </Button>
       </div>
     </div>
   );
 };
+
+function Carousel({ images }: { images: string[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [fade, setFade] = useState(false);
+
+  const scrollByAmount = 260; // smaller images allow spacing
+
+  const scrollLeft = () => {
+    if (!scrollRef.current) return;
+    setFade(true);
+
+    setTimeout(() => {
+      scrollRef.current!.scrollBy({ left: -scrollByAmount, behavior: "smooth" });
+      setTimeout(() => setFade(false), 400);
+    }, 150);
+  };
+
+  const scrollRight = () => {
+    if (!scrollRef.current) return;
+    setFade(true);
+
+    setTimeout(() => {
+      scrollRef.current!.scrollBy({ left: scrollByAmount, behavior: "smooth" });
+      setTimeout(() => setFade(false), 400);
+    }, 150);
+  };
+
+  // AUTO SCROLL EVERY 4 SECONDS
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      scrollRight();
+    }, 4000);
+
+    return () => clearInterval(autoSlide);
+  }, []);
+
+  return (
+    <div className="relative max-w-6xl mx-auto">
+      {/* Left Button */}
+      <button
+        onClick={scrollLeft}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-3"
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      {/* Right Button */}
+      <button
+        onClick={scrollRight}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full p-3"
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* Carousel */}
+      <motion.div
+        animate={{ opacity: fade ? 0.2 : 1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div
+          ref={scrollRef}
+          className="flex gap-6 px-6 overflow-x-hidden scroll-smooth justify-around"
+        >
+          {images.concat(images).map((img, i) => (
+            <motion.img
+              key={i}
+              src={img}
+              alt={`Event ${i}`}
+              className="
+                w-52 h-48 md:w-60 md:h-52 
+                object-cover rounded-xl shadow-lg flex-shrink-0
+              "
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}

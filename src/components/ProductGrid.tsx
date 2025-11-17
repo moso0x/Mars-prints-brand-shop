@@ -3,30 +3,33 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import { ShoppingCart } from "lucide-react";
-import totebags from "@/assets/tote-bags-hero.jpg";
-import calenders from "@/assets/calenders.jpg";
-import custom_shirt from "@/assets/custom.jpg";
-import flyers from "@/assets/a5flyer.jpg";
-import rollup from "@/assets/rollup-banner.jpg";
-import caps from "@/assets/caps.jpg";
-import hoodie from "@/assets/hoodie.jpg";
-import mounted from "@/assets/mounted-photo.jpg";
-import corporate from "@/assets/corporate.jpg";
-import mug from "@/assets/mugs.jpg";
+
+import trifold from "@/assets/moreProducts-img/trifold.jpg";
+import poppup from "@/assets/moreProducts-img/poupup-banner.jpg";
+import reflectors from "@/assets/moreProducts-img/reflectors.jpg";
+import reciept from "@/assets/moreProducts-img/receipt.jpg";
+import bscards from "@/assets/moreProducts-img/bs-cards.jpg";
+import caps from "@/assets/moreProducts-img/caps.jpg";
+import hoodie from "@/assets/moreProducts-img/hoodie.jpg";
+import weddingcards from "@/assets/moreProducts-img/weddingcards.jpg";
+import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
+import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
+import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
+import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
 
 const products = [
-  { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
-  { title: "2026 Calendar Printing", price: "From Ksh. 100 per piece", image: calenders },
-  { title: "Custom Shirt Printing", price: "From Ksh. 250 per card", image: custom_shirt },
-  { title: "A5 Flyers Printing", price: "From Ksh. 150 per flyer", image: flyers },
-  { title: "Caps Printing", price: "From Ksh. 200 per piece", image: caps },
-  { title: "Roll-up Banner Printing", price: "From Ksh. 2000 per piece", image: rollup },
-  { title: "Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie },
-  { title: "Mounted Photos Printing", price: "From Ksh. 700", image: mounted },
-  { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
-  { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
-  { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
-  { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
+  { title: "Trifold Flyer Printing both sides", price: "Starting at Ksh. 300", image: trifold },
+  { title: "Poppup Banner Printing", price: "From Ksh. 100 per piece", image: poppup },
+  { title: "Custom Reflector Printing", price: "From Ksh. 250 per card", image: reflectors },
+  { title: "All Sizes receipt Printing", price: "From Ksh. 150 per flyer", image: reciept },
+  { title: "Campaign Custom Caps Printing", price: "From Ksh. 200 per piece", image: caps },
+  { title: "Custom Business Cards Printing", price: "From Ksh. 2000 per piece", image: bscards },
+  { title: "Custom All kinds of Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie },
+  { title: "Custom Corporate Umbrella Printing", price: "From Ksh. 1000", image: umbrella },
+  { title: "Wedding & Events Invitation cards ", price: "From Ksh. 150 per piece", image: weddingcards },
+  { title: "Baby Shower invitation Cards", price: "From Ksh. 200", image: babyshower },
+  { title: "Custom Custom Adhesive Stickers", price: "From Ksh. 400 per mug", image: adhesive },
+  { title: "Tear Drop Banners Printing ", price: "From Ksh. 580", image: teardrop },
 ];
 
 export const ProductGrid = () => {
@@ -43,8 +46,8 @@ export const ProductGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#005DFF]">
-            Featured Printed Materials
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+            More Printing Services 
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             From custom tote bags to elegant business cards, explore top-quality print
@@ -70,7 +73,7 @@ export const ProductGrid = () => {
                   <motion.img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-36 md:h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-[80%] h-36 md:h-40 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
 
@@ -92,8 +95,8 @@ export const ProductGrid = () => {
                       size="sm"
                       onClick={() => addToCart(product)}
                       className="w-full flex items-center justify-center gap-2 
-                                 bg-[#00D45A] text-white font-medium 
-                                 hover:bg-[#00B84F] shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
+                                 bg-black text-white font-medium 
+                                  shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
                                  hover:shadow-[0_6px_20px_rgba(0,212,90,0.5)] 
                                  transition-all duration-300 rounded-full py-2"
                     >
