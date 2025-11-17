@@ -37,7 +37,7 @@ const Index = () => {
            
           <CitiesWeDeliver/>
            <Accordion/>
-            <RatingsSection />
+            {/* <RatingsSection /> */}
         </main>
         <FAQAccordion/>
        

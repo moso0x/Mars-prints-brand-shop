@@ -19,7 +19,7 @@ import pens from "@/assets/moreProducts-img/pens.jpg";
 import bcards from "@/assets/moreProducts-img/bss-cards.jpg";
 import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
 
-// Sample images for each printing type
+// Sample data
 const printingData = [
   {
     title: "Branded Promotional Items",
@@ -65,11 +65,24 @@ const printingData = [
 export default function PrintingServicesCarousel() {
   return (
     <div className="w-full py-16 px-4 space-y-16">
-      <h2 className="text-4xl text-center mb-10">
-        <span style={{ color: "#64B5F6" }}>Printing</span> |{" "}
-        <span style={{ color: "#FF5C26" }}>Branding</span> |{" "}
-        <span style={{ color: "#00FF66" }}>Design</span> Services
-      </h2>
+      {/* Title Section */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-semibold tracking-wide">
+          <span className="text-[#64B5F6]">Printing</span> |{" "}
+          <span className="text-[#FF5C26]">Branding</span> |{" "}
+          <span className="text-[#00FF66]">Design</span> Services
+        </h2>
+
+        {/* Small description below title */}
+        <p className="mt-4 text-gray-500 text-base max-w-2xl mx-auto">
+          Explore our wide range of printing, branding, and design services to give your business a professional and creative edge.
+        </p>
+
+        {/* Underline */}
+        <div className="mt-4 flex justify-center">
+          <div className="w-32 h-[4px] bg-gray-900 rounded-full"></div>
+        </div>
+      </div>
 
       {printingData.map((service, index) => (
         <ServiceRow key={index} service={service} />
@@ -81,100 +94,89 @@ export default function PrintingServicesCarousel() {
 function ServiceRow({ service }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
-    }
-  };
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
 
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
-    }
-  };
-
-  // Auto-scroll every few seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const container = scrollRef.current;
-        if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
-          container.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          container.scrollBy({ left: 400, behavior: "smooth" });
-        }
+      if (!scrollRef.current) return;
+      const container = scrollRef.current;
+      if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+        container.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: 300, behavior: "smooth" });
       }
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 max-w-6xl mx-auto relative">
       <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-      <p className="text-gray-600 mb-6">{service.description}</p>
+      <p className="text-gray-800 mb-6">{service.description}</p>
 
-      {/* Image carousel */}
+      {/* IMAGE CAROUSEL */}
       <div className="relative">
-        {/* LEFT ARROW */}
         <motion.button
           onClick={scrollLeft}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md rounded-full p-2"
           whileHover={{ scale: 1.2, backgroundColor: "#E5E7EB" }}
         >
-          <ArrowLeft size={24} />
+          <ArrowLeft size={22} />
         </motion.button>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-hidden scroll-smooth"
-        >
+        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scroll-smooth py-2">
           {service.images.map((img, i) => (
             <motion.img
               key={i}
               src={img}
               alt={`${service.title} ${i + 1}`}
-              className="w-70 h-40 md:w-56 md:h-44 flex-shrink-0 object-cover rounded-xl shadow-md"
-              whileHover={{ scale: 1.05 }}
+              className="w-48 md:w-52 flex-shrink-0 h-auto max-h-40 rounded-xl shadow-lg object-contain"
+              whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             />
           ))}
         </div>
 
-        {/* RIGHT ARROW */}
         <motion.button
           onClick={scrollRight}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md rounded-full p-2"
           whileHover={{ scale: 1.2, backgroundColor: "#E5E7EB" }}
         >
-          <ArrowRight size={24} />
+          <ArrowRight size={22} />
         </motion.button>
       </div>
 
-      {/* Bullet Points */}
-      <ul className="mb-1 pt-6 grid grid-cols-1 gap-y-1 text-xs font-semibold text-left text-black leading-tight">
+      {/* BULLET POINTS */}
+      <ul className="mb-1 pt-6 grid grid-cols-1 gap-y-1 text-sm font-semibold text-left text-black leading-tight">
         {service.points?.map((item, i) => (
-          <li key={i} className="flex items-start gap-1">
-            <span className="text-green-500 text-sm leading-none mt-[2px]">
-              ✔
-            </span>
+          <li key={i} className="flex items-start gap-2">
+            <span className="text-green-500 text-base leading-none mt-[2px]">✔</span>
             <span>{item}</span>
           </li>
         ))}
       </ul>
 
-      {/* Explore Button */}
+      {/* EXPLORE BUTTON WITH CARET & FILL */}
       <div className="flex justify-center mt-6">
         <motion.button
-          className="bg-black text-xs text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 overflow-hidden relative"
-          whileHover={{ backgroundColor: "#1E40AF" }}
+          className="relative px-7 py-2 rounded-full font-semibold flex items-center gap-2 overflow-hidden text-xs text-white bg-black group"
         >
-          <span>Explore & Shop.</span>
+          {/* Blue fill from right */}
+          <motion.div
+            className="absolute inset-0 bg-blue-600 origin-right z-0"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          />
+          {/* Text */}
+          <span className="relative z-10">Explore & Shop.</span>
+          {/* Stretching caret */}
           <motion.span
-            className="inline-block"
-            initial={{ x: -2, opacity: 0 }}
-            whileHover={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className="relative z-10 inline-block origin-left"
+            initial={{ scaleX: 1 }}
+            whileHover={{ scaleX: 1.5 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
           >
             <ArrowRight size={20} />
           </motion.span>
