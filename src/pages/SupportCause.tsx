@@ -105,7 +105,7 @@ export default function SupportCause() {
                 Support Our Environmental Causes
               </h1>
             </div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl text-sm mx-auto">
               Choose a cause that matters to you and make a difference. Every contribution
               helps us build a greener future.
             </p>

@@ -8,22 +8,34 @@ import promotion3 from "@/assets/moreProducts-img/teardrop.jpg";
 import promotion4 from "@/assets/moreProducts-img/tshirt.jpg";
 import promotion5 from "@/assets/moreProducts-img/umbrella.jpg";
 import promotion6 from "@/assets/moreProducts-img/adhesive.jpg";
+import promotion7 from "@/assets/moreProducts-img/poupup-banner.jpg";
+import promotion8 from "@/assets/moreProducts-img/custom-gifts.jpg";
+import promotion9 from "@/assets/moreProducts-img/corporate1.jpg";
+
 
 import service1 from "@/assets/moreProducts-img/Diaries.jpg";
 import service2 from "@/assets/moreProducts-img/corporate2.jpg";
+import promotion10 from "@/assets/moreProducts-img/branding.jpg";
+
+import hoodie from "@/assets/moreProducts-img/service1.jpg";
+import calendar from "@/assets/moreProducts-img/calenders.jpg";
+
 import service3 from "@/assets/moreProducts-img/reflectors.jpg";
 import service4 from "@/assets/moreProducts-img/hoodie.jpg";
 import service5 from "@/assets/moreProducts-img/caps12.jpg";
+import service7 from "@/assets/moreProducts-img/caps.jpg";
 import trifold from "@/assets/moreProducts-img/trifold.jpg";
 import pens from "@/assets/moreProducts-img/pens.jpg";
 import bcards from "@/assets/moreProducts-img/bss-cards.jpg";
 import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
-
+import reciept from "@/assets/moreProducts-img/receipt.jpg";
+import { Link } from "react-router-dom";
+import shop from "../pages/Shop";
 // Sample data
 const printingData = [
   {
     title: "Branded Promotional Items",
-    images: [promotion2, promotion3, promotion4, promotion5, promotion6],
+    images: [promotion2, promotion3, promotion4, promotion5, promotion6,promotion9, promotion7, promotion8, promotion10, service2],
     description:
       "Boost your brand visibility with high-quality promotional merchandise tailored for campaigns, marketing events, and corporate identity.",
         labels: [
@@ -43,7 +55,7 @@ const printingData = [
   },
   {
     title: "Apparel: T-shirts, Hoodies & Caps",
-    images: [promotion1, service2, service3, service4, service5],
+    images: [promotion1,  service3, service4, service5, service7, hoodie],
     description:
       "Premium apparel printing for businesses, events, staff uniforms, and promotional activities.",
              labels: [
@@ -64,7 +76,7 @@ const printingData = [
   },
   {
     title: "Stationery Printing",
-    images: [babyshower, bcards, pens, trifold, service1],
+    images: [babyshower, bcards, pens, trifold, service1, reciept, calendar],
     description:
       "Professional stationery printing for business branding, events, and personal projects.",
    labels: [
@@ -198,9 +210,16 @@ function ServiceRow({ service }) {
             initial={{ scaleX: 0 }}
             whileHover={{ scaleX: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
+            
           />
+         <a
+            href="@/pages/Shop"
+           
+          >
+               <span className="relative z-10 ">Explore & Shop.</span>
+          </a>
           {/* Text */}
-          <span className="relative z-10 ">Explore & Shop.</span>
+       
           {/* Stretching caret */}
           <motion.span
             className="relative z-10 inline-block origin-left"

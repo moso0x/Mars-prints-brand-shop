@@ -128,7 +128,7 @@ export const FooterNew = () => {
         </div>
       </div>
               <div className="flex gap-2 pt-6 text-xs justify-end text-black">
-              <p className="hover:text-red-600 transition-colors cursor-pointer">Privacy Policy</p>
+              <a href="/privacy"><p className="hover:text-red-600 transition-colors cursor-pointer"> Privacy Policy</p></a>
               <span className="text-red-600">|</span>
 
               <p className="hover:text-red-600 transition-colors cursor-pointer">Terms of Use</p>

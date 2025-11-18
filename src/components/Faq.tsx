@@ -59,7 +59,7 @@ const FAQAccordion: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto p-6 md:p-12">
-      <h2 className="text-2xl font-bold text-center  text-[#64B5F6] mb-12">
+      <h2 className="text-4xl font-bold text-center  text-gray-950 mb-12">
         FAQ(s)
       </h2>
 

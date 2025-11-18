@@ -84,28 +84,28 @@ const allProducts = [
     {
     title: "A-frame Signs",
     price: "Get a Quote",
-    image: totebags,
+    image: weddingcards,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
     title: "A-frame Signs",
     price: "Get a Quote",
-    image: totebags,
+    image: babyshower,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
     title: "A-frame Signs",
     price: "Get a Quote",
-    image: totebags,
+    image: reflectors,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
     title: "A-frame Signs",
     price: "Get a Quote",
-    image: totebags,
+    image: bscards,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
@@ -119,6 +119,30 @@ const allProducts = [
     title: "Acrylic Sign",
     price: "From Ksh. 2,500",
     image: mug1,
+    category: "Outdoor Branding"
+  },
+    {
+    title: "Acrylic Sign",
+    price: "From Ksh. 2,500",
+    image: trifold,
+    category: "Outdoor Branding"
+  },
+    {
+    title: "Acrylic Sign",
+    price: "From Ksh. 2,500",
+    image:  reciept,
+    category: "Outdoor Branding"
+  },
+    {
+    title: "Acrylic Sign",
+    price: "From Ksh. 2,500",
+    image: corporate5,
+    category: "Outdoor Branding"
+  },
+    {
+    title: "Acrylic Sign",
+    price: "From Ksh. 2,500",
+    image: corporate4,
     category: "Outdoor Branding"
   },
   {
@@ -231,10 +255,10 @@ const Shop = () => {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative h-64 bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
+        <section className="relative h-20 bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
           <div className="absolute inset-0 bg-cover bg-center opacity-20"></div>
           <div className="relative text-center text-primary-foreground">
-            <h1 className="text-5xl font-bold mb-2">Shop</h1>
+            <h1 className="text-4xl font-bold mb-2">Shop</h1>
             <p className="text-lg">Home / Shop</p>
           </div>
         </section>
@@ -348,7 +372,7 @@ const Shop = () => {
           )}
           <p className="text-black font-medium text-sm mb-2">{product.price}</p>
           <Button
-            className="w-full bg-black hover:bg-[#e04e1e] text-white text-sm py-1 rounded-full"
+            className=" w-full flex mx-auto bg-black hover:bg-[#e04e1e] text-white text-sm py-1 rounded-full"
             onClick={() => addToCart(product)}
           >
             Add to Cart

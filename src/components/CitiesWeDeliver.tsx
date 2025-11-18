@@ -1,7 +1,7 @@
 import React from "react";
 import "./CitiesWeDeliver.css"; // keep the CSS if you want animations
 
-const cities = ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret"];
+const cities = ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret", "Mtito Andei", "Voi"];
 
 export const CitiesWeDeliver: React.FC = () => {
   return (

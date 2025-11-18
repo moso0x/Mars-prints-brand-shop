@@ -22,17 +22,15 @@ import type { User as SupabaseUser } from "@supabase/supabase-js";
 import logo from "@/assets/logo.png";
 import AdvertRibbon from "./AdvertRibbon";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
 export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // ✅ Added
   const navigate = useNavigate();
-
   const COLORS = {
     brightBlue: "#0052CC",
-    lightBlue: "#7DB9FF",
+    lightBlue: "#FF5B2E",
     limeGreen: "#00FF66",
     orange: "#FF5B2E",
     deepNavy: "#0D1B5E",
@@ -117,9 +115,9 @@ export const Header = () => {
               </Button>
             )}
 
-            <Cart />
+          <Cart  />
             <Button variant="ghost" className="p-0">
-              <Heart className="h-5 w-5 text-[#FF5B2E]" />
+              <Heart className="h-7 w-7 text-[#FF5B2E]" />
             </Button>
           </div>
         </div>

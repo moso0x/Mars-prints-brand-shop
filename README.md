@@ -35,14 +35,12 @@ npm i
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-#FF5C26
+
 #64B5F6
 #FFEB3B
 #00FF66
 #FF5C26
 #E53935
-#64B5F6
-#FFEB3B
 #212121
 
 

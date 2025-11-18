@@ -15,7 +15,7 @@ const ToastViewport = React.forwardRef<
     ref={ref}
     className={cn(
       // ✅ Force right alignment
-      "fixed top-5 right-5 z-[100] flex flex-col items-end gap-3 w-full max-w-sm pointer-events-none",
+      "fixed top-5 right-5 z-[100] flex flex-col items-end gap-3 w-full max-w-sm text-xs pointer-events-none",
       className
     )}
     {...props}
@@ -26,13 +26,13 @@ ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 // ✅ Toast variants with right slide animations
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-start justify-between overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all " +
+  "group pointer-events-auto relative flex w-full items-start justify-between overflow-hidden text-xs rounded-md border p-4 pr-8 shadow-lg transition-all " +
     "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-80 " +
     "data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-right-full", // slide in/out from right
   {
     variants: {
       variant: {
-        success: "bg-[#05B45E] border-[#05B45E] text-white", // Jelimo Green
+        success: "bg-[#05B45E] border-[#05B45E] text-white text-xs", // Jelimo Green
         error: "bg-[hsl(var(--destructive))] border-[hsl(var(--destructive))] text-white", // Red
       },
     },

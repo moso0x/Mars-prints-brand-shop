@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "@fontsource-variable/nabla";
 import "@fontsource/eb-garamond";
 
-import heroBackground from "@/assets/hero-printing.png";
+import heroBackground from "@/assets/hero-printing.jpg";
 import { LogoUploadForm } from "./LogoUploadForm";
 
 const slides = [

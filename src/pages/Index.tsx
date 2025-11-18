@@ -24,23 +24,17 @@ const Index = () => {
         <Header />
         <main>
           <HeroCarousel />
-       
           <PrintingServicesCarousel/>
            <FeaturesSection /> 
           <ProductGrid />
-        
           <TicketsCarousel />
-         
           <EcoFriendlySection />
-          <AboutSection />
-       
-           
+          {/* <AboutSection /> */}
           <CitiesWeDeliver/>
            <Accordion/>
             {/* <RatingsSection /> */}
         </main>
         <FAQAccordion/>
-       
         <FooterNew />
       </div>
     </PageTransition>

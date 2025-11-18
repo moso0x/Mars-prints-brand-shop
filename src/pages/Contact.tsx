@@ -76,7 +76,7 @@ const Contact = () => {
               variants={avalancheVariant}
               initial="hidden"
               animate="visible"
-              className="w-[180px] rounded-2xl shadow-lg border-2 border-[#6C63FF]/30"
+              className="w-[100px] rounded-2xl shadow-lg border-2 border-[#6C63FF]/30"
               alt="Contact illustration"
             />
           </div>

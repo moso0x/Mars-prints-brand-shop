@@ -197,7 +197,6 @@ const AdvertRibbon = () => {
                 >
                   {advertisements[currentAd].title}
                 </motion.h3>
-
                 <motion.p
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -205,11 +204,8 @@ const AdvertRibbon = () => {
                   className="text-xs sm:text-sm text-gray-700"
                 >
                   {advertisements[currentAd].subtitle}
-                </motion.p>
-
-              
+                </motion.p>   
               </div>
-
               {/* Navigation */}
               {advertisements.length > 1 && (
                 <div className="hidden sm:flex items-center gap-2">
@@ -234,8 +230,7 @@ const AdvertRibbon = () => {
             </div>
           </motion.div>
         </AnimatePresence>
-
-        {/* Close Button */}
+       {/* Close Button */}
         <Button
           variant="ghost"
           size="sm"
@@ -244,8 +239,7 @@ const AdvertRibbon = () => {
         >
           <X className="h-3 w-3" />
         </Button>
-
-        {/* Dots Indicator */}
+       {/* Dots Indicator */}
         {advertisements.length > 1 && (
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
             {advertisements.map((_, index) => (

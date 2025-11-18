@@ -49,7 +49,7 @@ const Auth = () => {
         } else toast.error(error.message);
       } else {
         toast.success("Successfully logged in!");
-        navigate("/");
+        navigate("/checkout");
       }
     } catch {
       toast.error("An unexpected error occurred");
@@ -106,7 +106,7 @@ const Auth = () => {
             <div>
               <img
                 src={lock}
-                className="mx-auto flex justify-center items-center w-[100px]"
+                className="mx-auto flex justify-center items-center w-[40px]"
                 alt="lock"
               />
             </div>

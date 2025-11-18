@@ -2,12 +2,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
 interface AccordionItem {
   question: string;
   answer: string | JSX.Element;
 }
-
 const qnaItems = [
   {
     question: "What types of custom printing do you offer?",

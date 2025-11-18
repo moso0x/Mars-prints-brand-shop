@@ -13,7 +13,6 @@ import Mugs from "./pages/Mugs";
 import Banners from "./pages/Banners";
 import VinylStickers from "./pages/VinylStickers";
 import LabelStickers from "./pages/LabelStickers";
-
 import Calendars from "./pages/Calendars";
 import Letterheads from "./pages/Letterheads";
 import PromotionalGifts from "./pages/PromotionalGifts";
@@ -29,14 +28,11 @@ import { TicketsGallery } from "./pages/TicketsGallery";
  import { PaymentPage } from "./pages/PaymentPage";
 import ProductDetails from "./pages/ProductDetails";
 import { EventDetails } from "@/pages/EventDetails";
-
-
 import SupportCause from "./pages/SupportCause";
-
 import RouteChangeLoader from "@/components/RouteChangeLoader"; // Assuming you added it
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const queryClient = new QueryClient();
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
@@ -78,7 +74,6 @@ const App = () => (
     },
   }}
 />
-
           <BrowserRouter>
             <RouteChangeLoader />
             <Routes>
@@ -88,7 +83,6 @@ const App = () => (
               <Route path="/banners" element={<Banners />} />
               <Route path="/vinyl-stickers" element={<VinylStickers />} />
               <Route path="/label-stickers" element={<LabelStickers />} />
-            
               <Route path="/calendars" element={<Calendars />} />
               <Route path="/letterheads" element={<Letterheads />} />
               <Route path="/PromotionalGifts" element={<PromotionalGifts />} />
@@ -98,15 +92,13 @@ const App = () => (
               <Route path="/auth" element={<Auth />} />
               <Route path="/price-list" element={<PriceList />} />
               <Route path="/shop" element={<Shop />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/support-cause" element={<SupportCause />} />
               <Route path="ticketsGallery" element={<TicketsGallery />} />
               <Route path="/payment/:id" element={<PaymentPage />} />
-             
               <Route path="/event/:id" element={<EventDetails />} />
               <Route path="/event-details/:id" element={<EventDetails />} />
-                <Route path="/product/:slug" element={<ProductDetails />} />
-
-           
+              <Route path="/product/:slug" element={<ProductDetails />} />
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -117,5 +109,4 @@ const App = () => (
      </ThemeProvider>
   </QueryClientProvider>
 );
-
 export default App;

@@ -67,7 +67,7 @@ export const ProductGrid = () => {
             >
               <Card
                 className="overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all 
-                           bg-gradient-to-br from-[#6BB7FF]/20 to-[#005DFF]/10 border border-blue-100"
+                           bg-gradient-to-br from-[#6BB7FF]/20 to-[#005DFF]/2 border border-blue-100"
               >
                 <div className="overflow-hidden bg-secondary">
                   <motion.img

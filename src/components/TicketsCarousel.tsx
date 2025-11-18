@@ -9,10 +9,10 @@ export const TicketsCarousel = () => {
 
   return (
     <div className="w-full py-16 px-4">
-      <h2 className="text-2xl md:text-5xl font-bold text-center mb-4 text-foreground">
-        Upcoming Events
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+       Events
       </h2>
-      <p className="text-center text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+      <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto mb-12">
         “In addition to our printing services, we also offer a convenient ticket booking service right on our website—making it easy for you to book events anytime, anywhere.”
       </p>
 

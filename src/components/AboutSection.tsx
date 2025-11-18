@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-
 import logo from "@/assets/logo.png";
 import logo_banner from "@/assets/logo-banner.jpg";
 import banner from "@/assets/advert-banner.png";
@@ -57,7 +56,7 @@ export const AboutSection = () => {
             className="flex-1 text-center md:text-left"
           >
             <h1 className="text-4xl font-bold mb-4 text-black">
-              Jelimo Creatives — Printing & Branding Services in Kenya
+               Printing & Branding Services in Kenya
             </h1>
             <h3 className="text-lg text-gray-700 mb-3">
               Custom T-shirts, hoodies, and caps designed to be worn with pride.

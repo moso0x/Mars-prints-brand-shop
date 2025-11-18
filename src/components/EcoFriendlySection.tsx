@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { Leaf, TreePine, Recycle, Droplets } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+
 const brandColors = {
-  primary: "#0B6E4F", // Jelimo Creatives dark green-teal
-  secondary: "#F1EFE7", // soft cream
+  primary: "#64B5F1", // Jelimo Creatives dark green-teal
+  secondary: "#212121", // soft cream
   accent: "#1A3C34", // deep forest tone
 };
-
-
 const causes = [
   {
     icon: TreePine,
@@ -53,17 +52,17 @@ export const EcoFriendlySection = () => {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <Leaf
-              className="w-8 h-8"
-            
+              className="w-8 h-8 text-[#1A3C34]"
+               
             />
             <h2
               className="text-3xl font-bold text-black"
               
             >
-              Print with Purpose 🌱
+              
             </h2>
           </div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl text-sm mx-auto">
           
             Turn your ideas into impact! Enjoy top-quality printing services while supporting environmental 
             initiatives. Every print you make contributes to a greener, healthier planet. Make your

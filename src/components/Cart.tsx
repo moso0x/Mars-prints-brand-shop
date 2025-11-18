@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 export const Cart = () => {
   const { items, removeFromCart, updateQuantity, getTotalItems, getTotalPrice } = useCart();
   const navigate = useNavigate();
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -21,19 +20,17 @@ export const Cart = () => {
           )}
         </Button>
       </SheetTrigger>
-
       <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 ">
         <SheetHeader>
-          <SheetTitle className="text-[#6C63FF] font-bold text-lg">
-            Shopping Cart ({getTotalItems()} items)
+          <SheetTitle className="text-[#64B5F6] font-bold text-lg">
+            Shopping Cart ({getTotalItems()}  items)
           </SheetTitle>
         </SheetHeader>
-
         <div className="mt-8 space-y-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center text-gray-500">
               <div className="bg-[#00BFA6]/10 p-6 rounded-full mb-4 shadow-inner">
-                <ShoppingCart className="h-20 w-20 text-[#6C63FF]" />
+                <ShoppingCart className="h-20 w-20 text-[#FF5C26]" />
               </div>
               <p className="text-lg font-medium text-[#1F1F1F]">Your cart is empty</p>
               <p className="text-sm text-gray-500 mt-1">
@@ -59,7 +56,7 @@ export const Cart = () => {
                         className="h-7 w-7 border-[#00BFA6]/40 hover:bg-[#00BFA6]/10"
                         onClick={() => updateQuantity(item.title, item.quantity - 1)}
                       >
-                        <Minus className="h-3 w-3 text-[#6C63FF]" />
+                        <Minus className="h-3 w-3 text-[#FF5C26]" />
                       </Button>
                       <span className="text-sm font-medium w-8 text-center text-[#1F1F1F]">
                         {item.quantity}
@@ -70,7 +67,7 @@ export const Cart = () => {
                         className="h-7 w-7 border-[#00BFA6]/40 hover:bg-[#00BFA6]/10"
                         onClick={() => updateQuantity(item.title, item.quantity + 1)}
                       >
-                        <Plus className="h-3 w-3 text-[#6C63FF]" />
+                        <Plus className="h-3 w-3 text-[#FF5C26]" />
                       </Button>
                       <Button
                         size="icon"
@@ -88,13 +85,13 @@ export const Cart = () => {
               <div className="pt-4 space-y-2 border-t border-gray-200">
                 <div className="flex justify-between text-lg font-bold text-[#1F1F1F]">
                   <span>Total:</span>
-                  <span className="text-[#6C63FF]">
+                  <span className="text-red-700">
                     Ksh. {getTotalPrice().toLocaleString()}
                   </span>
                 </div>
 
                 <Button
-                  className="w-full bg-[#64B5F6] text-white font-semibold hover:opacity-90 transition"
+                  className="w-[40%] bg-[#64B5F6] rounded-full text-white font-semibold  text-xs flex mx-auto  items-center justify-center hover:bg-blue-300"
                   size="lg"
                   onClick={() => navigate("/checkout")}
                 >
