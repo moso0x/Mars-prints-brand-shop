@@ -3,14 +3,16 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { eventsData } from "@/data/eventsData";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const TicketsCarousel = () => {
+  const navigate = useNavigate();
   const images = eventsData.map((item) => item.image);
 
   return (
     <div className="w-full py-16 px-4">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
-       Events
+        Events
       </h2>
       <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto mb-12">
         “In addition to our printing services, we also offer a convenient ticket booking service right on our website—making it easy for you to book events anytime, anywhere.”
@@ -20,10 +22,11 @@ export const TicketsCarousel = () => {
 
       <div className="mt-12 flex justify-center">
         <Button
+          onClick={() => navigate("/TicketsGallery")}
           size="lg"
           className="bg-black hover:bg-primary/90 text-white font-semibold px-8 py-6 text-xs rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          Go Ticket booking section
+          Go to Ticket Booking Section
         </Button>
       </div>
     </div>
@@ -34,7 +37,7 @@ function Carousel({ images }: { images: string[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [fade, setFade] = useState(false);
 
-  const scrollByAmount = 260; // smaller images allow spacing
+  const scrollByAmount = 260;
 
   const scrollLeft = () => {
     if (!scrollRef.current) return;
@@ -56,12 +59,8 @@ function Carousel({ images }: { images: string[] }) {
     }, 150);
   };
 
-  // AUTO SCROLL EVERY 4 SECONDS
   useEffect(() => {
-    const autoSlide = setInterval(() => {
-      scrollRight();
-    }, 4000);
-
+    const autoSlide = setInterval(scrollRight, 4000);
     return () => clearInterval(autoSlide);
   }, []);
 
@@ -97,10 +96,7 @@ function Carousel({ images }: { images: string[] }) {
               key={i}
               src={img}
               alt={`Event ${i}`}
-              className="
-                w-52 h-48 md:w-60 md:h-52 
-                object-cover rounded-xl shadow-lg flex-shrink-0
-              "
+              className="w-52 h-48 md:w-60 md:h-52 object-cover rounded-xl shadow-lg flex-shrink-0"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />

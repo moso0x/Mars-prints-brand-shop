@@ -32,7 +32,7 @@ export const Header = () => {
     brightBlue: "#0052CC",
     lightBlue: "#FF5B2E",
     limeGreen: "#00FF66",
-    orange: "#FF5B2E",
+    orange: "#71acdbff",
     deepNavy: "#0D1B5E",
   };
 
@@ -153,7 +153,7 @@ export const Header = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               <Button
-                className="text-white flex items-center overflow-hidden relative"
+                className="text-white flex items-center text-xs overflow-hidden relative"
                 style={{ backgroundColor: COLORS.orange }}
               >
                 <motion.span whileHover={{ scale: 0.95 }}>
@@ -174,7 +174,7 @@ export const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
-                    className="absolute left-0 mt-2 w-60 rounded-lg shadow-xl z-[9999] bg-white"
+                    className="absolute left-0 mt-2 w-60 text-xs rounded-lg shadow-xl z-[9999] bg-white"
                   >
                     {[
                       ["Apparel & Wearables", "/ApparelWearables"],
@@ -189,7 +189,7 @@ export const Header = () => {
                       <Link
                         key={label}
                         to={link}
-                        className="block px-4 py-2 text-sm hover:bg-white hover:text-[#0D1B5E]"
+                        className="block px-4 py-2 text-xs hover:bg-white hover:text-[#FF5B2E]"
                       >
                         {label}
                       </Link>
@@ -212,7 +212,7 @@ export const Header = () => {
                 <motion.div
                   whileHover={{
                     scale: 0.8,
-                    backgroundColor: COLORS.lightBlue,
+                    backgroundColor: COLORS.orange,
                     borderRadius: "9999px",
                     transition: { duration: 0.3 },
                   }}
