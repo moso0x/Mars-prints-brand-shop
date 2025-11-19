@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, LayoutGrid, List } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
+
+ import {ShoppingCart} from "lucide-react"
 import shop_img from "@/assets/shop.jpg"
 import totebags from "@/assets/tote-bags-hero.jpg";
 import totebag1 from "@/assets/thumbnails/totebag1.jpg";
@@ -75,76 +77,66 @@ const categories = [
 
 const allProducts = [
   {
-    title: "A-frame Signs",
-    price: "Get a Quote",
+    title: "Tote, Craft & Jute bags ",
+      price: "From Ksh. 500",
     image: totebags,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
-    title: "A-frame Signs",
-    price: "Get a Quote",
+    title: "Wedding Cards ",
+      price: "From Ksh. 150",
     image: weddingcards,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
-    title: "A-frame Signs",
-    price: "Get a Quote",
+    title: "Baby showers cards ",
+      price: "From Ksh. 100",
     image: babyshower,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
-    title: "A-frame Signs",
-    price: "Get a Quote",
+    title: "Reflectors",
+      price: "From Ksh. 40",
     image: reflectors,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
     {
-    title: "A-frame Signs",
-    price: "Get a Quote",
+    title: "Business cards  ",
+     price: "From Ksh. 12",
     image: bscards,
     category: "Outdoor Branding",
     description: "Want more walk-ins? Make your storefront stand out."
   },
   {
-    title: "A4 Size Flyer Printing",
-    price: "From Ksh. 40",
+    title: "Caps",
+    price: "From Ksh. 350",
     image: cap1 ,
     category: "Stationery"
   },
   {
-    title: "Acrylic Sign",
-    price: "From Ksh. 2,500",
+    title: "Custom Mugs",
+    price: "From Ksh. 200",
     image: mug1,
     category: "Outdoor Branding"
   },
     {
-    title: "Acrylic Sign",
-    price: "From Ksh. 2,500",
+    title: "Flyers",
+    price: "From Ksh. 50",
     image: trifold,
     category: "Outdoor Branding"
   },
     {
-    title: "Acrylic Sign",
-    price: "From Ksh. 2,500",
+    title: "Reciepts book",
+    price: "From Ksh.500",
     image:  reciept,
     category: "Outdoor Branding"
   },
-    {
-    title: "Acrylic Sign",
-    price: "From Ksh. 2,500",
-    image: corporate5,
-    category: "Outdoor Branding"
-  },
-    {
-    title: "Acrylic Sign",
-    price: "From Ksh. 2,500",
-    image: corporate4,
-    category: "Outdoor Branding"
-  },
+
+
   {
     title: "Bookmarks printing",
     price: "Starting at Ksh. 25",
@@ -153,7 +145,7 @@ const allProducts = [
   },
   {
     title: "2026 Calendar printing",
-    price: "From Ksh. 90 per piece",
+    price: "From Ksh. 200 per piece",
     image: rollup,
     category: "Stationery"
   },
@@ -370,12 +362,12 @@ const Shop = () => {
                                 {product.description && viewMode === "list" && (
                                   <p className="text-xs text-gray-500 mb-1">{product.description}</p>
                                 )}
-                                <p className="text-black font-medium text-sm mb-2">{product.price}</p>
+                                <p className="text-black font-medium text-sm mb-2 text-red-400 ">{product.price}</p>
                                 <Button
                                   className=" w-full flex mx-auto bg-black hover:bg-[#e04e1e] text-white text-xs py-1 rounded-full"
                                   onClick={() => addToCart(product)}
                                 >
-                                  Add to Cart
+                                 <ShoppingCart /> Add to Cart
                                 </Button>
                               </div>
                             </Card>
