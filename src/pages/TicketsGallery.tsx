@@ -89,7 +89,7 @@ export const TicketsGallery = () => {
                 onClick={() => setFilter(type as any)}
                 className={`px-5 py-2 rounded-full font-medium border transition-colors duration-200 ${
                   filter === type
-                    ? "bg-brand-blue text-white border-brand-blue"
+                    ? "bg-brand-blue text-xs text-white border-brand-blue"
                     : "border-gray-300 text-gray-700 hover:bg-gray-100"
                 }`}
               >

@@ -24,7 +24,7 @@ export const TicketsCarousel = () => {
         <Button
           onClick={() => navigate("/TicketsGallery")}
           size="lg"
-          className="bg-black hover:bg-primary/90 text-white font-semibold px-8 py-6 text-xs rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          className="bg-black hover:bg-[#FFEB3B] text-white font-semibold px-8 py-6 text-xs rounded-full shadow-lg  transition-all duration-300"
         >
           Go to Ticket Booking Section
         </Button>

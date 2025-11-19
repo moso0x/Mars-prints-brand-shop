@@ -29,10 +29,10 @@ const Index = () => {
           <ProductGrid />
           <TicketsCarousel />
           <EcoFriendlySection />
-          {/* <AboutSection /> */}
+          <AboutSection /> 
           <CitiesWeDeliver/>
            <Accordion/>
-            {/* <RatingsSection /> */}
+            <RatingsSection /> 
         </main>
         <FAQAccordion/>
         <FooterNew />
