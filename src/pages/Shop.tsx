@@ -343,45 +343,45 @@ const Shop = () => {
               </div>
 
               {/* Products Grid/List */}
-<div className={viewMode === "grid" 
-  ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" 
-  : "space-y-4"
-}>
-  {filteredProducts.map((product, index) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, delay: index * 0.03 }}
-    >
-      <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${viewMode === "list" ? "flex flex-row" : ""}`}>
-        <div className={`${viewMode === "list" ? "w-32" : "aspect-square"} overflow-hidden bg-gray-100`}>
-          <motion.img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
+                      <div className={viewMode === "grid" 
+                        ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" 
+                        : "space-y-4"
+                      }>
+                        {filteredProducts.map((product, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2, delay: index * 0.03 }}
+                          >
+                            <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${viewMode === "list" ? "flex flex-row" : ""}`}>
+                              <div className={`${viewMode === "list" ? "w-32" : "aspect-square"} overflow-hidden bg-gray-100`}>
+                                <motion.img
+                                  src={product.image}
+                                  alt={product.title}
+                                  className="w-full h-full object-cover"
+                                  whileHover={{ scale: 1.05 }}
+                                  transition={{ duration: 0.3 }}
+                                />
+                              </div>
 
-        <div className={`p-3 ${viewMode === "list" ? "flex-1" : ""}`}>
-          <h3 className="font-semibold text-sm mb-1">{product.title}</h3>
-          {product.description && viewMode === "list" && (
-            <p className="text-xs text-gray-500 mb-1">{product.description}</p>
-          )}
-          <p className="text-black font-medium text-sm mb-2">{product.price}</p>
-          <Button
-            className=" w-full flex mx-auto bg-black hover:bg-[#e04e1e] text-white text-sm py-1 rounded-full"
-            onClick={() => addToCart(product)}
-          >
-            Add to Cart
-          </Button>
-        </div>
-      </Card>
-    </motion.div>
-  ))}
-</div>
+                              <div className={`p-3 ${viewMode === "list" ? "flex-1" : ""}`}>
+                                <h3 className="font-semibold text-sm mb-1">{product.title}</h3>
+                                {product.description && viewMode === "list" && (
+                                  <p className="text-xs text-gray-500 mb-1">{product.description}</p>
+                                )}
+                                <p className="text-black font-medium text-sm mb-2">{product.price}</p>
+                                <Button
+                                  className=" w-full flex mx-auto bg-black hover:bg-[#e04e1e] text-white text-xs py-1 rounded-full"
+                                  onClick={() => addToCart(product)}
+                                >
+                                  Add to Cart
+                                </Button>
+                              </div>
+                            </Card>
+                          </motion.div>
+                        ))}
+                      </div>
 
 
               {filteredProducts.length === 0 && (
