@@ -162,7 +162,7 @@ function ServiceRow({ service }) {
       transition: {
         duration: 0.8,
         delay: i * 0.15,
-        ease: "easeOut",
+        ease: [0.25, 0.1, 0.25, 1] as const,
       },
     }),
   };

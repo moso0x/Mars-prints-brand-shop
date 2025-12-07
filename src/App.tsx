@@ -25,12 +25,13 @@ import Shop from "./pages/Shop";
 import Breadcrumbs from "@/components/Breadcrumbs"; 
 import { ProductPage } from "@/components/ProductPage";
 import { TicketsGallery } from "./pages/TicketsGallery";
- import { PaymentPage } from "./pages/PaymentPage";
+import { PaymentPage } from "./pages/PaymentPage";
 import ProductDetails from "./pages/ProductDetails";
 import { EventDetails } from "@/pages/EventDetails";
 import SupportCause from "./pages/SupportCause";
-import RouteChangeLoader from "@/components/RouteChangeLoader"; // Assuming you added it
+import RouteChangeLoader from "@/components/RouteChangeLoader";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
 const App = () => (
@@ -52,7 +53,6 @@ const App = () => (
     },
     success: {
       style: {
-    
         color: 'green',
         border: '1px solid darkgreen',
       },
@@ -61,7 +61,7 @@ const App = () => (
         secondary: 'green',
       },
     },
-    warning: {
+    error: {
       style: {
         background: 'red',
         color: 'white',
@@ -99,6 +99,7 @@ const App = () => (
               <Route path="/event/:id" element={<EventDetails />} />
               <Route path="/event-details/:id" element={<EventDetails />} />
               <Route path="/product/:slug" element={<ProductDetails />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
