@@ -12,7 +12,6 @@ import { toast } from "react-hot-toast";
 
 // Product data - in a real app, this would come from a database
 const productData: Record<string, any> = {
-const productData: Record<string, any> = {
   "custom-merchandise-branded-apparel": {
     title: "Custom Branded T-Shirt",
     images: ["/merch1.jpg", "/merch2.jpg"],
