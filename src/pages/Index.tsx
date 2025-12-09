@@ -8,7 +8,7 @@ import { EcoFriendlySection } from "@/components/EcoFriendlySection";
 import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
 import CitiesWeDeliver from "@/components/CitiesWeDeliver";
-import { Accordion}  from "@/components/ui/accordion";
+
 import  PrintingServicesCarousel  from "@/components/PrintingServicesCarousel";
 import { TicketsCarousel } from "@/components/TicketsCarousel";
 import FAQAccordion from "@/components/Faq";
@@ -31,8 +31,7 @@ const Index = () => {
           <EcoFriendlySection />
           <AboutSection /> 
           <CitiesWeDeliver/>
-           <Accordion/>
-            <RatingsSection /> 
+            <RatingsSection />
         </main>
         <FAQAccordion/>
         <FooterNew />

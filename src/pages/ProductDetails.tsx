@@ -179,7 +179,7 @@ export default function ProductDetails() {
 
   const removeArt = () => {
     setPreview(null);
-    const input = document.getElementById("artUpload");
+    const input = document.getElementById("artUpload") as HTMLInputElement | null;
     if (input) input.value = "";
   };
 

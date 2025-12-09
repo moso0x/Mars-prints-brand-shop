@@ -19,7 +19,7 @@ const avalancheVariant = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: "spring", damping: 18, stiffness: 120 },
+    transition: { type: "spring" as const, damping: 18, stiffness: 120 },
   },
 };
 
@@ -29,7 +29,7 @@ const scrollVariant = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 120, damping: 16 },
+    transition: { type: "spring" as const, stiffness: 120, damping: 16 },
   },
 };
 
