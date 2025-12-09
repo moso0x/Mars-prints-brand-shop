@@ -39,7 +39,7 @@ const Checkout = () => {
         navigate("/auth");
       } else {
         if (session.user.email) {
-          setFormData(prev => ({ ...prev, email: session.user.email }));
+          setFormData(prev => ({ ...prev, email: session.user.email || "" }));
         }
         setCheckingAuth(false);
       }
@@ -55,16 +55,21 @@ const Checkout = () => {
 
     setLoading(true);
     try {
+      // Get current user session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user) {
+        toast.error("Please login to proceed with checkout");
+        navigate("/auth");
+        return;
+      }
+
       const { data: order, error: orderError } = await supabase
         .from("orders")
         .insert({
+          user_id: session.user.id, // Link order to authenticated user
           customer_name: formData.name,
           customer_email: formData.email,
           customer_phone: formData.phone,
-          address: formData.address,
-          city: formData.city,
-          county: formData.county,
-          delivery_notes: formData.notes,
           total_amount: getTotalPrice(),
           payment_method: paymentMethod,
           payment_status: "pending",
