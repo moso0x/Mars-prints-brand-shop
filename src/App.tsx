@@ -72,7 +72,7 @@ const App = () => (
         secondary: 'red',
       },
     },
-  }}
+  } as const}
 />
           <BrowserRouter>
             <RouteChangeLoader />
