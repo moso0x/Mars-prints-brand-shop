@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   LayoutDashboard, 
   Package, 
@@ -13,10 +13,12 @@ import {
   DollarSign,
   ShoppingBag,
   Menu,
-  X,
   LogOut,
   Megaphone,
-  ChevronDown
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -29,6 +31,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { toast } from "react-hot-toast";
 import AdminOrders from "./AdminOrders";
 import AdminProducts from "./AdminProducts";
@@ -44,7 +52,8 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [stats, setStats] = useState({
@@ -145,196 +154,283 @@ const AdminDashboard = () => {
     { title: "Products", value: stats.totalProducts, icon: Package, color: "bg-orange-500" },
   ];
 
+  const currentPageLabel = menuItems.find(item => item.id === activeTab)?.label || "Settings";
+
   return (
-    <div className="min-h-screen bg-muted/30 flex">
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-lg shadow-lg"
-      >
-        {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+    <TooltipProvider>
+      <div className="min-h-screen bg-muted/30 flex">
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-lg shadow-lg border"
+        >
+          <Menu size={24} />
+        </button>
 
-      {/* Sidebar */}
-      <motion.aside
-        initial={{ x: -300 }}
-        animate={{ x: sidebarOpen ? 0 : -300 }}
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-card border-r transform lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col`}
-      >
-        <div className="p-6 border-b">
-          <h1 className="text-2xl font-bold text-primary">Admin Panel</h1>
-          <p className="text-sm text-muted-foreground">Store Management</p>
-        </div>
-
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-          {menuItems.map((item) => (
+        {/* Sidebar */}
+        <motion.aside
+          initial={false}
+          animate={{ 
+            width: sidebarCollapsed ? 80 : 256,
+            x: mobileSidebarOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
+          }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className={`fixed lg:static inset-y-0 left-0 z-40 bg-card border-r flex flex-col`}
+        >
+          {/* Header */}
+          <div className={`p-4 border-b flex items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
+            <AnimatePresence mode="wait">
+              {!sidebarCollapsed && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <h1 className="text-xl font-bold text-primary">Admin</h1>
+                  <p className="text-xs text-muted-foreground">Store Management</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            {/* Collapse button - desktop only */}
             <button
-              key={item.id}
-              onClick={() => {
-                setActiveTab(item.id);
-                setSidebarOpen(false);
-              }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                activeTab === item.id
-                  ? "bg-primary text-primary-foreground"
-                  : "hover:bg-muted text-foreground"
-              }`}
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className="hidden lg:flex p-2 rounded-lg hover:bg-muted transition-colors"
             >
-              <item.icon size={20} />
-              <span className="font-medium">{item.label}</span>
+              {sidebarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
             </button>
-          ))}
-        </nav>
+          </div>
 
-        {/* Settings button at bottom */}
-        <div className="p-4 border-t space-y-2">
-          <button
-            onClick={() => {
-              setActiveTab("settings");
-              setSidebarOpen(false);
-            }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-              activeTab === "settings"
-                ? "bg-primary text-primary-foreground"
-                : "hover:bg-muted text-foreground"
-            }`}
-          >
-            <Settings size={20} />
-            <span className="font-medium">Settings</span>
-          </button>
-        </div>
-      </motion.aside>
-
-      {/* Overlay for mobile */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
-      {/* Main content */}
-      <main className="flex-1 lg:ml-0 flex flex-col min-h-screen">
-        {/* Top Header with Profile */}
-        <header className="sticky top-0 z-20 bg-background/95 backdrop-blur border-b px-4 lg:px-8 py-4 flex items-center justify-between">
-          <div className="lg:hidden w-10" /> {/* Spacer for mobile menu button */}
-          <h2 className="text-lg font-semibold hidden lg:block">
-            {menuItems.find(item => item.id === activeTab)?.label || "Settings"}
-          </h2>
-          
-          {/* Profile Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-2 h-auto py-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="" />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                    {userName.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="hidden md:flex flex-col items-start">
-                  <span className="text-sm font-medium">{userName}</span>
-                  <span className="text-xs text-muted-foreground">{userEmail}</span>
-                </div>
-                <ChevronDown size={16} className="text-muted-foreground" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem onClick={() => setActiveTab("settings")}>
-                <Settings size={16} className="mr-2" />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout} className="text-red-600">
-                <LogOut size={16} className="mr-2" />
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
-
-        {/* Page Content */}
-        <div className="flex-1 p-4 lg:p-8">
-          {activeTab === "overview" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="space-y-6"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-3xl font-bold">Dashboard Overview</h2>
-                  <p className="text-muted-foreground">Welcome to your admin dashboard</p>
-                </div>
-                <Button onClick={() => setActiveTab("products")}>
-                  <Plus className="mr-2" size={20} />
-                  Add Product
-                </Button>
-              </div>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {statCards.map((stat, index) => (
-                  <motion.div
-                    key={stat.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+          {/* Navigation */}
+          <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
+            {menuItems.map((item) => (
+              <Tooltip key={item.id} delayDuration={0}>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setMobileSidebarOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                      activeTab === item.id
+                        ? "bg-primary text-primary-foreground"
+                        : "hover:bg-muted text-foreground"
+                    } ${sidebarCollapsed ? 'justify-center' : ''}`}
                   >
-                    <Card>
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm text-muted-foreground">{stat.title}</p>
-                            <p className="text-2xl font-bold mt-1">{stat.value}</p>
-                          </div>
-                          <div className={`p-3 rounded-full ${stat.color}`}>
-                            <stat.icon className="text-white" size={24} />
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
+                    <item.icon size={20} />
+                    <AnimatePresence mode="wait">
+                      {!sidebarCollapsed && (
+                        <motion.span
+                          initial={{ opacity: 0, width: 0 }}
+                          animate={{ opacity: 1, width: 'auto' }}
+                          exit={{ opacity: 0, width: 0 }}
+                          transition={{ duration: 0.15 }}
+                          className="font-medium whitespace-nowrap overflow-hidden"
+                        >
+                          {item.label}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                </TooltipTrigger>
+                {sidebarCollapsed && (
+                  <TooltipContent side="right">
+                    {item.label}
+                  </TooltipContent>
+                )}
+              </Tooltip>
+            ))}
+          </nav>
 
-              {/* Quick Actions */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <TrendingUp size={20} />
-                    Quick Actions
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <Button variant="outline" onClick={() => setActiveTab("orders")}>
-                      View Orders
-                    </Button>
-                    <Button variant="outline" onClick={() => setActiveTab("products")}>
-                      Manage Products
-                    </Button>
-                    <Button variant="outline" onClick={() => setActiveTab("advertisements")}>
-                      Manage Ads
-                    </Button>
-                    <Button variant="outline" onClick={() => setActiveTab("analytics")}>
-                      View Analytics
-                    </Button>
+          {/* Settings button at bottom */}
+          <div className="p-2 border-t">
+            <Tooltip delayDuration={0}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => {
+                    setActiveTab("settings");
+                    setMobileSidebarOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                    activeTab === "settings"
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-muted text-foreground"
+                  } ${sidebarCollapsed ? 'justify-center' : ''}`}
+                >
+                  <Settings size={20} />
+                  <AnimatePresence mode="wait">
+                    {!sidebarCollapsed && (
+                      <motion.span
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: 'auto' }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="font-medium whitespace-nowrap overflow-hidden"
+                      >
+                        Settings
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </button>
+              </TooltipTrigger>
+              {sidebarCollapsed && (
+                <TooltipContent side="right">
+                  Settings
+                </TooltipContent>
+              )}
+            </Tooltip>
+          </div>
+        </motion.aside>
+
+        {/* Overlay for mobile */}
+        {mobileSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setMobileSidebarOpen(false)}
+          />
+        )}
+
+        {/* Main content */}
+        <main className="flex-1 flex flex-col min-h-screen">
+          {/* Top Header with Profile */}
+          <header className="sticky top-0 z-20 bg-background/95 backdrop-blur border-b px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              {/* Mobile spacer */}
+              <div className="lg:hidden w-10" />
+              
+              {/* Back button - shown when not on overview */}
+              {activeTab !== "overview" && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setActiveTab("overview")}
+                  className="flex items-center gap-2"
+                >
+                  <ArrowLeft size={18} />
+                  <span className="hidden sm:inline">Back to Dashboard</span>
+                </Button>
+              )}
+              
+              <h2 className="text-lg font-semibold hidden lg:block">
+                {currentPageLabel}
+              </h2>
+            </div>
+            
+            {/* Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center gap-2 h-auto py-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+                      {userName.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium">{userName}</span>
+                    <span className="text-xs text-muted-foreground">{userEmail}</span>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
+                  <ChevronDown size={16} className="text-muted-foreground" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => setActiveTab("settings")}>
+                  <Settings size={16} className="mr-2" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+                  <LogOut size={16} className="mr-2" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </header>
 
-          {activeTab === "orders" && <AdminOrders />}
-          {activeTab === "products" && <AdminProducts />}
-          {activeTab === "customers" && <AdminCustomers />}
-          {activeTab === "analytics" && <AdminAnalytics />}
-          {activeTab === "settings" && <AdminSettings />}
-          {activeTab === "advertisements" && <AdminAdvertisements />}
-        </div>
-      </main>
-    </div>
+          {/* Page Content */}
+          <div className="flex-1 p-4 lg:p-8">
+            {activeTab === "overview" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-6"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-3xl font-bold">Dashboard Overview</h2>
+                    <p className="text-muted-foreground">Welcome to your admin dashboard</p>
+                  </div>
+                  <Button onClick={() => setActiveTab("products")}>
+                    <Plus className="mr-2" size={20} />
+                    Add Product
+                  </Button>
+                </div>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {statCards.map((stat, index) => (
+                    <motion.div
+                      key={stat.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Card>
+                        <CardContent className="p-6">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-sm text-muted-foreground">{stat.title}</p>
+                              <p className="text-2xl font-bold mt-1">{stat.value}</p>
+                            </div>
+                            <div className={`p-3 rounded-full ${stat.color}`}>
+                              <stat.icon className="text-white" size={24} />
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Quick Actions */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <TrendingUp size={20} />
+                      Quick Actions
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <Button variant="outline" onClick={() => setActiveTab("orders")}>
+                        View Orders
+                      </Button>
+                      <Button variant="outline" onClick={() => setActiveTab("products")}>
+                        Manage Products
+                      </Button>
+                      <Button variant="outline" onClick={() => setActiveTab("advertisements")}>
+                        Manage Ads
+                      </Button>
+                      <Button variant="outline" onClick={() => setActiveTab("analytics")}>
+                        View Analytics
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {activeTab === "orders" && <AdminOrders />}
+            {activeTab === "products" && <AdminProducts />}
+            {activeTab === "customers" && <AdminCustomers />}
+            {activeTab === "analytics" && <AdminAnalytics />}
+            {activeTab === "settings" && <AdminSettings />}
+            {activeTab === "advertisements" && <AdminAdvertisements />}
+          </div>
+        </main>
+      </div>
+    </TooltipProvider>
   );
 };
 
