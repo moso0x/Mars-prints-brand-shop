@@ -38,7 +38,7 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: loginEmail,
         password: loginPassword,
       });
@@ -49,7 +49,20 @@ const Auth = () => {
         } else toast.error(error.message);
       } else {
         toast.success("Successfully logged in!");
-        navigate("/checkout");
+        
+        // Check if user has admin role
+        const { data: roleData } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', data.user?.id)
+          .eq('role', 'admin')
+          .maybeSingle();
+        
+        if (roleData) {
+          navigate("/admin");
+        } else {
+          navigate("/checkout");
+        }
       }
     } catch {
       toast.error("An unexpected error occurred");
