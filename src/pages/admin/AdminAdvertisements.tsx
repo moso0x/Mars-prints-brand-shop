@@ -9,6 +9,7 @@ import {
   ImageIcon,
   ExternalLink
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -41,11 +42,11 @@ import { toast } from "react-hot-toast";
 interface Advertisement {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle: string | null;
   image: string;
-  link: string;
-  animation: string;
-  is_active: boolean;
+  link: string | null;
+  animation: string | null;
+  is_active: boolean | null;
   created_at: string;
 }
 
@@ -73,30 +74,26 @@ const AdminAdvertisements = () => {
     is_active: true,
   });
 
-  // Local storage key for advertisements
-  const STORAGE_KEY = "admin_advertisements";
-
   useEffect(() => {
     loadAdvertisements();
   }, []);
 
-  const loadAdvertisements = () => {
+  const loadAdvertisements = async () => {
     setLoading(true);
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setAdvertisements(JSON.parse(stored));
-      }
+      const { data, error } = await supabase
+        .from("advertisements")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setAdvertisements(data || []);
     } catch (error) {
       console.error("Error loading advertisements:", error);
+      toast.error("Failed to load advertisements");
     } finally {
       setLoading(false);
     }
-  };
-
-  const saveAdvertisements = (ads: Advertisement[]) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(ads));
-    setAdvertisements(ads);
   };
 
   const openDialog = (ad?: Advertisement) => {
@@ -104,11 +101,11 @@ const AdminAdvertisements = () => {
       setEditingAd(ad);
       setFormData({
         title: ad.title,
-        subtitle: ad.subtitle,
+        subtitle: ad.subtitle || "",
         image: ad.image,
-        link: ad.link,
-        animation: ad.animation,
-        is_active: ad.is_active,
+        link: ad.link || "",
+        animation: ad.animation || "slideRight",
+        is_active: ad.is_active ?? true,
       });
     } else {
       setEditingAd(null);
@@ -124,7 +121,7 @@ const AdminAdvertisements = () => {
     setDialogOpen(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.title || !formData.image) {
       toast.error("Please fill in title and image URL");
       return;
@@ -132,40 +129,75 @@ const AdminAdvertisements = () => {
 
     try {
       if (editingAd) {
-        const updated = advertisements.map((ad) =>
-          ad.id === editingAd.id
-            ? { ...ad, ...formData }
-            : ad
-        );
-        saveAdvertisements(updated);
+        const { error } = await supabase
+          .from("advertisements")
+          .update({
+            title: formData.title,
+            subtitle: formData.subtitle || null,
+            image: formData.image,
+            link: formData.link || null,
+            animation: formData.animation,
+            is_active: formData.is_active,
+          })
+          .eq("id", editingAd.id);
+
+        if (error) throw error;
         toast.success("Advertisement updated successfully");
       } else {
-        const newAd: Advertisement = {
-          id: crypto.randomUUID(),
-          ...formData,
-          created_at: new Date().toISOString(),
-        };
-        saveAdvertisements([newAd, ...advertisements]);
+        const { error } = await supabase
+          .from("advertisements")
+          .insert({
+            title: formData.title,
+            subtitle: formData.subtitle || null,
+            image: formData.image,
+            link: formData.link || null,
+            animation: formData.animation,
+            is_active: formData.is_active,
+          });
+
+        if (error) throw error;
         toast.success("Advertisement created successfully");
       }
 
       setDialogOpen(false);
+      loadAdvertisements();
     } catch (error) {
       console.error("Error saving advertisement:", error);
       toast.error("Failed to save advertisement");
     }
   };
 
-  const deleteAdvertisement = (id: string) => {
+  const deleteAdvertisement = async (id: string) => {
     if (!confirm("Are you sure you want to delete this advertisement?")) return;
 
     try {
-      const updated = advertisements.filter((ad) => ad.id !== id);
-      saveAdvertisements(updated);
+      const { error } = await supabase
+        .from("advertisements")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
       toast.success("Advertisement deleted successfully");
+      loadAdvertisements();
     } catch (error) {
       console.error("Error deleting advertisement:", error);
       toast.error("Failed to delete advertisement");
+    }
+  };
+
+  const toggleActive = async (id: string, currentStatus: boolean | null) => {
+    try {
+      const { error } = await supabase
+        .from("advertisements")
+        .update({ is_active: !currentStatus })
+        .eq("id", id);
+
+      if (error) throw error;
+      toast.success(`Advertisement ${!currentStatus ? "activated" : "deactivated"}`);
+      loadAdvertisements();
+    } catch (error) {
+      console.error("Error toggling status:", error);
+      toast.error("Failed to update status");
     }
   };
 
@@ -190,7 +222,7 @@ const AdminAdvertisements = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold">Advertisements</h2>
-          <p className="text-muted-foreground">Manage your promotional banners</p>
+          <p className="text-muted-foreground">Manage your promotional banners for the ribbon</p>
         </div>
         <Button onClick={() => openDialog()}>
           <Plus className="mr-2" size={20} />
@@ -278,15 +310,10 @@ const AdminAdvertisements = () => {
                     )}
                   </TableCell>
                   <TableCell>
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        ad.is_active
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {ad.is_active ? "Active" : "Inactive"}
-                    </span>
+                    <Switch
+                      checked={ad.is_active ?? false}
+                      onCheckedChange={() => toggleActive(ad.id, ad.is_active)}
+                    />
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
