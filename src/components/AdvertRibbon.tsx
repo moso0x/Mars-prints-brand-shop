@@ -2,61 +2,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import apparels from "@/assets/headers-adverts-img/caps.jpeg"
-import events from "@/assets/headers-adverts-img/event.jpeg"
-import tshirt from "@/assets/headers-adverts-img/tshirts.jpg"
-import mug from "@/assets/headers-adverts-img/mug.png"
+import { supabase } from "@/integrations/supabase/client";
+
 interface AdvertProps {
-  id: number;
+  id: string;
   image: string;
   title: string;
-  subtitle: string;
-  link?: string;
-  animation?: string;
+  subtitle: string | null;
+  link?: string | null;
+  animation?: string | null;
 }
-
-const advertisements: AdvertProps[] = [
-  {
-    id: 1,
-    image: apparels,
-    title: "Apparel: T-shirts, hoodies, and caps",
-    subtitle: "Designed to be worn with pride!",
-    link: "/products",
-    animation: "slideRight",
-  },
-  {
-    id: 2,
-    image: mug,
-    title: "Custom mugs, calendars, stationery",
-    subtitle: "Corporate gifts that leave a lasting impression",
-    link: "/services",
-    animation: "fadeUp",
-  },
-  {
-    id: 3,
-    image: tshirt,
-    title: "Custom Apparels ",
-    subtitle: "Inspiring a spirit of discovery!",
-    link: "/branding",
-    animation: "zoomIn",
-  },
-  {
-    id: 3,
-    image: tshirt,
-    title: "Custom Apparels ",
-    subtitle: "Inspiring a spirit of discovery!",
-    link: "/branding",
-    animation: "zoomIn",
-  },
-  {
-    id: 4,
-    image: events,
-    title: "Event Promotion and Tickets booking ",
-    subtitle: "Purpose-Driven Collaborations!",
-    link: "/merch",
-    animation: "flipY",
-  },
-];
 
 // Define transition variants for each style
 const adVariants: Record<string, any> = {
@@ -135,21 +90,45 @@ const adVariants: Record<string, any> = {
 const AdvertRibbon = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [currentAd, setCurrentAd] = useState(0);
+  const [advertisements, setAdvertisements] = useState<AdvertProps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isVisible) return;
+    const fetchAds = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("advertisements")
+          .select("id, title, subtitle, image, link, animation")
+          .eq("is_active", true)
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        setAdvertisements(data || []);
+      } catch (error) {
+        console.error("Error fetching advertisements:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAds();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || advertisements.length === 0) return;
     const interval = setInterval(() => {
       setCurrentAd((prev) => (prev + 1) % advertisements.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, advertisements.length]);
 
-  if (!isVisible) return null;
+  if (loading) return null;
+  if (!isVisible || advertisements.length === 0) return null;
 
   const nextAd = () => setCurrentAd((prev) => (prev + 1) % advertisements.length);
   const prevAd = () => setCurrentAd((prev) => (prev - 1 + advertisements.length) % advertisements.length);
 
-  const currentAnimation = advertisements[currentAd].animation ?? "slideRight";
+  const currentAnimation = advertisements[currentAd]?.animation ?? "slideRight";
 
   return (
     <motion.div
@@ -163,7 +142,7 @@ const AdvertRibbon = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentAd}
-            variants={adVariants[currentAnimation]}
+            variants={adVariants[currentAnimation] || adVariants.slideRight}
             initial="initial"
             animate="animate"
             exit="exit"

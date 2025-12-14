@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      advertisements: {
+        Row: {
+          animation: string | null
+          created_at: string
+          id: string
+          image: string
+          is_active: boolean | null
+          link: string | null
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          animation?: string | null
+          created_at?: string
+          id?: string
+          image: string
+          is_active?: boolean | null
+          link?: string | null
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          animation?: string | null
+          created_at?: string
+          id?: string
+          image?: string
+          is_active?: boolean | null
+          link?: string | null
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           created_at: string
