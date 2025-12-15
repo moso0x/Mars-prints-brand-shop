@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { 
   Plus, 
@@ -7,7 +7,9 @@ import {
   Trash2, 
   Megaphone,
   ImageIcon,
-  ExternalLink
+  ExternalLink,
+  Upload,
+  Loader2
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -65,6 +67,8 @@ const AdminAdvertisements = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingAd, setEditingAd] = useState<Advertisement | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     title: "",
     subtitle: "",
@@ -377,26 +381,77 @@ const AdminAdvertisements = () => {
               />
             </div>
             <div>
-              <Label>Image URL *</Label>
-              <Input
-                value={formData.image}
-                onChange={(e) =>
-                  setFormData({ ...formData, image: e.target.value })
-                }
-                placeholder="https://example.com/image.jpg"
-              />
-              {formData.image && (
-                <div className="mt-2 w-full h-32 rounded-lg overflow-hidden bg-muted">
-                  <img
-                    src={formData.image}
-                    alt="Preview"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
+              <Label>Image *</Label>
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Input
+                    value={formData.image}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
+                    placeholder="Image URL or upload below"
+                    className="flex-1"
+                  />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      
+                      setUploading(true);
+                      try {
+                        const fileExt = file.name.split('.').pop();
+                        const fileName = `advert-${Date.now()}.${fileExt}`;
+                        
+                        const { error: uploadError } = await supabase.storage
+                          .from('product-images')
+                          .upload(fileName, file);
+                        
+                        if (uploadError) throw uploadError;
+                        
+                        const { data: urlData } = supabase.storage
+                          .from('product-images')
+                          .getPublicUrl(fileName);
+                        
+                        setFormData({ ...formData, image: urlData.publicUrl });
+                        toast.success('Image uploaded successfully');
+                      } catch (error) {
+                        console.error('Upload error:', error);
+                        toast.error('Failed to upload image');
+                      } finally {
+                        setUploading(false);
+                      }
                     }}
                   />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Upload className="h-4 w-4" />
+                    )}
+                  </Button>
                 </div>
-              )}
+                {formData.image && (
+                  <div className="w-full h-32 rounded-lg overflow-hidden bg-muted">
+                    <img
+                      src={formData.image}
+                      alt="Preview"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <div>
               <Label>Link URL</Label>
