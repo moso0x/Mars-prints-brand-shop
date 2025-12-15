@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { 
   Plus, 
@@ -6,7 +6,10 @@ import {
   Edit, 
   Trash2, 
   Package,
-  ImageIcon
+  ImageIcon,
+  Upload,
+  X,
+  Loader2
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -60,6 +63,13 @@ const categories = [
   "Promotional Items",
   "Corporate Gifts",
   "Print Materials",
+  "Stationery",
+  "Gift Sets",
+  "Accessories",
+  "Packaging",
+  "Outdoor Branding",
+  "Home and Living",
+  "Business Services",
 ];
 
 const AdminProducts = () => {
@@ -68,6 +78,9 @@ const AdminProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -75,6 +88,7 @@ const AdminProducts = () => {
     category: "",
     stock: "",
     is_active: true,
+    images: [] as string[],
   });
 
   useEffect(() => {
@@ -108,7 +122,9 @@ const AdminProducts = () => {
         category: product.category,
         stock: product.stock.toString(),
         is_active: product.is_active,
+        images: product.images || [],
       });
+      setImagePreview(product.images?.[0] || null);
     } else {
       setEditingProduct(null);
       setFormData({
@@ -118,9 +134,66 @@ const AdminProducts = () => {
         category: "",
         stock: "",
         is_active: true,
+        images: [],
       });
+      setImagePreview(null);
     }
     setDialogOpen(true);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image must be less than 5MB');
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `products/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(filePath);
+
+      setFormData(prev => ({
+        ...prev,
+        images: [publicUrl, ...prev.images.filter(img => img !== publicUrl)]
+      }));
+      setImagePreview(publicUrl);
+      toast.success('Image uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast.error('Failed to upload image');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = () => {
+    setFormData(prev => ({ ...prev, images: [] }));
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const handleSubmit = async () => {
@@ -137,6 +210,7 @@ const AdminProducts = () => {
         category: formData.category,
         stock: parseInt(formData.stock) || 0,
         is_active: formData.is_active,
+        images: formData.images,
       };
 
       if (editingProduct) {
@@ -249,7 +323,7 @@ const AdminProducts = () => {
                 <TableRow key={product.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center overflow-hidden">
                         {product.images?.[0] ? (
                           <img
                             src={product.images[0]}
@@ -318,13 +392,59 @@ const AdminProducts = () => {
 
       {/* Add/Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingProduct ? "Edit Product" : "Add New Product"}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
+            {/* Image Upload Section */}
+            <div>
+              <Label>Product Image</Label>
+              <div className="mt-2">
+                {imagePreview ? (
+                  <div className="relative w-full h-48 rounded-lg overflow-hidden border">
+                    <img
+                      src={imagePreview}
+                      alt="Product preview"
+                      className="w-full h-full object-cover"
+                    />
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-8 w-8"
+                      onClick={removeImage}
+                    >
+                      <X size={16} />
+                    </Button>
+                  </div>
+                ) : (
+                  <div
+                    className="w-full h-48 border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    {uploading ? (
+                      <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                    ) : (
+                      <>
+                        <Upload className="h-8 w-8 text-muted-foreground mb-2" />
+                        <p className="text-sm text-muted-foreground">Click to upload image</p>
+                        <p className="text-xs text-muted-foreground mt-1">PNG, JPG up to 5MB</p>
+                      </>
+                    )}
+                  </div>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageUpload}
+                />
+              </div>
+            </div>
+
             <div>
               <Label>Title *</Label>
               <Input
@@ -403,7 +523,7 @@ const AdminProducts = () => {
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
+            <Button onClick={handleSubmit} disabled={uploading}>
               {editingProduct ? "Update" : "Create"}
             </Button>
           </DialogFooter>
