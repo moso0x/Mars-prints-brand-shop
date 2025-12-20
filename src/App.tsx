@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster as HotToaster } from "react-hot-toast";
 import { CartProvider } from "@/contexts/CartContext";
-import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ApparelWearables from "./pages/ApparelWearables";
@@ -34,46 +33,46 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
     <CartProvider>
       <TooltipProvider>
         <div className="overflow-x-hidden">
           <Toaster />
           <Sonner />
-        <HotToaster
-  position="top-right"
-  toastOptions={{
-    duration: 3000,
-    style: {
-      background: 'hsl(var(--card))',
-      color: 'hsl(var(--card-foreground))',
-      border: '1px solid hsl(var(--border))',
-    },
-    success: {
-      style: {
-        color: 'green',
-        border: '1px solid darkgreen',
-      },
-      iconTheme: {
-        primary: 'white',
-        secondary: 'green',
-      },
-    },
-    error: {
-      style: {
-        background: 'red',
-        color: 'white',
-        border: '1px solid darkred',
-      },
-      iconTheme: {
-        primary: 'white',
-        secondary: 'red',
-      },
-    },
-  } as const}
-/>
+          <HotToaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: 'hsl(var(--card))',
+                color: 'hsl(var(--card-foreground))',
+                border: '1px solid hsl(var(--border))',
+              },
+              success: {
+                style: {
+                  color: 'green',
+                  border: '1px solid darkgreen',
+                },
+                iconTheme: {
+                  primary: 'white',
+                  secondary: 'green',
+                },
+              },
+              error: {
+                style: {
+                  background: 'red',
+                  color: 'white',
+                  border: '1px solid darkred',
+                },
+                iconTheme: {
+                  primary: 'white',
+                  secondary: 'red',
+                },
+              },
+            } as const}
+          />
           <BrowserRouter>
             <RouteChangeLoader />
             <Routes>
@@ -107,7 +106,7 @@ const App = () => (
         </div>
       </TooltipProvider>
     </CartProvider>
-     </ThemeProvider>
   </QueryClientProvider>
 );
+
 export default App;
