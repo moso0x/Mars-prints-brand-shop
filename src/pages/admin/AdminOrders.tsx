@@ -63,6 +63,7 @@ const AdminOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
 
   useEffect(() => {
     fetchOrders();
@@ -103,6 +104,28 @@ const AdminOrders = () => {
     setSelectedOrder(order);
     await fetchOrderItems(order.id);
     setDialogOpen(true);
+  };
+
+  const updateOrderStatus = async (orderId: string, newStatus: string) => {
+    setUpdatingStatus(orderId);
+    try {
+      const { error } = await supabase
+        .from("orders")
+        .update({ payment_status: newStatus })
+        .eq("id", orderId);
+
+      if (error) throw error;
+      
+      setOrders(orders.map(order => 
+        order.id === orderId ? { ...order, payment_status: newStatus } : order
+      ));
+      toast.success(`Order status updated to ${newStatus}`);
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      toast.error("Failed to update order status");
+    } finally {
+      setUpdatingStatus(null);
+    }
   };
 
   const getStatusIcon = (status: string) => {
@@ -220,12 +243,23 @@ const AdminOrders = () => {
                     KSh {Number(order.total_amount).toLocaleString()}
                   </TableCell>
                   <TableCell>
-                    <Badge className={getStatusBadge(order.payment_status)}>
-                      <span className="flex items-center gap-1">
-                        {getStatusIcon(order.payment_status)}
-                        {order.payment_status}
-                      </span>
-                    </Badge>
+                    <Select
+                      value={order.payment_status}
+                      onValueChange={(value) => updateOrderStatus(order.id, value)}
+                      disabled={updatingStatus === order.id}
+                    >
+                      <SelectTrigger className={`w-32 ${getStatusBadge(order.payment_status)}`}>
+                        <span className="flex items-center gap-1">
+                          {getStatusIcon(order.payment_status)}
+                          {order.payment_status}
+                        </span>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="completed">Completed</SelectItem>
+                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </TableCell>
                   <TableCell className="capitalize">{order.payment_method}</TableCell>
                   <TableCell>
