@@ -42,7 +42,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <HotToaster
-            position="top-right"
+            position="top-center"
             toastOptions={{
               duration: 3000,
               style: {
