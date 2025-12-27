@@ -77,7 +77,7 @@ const FAQAccordion: React.FC = () => {
               >
             
 
-                <span className="font-semibold text-sm text-[#1E1E2E]">
+                <span className="font-semibold text-xs text-blue-700 ">
                   {item.question}
                 </span>
                 {isOpen ? (
@@ -95,7 +95,7 @@ const FAQAccordion: React.FC = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="p-4 bg-white text-sm text-gray-700"
+                    className="p-4 bg-white text-sm text-black text-xs"
                   >
                     {item.answer}
                   </motion.div>

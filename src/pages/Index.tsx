@@ -26,12 +26,12 @@ const Index = () => {
           <HeroCarousel />
           <PrintingServicesCarousel/>
            <FeaturesSection /> 
-          <ProductGrid />
+           <ProductGrid />
           <TicketsCarousel />
-          <EcoFriendlySection />
-          <AboutSection /> 
+          {/* <EcoFriendlySection /> */}
+          <AboutSection />  
           <CitiesWeDeliver/>
-            <RatingsSection />
+            {/* <RatingsSection /> */}
         </main>
         <FAQAccordion/>
         <FooterNew />

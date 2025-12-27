@@ -4,7 +4,7 @@ import { FooterNew } from "@/components/FooterNew";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { eventsData } from "@/data/eventsData";
-import { toast } from "react-hot-toast"; // ✅ Make sure react-hot-toast is installed
+import { toast } from "react-hot-toast";
 
 export const EventDetails = () => {
   const { id } = useParams();
@@ -30,9 +30,7 @@ export const EventDetails = () => {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -44,16 +42,12 @@ export const EventDetails = () => {
       return;
     }
 
-    toast.success(
-      "Thank you for ticket booking! You will receive an email with your ticket."
-    );
+    toast.success("Thank you for ticket booking! You will receive an email with your ticket.");
     setIsModalOpen(false);
-
-    // Optional: send booking info to your backend here
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 text-xs">
       <Header />
 
       <div className="container mx-auto py-10 px-4">
@@ -73,24 +67,22 @@ export const EventDetails = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 bg-white p-8 rounded-2xl shadow-md"
+            className="flex-1 bg-white p-6 sm:p-8 rounded-2xl shadow-md"
           >
-            <h2 className="text-2xl font-bold mb-4">{ticket.title}</h2>
+            <h2 className="text-lg sm:text-xl font-bold mb-3 text-blue-700">{ticket.title}</h2>
 
-            <p className="text-gray-700 mb-4">{ticket.description}</p>
+            <p className="text-gray-700 mb-3">{ticket.description}</p>
 
-            <div className="mb-4">
-              <span className="font-semibold text-gray-800">Date:</span>{" "}
-              {ticket.date}
+            <div className="mb-3">
+              <span className="font-semibold text-blue-700">Date:</span> {ticket.date}
             </div>
 
-            <div className="mb-4">
-              <span className="font-semibold text-gray-800">Venue:</span>{" "}
-              {ticket.venue}
+            <div className="mb-3">
+              <span className="font-semibold text-blue-700">Venue:</span> {ticket.venue}
             </div>
 
-            <div className="mb-4">
-              <span className="font-semibold text-gray-800">Includes:</span>
+            <div className="mb-3">
+              <span className="font-semibold text-blue-700">Includes:</span>
               <ul className="list-disc list-inside text-gray-700">
                 {ticket.inclusives?.map((item: string, i: number) => (
                   <li key={i}>{item}</li>
@@ -98,22 +90,20 @@ export const EventDetails = () => {
               </ul>
             </div>
 
-            <div className="mb-4">
-              <span className="font-semibold text-gray-800">Contact:</span>{" "}
-              {ticket.contact}
+            <div className="mb-3">
+              <span className="font-semibold text-blue-700">Contact:</span> {ticket.contact}
             </div>
 
             {/* Payment section */}
-            <div className="mt-8">
-              <p className="text-gray-600 mb-3">
-                After completing your M-PESA payment, enter your details below
-                to receive your ticket.
+            <div className="mt-6">
+              <p className="text-gray-600 mb-2 text-xs">
+                After completing your M-PESA payment, enter your details below to receive your ticket.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleOpenModal}
-                className="bg-green-500 text-white px-6 py-3 rounded-full font-medium shadow hover:bg-green-600"
+                className="bg-blue-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-[#0B3F7F] text-xs"
               >
                 Click to Enter Details
               </motion.button>
@@ -132,25 +122,25 @@ export const EventDetails = () => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-xl p-8 w-11/12 sm:w-[450px] shadow-lg relative"
+              className="bg-white rounded-xl p-6 sm:p-8 w-11/12 sm:w-[450px] shadow-lg relative text-xs"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
             >
               <button
                 onClick={handleCloseModal}
-                className="absolute top-3 right-4 text-gray-500 hover:text-gray-700 text-xl"
+                className="absolute top-3 right-4 text-gray-500 hover:text-gray-700 text-sm"
               >
                 ✕
               </button>
 
-              <h3 className="text-xl font-bold mb-6 text-center text-green-600">
+              <h3 className="text-lg font-bold mb-4 text-center text-blue-700">
                 Complete Your Ticket Booking
               </h3>
 
-              <form onSubmit={handleFormSubmit} className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className="block text-blue-700 font-medium mb-1">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -158,28 +148,29 @@ export const EventDetails = () => {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                     placeholder="Enter your full name"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:outline-none placeholder:text-xs text-xs"
                     required
                   />
                 </div>
-                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                  Tel  <span className="text-red-500">*</span>
+
+                <div>
+                  <label className="block text-blue-700 font-medium mb-1">
+                    Phone <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
-                    placeholder="Enter Phone Number"
+                    placeholder="Enter phone number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:outline-none placeholder:text-xs text-xs"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className="block text-blue-700 font-medium mb-1">
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -187,21 +178,21 @@ export const EventDetails = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                     placeholder="Enter your email"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:outline-none placeholder:text-xs text-xs"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className="block text-blue-700 font-medium mb-1">
                     Ticket Type (optional)
                   </label>
                   <select
                     name="ticketType"
                     value={formData.ticketType}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:outline-none text-xs"
                   >
                     <option value="">Select ticket type</option>
                     <option value="Standard">Standard</option>
@@ -211,7 +202,7 @@ export const EventDetails = () => {
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className="block text-blue-700 font-medium mb-1">
                     M-PESA Payment Reference <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -219,8 +210,8 @@ export const EventDetails = () => {
                     name="mpesaRef"
                     value={formData.mpesaRef}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                     placeholder="Enter your M-PESA reference number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:outline-none placeholder:text-xs text-xs"
                     required
                   />
                 </div>
@@ -229,9 +220,9 @@ export const EventDetails = () => {
                   type="submit"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold shadow hover:bg-green-700"
+                  className="w-full bg-blue-700 text-white py-2 rounded-full font-semibold shadow hover:bg-[#0B3F7F] text-xs"
                 >
-                 Submit Details
+                  Submit Details
                 </motion.button>
               </form>
             </motion.div>

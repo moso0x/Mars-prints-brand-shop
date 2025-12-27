@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
-import { FooterNew } from "@/components/FooterNew";
+import FooterNew from "@/components/FooterNew";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,39 +9,13 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import toast from "react-hot-toast";
 import contact from "@/assets/contact-icon.jpg";
-
 import { motion } from "framer-motion";
-
-// Avalanche transition for page + image
-const avalancheVariant = {
-  hidden: { opacity: 0, y: -120, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring" as const, damping: 18, stiffness: 120 },
-  },
-};
-
-// Scroll-based card appearance
-const scrollVariant = {
-  hidden: { opacity: 0, y: 80 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 120, damping: 16 },
-  },
-};
 
 const Contact = () => {
   const [loading, setLoading] = useState(true);
 
-  // Simulated loading delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200); // <— adjust loading duration here
-
+    const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -54,108 +28,95 @@ const Contact = () => {
 
   return (
     <PageTransition>
-      {/* LOADING SCREEN */}
       {loading ? (
         <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-          <div className="w-16 h-16 border-4 border-gray-300 border-t-[#6C63FF] rounded-full animate-spin"></div>
-          <p className="mt-4 text-gray-600 text-lg font-medium">Loading...</p>
+          <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin"></div>
+          <p className="mt-2 text-gray-600 text-sm font-medium">Loading...</p>
         </div>
       ) : (
-        // PAGE CONTENT (appears after loading)
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={avalancheVariant}
-          className="min-h-screen bg-gradient-to-br from-[#fdfbff] via-[#f4f9f9] to-[#fff]"
+          initial={{ opacity: 0, y: -80 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", damping: 18, stiffness: 120 }}
+          className="min-h-screen bg-white"
         >
           <Header />
 
-          <div className="flex justify-center py-6">
+          {/* ICON */}
+          <div className="flex justify-center py-4">
             <motion.img
               src={contact}
-              variants={avalancheVariant}
-              initial="hidden"
-              animate="visible"
-              className="w-[100px] rounded-2xl shadow-lg border-2 border-[#6C63FF]/30"
+              className="w-20 rounded-xl shadow-sm border border-blue-100"
               alt="Contact illustration"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
             />
           </div>
 
-          <main className="container mx-auto px-4 py-12">
-            <motion.h1
-              className="text-4xl font-bold mb-4 text-center"
-              variants={avalancheVariant}
-              initial="hidden"
-              animate="visible"
-            >
+          <main className="container mx-auto px-4 py-8">
+            <motion.h1 className="text-3xl font-bold mb-2 text-center text-blue-700">
               Contact Us
             </motion.h1>
 
-            <motion.p
-              className="text-center text-gray-600 max-w-2xl mx-auto mb-12"
-              variants={avalancheVariant}
-              initial="hidden"
-              animate="visible"
-            >
-              Let’s Build Your Brand—Message Us
+            <motion.p className="text-center text-gray-600 text-xs max-w-xl mx-auto mb-8">
+              Let’s Build Your Brand — Message Us
             </motion.p>
 
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-6">
               {/* FORM CARD */}
               <motion.div
-                variants={scrollVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="bg-white shadow-xl rounded-2xl p-8 border border-[#FFEB3B]"
+                className="bg-white shadow-md rounded-xl p-4 border border-blue-100"
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-2xl font-semibold mb-6 text-[#0052CC]">
+                <h2 className="text-lg font-semibold mb-3 text-blue-700 text-xs">
                   Your Details Help Us Connect
                 </h2>
 
-                <form className="space-y-6" onSubmit={handleSubmit}>
-                  <div>
-                    <Label htmlFor="contact-name">Name</Label>
+                <form className="space-y-3" onSubmit={handleSubmit}>
+                  <div className="text-xs">
+                    <Label htmlFor="contact-name text-xs">Name</Label>
                     <Input
                       id="contact-name"
                       placeholder="Your name"
-                      className="focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6]"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 placeholder:text-xs focus:border-blue-500"
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="contact-email">Email</Label>
+                  <div className="text-xs">
+                    <Label htmlFor="contact-email text-xs">Email</Label>
                     <Input
                       id="contact-email"
                       type="email"
                       placeholder="your@email.com"
-                      className="focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6]"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="contact-phone">Phone</Label>
+                  <div className="text-xs">
+                    <Label htmlFor="contact-phone text-xs">Phone</Label>
                     <Input
                       id="contact-phone"
                       type="tel"
                       placeholder="Your phone number"
-                      className="focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6]"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="contact-message">Message</Label>
+                  <div className="text-xs">
+                    <Label htmlFor="contact-message  label:text-xs">Message</Label>
                     <Textarea
                       id="contact-message"
                       placeholder="How can we help you?"
-                      rows={5}
-                      className="focus:ring-2 focus:ring-[#6C63FF] focus:border-[#6C63FF]"
+                      rows={4}
+                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <Button
-                    className="rounded-full flex justify-center bg-[#FF5C26] text-white font-medium hover:bg-[#E53935] transition"
                     type="submit"
+                    className="w-50%  py-2 text-xs rounded-full bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     Send Message
                   </Button>
@@ -164,53 +125,48 @@ const Contact = () => {
 
               {/* CONTACT INFO CARD */}
               <motion.div
-                variants={scrollVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="bg-white shadow-xl rounded-2xl p-8 border border-[#6C63FF]/10"
+                className="bg-white shadow-md rounded-xl p-4 border border-blue-100"
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-2xl font-semibold mb-6 text-[#64B5F6]">
+                <h2 className="text-lg font-semibold mb-3 text-blue-700">
                   Contact Information
                 </h2>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-[#64B5F6] mt-1" />
+                <div className="space-y-3 text-xs text-gray-700">
+                  <div className="flex items-start gap-2">
+                    <Mail className="h-4 w-4 text-blue-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
-                      <p className="text-gray-600">
-                        jelimocreatives@gmail.com
-                      </p>
+                      <p className="font-medium">Email</p>
+                      <p>jelimocreatives@gmail.com</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-[#00BFA6] mt-1" />
+                  <div className="flex items-start gap-2">
+                    <Phone className="h-4 w-4 text-blue-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
-                      <p className="text-gray-600">+254 704-904-678</p>
+                      <p className="font-medium">Phone</p>
+                      <p>+254 704-904-678</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-[#FF6B6B] mt-1" />
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 text-blue-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Location</h3>
-                      <p className="text-gray-600">Nairobi, Kenya</p>
+                      <p className="font-medium">Location</p>
+                      <p>Nairobi, Kenya</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <h3 className="font-semibold mb-4 text-[#0052CC]">
+                <div className="mt-4 text-xs text-gray-700">
+                  <h3 className="font-semibold mb-2 text-blue-700">
                     Business Hours
                   </h3>
-                  <div className="space-y-2 text-gray-600">
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p>Saturday: 9:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
-                  </div>
+                  <p>Monday – Friday: 8:00 AM – 6:00 PM</p>
+                  <p>Saturday: 9:00 AM – 4:00 PM</p>
+                  <p>Sunday: Closed</p>
                 </div>
               </motion.div>
             </div>

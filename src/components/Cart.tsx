@@ -1,4 +1,10 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Trash2, Minus, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -6,93 +12,123 @@ import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-  const { items, removeFromCart, updateQuantity, getTotalItems, getTotalPrice } = useCart();
+  const {
+    items,
+    removeFromCart,
+    updateQuantity,
+    getTotalItems,
+    getTotalPrice,
+  } = useCart();
   const navigate = useNavigate();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-[#64B5F6]/10 transition">
-          <ShoppingCart className="h-5 w-5 text-[#64B5F6]" />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative hover:bg-blue-500/10 transition"
+        >
+          <ShoppingCart className="h-4 w-4 text-blue-600" />
           {getTotalItems() > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[#6C63FF] text-white border-2 border-white shadow-md">
+            <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-blue-600 text-white border-2 border-white shadow-md">
               {getTotalItems()}
             </Badge>
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 ">
+
+      <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 border-blue-500 text-xs">
         <SheetHeader>
-          <SheetTitle className="text-[#64B5F6] font-bold text-lg">
-            Shopping Cart ({getTotalItems()}  items)
+          <SheetTitle className="text-blue-600 font-bold text-xs">
+            Shopping Cart ({getTotalItems()} items)
           </SheetTitle>
         </SheetHeader>
-        <div className="mt-8 space-y-4">
+
+        <div className="mt-6 space-y-3">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 text-center text-gray-500">
-              <div className="bg-[#00BFA6]/10 p-6 rounded-full mb-4 shadow-inner">
-                <ShoppingCart className="h-20 w-20 text-[#FF5C26]" />
+            <div className="flex flex-col items-center justify-center py-12 text-center text-gray-500 text-xs">
+              <div className="bg-blue-100 p-4 rounded-full mb-3 shadow-inner">
+                <ShoppingCart className="h-12 w-12 text-blue-500" />
               </div>
-              <p className="text-lg font-medium text-[#1F1F1F]">Your cart is empty</p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="font-medium text-gray-900 text-xs">
+                Your cart is empty
+              </p>
+              <p className="text-[11px] text-gray-500 mt-1">
                 Add some items to get started
               </p>
             </div>
           ) : (
             <>
               {items.map((item) => (
-                <div key={item.title} className="flex gap-4 border-b pb-4 border-gray-200 hover:bg-[#00BFA6]/5 rounded-lg transition">
+                <div
+                  key={item.title}
+                  className="flex gap-3 border-b pb-3 border-gray-200 hover:bg-blue-50 rounded-md transition"
+                >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-20 h-20 object-cover rounded-md border border-[#6C63FF]/20"
+                    className="w-14 h-14 object-cover rounded-md border border-blue-200"
                   />
+
                   <div className="flex-1">
-                    <h4 className="font-semibold text-[#1F1F1F] text-sm">{item.title}</h4>
-                    <p className="text-sm text-gray-500">{item.price}</p>
+                    <h4 className="font-semibold text-gray-900 text-xs">
+                      {item.title}
+                    </h4>
+                    <p className="text-[11px] text-gray-500">
+                      Ksh. {item.price}
+                    </p>
+
                     <div className="flex items-center gap-2 mt-2">
                       <Button
                         size="icon"
                         variant="outline"
-                        className="h-7 w-7 border-[#00BFA6]/40 hover:bg-[#00BFA6]/10"
-                        onClick={() => updateQuantity(item.title, item.quantity - 1)}
+                        className="h-6 w-6 border-blue-300 hover:bg-blue-100"
+                        onClick={() =>
+                          updateQuantity(item.title, item.quantity - 1)
+                        }
                       >
-                        <Minus className="h-3 w-3 text-[#FF5C26]" />
+                        <Minus className="h-3 w-3 text-blue-600" />
                       </Button>
-                      <span className="text-sm font-medium w-8 text-center text-[#1F1F1F]">
+
+                      <span className="text-xs font-medium w-6 text-center text-gray-900">
                         {item.quantity}
                       </span>
+
                       <Button
                         size="icon"
                         variant="outline"
-                        className="h-7 w-7 border-[#00BFA6]/40 hover:bg-[#00BFA6]/10"
-                        onClick={() => updateQuantity(item.title, item.quantity + 1)}
+                        className="h-6 w-6 border-blue-300 hover:bg-blue-100"
+                        onClick={() =>
+                          updateQuantity(item.title, item.quantity + 1)
+                        }
                       >
-                        <Plus className="h-3 w-3 text-[#FF5C26]" />
+                        <Plus className="h-3 w-3 text-blue-600" />
                       </Button>
+
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 ml-auto hover:text-[#D26749]"
+                        className="h-6 w-6 ml-auto hover:text-red-600"
                         onClick={() => removeFromCart(item.title)}
                       >
-                        <Trash2 className="h-3 w-3 text-[#D26749]" />
+                        <Trash2 className="h-3 w-3" />
                       </Button>
                     </div>
                   </div>
                 </div>
               ))}
 
-              <div className="pt-4 space-y-2 border-t border-gray-200">
-                <div className="flex justify-between text-lg font-bold text-[#1F1F1F]">
+              <div className="pt-3 space-y-3 border-t border-gray-200">
+                <div className="flex justify-between font-bold text-xs text-gray-900">
                   <span>Total:</span>
-                  <span className="text-red-700">
+                  <span className="text-blue-700">
                     Ksh. {getTotalPrice().toLocaleString()}
                   </span>
                 </div>
 
                 <Button
-                  className="w-[40%] bg-[#64B5F6] rounded-full text-white font-semibold  text-xs flex mx-auto  items-center justify-center hover:bg-blue-300"
-                  size="lg"
+                  className="w-[45%] mx-auto flex items-center justify-center rounded-full bg-blue-600 text-white font-semibold text-xs h-8 hover:bg-blue-700 transition"
                   onClick={() => navigate("/checkout")}
                 >
                   Proceed to Checkout

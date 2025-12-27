@@ -82,8 +82,8 @@ const Feedback = () => {
 
               <div className="flex justify-center pt-2">
                 <Button
-                  className="bg-[#00D45A] hover:bg-[#00B84F] text-white font-semibold 
-                             rounded-full px-6 py-2 text-sm shadow-md hover:shadow-lg transition-all"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold 
+                             rounded-full px-6 py-2 text-xs shadow-md hover:shadow-lg transition-all"
                   type="submit"
                 >
                   Submit Feedback

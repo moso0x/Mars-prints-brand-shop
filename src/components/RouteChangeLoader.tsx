@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const RouteChangeLoader = () => {
   const location = useLocation();
@@ -11,8 +11,6 @@ const RouteChangeLoader = () => {
     const timer = setTimeout(() => setLoading(false), 2000); // simulate load time
     return () => clearTimeout(timer);
   }, [location]);
-
-  const colors = ["#FF6B00", "#1E1E2E", "#00C4B3"];
 
   return (
     <AnimatePresence>
@@ -25,36 +23,59 @@ const RouteChangeLoader = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {/* Pendulum Dots */}
-          <div className="flex gap-4">
-            {colors.map((color, i) => (
-              <motion.div
-                key={i}
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: color }}
-                animate={{
-                  rotate: [15, -15, 15], // swing angle
-                  y: [0, -10, 0],        // small vertical motion for pendulum effect
-                }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  delay: i * 0.2,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
+          {/* CSS Loader */}
+          <div className="loader" />
 
           <motion.p
-            className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-200 tracking-wide"
-            initial={{ opacity: 0, y: 8 }}
+            className="mt-6 text-xs font-medium text-gray-700 dark:text-gray-200 tracking-wide"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
             Please wait, Loading...
           </motion.p>
+
+          {/* CSS styles */}
+          <style>{`
+         .loader {
+  width: 50px;
+  height: 28px;
+  --_g: no-repeat radial-gradient(farthest-side,#000 94%,#0000);
+  background:
+    var(--_g) 50%  0,
+    var(--_g) 100% 0;
+  background-size: 6px 6px;
+  position: relative;
+  animation: l23-0 1.5s linear infinite;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  height: 6px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #0905f7ff;
+  left:0;
+  top:0;
+  animation: 
+    l23-1 1.5s linear infinite,
+    l23-2 0.5s cubic-bezier(0,200,.8,200) infinite;
+}
+@keyframes l23-0 {
+  0%,31%  {background-position: 50% 0   ,100% 0}
+  33%     {background-position: 50% 100%,100% 0}
+  43%,64% {background-position: 50% 0   ,100% 0}
+  66%     {background-position: 50% 0   ,100% 100%}
+  79%     {background-position: 50% 0   ,100% 0}
+  100%    {transform:translateX(calc(-100%/3))}
+}
+@keyframes l23-1 {
+  100% {left:calc(100% + 7px)}
+}
+@keyframes l23-2 {
+  100% {top:-0.1px}
+}
+          `}</style>
         </motion.div>
       )}
     </AnimatePresence>
@@ -62,3 +83,5 @@ const RouteChangeLoader = () => {
 };
 
 export default RouteChangeLoader;
+
+/* HTML: <div class="loader"></div> */

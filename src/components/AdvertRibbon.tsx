@@ -172,7 +172,7 @@ const AdvertRibbon = () => {
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.25, duration: 0.4 }}
-                  className="font-bold text-base sm:text-lg text-black"
+                  className="font-bold text-base sm:text-lg text-[#57595B]"
                 >
                   {advertisements[currentAd].title}
                 </motion.h3>

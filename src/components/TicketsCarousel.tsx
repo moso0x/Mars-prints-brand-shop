@@ -15,16 +15,16 @@ export const TicketsCarousel = () => {
         Events
       </h2>
       <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto mb-12">
-        “In addition to our printing services, we also offer a convenient ticket booking service right on our website—making it easy for you to book events anytime, anywhere.”
+        In addition to our printing services, we also offer a convenient ticket booking service right on our website—making it easy for you to book events anytime, anywhere.
       </p>
 
-      <Carousel images={images} />
+
 
       <div className="mt-12 flex justify-center">
         <Button
           onClick={() => navigate("/TicketsGallery")}
           size="lg"
-          className="bg-black hover:bg-[#FFEB3B] text-white font-semibold px-8 py-6 text-xs rounded-full shadow-lg  transition-all duration-300"
+          className="bg-blue-700 hover:bg-blue-600 text-white font-semibold px-2 text-xs py-1 text-xs rounded-full shadow-lg  transition-all duration-300"
         >
           Go to Ticket Booking Section
         </Button>

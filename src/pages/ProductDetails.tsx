@@ -43,6 +43,17 @@ import corporate5 from "@/assets/thumbnails/corporate5.jpg";
 import corporate from "@/assets/thumbnails/corporate.jpg";
 import mug from "@/assets/mugs.jpg";
 
+import trifold from "@/assets/moreProducts-img/trifold.jpg";
+import poppup from "@/assets/moreProducts-img/poupup-banner.jpg";
+import reflectors from "@/assets/moreProducts-img/reflectors.jpg";
+import reciept from "@/assets/moreProducts-img/receipt.jpg";
+import bscards from "@/assets/moreProducts-img/bs-cards.jpg";
+import weddingcards from "@/assets/moreProducts-img/weddingcards.jpg";
+import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
+import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
+import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
+import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
+
 import { Header } from "@/components/Header";
 import FooterNew from "@/components/FooterNew";
 import { useCart } from "@/contexts/CartContext";
@@ -50,6 +61,86 @@ import { Button } from "@/components/ui/button";
 
 // PRODUCT DATA
 const productData: any = {
+   "trifold": {
+    title: "Trifold Flyer Printing both sides",
+    price: "Starting at Ksh. 300",
+    image: trifold,
+    thumbs: [trifold],
+    description: "High-quality trifold flyers suitable for marketing, events, and promotions.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "poppup": {
+    title: "Poppup Banner Printing",
+    price: "From Ksh. 100 per piece",
+    image: poppup,
+    thumbs: [poppup],
+    description: "Custom popup banners for trade shows, exhibitions, and promotional events.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "reflectors": {
+    title: "Custom Reflector Printing",
+    price: "From Ksh. 250 per card",
+    image: reflectors,
+    thumbs: [reflectors],
+    description: "Custom reflectors for safety, branding, and promotional purposes.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "receipt": {
+    title: "All Sizes Receipt Printing",
+    price: "From Ksh. 150 per flyer",
+    image: reciept,
+    thumbs: [reciept],
+    description: "High-quality receipt printing in various sizes for your business needs.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "bscards": {
+    title: "Custom Business Cards Printing",
+    price: "From Ksh. 2000 per piece",
+    image: bscards,
+    thumbs: [bscards],
+    description: "Professional business cards to create a lasting impression.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "weddingcards": {
+    title: "Wedding & Events Invitation Cards",
+    price: "From Ksh. 150 per piece",
+    image: weddingcards,
+    thumbs: [weddingcards],
+    description: "Elegant wedding and event invitation cards customized to your theme.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "babyshower": {
+    title: "Baby Shower Invitation Cards",
+    price: "From Ksh. 200",
+    image: babyshower,
+    thumbs: [babyshower],
+    description: "Custom baby shower invitations designed for your special occasion.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "adhesive": {
+    title: "Custom Adhesive Stickers",
+    price: "From Ksh. 400 per mug",
+    image: adhesive,
+    thumbs: [adhesive],
+    description: "Custom adhesive stickers for packaging, branding, and promotions.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "teardrop": {
+    title: "Tear Drop Banners Printing",
+    price: "From Ksh. 580",
+    image: teardrop,
+    thumbs: [teardrop],
+    description: "Eye-catching teardrop banners for events, exhibitions, and promotions.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
+  "umbrella": {
+    title: "Custom Corporate Umbrella Printing",
+    price: "From Ksh. 1000",
+    image: umbrella,
+    thumbs: [umbrella],
+    description: "Premium custom umbrellas for corporate gifting and events.",
+    features: ["Ready for pickup in 2-3 days", "Shipping outside Mombasa, 2-days, Wells Fargo from Ksh. 800"]
+  },
   "tote-bags-printing": {
     title: "Tote Bags Printing",
     price: "Starting at Ksh. 300",

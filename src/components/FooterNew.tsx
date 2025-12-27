@@ -1,34 +1,78 @@
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
-import logo from "@/assets/logo.png"
+import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
+
+const servicesList = [
+  "Digital Printing",
+  "Offset Printing",
+  "Branded Notebooks",
+  "Rollup Banners",
+  "Vinyl Stickers",
+  "3D Signages",
+  "Directional Signs",
+  "Car Headrests",
+  "Vinyl Banners",
+  "Media Wall Banners",
+  "Catalogue Stands",
+  "S-banner stands",
+  "Branded Mugs",
+  "Branded Mousepads",
+  "Nametags & Lanyards",
+  "Presentation Folders",
+  "Branded Tshirts",
+  "Framed Photos",
+  "Mounted Photos",
+  "Pop-up Banners",
+  "Door Frame Banners",
+  "Custom Flags",
+  "Teardrop Banners",
+  "Telescopic banners",
+  "A5 Flyers",
+  "A4 Flyers",
+  "Trifold Brochures",
+  "Business Cards",
+  "A5 Brochures",
+  "A4 Brochures",
+  "Posters",
+  "Architectural Blueprints",
+  "Receipt Books",
+  "Document Printing",
+  "PostCards",
+  "Wedding Cards",
+];
 
 export const FooterNew = () => {
   return (
-    <footer className="bg-white text-black py-14 relative overflow-hidden font-poppins">
-      {/* Decorative splash glow */}
-      <div className="absolute inset-0 bg-to-transparent pointer-events-none" />
-
+    <footer className="bg-white text-black py-12 relative overflow-hidden font-poppins text-xs md:text-sm">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
-          <div>
-            <img src={logo} alt="" className="w-[200px] h-[200px]"/>
-         
+          <div className="flex flex-col items-start">
+            <img src={logo} alt="Jelimo Creatives Logo" className="w-40 h-40 mb-4" />
+            <p className="text-blue-700 text-xs">
+              Jelimo Creatives brings your ideas to life with custom printing and branding solutions that make your brand unforgettable.
+            </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-sm text-black">
-              {["About Us", "Services", "Contact", "Feedback"].map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="hover:text-[#05B45E] transition-colors duration-200"
+            <ul className="space-y-1">
+              {[
+                { name: "About Us", path: "/about" },
+                { name: "Shop", path: "/shop" },
+                { name: "Contact", path: "/contact" },
+                { name: "Feedback", path: "/feedback" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="hover:text-[#05B45E] transition-colors text-xs duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -36,114 +80,77 @@ export const FooterNew = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
               Services
             </h4>
-            <ul className="space-y-2 text-sm text-black">
-              {[
-                "Business Cards",
-                "Flyers & Brochures",
-                "Banners",
-                "Mugs & Bottles",
-                "T-shirts",
-              ].map((service) => (
-                <li key={service}>
-                  <a
-                    href="#"
-                    className="hover:text-[#05B45E] transition-colors duration-200"
-                  >
-                    {service}
-                  </a>
-                </li>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 max-h-80 overflow-y-auto">
+              {servicesList.map((service) => (
+                <Link
+                  key={service}
+                  to="./shop"
+                  className="hover:text-blue-600 text-xs transition-colors duration-200 block text-gray-800"
+                >
+                  {service}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4 border-b border-[#05B45E]/40 pb-2">
+            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
               Contact Us
             </h4>
-            <ul className="space-y-2 text-black text-sm">
+            <ul className="space-y-1  text-xs text-black">
               <li>+254 704-904-678</li>
               <li>jelimocreatives@gmail.com</li>
               <li>Mombasa, Kenya</li>
             </ul>
 
-            {/* Social Icons */}
-<div className="flex space-x-4 mt-6">
-  {[
-    { 
-      Icon: Facebook, 
-      color: "#1877F2",
-      link: "https://www.facebook.com/Jelimo_creative" 
-    },
-    { 
-      Icon: Instagram, 
-      color: "#E4405F",
-      link: "https://www.instagram.com/jelimo_creative" 
-    },
-    { 
-      Icon: Twitter, 
-      color: "#1DA1F2",
-      link: "https://twitter.com/Jelimo_creative" 
-    },
-    { 
-      Icon: Linkedin, 
-      color: "#0A66C2",
-      link: "https://www.linkedin.com/company/jelimo-creative" 
-    },
-  ].map(({ Icon, color, link }, i) => (
-    <a
-      key={i}
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-black hover:scale-110 transition-transform duration-200"
-      style={{ color }}
-    >
-      <Icon size={22} />
-    </a>
-  ))}
-</div>
-
+            <div className="flex space-x-3 mt-4">
+              {[
+                { Icon: Facebook, color: "#1877F2", link: "https://www.facebook.com/Jelimo_creative" },
+                { Icon: Instagram, color: "#E4405F", link: "https://www.instagram.com/jelimo_creative" },
+                { Icon: Twitter, color: "#1DA1F2", link: "https://twitter.com/Jelimo_creative" },
+                { Icon: Linkedin, color: "#0A66C2", link: "https://www.linkedin.com/company/jelimo-creative" },
+              ].map(({ Icon, color, link }, i) => (
+                <a
+                  key={i}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform duration-200"
+                  style={{ color }}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-       <div className="flex gap-2 pt-6 text-sm"> 
-        <div className="text-center text-xs text-black border-t border-white/20 ">
-          <p>
-            &copy; {new Date().getFullYear()}{" "}
-            <span className="text-black font-medium">Jelimo Creatives Custom Printing</span>
-            . All rights reserved. Made with{" "}
-            <span className="text-[#D26749]">❤️</span> by{" "}
-            <a
-              href="https://anansiwebworks.netlify.app"
-              className="text-[#05B45E] hover:underline hover:text-white transition-colors"
-            >
-              Anansi Web Works
-            </a>
-          </p>
+        <div className="flex flex-col md:flex-row justify-between gap-2 pt-4 border-t border-gray-200">
+          <div className="text-center md:text-left text-xs text-blue-700">
+            <p>
+              &copy; {new Date().getFullYear()} <span className="font-medium">Jelimo Creatives Custom Printing</span>. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2 text-xs text-black justify-center md:justify-end">
+            <Link to="/privacy" className="hover:text-red-600 transition-colors text-xs">
+              Privacy Policy
+            </Link>
+            <span className="text-red-600">|</span>
+            <span className="hover:text-red-600 cursor-pointer">Terms of Use</span>
+            <span className="text-red-600">|</span>
+            <span className="hover:text-red-600 cursor-pointer">Return Policy</span>
+            <span className="text-red-600">|</span>
+            <span className="hover:text-red-600 cursor-pointer">Cookie Policy</span>
+            <span className="text-red-600">|</span>
+            <span className="hover:text-red-600 cursor-pointer">All Products</span>
+          </div>
         </div>
-      </div>
-              <div className="flex gap-2 pt-6 text-xs justify-end text-black">
-              <a href="/privacy"><p className="hover:text-red-600 transition-colors cursor-pointer"> Privacy Policy</p></a>
-              <span className="text-red-600">|</span>
-
-              <p className="hover:text-red-600 transition-colors cursor-pointer">Terms of Use</p>
-              <span className="text-red-600">|</span>
-
-              <p className="hover:text-red-600 transition-colors cursor-pointer">Return Policy</p>
-              <span className="text-red-600">|</span>
-
-              <p className="hover:text-red-600 transition-colors cursor-pointer">Cookie Policy</p>
-              <span className="text-red-600">|</span>
-
-              <p className="hover:text-red-600 transition-colors cursor-pointer">All Products</p>
-            </div>
-
-       
       </div>
     </footer>
   );

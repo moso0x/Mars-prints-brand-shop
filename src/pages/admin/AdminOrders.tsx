@@ -78,8 +78,7 @@ const AdminOrders = () => {
 
       if (error) throw error;
       setOrders(data || []);
-    } catch (error) {
-      console.error("Error fetching orders:", error);
+    } catch {
       toast.error("Failed to load orders");
     } finally {
       setLoading(false);
@@ -87,17 +86,12 @@ const AdminOrders = () => {
   };
 
   const fetchOrderItems = async (orderId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from("order_items")
-        .select("*")
-        .eq("order_id", orderId);
+    const { data } = await supabase
+      .from("order_items")
+      .select("*")
+      .eq("order_id", orderId);
 
-      if (error) throw error;
-      setOrderItems(data || []);
-    } catch (error) {
-      console.error("Error fetching order items:", error);
-    }
+    setOrderItems(data || []);
   };
 
   const viewOrderDetails = async (order: Order) => {
@@ -108,24 +102,18 @@ const AdminOrders = () => {
 
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
     setUpdatingStatus(orderId);
-    try {
-      const { error } = await supabase
-        .from("orders")
-        .update({ payment_status: newStatus })
-        .eq("id", orderId);
+    const { error } = await supabase
+      .from("orders")
+      .update({ payment_status: newStatus })
+      .eq("id", orderId);
 
-      if (error) throw error;
-      
-      setOrders(orders.map(order => 
-        order.id === orderId ? { ...order, payment_status: newStatus } : order
+    if (!error) {
+      setOrders(orders.map(o =>
+        o.id === orderId ? { ...o, payment_status: newStatus } : o
       ));
-      toast.success(`Order status updated to ${newStatus}`);
-    } catch (error) {
-      console.error("Error updating order status:", error);
-      toast.error("Failed to update order status");
-    } finally {
-      setUpdatingStatus(null);
+      toast.success("Order status updated");
     }
+    setUpdatingStatus(null);
   };
 
   const getStatusIcon = (status: string) => {
@@ -140,29 +128,20 @@ const AdminOrders = () => {
   };
 
   const getStatusBadge = (status: string) => {
-    const variants: Record<string, string> = {
+    const map: Record<string, string> = {
       completed: "bg-green-100 text-green-800",
       pending: "bg-yellow-100 text-yellow-800",
       cancelled: "bg-red-100 text-red-800",
     };
-    return variants[status] || variants.pending;
+    return map[status] || map.pending;
   };
 
-  const filteredOrders = orders.filter((order) => {
-    const matchesSearch =
-      order.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer_email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || order.payment_status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
+  const filteredOrders = orders.filter(o =>
+    (o.customer_name + o.customer_email)
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase()) &&
+    (statusFilter === "all" || o.payment_status === statusFilter)
+  );
 
   return (
     <motion.div
@@ -170,33 +149,32 @@ const AdminOrders = () => {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold">Orders</h2>
-          <p className="text-muted-foreground">Manage customer orders</p>
-        </div>
+      <div>
+        <h2 className="text-3xl font-bold text-blue-700">Orders</h2>
+        <p className="text-blue-600/70">Manage customer orders</p>
       </div>
 
       {/* Filters */}
-      <Card>
+      <Card className="border-blue-100">
         <CardContent className="p-4">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400" />
               <Input
+                className="pl-10 focus-visible:ring-blue-500"
                 placeholder="Search orders..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
               />
             </div>
+
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-48">
-                <Filter size={16} className="mr-2" />
-                <SelectValue placeholder="Filter by status" />
+              <SelectTrigger className="w-48 border-blue-200 focus:ring-blue-500">
+                <Filter size={16} className="mr-2 text-blue-500" />
+                <SelectValue placeholder="Filter status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
+                <SelectItem value="all">All</SelectItem>
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="completed">Completed</SelectItem>
                 <SelectItem value="cancelled">Cancelled</SelectItem>
@@ -207,45 +185,49 @@ const AdminOrders = () => {
       </Card>
 
       {/* Orders Table */}
-      <Card>
+      <Card className="border-blue-100">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-blue-700">
             <Package size={20} />
-            All Orders ({filteredOrders.length})
+            Orders ({filteredOrders.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Order ID</TableHead>
+              <TableRow className="bg-blue-50">
+                <TableHead>Order</TableHead>
                 <TableHead>Customer</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Payment</TableHead>
                 <TableHead>Date</TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead />
               </TableRow>
             </TableHeader>
+
             <TableBody>
-              {filteredOrders.map((order) => (
+              {filteredOrders.map(order => (
                 <TableRow key={order.id}>
-                  <TableCell className="font-mono text-xs">
-                    {order.id.slice(0, 8)}...
+                  <TableCell className="font-mono text-xs text-blue-600">
+                    {order.id.slice(0, 8)}…
                   </TableCell>
+
                   <TableCell>
-                    <div>
-                      <p className="font-medium">{order.customer_name}</p>
-                      <p className="text-xs text-muted-foreground">{order.customer_email}</p>
-                    </div>
+                    <p className="font-medium">{order.customer_name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {order.customer_email}
+                    </p>
                   </TableCell>
-                  <TableCell className="font-semibold">
-                    KSh {Number(order.total_amount).toLocaleString()}
+
+                  <TableCell className="font-semibold text-blue-700">
+                    KSh {order.total_amount.toLocaleString()}
                   </TableCell>
+
                   <TableCell>
                     <Select
                       value={order.payment_status}
-                      onValueChange={(value) => updateOrderStatus(order.id, value)}
+                      onValueChange={(v) => updateOrderStatus(order.id, v)}
                       disabled={updatingStatus === order.id}
                     >
                       <SelectTrigger className={`w-32 ${getStatusBadge(order.payment_status)}`}>
@@ -261,89 +243,99 @@ const AdminOrders = () => {
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell className="capitalize">{order.payment_method}</TableCell>
+
+                  <TableCell className="capitalize">
+                    {order.payment_method}
+                  </TableCell>
+
                   <TableCell>
                     {new Date(order.created_at).toLocaleDateString()}
                   </TableCell>
+
                   <TableCell>
                     <Button
-                      variant="ghost"
                       size="sm"
+                      variant="ghost"
+                      className="text-blue-600 hover:bg-blue-50"
                       onClick={() => viewOrderDetails(order)}
                     >
-                      <Eye size={16} />
+                      <Eye size={16} /> View
                     </Button>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-
-          {filteredOrders.length === 0 && (
-            <div className="text-center py-8 text-muted-foreground">
-              No orders found
-            </div>
-          )}
         </CardContent>
       </Card>
-
       {/* Order Details Dialog */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Order Details</DialogTitle>
-          </DialogHeader>
-          {selectedOrder && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm text-muted-foreground">Customer Name</p>
-                  <p className="font-medium">{selectedOrder.customer_name}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">{selectedOrder.customer_email}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium">{selectedOrder.customer_phone}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Payment Method</p>
-                  <p className="font-medium capitalize">{selectedOrder.payment_method}</p>
-                </div>
-              </div>
+<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+  <DialogContent className="max-w-2xl border-blue-200">
+    <DialogHeader>
+      <DialogTitle className="text-blue-700">
+        Order Details
+      </DialogTitle>
+    </DialogHeader>
 
-              <div>
-                <h4 className="font-semibold mb-2">Order Items</h4>
-                <div className="space-y-2">
-                  {orderItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex justify-between items-center p-3 bg-muted rounded-lg"
-                    >
-                      <div>
-                        <p className="font-medium">{item.product_title}</p>
-                        <p className="text-sm text-muted-foreground">
-                          Qty: {item.quantity}
-                        </p>
-                      </div>
-                      <p className="font-semibold">{item.product_price}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+    {selectedOrder && (
+      <div className="space-y-6">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-sm text-muted-foreground">Customer Name</p>
+            <p className="font-medium">{selectedOrder.customer_name}</p>
+          </div>
 
-              <div className="flex justify-between items-center pt-4 border-t">
-                <span className="text-lg font-semibold">Total</span>
-                <span className="text-2xl font-bold text-primary">
-                  KSh {Number(selectedOrder.total_amount).toLocaleString()}
-                </span>
+          <div>
+            <p className="text-sm text-muted-foreground">Email</p>
+            <p className="font-medium">{selectedOrder.customer_email}</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-muted-foreground">Phone</p>
+            <p className="font-medium">{selectedOrder.customer_phone}</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-muted-foreground">Payment Method</p>
+            <p className="font-medium capitalize">
+              {selectedOrder.payment_method}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h4 className="font-semibold mb-2 text-blue-700">Order Items</h4>
+          <div className="space-y-2">
+            {orderItems.map((item) => (
+              <div
+                key={item.id}
+                className="flex justify-between items-center p-3 rounded-lg bg-blue-50"
+              >
+                <div>
+                  <p className="font-medium">{item.product_title}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Qty: {item.quantity}
+                  </p>
+                </div>
+                <p className="font-semibold">
+                  {item.product_price}
+                </p>
               </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center pt-4 border-t">
+          <span className="text-lg font-semibold">Total</span>
+          <span className="text-2xl font-bold text-blue-700">
+            KSh {Number(selectedOrder.total_amount).toLocaleString()}
+          </span>
+        </div>
+      </div>
+    )}
+  </DialogContent>
+</Dialog>
+
     </motion.div>
   );
 };

@@ -41,8 +41,7 @@ const AdminCustomers = () => {
 
       if (error) throw error;
       setCustomers(data || []);
-    } catch (error) {
-      console.error("Error fetching customers:", error);
+    } catch {
       toast.error("Failed to load customers");
     } finally {
       setLoading(false);
@@ -50,27 +49,25 @@ const AdminCustomers = () => {
   };
 
   const filteredCustomers = customers.filter(
-    (customer) =>
-      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
+    (c) =>
+      c.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getInitials = (name: string | null, email: string) => {
-    if (name) {
-      return name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2);
-    }
-    return email[0].toUpperCase();
-  };
+  const getInitials = (name: string | null, email: string) =>
+    name
+      ? name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase()
+      : email[0].toUpperCase();
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
       </div>
     );
   }
@@ -82,38 +79,43 @@ const AdminCustomers = () => {
       className="space-y-6"
     >
       <div>
-        <h2 className="text-3xl font-bold">Customers</h2>
-        <p className="text-muted-foreground">View and manage customer accounts</p>
+        <h2 className="text-3xl font-bold text-blue-700">Customers</h2>
+        <p className="text-blue-600/70">
+          View and manage customer accounts
+        </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="border-blue-100">
           <CardContent className="p-6 flex items-center gap-4">
-            <div className="p-3 bg-primary/10 rounded-full">
-              <Users className="text-primary" size={24} />
+            <div className="p-3 bg-blue-100 rounded-full">
+              <Users className="text-blue-600" size={24} />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Total Customers</p>
-              <p className="text-2xl font-bold">{customers.length}</p>
+              <p className="text-2xl font-bold text-blue-700">
+                {customers.length}
+              </p>
             </div>
           </CardContent>
         </Card>
-        <Card>
+
+        <Card className="border-blue-100">
           <CardContent className="p-6 flex items-center gap-4">
-            <div className="p-3 bg-green-500/10 rounded-full">
-              <Calendar className="text-green-500" size={24} />
+            <div className="p-3 bg-blue-100 rounded-full">
+              <Calendar className="text-blue-600" size={24} />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">This Month</p>
-              <p className="text-2xl font-bold">
+              <p className="text-2xl font-bold text-blue-700">
                 {
                   customers.filter((c) => {
-                    const date = new Date(c.created_at);
-                    const now = new Date();
+                    const d = new Date(c.created_at);
+                    const n = new Date();
                     return (
-                      date.getMonth() === now.getMonth() &&
-                      date.getFullYear() === now.getFullYear()
+                      d.getMonth() === n.getMonth() &&
+                      d.getFullYear() === n.getFullYear()
                     );
                   }).length
                 }
@@ -121,72 +123,87 @@ const AdminCustomers = () => {
             </div>
           </CardContent>
         </Card>
-        <Card>
+
+        <Card className="border-blue-100">
           <CardContent className="p-6 flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 rounded-full">
-              <Mail className="text-blue-500" size={24} />
+            <div className="p-3 bg-blue-100 rounded-full">
+              <Mail className="text-blue-600" size={24} />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Verified Emails</p>
-              <p className="text-2xl font-bold">{customers.length}</p>
+              <p className="text-2xl font-bold text-blue-700">
+                {customers.length}
+              </p>
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Search */}
-      <Card>
+      <Card className="border-blue-100">
         <CardContent className="p-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+            <Search
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400"
+              size={20}
+            />
             <Input
               placeholder="Search customers by name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-10 focus-visible:ring-blue-500"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* Customers Table */}
-      <Card>
+      <Card className="border-blue-100">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-blue-700">
             <Users size={20} />
             All Customers ({filteredCustomers.length})
           </CardTitle>
         </CardHeader>
+
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow>
+              <TableRow className="bg-blue-50">
                 <TableHead>Customer</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Joined</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {filteredCustomers.map((customer) => (
                 <TableRow key={customer.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar>
-                        <AvatarImage src={customer.avatar_url || undefined} />
-                        <AvatarFallback>
-                          {getInitials(customer.full_name, customer.email)}
+                        <AvatarImage
+                          src={customer.avatar_url || undefined}
+                        />
+                        <AvatarFallback className="bg-blue-100 text-blue-700">
+                          {getInitials(
+                            customer.full_name,
+                            customer.email
+                          )}
                         </AvatarFallback>
                       </Avatar>
+
                       <div>
                         <p className="font-medium">
                           {customer.full_name || "No name"}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          ID: {customer.id.slice(0, 8)}...
+                          ID: {customer.id.slice(0, 8)}…
                         </p>
                       </div>
                     </div>
                   </TableCell>
+
                   <TableCell>{customer.email}</TableCell>
                   <TableCell>
                     {new Date(customer.created_at).toLocaleDateString()}

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {
   Search,
   Phone,
-  Clock,
   MapPin,
   ChevronDown,
   User,
@@ -21,22 +20,47 @@ import { toast } from "react-hot-toast";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 import logo from "@/assets/logo.png";
 import AdvertRibbon from "./AdvertRibbon";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
+import trifold from "@/assets/moreProducts-img/trifold.jpg";
+import poppup from "@/assets/moreProducts-img/poupup-banner.jpg";
+import reflectors from "@/assets/moreProducts-img/reflectors.jpg";
+import reciept from "@/assets/moreProducts-img/receipt.jpg";
+import bscards from "@/assets/moreProducts-img/bs-cards.jpg";
+import caps from "@/assets/moreProducts-img/caps.jpg";
+import hoodie from "@/assets/moreProducts-img/hoodie.jpg";
+import weddingcards from "@/assets/moreProducts-img/weddingcards.jpg";
+import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
+import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
+import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
+import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
+
+const products = [
+  { title: "Trifold Flyer Printing both sides", price: "Starting at Ksh. 300", image: trifold, link: "/product/trifold" },
+  { title: "Poppup Banner Printing", price: "From Ksh. 100 per piece", image: poppup, link: "/product/poppup" },
+  { title: "Custom Reflector Printing", price: "From Ksh. 250 per card", image: reflectors, link: "/product/reflectors" },
+  { title: "All Sizes receipt Printing", price: "From Ksh. 150 per flyer", image: reciept, link: "/product/receipt" },
+  { title: "Campaign Custom Caps Printing", price: "From Ksh. 200 per piece", image: caps, link: "/product/caps" },
+  { title: "Custom Business Cards Printing", price: "From Ksh. 2000 per piece", image: bscards, link: "/product/bscards" },
+  { title: "Custom All kinds of Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie, link: "/product/hoodie" },
+  { title: "Custom Corporate Umbrella Printing", price: "From Ksh. 1000", image: umbrella, link: "/product/umbrella" },
+  { title: "Wedding & Events Invitation cards", price: "From Ksh. 150 per piece", image: weddingcards, link: "/product/weddingcards" },
+  { title: "Baby Shower invitation Cards", price: "From Ksh. 200", image: babyshower, link: "/product/babyshower" },
+  { title: "Custom Adhesive Stickers", price: "From Ksh. 400 per mug", image: adhesive, link: "/product/adhesive" },
+  { title: "Tear Drop Banners Printing", price: "From Ksh. 580", image: teardrop, link: "/product/teardrop" },
+];
+
 export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // ✅ Added
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+
   const COLORS = {
-    brightBlue: "#0052CC",
-    lightBlue: "#FF5B2E",
-    limeGreen: "#00FF66",
-    orange: "#71acdbff",
-    deepNavy: "#0D1B5E",
+    primaryGray: "#57595B",
+    primaryDark: "#A0E4CB",
   };
 
-  // ✅ Search handler
   const handleSearch = () => {
     if (!searchQuery.trim()) return;
     navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
@@ -64,107 +88,68 @@ export const Header = () => {
   };
 
   return (
-    <header className="w-full font-sans">
-      {/* --- Top Bar --- */}
+    <header className="w-full font-sans text-xs">
+      {/* Top Bar */}
       <div className="bg-white border-b border-gray-200 py-2">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-[#0D1B5E]">
-
-          {/* Contact Info */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8">
-
-            <a
-              href="tel:+254704904678"
-              className="flex items-center gap-1 hover:opacity-80"
-            >
-              <Phone className="text-black w-4 h- md:w-8 md:h-8" />
-              <span className="font-medium text-sm ">+254 704-904-678</span>
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-3">
+          <div className="flex gap-6">
+            <a href="tel:+254704904678" className="flex items-center gap-1" style={{ color: COLORS.primaryGray }}>
+              <Phone className="w-4 h-4" /> +254 704-904-678
             </a>
-
-            <div className="flex items-center gap-1">
-              <MapPin className="text-black w-4 h-4 md:w-8 md:h-8" />
-              <span className="font-medium text-sm ">Mombasa, Kenya</span>
+            <div className="flex items-center gap-1" style={{ color: COLORS.primaryGray }}>
+              <MapPin className="w-4 h-4" /> Mombasa, Kenya
             </div>
-
-            {/* <div className="flex items-center gap-1">
-              <Clock className="text-black w-4 h-4 md:w-8 md:h-8" />
-              <span className="font-medium text-sm ">Mon - Sat: 8am - 6pm</span>
-            </div> */}
           </div>
 
-          {/* Advertisement */}
-          <div className="w-[600px] mx-auto md:mx-0">
+          <div className="w-[600px] mx-auto bg-[#CFF5E7]">
             <AdvertRibbon />
           </div>
 
-          {/* User Controls */}
-          <div className="flex items-center justify-center md:justify-end gap-3">
+          <div className="flex items-center gap-3">
             {user ? (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleLogout}
-                className="text-[#FF5B2E]"
-              >
-                <LogOut className="h-5 w-5 mr-1 text-[#FF5B2E]" /> Logout
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-1" /> Logout
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild className="text-black">
+              <Button variant="ghost" size="sm" asChild>
                 <Link to="/auth">
-                  <User className="h-5 w-5 mr-1 text-[#FF5B2E]" /> Login
+                  <User className="w-4 h-4 mr-1" /> <span className="text-xs text-gray-900 hover:text-gray-800">Login</span> 
                 </Link>
               </Button>
             )}
-
-          <Cart  />
+            <Cart />
             <Button variant="ghost" className="p-0">
-              <Heart className="h-7 w-7 text-[#FF5B2E]" />
+              <Heart className="w-5 h-5" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* --- Main Navigation --- */}
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg"
-      >
+      {/* Main Nav */}
+      <div className="sticky top-0 z-50 bg-white shadow-md">
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
-
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex items-center justify-center">
-            <motion.img
-              src={logo}
-              alt="Jelimo Creatives Logo"
-              className="h-[100px] sm:h-[120px] object-contain"
-              whileHover={{ scale: 1.05 }}
-            />
+          <Link to="/">
+            <img src={logo} className="h-[100px]" />
           </Link>
 
-          {/* Desktop Nav */}
-          <motion.nav
-            layout
-            className="hidden md:flex items-center gap-3 flex-1 justify-center text-[1rem] font-medium"
-          >
+          <nav className="hidden md:flex items-center gap-4 flex-1 justify-center">
+            {/* Categories */}
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
+              
               <Button
-                className="text-white flex items-center text-xs overflow-hidden relative"
-                style={{ backgroundColor: COLORS.orange }}
+                className="
+                  bg-blue-600 text-white text-xs
+                  border border-blue-600
+                  hover:bg-white hover:text-blue-600
+                  transition-all rounded-full
+                "
               >
-                <motion.span whileHover={{ scale: 0.95 }}>
-                  Shop by Categories
-                </motion.span>
-                <motion.div
-                  animate={{ rotate: isHovered ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="h-4 w-4 ml-2" />
-                </motion.div>
+                Products
+                <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
 
               <AnimatePresence>
@@ -173,154 +158,70 @@ export const Header = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="absolute left-0 mt-2 w-60 text-xs rounded-lg shadow-xl z-[9999] bg-white"
+                    className="absolute left-0 mt-2 w-[1100px] grid grid-cols-8 gap-4 p-4 bg-white rounded-lg shadow-xl"
                   >
-                    {[
-                      ["Apparel & Wearables", "/ApparelWearables"],
-                      ["Mugs  & Water Bottle ", "/MugsBottles"],
-                      ["Promotional & Corporate Gifts", "/PromotionalGifts"],
-                      ["Marketing & Advertising Materials", "/mugs"],
-                      ["Merchandise & Lifestyle Items", "/banners"],
-                      ["Eco-Friendly Branding", "/banners"],
-                      ["Creative & Digital Design Services", "/banners"],
-                      ["Specialty & Custom Finishes", "/banners"],
-                    ].map(([label, link]) => (
-                      <Link
-                        key={label}
-                        to={link}
-                        className="block px-4 py-2 text-xs hover:bg-white hover:text-[#FF5B2E]"
-                      >
-                        {label}
-                      </Link>
-                    ))}
+                                          {products.map((product) => (
+                                  <div
+                                    key={product.title}
+                                    className="
+                                      flex flex-col items-center text-center p-2 rounded-lg
+                                      border border-gray-200 hover:border-blue-400
+                                      hover:shadow-md transition-all
+                                    "
+                                  >
+                                    <img src={product.image} className="w-16 h-16 rounded mb-1" />
+                                    <span className="font-medium">{product.title}</span>
+                                    <span className="text-[0.65rem]">{product.price}</span>
+
+                                    <Button
+                                      variant="outline"
+                                      className="
+                                        mt-1 text-xs rounded-full
+                                        border-blue-500 text-blue-600
+                                        hover:bg-blue-600 hover:text-white
+                                        transition-all px-1
+                                      "
+                                      onClick={() => navigate(`/product/${product.link.split("/").pop()}`)}
+                                    >
+                                      View Details
+                                    </Button>
+                                  </div>
+                                ))}
+
+                  
+
+                   
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Static Nav Links */}
-            {[
-              ["Home", "/"],
-              ["Price List", "/price-list"],
-              ["Shop", "/shop"],
-              ["Contact ", "/contact"],
-              ["Events & Tickets", "/ticketsGallery"],
-              ["Feedback", "/feedback"],
-            ].map(([label, link]) => (
-              <Link to={link} key={label} className="relative group">
-                <motion.div
-                  whileHover={{
-                    scale: 0.8,
-                    backgroundColor: COLORS.orange,
-                    borderRadius: "9999px",
-                    transition: { duration: 0.3 },
-                  }}
-                  className="px-3 py-2 rounded-lg relative"
-                >
-                  <motion.span
-                    whileHover={{ scale: 0.9 }}
-                    style={{
-                      color:
-                        label === "Feedback" ? COLORS.limeGreen : COLORS.deepNavy,
-                    }}
-                  >
-                    {label}
-                    {label === "Events & Tickets" && (
-                      <motion.div
-                        className="absolute -top-2 right-[-5%] w-2.5 h-2.5 rounded-full"
-                        style={{ backgroundColor: COLORS.orange }}
-                        animate={{
-                          scale: [1, 1.5, 1],
-                          opacity: [1, 0.6, 1],
-                        }}
-                        transition={{
-                          duration: 1.2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-                  </motion.span>
-                </motion.div>
+            {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
+              <Link to={item === "Home" ? "/" : `/${item.toLowerCase()}`} key={item}>
+                <span className="px-3 py-2 hover:bg-gray-100 rounded-full text-xs">
+                  {item}
+                </span>
               </Link>
             ))}
-          </motion.nav>
+          </nav>
 
-          {/* -------- SEARCH -------- */}
-          <motion.div layout className="hidden md:flex max-w-sm w-full relative">
-            <Search
-              onClick={handleSearch}
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 cursor-pointer"
-              style={{ color: COLORS.deepNavy }}
-            />
-
+          {/* Search */}
+          <div className="hidden md:flex relative w-72">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              placeholder="Search mugs, hoodies, t-shirts, caps, branding..."
-              className="pl-10 italic text-[1rem] rounded-full border border-gray-200 focus:ring-0"
-              style={{ borderColor: COLORS.lightBlue }}
+              placeholder="Search products..."
+              className="pl-9 placeholder:text-xs rounded-full text-xs"
             />
-          </motion.div>
+          </div>
 
-          {/* Mobile Menu Toggle */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-black"
-          >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </motion.button>
+          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
         </div>
-
-        {/* --- Mobile Menu --- */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden bg-white shadow-lg flex flex-col items-center gap-2 pb-4"
-            >
-              {[
-                ["Home", "/"],
-                ["Price List", "/price-list"],
-                ["Shop", "/shop"],
-                ["Contact Us", "/contact"],
-                ["Events & Tickets", "/events"],
-                ["Feedback", "/feedback"],
-              ].map(([label, link]) => (
-                <Link
-                  key={label}
-                  to={link}
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full text-center py-2 font-medium hover:bg-gray-100 transition relative"
-                >
-                  {label}
-                  {label === "Events & Tickets" && (
-                    <motion.div
-                      className="absolute -top-1 right-[48%] w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: COLORS.orange }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [1, 0.6, 1],
-                      }}
-                      transition={{
-                        duration: 1.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  )}
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      </div>
     </header>
   );
 };

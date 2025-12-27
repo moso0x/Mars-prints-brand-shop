@@ -5,16 +5,26 @@ import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, LayoutGrid, List, ShoppingCart, Loader2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Search,
+  LayoutGrid,
+  List,
+  ShoppingCart,
+  Loader2,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import { supabase } from "@/integrations/supabase/client";
 
-// Default placeholder image
 import totebags from "@/assets/tote-bags-hero.jpg";
 
-// Categories
 const categories = [
   "All Products",
   "Stationery",
@@ -48,7 +58,6 @@ interface Product {
 const Shop = () => {
   const { addToCart } = useCart();
 
-  // STATES
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
@@ -72,17 +81,20 @@ const Shop = () => {
       if (error) throw error;
       setProducts(data || []);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
-  // FILTER & SORT
   const filteredProducts = products
-    .filter(product => {
-      const matchesCategory = selectedCategory === "All Products" || product.category === selectedCategory;
-      const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
+    .filter((product) => {
+      const matchesCategory =
+        selectedCategory === "All Products" ||
+        product.category === selectedCategory;
+      const matchesSearch = product.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     })
     .sort((a, b) => {
@@ -92,16 +104,11 @@ const Shop = () => {
       return 0;
     });
 
-  const getProductImage = (product: Product) => {
-    if (product.images && product.images.length > 0 && product.images[0]) {
-      return product.images[0];
-    }
-    return totebags;
-  };
+  const getProductImage = (product: Product) =>
+    product.images?.[0] || totebags;
 
-  const formatPrice = (price: number) => {
-    return `From Ksh. ${price.toLocaleString()}`;
-  };
+  const formatPrice = (price: number) =>
+    `From Ksh. ${price.toLocaleString()}`;
 
   return (
     <PageTransition>
@@ -109,29 +116,30 @@ const Shop = () => {
         <Header />
 
         {/* HERO */}
-        <section className="relative h-20 bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
-          <div className="relative text-center text-primary-foreground">
-            <h1 className="text-4xl font-bold">Shop</h1>
-            <p className="text-lg">Home / Shop</p>
+        <section className="h-20 bg-white flex items-center justify-center">
+          <div className="text-center text-black">
+            <h1 className="text-3xl font-bold">Shop</h1>
+            <p className="text-sm opacity-90">Home / Shop</p>
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            
             {/* SIDEBAR */}
-            <aside className="lg:col-span-1">
-              <Card className="p-6">
-                <h3 className="text-xl font-bold mb-4">Product Categories</h3>
-                <ul className="space-y-2">
-                  {categories.map(category => (
+            <aside>
+              <Card className="p-5">
+                <h3 className="text-sm font-bold text-gray-700 mb-3">
+                  Product Categories
+                </h3>
+                <ul className="space-y-1">
+                  {categories.map((category) => (
                     <li key={category}>
                       <button
                         onClick={() => setSelectedCategory(category)}
-                        className={`w-full text-left px-3 py-2 rounded ${
+                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition ${
                           selectedCategory === category
-                            ? "bg-primary text-primary-foreground"
-                            : "hover:bg-accent"
+                            ? "bg-blue-600 text-white"
+                            : "hover:bg-blue-50 text-gray-700"
                         }`}
                       >
                         {category}
@@ -142,36 +150,34 @@ const Shop = () => {
               </Card>
             </aside>
 
-            {/* MAIN CONTENT */}
+            {/* MAIN */}
             <main className="lg:col-span-3">
-
-              {/* SEARCH + FILTER */}
+              {/* SEARCH + VIEW */}
               <div className="mb-6 space-y-4">
                 <div className="flex flex-col sm:flex-row justify-between gap-4">
-
-                  {/* SEARCH */}
                   <div className="relative w-full sm:w-96">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-blue-400" />
                     <Input
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 text-xs"
                     />
                   </div>
 
-                  {/* VIEW MODE */}
                   <div className="flex gap-2">
                     <Button
-                      variant={viewMode === "grid" ? "default" : "outline"}
                       size="icon"
+                      variant={viewMode === "grid" ? "default" : "outline"}
+                      className="text-blue-600"
                       onClick={() => setViewMode("grid")}
                     >
                       <LayoutGrid className="h-4 w-4" />
                     </Button>
                     <Button
-                      variant={viewMode === "list" ? "default" : "outline"}
                       size="icon"
+                      variant={viewMode === "list" ? "default" : "outline"}
+                      className="text-blue-600"
                       onClick={() => setViewMode("list")}
                     >
                       <List className="h-4 w-4" />
@@ -179,34 +185,34 @@ const Shop = () => {
                   </div>
                 </div>
 
-                {/* SORT */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <p className="text-muted-foreground">
-                    Showing {Math.min(visibleCount, filteredProducts.length)} of {filteredProducts.length} results
+                <div className="flex justify-between items-center text-xs">
+                  <p className="text-blue-700">
+                    Showing {Math.min(visibleCount, filteredProducts.length)} of{" "}
+                    {filteredProducts.length}
                   </p>
 
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full sm:w-64">
-                      <SelectValue placeholder="Default sorting" />
+                    <SelectTrigger className="w-56 text-xs">
+                      <SelectValue placeholder="Sort" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="default">Default sorting</SelectItem>
-                      <SelectItem value="name">Sort by name</SelectItem>
-                      <SelectItem value="price-low">Price: Low to High</SelectItem>
-                      <SelectItem value="price-high">Price: High to Low</SelectItem>
+                      <SelectItem value="default">Default</SelectItem>
+                      <SelectItem value="name">Name</SelectItem>
+                      <SelectItem value="price-low">Price ↑</SelectItem>
+                      <SelectItem value="price-high">Price ↓</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
 
-              {/* LOADING STATE */}
+              {/* LOADING */}
               {loading && (
-                <div className="flex items-center justify-center py-12">
-                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <div className="flex justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
                 </div>
               )}
 
-              {/* PRODUCT GRID */}
+              {/* PRODUCTS */}
               {!loading && (
                 <div
                   className={
@@ -215,39 +221,50 @@ const Shop = () => {
                       : "space-y-4"
                   }
                 >
-                  {filteredProducts.slice(0, visibleCount).map((product, index) => (
+                  {filteredProducts.slice(0, visibleCount).map((product) => (
                     <motion.div
                       key={product.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.2, delay: index * 0.05 }}
                     >
-                      <Card className={`overflow-hidden hover:shadow-lg transition-shadow group ${viewMode == "list" ? "flex" : ""}`}>
-                        {/* IMAGE */}
-                        <div className={`${viewMode === "list" ? "w-32" : "aspect-square"} overflow-hidden bg-gray-100`}>
-                          <motion.img
+                      <Card
+                        className={`overflow-hidden hover:shadow-md transition ${
+                          viewMode === "list" ? "flex" : ""
+                        }`}
+                      >
+                        <div
+                          className={`${
+                            viewMode === "list"
+                              ? "w-32"
+                              : "aspect-square"
+                          } bg-gray-100`}
+                        >
+                          <img
                             src={getProductImage(product)}
-                            alt={product.title}
                             className="w-full h-full object-cover"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
                           />
                         </div>
 
-                        {/* DETAILS */}
                         <div className="p-3 flex-1">
-                          <h3 className="font-semibold text-sm mb-1">{product.title}</h3>
-                          <p className="text-black font-medium text-sm mb-2 text-red-400">{formatPrice(product.price)}</p>
+                          <h3 className="font-semibold text-xs mb-1">
+                            {product.title}
+                          </h3>
+                          <p className="text-blue-600 text-xs font-medium mb-2">
+                            {formatPrice(product.price)}
+                          </p>
 
-                        <Button
-                            className="w-full bg-black hover:bg-[#e04e1e] text-white text-xs py-1 rounded-full"
-                            onClick={() => addToCart({
-                              title: product.title,
-                              price: formatPrice(product.price),
-                              image: getProductImage(product)
-                            })}
+                          <Button
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-full"
+                            onClick={() =>
+                              addToCart({
+                                title: product.title,
+                                price: formatPrice(product.price),
+                                image: getProductImage(product),
+                              })
+                            }
                           >
-                            <ShoppingCart className="h-4 w-4 mr-1" /> Add to Cart
+                            <ShoppingCart className="h-4 w-4 mr-1" />
+                            Add to Cart
                           </Button>
                         </div>
                       </Card>
@@ -256,22 +273,14 @@ const Shop = () => {
                 </div>
               )}
 
-              {/* LOAD MORE BUTTON */}
               {!loading && visibleCount < filteredProducts.length && (
-                <div className="flex justify-center mt-10">
+                <div className="flex justify-center mt-8">
                   <Button
-                    onClick={() => setVisibleCount(prev => prev + 10)}
-                    className="px-6 py-2 text-xs bg-black text-white rounded-full hover:bg-[#e04e1e]"
+                    className="bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-full px-6"
+                    onClick={() => setVisibleCount((p) => p + 10)}
                   >
-                    Load More products...
+                    Load More
                   </Button>
-                </div>
-              )}
-
-              {/* EMPTY STATE */}
-              {!loading && filteredProducts.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground text-lg">No products found.</p>
                 </div>
               )}
             </main>

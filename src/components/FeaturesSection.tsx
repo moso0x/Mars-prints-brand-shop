@@ -16,7 +16,7 @@ import corporate from "@/assets/corporate.jpg";
 import mug from "@/assets/mugs.jpg";
 
 const features = [
-    { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
+  { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
   { title: "2026 Calendar Printing", price: "From Ksh. 100 per piece", image: calenders },
   { title: "Custom Shirt Printing", price: "From Ksh. 250 per card", image: custom_shirt },
   { title: "A5 Flyers Printing", price: "From Ksh. 150 per flyer", image: flyers },
@@ -26,10 +26,7 @@ const features = [
   { title: "Mounted Photos Printing", price: "From Ksh. 700", image: mounted },
   { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
-//   { title: "Custom Mugs Printing", price: "From Ksh. 400 per mug", image: mug },
-//   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
 ];
-
 
 export const FeaturesSection = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
@@ -40,6 +37,7 @@ export const FeaturesSection = () => {
         ? prev.filter((item) => item !== title)
         : [...prev, title]
     );
+
     toast.success(
       wishlist.includes(title)
         ? "Removed from wishlist"
@@ -51,6 +49,7 @@ export const FeaturesSection = () => {
     const shareUrl = `${window.location.origin}/product/${title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")}`;
+
     navigator.clipboard.writeText(shareUrl);
     toast.success("Link copied to clipboard 📋");
   };
@@ -66,12 +65,16 @@ export const FeaturesSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          {/* Heading (unchanged size) */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-             Creative Printing & Branding Solutions
+            Creative Printing & Branding Solutions
           </h2>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
+
+          {/* Body text xs */}
+          <p className="text-xs text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             At Jelimo Creatives, we provide a full range of branding, design, and
-            printing services — from promotional items to complete brand identity development.
+            printing services — from promotional items to complete brand identity
+            development.
           </p>
         </motion.div>
 
@@ -80,7 +83,10 @@ export const FeaturesSection = () => {
           {features.map((feature, index) => {
             const shortDescription =
               feature.price.split(" ").slice(0, 3).join(" ") + "...";
-            const slug = feature.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+            const slug = feature.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-");
 
             return (
               <motion.div
@@ -90,16 +96,14 @@ export const FeaturesSection = () => {
                 className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
               >
                 <div className="relative">
-                  {/* Image */}
                   <motion.img
                     src={feature.image}
                     alt={feature.title}
                     className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
                   />
 
-                  {/* Wishlist + Share Icons */}
+                  {/* Icons */}
                   <div className="absolute top-2 right-2 flex gap-2">
-                    {/* Wishlist */}
                     <button
                       onClick={() => handleWishlistToggle(feature.title)}
                       className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
@@ -114,7 +118,6 @@ export const FeaturesSection = () => {
                       />
                     </button>
 
-                    {/* Share */}
                     <button
                       onClick={() => handleShare(feature.title)}
                       className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
@@ -124,19 +127,20 @@ export const FeaturesSection = () => {
                   </div>
                 </div>
 
-                <div className="p-3 text-center transition-colors duration-300 hover:bg-gray-50">
+                <div className="p-3 text-center hover:bg-gray-50 transition-colors">
+                  {/* Card heading (kept larger) */}
                   <h3 className="text-base font-semibold mb-1 text-primary">
                     {feature.title}
                   </h3>
+
+                  {/* xs text */}
                   <p className="text-xs text-muted-foreground leading-snug mb-2">
                     {shortDescription}
                   </p>
+
                   <Link to={`/product/${slug}`}>
-                    <button
-                      className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 
-                                 hover:bg-green-600 hover:text-white transition-all duration-300"
-                    >
-                     Order now 
+                    <button className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 hover:bg-green-600 hover:text-white transition-all duration-300">
+                      Order now
                     </button>
                   </Link>
                 </div>
@@ -152,12 +156,14 @@ export const FeaturesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-lg font-semibold mb-4">
+          {/* CTA heading kept larger */}
+          <p className="text-base font-semibold mb-4">
             Have an idea or project you’d like to bring to life?
           </p>
+
           <a
             href="/contact"
-            className="inline-block rounded-full bg-black text-white font-semibold px-6 py-3  transition"
+            className="inline-block text-xs rounded-full bg-black text-white font-semibold px-6 py-3 transition"
           >
             Reach Us!
           </a>

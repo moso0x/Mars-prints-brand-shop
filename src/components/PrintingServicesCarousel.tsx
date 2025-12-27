@@ -26,20 +26,31 @@ import bcards from "@/assets/moreProducts-img/bss-cards.jpg";
 import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
 import reciept from "@/assets/moreProducts-img/receipt.jpg";
 import { Link } from "react-router-dom";
-import shop from "../pages/Shop";
-// Sample data
+// import { Points, PointMaterial } from "@react-three/drei";
+
 const printingData = [
   {
     title: "Branded Promotional Items",
-    images: [promotion2, promotion3, promotion4, promotion5, promotion6,promotion9, promotion7, promotion8, promotion10, service2],
+    images: [
+      promotion2,
+      promotion3,
+      promotion4,
+      promotion5,
+      promotion6,
+      promotion9,
+      promotion7,
+      promotion8,
+      promotion10,
+      service2,
+    ],
     description:
       "Boost your brand visibility with high-quality promotional merchandise tailored for campaigns, marketing events, and corporate identity.",
-        labels: [
+    labels: [
       "Table Banner",
       "Teardrop Banner",
       "T-Shirt Print",
       "Branded Umbrella",
-      "Adhesive Stickers"
+      "Adhesive Stickers",
     ],
     points: [
       "Wide range of brandable merchandise",
@@ -51,15 +62,15 @@ const printingData = [
   },
   {
     title: "Apparel: T-shirts, Hoodies & Caps",
-    images: [promotion1,  service3, service4, service5, service7, hoodie],
+    images: [promotion1, service3, service4, service5, service7, hoodie],
     description:
       "Premium apparel printing for businesses, events, staff uniforms, and promotional activities.",
-             labels: [
+    labels: [
       "Custom Cap",
       "Corporate Uniform",
       "Reflective Jacket",
       "Hoodie Print",
-      "Branded Caps Set"
+      "Branded Caps Set",
     ],
     points: [
       "High-quality screen & DTG printing",
@@ -68,21 +79,19 @@ const printingData = [
       "Durable prints that last long",
       "Custom designs for all occasions",
     ],
-    
   },
   {
     title: "Stationery Printing",
     images: [babyshower, bcards, pens, trifold, service1, reciept, calendar],
     description:
       "Professional stationery printing for business branding, events, and personal projects.",
-   labels: [
+    labels: [
       "Baby Shower Cards",
       "Business Cards",
       "Custom Pens",
       "Tri-Fold Brochure",
-      "Corporate Diaries"
+      "Corporate Diaries",
     ],
-   
     points: [
       "Business cards, pens & notebooks",
       "Brochures, catalogs & corporate diaries",
@@ -95,48 +104,31 @@ const printingData = [
 
 export default function PrintingServicesCarousel() {
   return (
+    
     <div className="w-full py-16 px-4 space-y-16">
-      {/* Title Section */}
-  {/* Title Section with Avalanche Scroll Reveal */}
-<motion.div
-  className="text-center mb-12"
-  initial={{ opacity: 0, y: 60 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, margin: "-100px" }} 
-  transition={{ duration: 0.8, ease: "easeOut" }}
->
-  <motion.h2
-    className="text-5xl font-semibold tracking-wide"
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: 0.2 }}
-  >
-    <span className="text-[#64B5F6]">Printing</span> |{" "}
-    <span className="text-[#FF5C26]">Branding</span> |{" "}
-    <span className="text-[#00FF66]">Design</span> Services
-  </motion.h2>
+  
+      {/* HEADER */}
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
+          <span className="text-[#0D4C92]">Printing</span> |{" "}
+          <span className="text-[#59C1BD]">Branding</span> |{" "}
+          <span className="text-[#0D4C92]">Design</span> Services
+        </h2>
 
-  {/* Description */}
-  <motion.p
-    className="mt-4 text-gray-500 text-base max-w-2xl mx-auto"
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: 0.35 }}
-  >
-    Explore our wide range of printing, branding, and design services to give
-    your business a professional and creative edge.
-  </motion.p>
+        <p className="mt-4 text-xs text-gray-500 max-w-2xl mx-auto">
+          Explore our wide range of printing, branding, and design services to
+          give your business a professional and creative edge.
+        </p>
 
-  {/* Underline */}
-  <motion.div
-    className="mt-4 flex justify-center"
-    initial={{ opacity: 0, scaleX: 0 }}
-    whileInView={{ opacity: 1, scaleX: 1 }}
-    transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-  >
-    <div className="w-32 h-[4px] bg-gray-900 rounded-full"></div>
-  </motion.div>
-</motion.div>
+        <div className="mt-4 flex justify-center">
+          <div className="w-32 h-[4px] bg-[#0D4C92] rounded-full"></div>
+        </div>
+      </motion.div>
 
       {printingData.map((service, index) => (
         <ServiceRow key={index} service={service} />
@@ -147,164 +139,89 @@ export default function PrintingServicesCarousel() {
 
 function ServiceRow({ service }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
 
-  // AVALANCHE Scroll Trigger
-  const { ref: viewRef, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
-
-  const avalanche = {
-    hidden: { opacity: 0, y: 60 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-      },
-    }),
-  };
-
-  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
-  const scrollRight = () => scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+  const scrollLeft = () =>
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollRight = () =>
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!scrollRef.current) return;
-      const container = scrollRef.current;
-
-      if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
-        container.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        container.scrollBy({ left: 300, behavior: "smooth" });
-      }
+      const el = scrollRef.current;
+      el.scrollLeft + el.offsetWidth >= el.scrollWidth
+        ? el.scrollTo({ left: 0, behavior: "smooth" })
+        : el.scrollBy({ left: 300, behavior: "smooth" });
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <motion.div
-      ref={viewRef}
-      variants={avalanche}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      custom={0}
-      className="bg-white shadow-lg rounded-2xl p-6 max-w-6xl mx-auto relative"
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      className="bg-white shadow-lg rounded-2xl p-6 max-w-6xl mx-auto"
     >
       {/* TITLE */}
-      <motion.h3
-        variants={avalanche}
-        custom={1}
-        className="text-2xl font-semibold mb-4"
-      >
-        {service.title}
-      </motion.h3>
+      <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
 
-      <motion.p
-        variants={avalanche}
-        custom={2}
-        className="text-gray-600 mb-6"
-      >
-        {service.description}
-      </motion.p>
+      <p className="text-xs text-gray-600 mb-6">{service.description}</p>
 
       {/* CAROUSEL */}
-      <motion.div
-        variants={avalanche}
-        custom={3}
-        className="relative"
-      >
-        <motion.button
+      <div className="relative">
+        <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-blue-600 text-white shadow-md rounded-full p-2"
-          whileHover={{ scale: 1.2, backgroundColor: "#1E40AF" }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full"
         >
-          <ArrowLeft size={22} />
-        </motion.button>
+          <ArrowLeft size={20} />
+        </button>
 
-        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scroll-smooth py-2">
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth py-2"
+        >
           {service.images.map((img, i) => (
-            <motion.div
-              key={i}
-              variants={avalanche}
-              custom={4 + i * 0.2}
-              className="flex-shrink-0 w-48 md:w-52"
-            >
-              <motion.img
+            <div key={i} className="flex-shrink-0 w-48">
+              <img
                 src={img}
-                alt={service.labels[i] || `${service.title} ${i + 1}`}
-                className="w-full h-auto max-h-40 rounded-xl shadow-lg object-contain"
-                whileHover={{ scale: 1.03 }}
+                className="rounded-xl shadow-lg max-h-40 object-contain"
               />
-              <p className="text-center mt-2 text-xs font-semibold text-gray-800">
+              <p className="text-xs text-center mt-2 font-semibold">
                 {service.labels[i]}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.button
+        <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-blue-600 text-white shadow-md rounded-full p-2"
-          whileHover={{ scale: 1.2, backgroundColor: "#1E40AF" }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full"
         >
-          <ArrowRight size={22} />
-        </motion.button>
-      </motion.div>
+          <ArrowRight size={20} />
+        </button>
+      </div>
 
-      {/* BULLET POINTS */}
-      <motion.ul
-        variants={avalanche}
-        custom={6}
-        className="mb-1 pt-12 grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4 text-sm font-semibold text-left text-black leading-tight"
-      >
-        {service.points?.map((item, i) => (
-          <motion.li
-            key={i}
-            variants={avalanche}
-            custom={7 + i * 0.1}
-            className="flex items-start gap-2"
-          >
-            <span className="text-green-500 text-base leading-none mt-[2px]">✔</span>
-            <span>{item}</span>
-          </motion.li>
+      {/* POINTS */}
+      <ul className="grid md:grid-cols-3 gap-2 mt-8 text-xs font-semibold">
+        {service.points.map((item, i) => (
+          <li key={i} className="flex gap-2">
+            <span className="text-green-500">✔</span>
+            {item}
+          </li>
         ))}
-      </motion.ul>
+      </ul>
 
-      {/* BUTTON */}
-      <motion.div
-        variants={avalanche}
-        custom={8}
-        className="flex justify-center mt-6"
-      >
-        <motion.div
-          className="relative px-7 py-2 rounded-full font-semibold hover:bg-blue-500 flex items-center gap-2 overflow-hidden text-xs text-white bg-black group cursor-pointer"
+      {/* CTA */}
+      <div className="flex justify-center mt-6">
+        <Link
+          to="/shop"
+          className="px-6 py-2 text-xs font-semibold text-white bg-black rounded-full hover:bg-blue-600 transition flex items-center gap-2"
         >
-          <motion.div
-            className="absolute inset-0 bg-blue-600 origin-right z-0"
-            initial={{ scaleX: 0 }}
-            whileHover={{ scaleX: 1 }}
-            transition={{ duration: 0.4 }}
-          />
-
-          <Link
-            to="/shop"
-            className="relative z-10 flex items-center gap-2"
-          >
-            <span>Explore & Shop.</span>
-
-            <motion.span
-              className="inline-block origin-left"
-              initial={{ scaleX: 1 }}
-              whileHover={{ scaleX: 1.5 }}
-            >
-              <ArrowRight size={20} />
-            </motion.span>
-          </Link>
-        </motion.div>
-      </motion.div>
+          Explore & Shop <ArrowRight size={18} />
+        </Link>
+      </div>
     </motion.div>
   );
 }

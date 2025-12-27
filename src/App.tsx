@@ -17,6 +17,7 @@ import Letterheads from "./pages/Letterheads";
 import PromotionalGifts from "./pages/PromotionalGifts";
 import Feedback from "./pages/Feedback";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import PriceList from "./pages/PriceList";
@@ -41,38 +42,44 @@ const App = () => (
         <div className="overflow-x-hidden">
           <Toaster />
           <Sonner />
-          <HotToaster
-            position="top-center"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: 'hsl(var(--card))',
-                color: 'hsl(var(--card-foreground))',
-                border: '1px solid hsl(var(--border))',
-              },
-              success: {
-                style: {
-                  color: 'green',
-                  border: '1px solid darkgreen',
-                },
-                iconTheme: {
-                  primary: 'white',
-                  secondary: 'green',
-                },
-              },
-              error: {
-                style: {
-                  background: 'red',
-                  color: 'white',
-                  border: '1px solid darkred',
-                },
-                iconTheme: {
-                  primary: 'white',
-                  secondary: 'red',
-                },
-              },
-            } as const}
-          />
+         <HotToaster
+  position="top-center" // moved from top-center to bottom-center
+  toastOptions={{
+    duration: 3000,
+    style: {
+      background: 'hsl(var(--card))',
+      color: 'hsl(var(--card-foreground))',
+      border: '1px solid hsl(var(--border))',
+      fontSize: '0.75rem', // text-xs
+      padding: '0.5rem 1rem', // smaller padding
+      borderRadius: '0.5rem',
+    },
+    success: {
+      style: {
+        color: 'green',
+        border: '1px solid darkgreen',
+        fontSize: '0.75rem',
+      },
+      iconTheme: {
+        primary: 'white',
+        secondary: 'green',
+      },
+    },
+    error: {
+      style: {
+        background: 'red',
+        color: 'white',
+        border: '1px solid darkred',
+        fontSize: '0.75rem',
+      },
+      iconTheme: {
+        primary: 'white',
+        secondary: 'red',
+      },
+    },
+  } as const}
+/>
+
           <BrowserRouter>
             <RouteChangeLoader />
             <Routes>
@@ -86,13 +93,14 @@ const App = () => (
               <Route path="/letterheads" element={<Letterheads />} />
               <Route path="/PromotionalGifts" element={<PromotionalGifts />} />
               <Route path="/feedback" element={<Feedback />} />
+               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/auth" element={<Auth />} />
-              <Route path="/price-list" element={<PriceList />} />
+              {/* <Route path="/price-list" element={<PriceList />} /> */}
               <Route path="/shop" element={<Shop />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/support-cause" element={<SupportCause />} />
+              {/* <Route path="/support-cause" element={<SupportCause />} /> */}
               <Route path="ticketsGallery" element={<TicketsGallery />} />
               <Route path="/payment/:id" element={<PaymentPage />} />
               <Route path="/event/:id" element={<EventDetails />} />

@@ -46,10 +46,10 @@ export const ProductGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
-            More Printing Services 
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-black">
+          Featured Branding & Printing Services 
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-xs mx-auto">
             From custom tote bags to elegant business cards, explore top-quality print
             products crafted to make your brand stand out.
           </p>
@@ -78,10 +78,10 @@ export const ProductGrid = () => {
                 </div>
 
                 <div className="p-3 text-center">
-                  <h3 className="font-semibold text-sm md:text-base mb-1 text-[#0046C0]">
+                  <h3 className="font-small  mb-1 text-black">
                     {product.title}
                   </h3>
-                  <p className="text-gray-600 text-xs md:text-sm mb-3">
+                  <p className="text-gray-600 text-xs md:text-xs mb-3">
                     {product.price}
                   </p>
 
@@ -94,14 +94,14 @@ export const ProductGrid = () => {
                     <Button
                       size="sm"
                       onClick={() => addToCart(product)}
-                      className="w-full flex items-center justify-center gap-2 
-                                 bg-black text-white font-medium 
+                      className="w-[60%] flex items-center flex mx-auto justify-center gap-2 
+                                 bg-blue-600 text-white font-small text-xs
                                   shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
-                                 hover:shadow-[0_6px_20px_rgba(0,212,90,0.5)] 
-                                 transition-all duration-300 rounded-full py-2"
+                                 hover:bg-blue-700
+                                 transition-all duration-300 rounded-full py-1"
                     >
-                      <ShoppingCart className="w-4 h-4" />
-                      Add to Cart
+                      <ShoppingCart className="w-4 h-4 text-xs" />
+                     <span className="text-xs">Add to Cart</span> 
                     </Button>
                   </motion.div>
                 </div>
