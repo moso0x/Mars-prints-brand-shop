@@ -35,15 +35,10 @@ npm i
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-#64B5F6
-#FFEB3B
-#00FF66
-#FF5C26
-#E53935
-#212121
-#71acdbff
-
+#CFF5E7
+#A0E4CB
+#59C1BD
+#0D4C92
 
 **Edit a file directly in GitHub**
 
@@ -357,4 +352,4 @@ Bag Color
 
 Print Type (Screen Print, DTG, Heat Transfer, Embroidery)
 
-Print Area / Sides (Front Only / Back Only / Both Sides)
+Print Area / Sides (Front Only / Back Only / Both Sides)# prints-brand-web-
