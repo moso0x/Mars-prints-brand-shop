@@ -115,9 +115,9 @@ export default function PrintingServicesCarousel() {
         viewport={{ once: true }}
       >
         <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
-          <span className="text-[#0D4C92]">Printing</span> |{" "}
-          <span className="text-[#59C1BD]">Branding</span> |{" "}
-          <span className="text-[#0D4C92]">Design</span> Services
+          <span className="text-black">Printing</span> |{" "}
+          <span className="text-black">Branding</span> |{" "}
+          <span className="text-orange-600">Design Services</span> 
         </h2>
 
         <p className="mt-4 text-xs text-gray-500 max-w-2xl mx-auto">
@@ -126,7 +126,7 @@ export default function PrintingServicesCarousel() {
         </p>
 
         <div className="mt-4 flex justify-center">
-          <div className="w-32 h-[4px] bg-[#0D4C92] rounded-full"></div>
+          <div className="w-32 h-[4px] bg-orange-600 rounded-full"></div>
         </div>
       </motion.div>
 

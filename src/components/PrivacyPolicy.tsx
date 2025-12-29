@@ -14,8 +14,8 @@ const PrivacyPolicy = () => {
               Privacy Policy
             </h1>
 
-            <p className="text-gray-700 mb-4 text-sm">
-              At <strong>Jelimo Creatives</strong>, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website and services.
+            <p className="text-gray-700 mb-4 text-xs">
+              At <strong>Mars Prints & Brands </strong>, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website and services.
             </p>
 
             <h2 className="text-2xl font-semibold text-gray-900 mb-3 mt-6">

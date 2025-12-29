@@ -29,9 +29,9 @@ export const Cart = () => {
           size="icon"
           className="relative hover:bg-blue-500/10 transition"
         >
-          <ShoppingCart className="h-4 w-4 text-blue-600" />
+          <ShoppingCart className="h-4 w-4 text-white" />
           {getTotalItems() > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-blue-600 text-white border-2 border-white shadow-md">
+            <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-orange-800 text-white border-2 border-white shadow-md">
               {getTotalItems()}
             </Badge>
           )}
@@ -41,7 +41,8 @@ export const Cart = () => {
       <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 border-blue-500 text-xs">
         <SheetHeader>
           <SheetTitle className="text-blue-600 font-bold text-xs">
-            Shopping Cart ({getTotalItems()} items)
+            Shopping Cart ({getTotalItems()} items) 
+            
           </SheetTitle>
         </SheetHeader>
 

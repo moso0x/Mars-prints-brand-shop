@@ -27,13 +27,13 @@ const Index = () => {
           <PrintingServicesCarousel/>
            <FeaturesSection /> 
            <ProductGrid />
-          <TicketsCarousel />
+          {/* <TicketsCarousel /> */}
           {/* <EcoFriendlySection /> */}
-          <AboutSection />  
+          {/* <AboutSection />   */}
           <CitiesWeDeliver/>
             {/* <RatingsSection /> */}
         </main>
-        <FAQAccordion/>
+        {/* <FAQAccordion/> */}
         <FooterNew />
       </div>
     </PageTransition>

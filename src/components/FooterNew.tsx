@@ -48,9 +48,10 @@ export const FooterNew = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start">
-            <img src={logo} alt="Jelimo Creatives Logo" className="w-40 h-40 mb-4" />
+            <span className="text-orange-600 text-2xl ml-2 font-extrabold">MAR'S-</span>
+            <span className="text-blue-600 text-xl">prints.brand.shop</span>
             <p className="text-blue-700 text-xs">
-              Jelimo Creatives brings your ideas to life with custom printing and branding solutions that make your brand unforgettable.
+              Mars Printers brings your ideas to life with custom printing and branding solutions that make your brand unforgettable.
             </p>
           </div>
 
@@ -102,17 +103,17 @@ export const FooterNew = () => {
               Contact Us
             </h4>
             <ul className="space-y-1  text-xs text-black">
-              <li>+254 704-904-678</li>
-              <li>jelimocreatives@gmail.com</li>
+              <li>+254 717 037785</li>
+              <li> marsprinters@gmail.com</li>
               <li>Mombasa, Kenya</li>
             </ul>
 
             <div className="flex space-x-3 mt-4">
               {[
-                { Icon: Facebook, color: "#1877F2", link: "https://www.facebook.com/Jelimo_creative" },
-                { Icon: Instagram, color: "#E4405F", link: "https://www.instagram.com/jelimo_creative" },
-                { Icon: Twitter, color: "#1DA1F2", link: "https://twitter.com/Jelimo_creative" },
-                { Icon: Linkedin, color: "#0A66C2", link: "https://www.linkedin.com/company/jelimo-creative" },
+                { Icon: Facebook, color: "#1877F2", link: "https://www.facebook.com/marsprintbrands" },
+                { Icon: Instagram, color: "#E4405F", link: "https://www.instagram.com/marsprintbrands" },
+                { Icon: Twitter, color: "#1DA1F2", link: "https://twitter.com/marsprintbrands" },
+                { Icon: Linkedin, color: "#0A66C2", link: "https://www.linkedin.com/company/marsprintbrands" },
               ].map(({ Icon, color, link }, i) => (
                 <a
                   key={i}
@@ -133,7 +134,7 @@ export const FooterNew = () => {
         <div className="flex flex-col md:flex-row justify-between gap-2 pt-4 border-t border-gray-200">
           <div className="text-center md:text-left text-xs text-blue-700">
             <p>
-              &copy; {new Date().getFullYear()} <span className="font-medium">Jelimo Creatives Custom Printing</span>. All rights reserved.
+              &copy; {new Date().getFullYear()} <span className="font-medium">Mars  Custom Printing  & Branding Services</span>. All rights reserved.
             </p>
           </div>
 

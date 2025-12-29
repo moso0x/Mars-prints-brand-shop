@@ -13,10 +13,10 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <div>
             <h1 className="text-2xl md:text-4xl font-bold text-blue-600 mb-4">
-              About Jelimo Creatives
+              About 
             </h1>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              At <span className="font-semibold">Jelimo Creatives</span>, we bring your ideas to life through premium custom printing and branding solutions. From tote bags and hoodies to business cards and banners, we create products that make your brand stand out.
+              At <span className="font-semibold">Mars printing & Branding Shop</span>, we bring your ideas to life through premium custom printing and branding solutions. From tote bags and hoodies to business cards and banners, we create products that make your brand stand out.
             </p>
             <p className="text-gray-700 mb-4 leading-relaxed">
               Our mission is simple: <span className="italic">deliver high-quality, unique, and reliable printing solutions</span> that help businesses, creatives, and individuals express themselves and leave a lasting impression.
@@ -37,7 +37,7 @@ export default function About() {
         {/* Features / Why Choose Us */}
         <div className="mb-16">
           <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-6 text-center">
-            Why Choose Jelimo Creatives?
+            Why Choose Mars prints brand shop?
           </h2>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {/* Card 1 */}

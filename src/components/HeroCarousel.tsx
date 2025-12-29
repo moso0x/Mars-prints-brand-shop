@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import "@fontsource-variable/nabla";
 import "@fontsource/eb-garamond";
-import heroVideo from "@/assets/heroVideos.mp4";
+import heroVideo from "@/assets/hero-video-carousel.mp4";
 
 const slides = [
   {
-    title: "Welcome at Jelimo Creatives.",
-    description: "Branded printing services and safari ticket booking",
+    title: "Welcome .",
+    description: "Branded printing services for Corporate & Personal needs.",
     buttonText: "Shop",
     link: "/",
     animation: "fade",
@@ -91,7 +91,7 @@ export const HeroCarousel = () => {
     slides[currentSlide].animation as keyof typeof textVariants;
 
   return (
-    <section className="w-full py-6 md:py-10">
+    <section className="w-full py-6 md:py-4">
       {/* Centered container with side margins */}
       <div className="relative mx-auto max-w-7xl px-4 md:px-8 font-[EB Garamond] overflow-hidden rounded-3xl shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 ">

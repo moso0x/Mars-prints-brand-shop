@@ -90,14 +90,14 @@ export const Header = () => {
   return (
     <header className="w-full font-sans text-xs">
       {/* Top Bar */}
-      <div className="bg-white border-b border-gray-200 py-2">
+      <div className="bg-black border-b border-gray-200 py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-3">
           <div className="flex gap-6">
-            <a href="tel:+254704904678" className="flex items-center gap-1" style={{ color: COLORS.primaryGray }}>
-              <Phone className="w-4 h-4" /> +254 704-904-678
+            <a href="tel:+254704904678" className="flex items-center gap-1 text-white" >
+              <Phone className="w-4 h-4 text-green-400" /> +254 717 037785
             </a>
-            <div className="flex items-center gap-1" style={{ color: COLORS.primaryGray }}>
-              <MapPin className="w-4 h-4" /> Mombasa, Kenya
+            <div className="flex items-center gap-1 text-white" >
+              <MapPin className="w-4 h-4 " />Kimilili, Khamulati. 
             </div>
           </div>
 
@@ -108,12 +108,12 @@ export const Header = () => {
           <div className="flex items-center gap-3">
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
-                <LogOut className="w-4 h-4 mr-1" /> Logout
+                <LogOut className="w-4 h-4 mr-1 text-black" /> <span className="text-white">Logout</span>
               </Button>
             ) : (
               <Button variant="ghost" size="sm" asChild>
                 <Link to="/auth">
-                  <User className="w-4 h-4 mr-1" /> <span className="text-xs text-gray-900 hover:text-gray-800">Login</span> 
+                  <User className="w-4 h-4 mr-1" /> <span className="text-xs text-gray-900 hover:text-orange-500 text-white">Login</span> 
                 </Link>
               </Button>
             )}
@@ -128,8 +128,10 @@ export const Header = () => {
       {/* Main Nav */}
       <div className="sticky top-0 z-50 bg-white shadow-md">
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
-          <Link to="/">
-            <img src={logo} className="h-[100px]" />
+          <Link to="/" className="">
+          <span className="text-orange-600 text-2xl ml-2 font-extrabold">MAR'S-</span>
+          <span className="text-blue-600 text-2xl">prints.brand.shop</span>
+            
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 flex-1 justify-center">

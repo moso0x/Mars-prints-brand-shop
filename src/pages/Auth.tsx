@@ -205,13 +205,13 @@ const Auth = () => {
               <TabsList className="grid w-full grid-cols-2 bg-[#EAF4FF] rounded-full p-1">
                 <TabsTrigger
                   value="login"
-                  className=" text-xs data-[state=active]:bg-[#A0E4CB] data-[state=active]:text-white rounded-full transition-all duration-300"
+                  className=" text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded-full transition-all duration-300"
                 >
                   Login
                 </TabsTrigger>
                 <TabsTrigger
                   value="signup"
-                  className="data-[state=active]:bg-[#A0E4CB] text-xs data-[state=active]:text-white rounded-full transition-all duration-300"
+                  className="data-[state=active]:bg-blue-600z text-xs data-[state=active]:text-white rounded-full transition-all duration-300"
                 >
                   Sign Up
                 </TabsTrigger>

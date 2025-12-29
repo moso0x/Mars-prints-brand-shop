@@ -16,6 +16,7 @@ import { Smartphone, CreditCard } from "lucide-react";
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState("mpesa");
@@ -32,6 +33,7 @@ const Checkout = () => {
 
   const tillNumber = "8817976";
 
+  /* ------------------------------ AUTH CHECK ------------------------------ */
   useEffect(() => {
     const checkAuth = async () => {
       const {
@@ -41,28 +43,43 @@ const Checkout = () => {
       if (!session) {
         toast.error("Please login to proceed with checkout");
         navigate("/auth");
-      } else {
-        if (session.user.email) {
-          setFormData((prev) => ({
-            ...prev,
-            email: session.user.email || "",
-          }));
-        }
-        setCheckingAuth(false);
+        return;
       }
+
+      setFormData((prev) => ({
+        ...prev,
+        email: session.user.email || "",
+      }));
+
+      setCheckingAuth(false);
     };
 
     checkAuth();
   }, [navigate]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  /* ------------------------------ INPUT HANDLER ------------------------------ */
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
+  /* ------------------------------ SUBMIT ORDER ------------------------------ */
+  const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.phone) {
-      return toast.error("Please fill in all required fields");
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (items.length === 0) {
+      toast.error("Your cart is empty");
+      return;
     }
 
     setLoading(true);
+
     try {
       const {
         data: { session },
@@ -98,7 +115,7 @@ const Checkout = () => {
       toast.success("Order placed successfully");
       clearCart();
       navigate("/");
-    } catch {
+    } catch (err) {
       toast.error("Failed to place order");
     } finally {
       setLoading(false);
@@ -121,9 +138,7 @@ const Checkout = () => {
         <Header />
 
         <main className="container mx-auto px-4 py-8 flex-grow">
-          <h1 className="font-bold mb-6 text-blue-700 text-xs">
-            Checkout
-          </h1>
+          <h1 className="font-bold mb-6 text-blue-700 text-xs">Checkout</h1>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* LEFT */}
@@ -135,9 +150,27 @@ const Checkout = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <Input placeholder="Full Name" className="text-xs h-8" />
-                  <Input placeholder="Email" className="text-xs h-8" />
-                  <Input placeholder="Phone" className="text-xs h-8" />
+                  <Input
+                    name="name"
+                    placeholder="Full Name"
+                    className="text-xs h-8"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    name="email"
+                    placeholder="Email"
+                    className="text-xs h-8"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    name="phone"
+                    placeholder="Phone"
+                    className="text-xs h-8"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
                 </CardContent>
               </Card>
 
@@ -247,12 +280,36 @@ const Checkout = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <Input placeholder="Address" className="text-xs h-8" />
+                  <Input
+                    name="address"
+                    placeholder="Address"
+                    className="text-xs h-8"
+                    value={formData.address}
+                    onChange={handleChange}
+                  />
                   <div className="grid grid-cols-2 gap-2">
-                    <Input placeholder="City" className="text-xs h-8" />
-                    <Input placeholder="County" className="text-xs h-8" />
+                    <Input
+                      name="city"
+                      placeholder="City"
+                      className="text-xs h-8"
+                      value={formData.city}
+                      onChange={handleChange}
+                    />
+                    <Input
+                      name="county"
+                      placeholder="County"
+                      className="text-xs h-8"
+                      value={formData.county}
+                      onChange={handleChange}
+                    />
                   </div>
-                  <Input placeholder="Notes" className="text-xs h-8" />
+                  <Input
+                    name="notes"
+                    placeholder="Notes"
+                    className="text-xs h-8"
+                    value={formData.notes}
+                    onChange={handleChange}
+                  />
                 </CardContent>
               </Card>
             </div>

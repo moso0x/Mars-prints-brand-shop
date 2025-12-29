@@ -172,7 +172,7 @@ const AdvertRibbon = () => {
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.25, duration: 0.4 }}
-                  className="font-bold text-base sm:text-lg text-[#57595B]"
+                  className="font-bold text-base sm:text-lg text-orange-800"
                 >
                   {advertisements[currentAd].title}
                 </motion.h3>
@@ -180,18 +180,18 @@ const AdvertRibbon = () => {
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.35, duration: 0.4 }}
-                  className="text-xs sm:text-sm text-gray-700"
+                  className="text-xs font-bold sm:text-sm text-black"
                 >
                   {advertisements[currentAd].subtitle}
                 </motion.p>   
               </div>
               {/* Navigation */}
-              {advertisements.length > 1 && (
+              {/* {advertisements.length > 1 && (
                 <div className="hidden sm:flex items-center gap-2">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 text-[#0057FF] hover:bg-[#00FF66]/10"
+                    className="h-8 w-8 p-0 text-white hover:bg-[#00FF66]/10"
                     onClick={prevAd}
                   >
                     <ChevronLeft className="h-4 w-4" />
@@ -199,13 +199,13 @@ const AdvertRibbon = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 text-[#0057FF] hover:bg-[#00FF66]/10"
+                    className="h-8 w-8 p-0 text- hover:bg-[#00FF66]/10"
                     onClick={nextAd}
                   >
                     <ChevronRight className="h-4 w-4" />
                   </Button>
                 </div>
-              )}
+              )} */}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -213,7 +213,7 @@ const AdvertRibbon = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="absolute right-2 top-2 h-6 w-6 p-0 text-[#FF5C33] hover:bg-[#FF5C33]/10 z-10"
+          className="absolute right-2 top-2 h-6 w-6 p-0 text-white hover:bg-[#FF5C33]/10 z-10"
           onClick={() => setIsVisible(false)}
         >
           <X className="h-3 w-3" />
@@ -225,7 +225,7 @@ const AdvertRibbon = () => {
               <motion.div
                 key={index}
                 className={`w-2 h-2 rounded-full cursor-pointer ${
-                  index === currentAd ? "bg-[#00FF66]" : "bg-[#0057FF]/30"
+                  index === currentAd ? "bg-orange-600" : "bg-white/30"
                 }`}
                 onClick={() => setCurrentAd(index)}
                 whileHover={{ scale: 1.2 }}

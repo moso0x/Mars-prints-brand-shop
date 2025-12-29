@@ -139,7 +139,7 @@ export const FeaturesSection = () => {
                   </p>
 
                   <Link to={`/product/${slug}`}>
-                    <button className="text-xs font-medium text-green-600 border border-green-600 rounded-full px-3 py-1 hover:bg-green-600 hover:text-white transition-all duration-300">
+                    <button className="text-xs font-medium text-green-600 border border-white-600 rounded-full px-3 py-1 hover:bg-orange-600 hover:text-white transition-all duration-300">
                       Order now
                     </button>
                   </Link>

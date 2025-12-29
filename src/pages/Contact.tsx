@@ -139,7 +139,7 @@ const Contact = () => {
                     <Mail className="h-4 w-4 text-blue-600 mt-1" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p>jelimocreatives@gmail.com</p>
+                      <p>marsprinters@gmail.com</p>
                     </div>
                   </div>
 
@@ -147,7 +147,7 @@ const Contact = () => {
                     <Phone className="h-4 w-4 text-blue-600 mt-1" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p>+254 704-904-678</p>
+                      <p> +254 717 037785</p>
                     </div>
                   </div>
 
