@@ -94,7 +94,7 @@ export const ProductGrid = () => {
                     <Button
                       size="sm"
                       onClick={() => addToCart(product)}
-                      className="w-[60%] flex items-center flex mx-auto justify-center gap-2 
+                      className="w-full flex items-center flex mx-auto justify-center gap-2 
                                  bg-blue-600 text-white font-small text-xs
                                   shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
                                  hover:bg-blue-700
