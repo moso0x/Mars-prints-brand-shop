@@ -80,9 +80,9 @@ const PrivacyPolicy = () => {
               If you have any questions or concerns about this Privacy Policy or how we handle your data, please contact us at:
             </p>
             <p className="text-gray-700 font-semibold">
-              Email: jelimocreatives@gmail.com <br />
-              Phone: +254 704-904-678 <br />
-              Address: Nairobi, Kenya
+              Email: marsprinters@gmail.com <br />
+              Phone: +254 717 037785 <br />
+              Address: Kimilili, Kenya
             </p>
           </div>
         </section>
