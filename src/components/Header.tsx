@@ -109,7 +109,7 @@ export const Header = () => {
             <AdvertRibbon />
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 text-white">
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-1" /> Logout
