@@ -36,7 +36,7 @@ export const AboutSection = () => {
               Printing & Branding Services in Kenya
             </h1>
             <h3 className="text-xs sm:text-sm text-blue-600 mb-2">
-              Custom T-shirts, hoodies, and caps designed to be worn with pride.
+              Custom T-shirts, hoodies, and caps.
             </h3>
             <p className="text-blue-600 font-semibold">
               Place your order — we deliver across Kenya.

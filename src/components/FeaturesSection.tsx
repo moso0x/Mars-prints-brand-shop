@@ -67,7 +67,7 @@ export const FeaturesSection = () => {
         >
           {/* Heading (unchanged size) */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Creative Printing & Branding Solutions
+          Printing & Branding Solutions
           </h2>
 
           {/* Body text xs */}

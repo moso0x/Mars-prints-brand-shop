@@ -18,9 +18,9 @@ import { Cart } from "@/components/Cart";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "react-hot-toast";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
-import logo from "@/assets/logo.png";
 import AdvertRibbon from "./AdvertRibbon";
 
+/* ----------------------------- Product Images ----------------------------- */
 import trifold from "@/assets/moreProducts-img/trifold.jpg";
 import poppup from "@/assets/moreProducts-img/poupup-banner.jpg";
 import reflectors from "@/assets/moreProducts-img/reflectors.jpg";
@@ -34,47 +34,42 @@ import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
 import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
 import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
 
+/* -------------------------------- Products -------------------------------- */
 const products = [
-  { title: "Trifold Flyer Printing both sides", price: "Starting at Ksh. 300", image: trifold, link: "/product/trifold" },
-  { title: "Poppup Banner Printing", price: "From Ksh. 100 per piece", image: poppup, link: "/product/poppup" },
-  { title: "Custom Reflector Printing", price: "From Ksh. 250 per card", image: reflectors, link: "/product/reflectors" },
-  { title: "All Sizes receipt Printing", price: "From Ksh. 150 per flyer", image: reciept, link: "/product/receipt" },
-  { title: "Campaign Custom Caps Printing", price: "From Ksh. 200 per piece", image: caps, link: "/product/caps" },
-  { title: "Custom Business Cards Printing", price: "From Ksh. 2000 per piece", image: bscards, link: "/product/bscards" },
-  { title: "Custom All kinds of Hoodies Printing", price: "From Ksh. 500 per piece", image: hoodie, link: "/product/hoodie" },
-  { title: "Custom Corporate Umbrella Printing", price: "From Ksh. 1000", image: umbrella, link: "/product/umbrella" },
-  { title: "Wedding & Events Invitation cards", price: "From Ksh. 150 per piece", image: weddingcards, link: "/product/weddingcards" },
-  { title: "Baby Shower invitation Cards", price: "From Ksh. 200", image: babyshower, link: "/product/babyshower" },
-  { title: "Custom Adhesive Stickers", price: "From Ksh. 400 per mug", image: adhesive, link: "/product/adhesive" },
-  { title: "Tear Drop Banners Printing", price: "From Ksh. 580", image: teardrop, link: "/product/teardrop" },
+  { title: "Trifold Flyer Printing", image: trifold, link: "/product/trifold" },
+  { title: "Popup Banner Printing", image: poppup, link: "/product/poppup" },
+  { title: "Reflector Printing", image: reflectors, link: "/product/reflectors" },
+  { title: "Receipt Printing", image: reciept, link: "/product/receipt" },
+  { title: "Campaign Caps", image: caps, link: "/product/caps" },
+  { title: "Business Cards", image: bscards, link: "/product/bscards" },
+  { title: "Hoodies Printing", image: hoodie, link: "/product/hoodie" },
+  { title: "Corporate Umbrellas", image: umbrella, link: "/product/umbrella" },
+  { title: "Wedding Cards", image: weddingcards, link: "/product/weddingcards" },
+  { title: "Baby Shower Cards", image: babyshower, link: "/product/babyshower" },
+  { title: "Adhesive Stickers", image: adhesive, link: "/product/adhesive" },
+  { title: "Teardrop Banners", image: teardrop, link: "/product/teardrop" },
 ];
 
 export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const COLORS = {
-    primaryGray: "#57595B",
-    primaryDark: "#A0E4CB",
-  };
-
-  const handleSearch = () => {
-    if (!searchQuery.trim()) return;
-    navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-  };
-
+  /* ------------------------------- Auth -------------------------------- */
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null);
     });
+
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((_e, session) => {
       setUser(session?.user ?? null);
     });
+
     return () => subscription.unsubscribe();
   }, []);
 
@@ -82,76 +77,77 @@ export const Header = () => {
     const { error } = await supabase.auth.signOut();
     if (error) toast.error("Error signing out");
     else {
-      toast.success("Signed out successfully");
+      toast.success("Signed out");
       navigate("/");
     }
   };
 
+  const handleSearch = () => {
+    if (!searchQuery.trim()) return;
+    navigate(`/shop?search=${encodeURIComponent(searchQuery)}`);
+    setMenuOpen(false);
+  };
+
   return (
-    <header className="w-full font-sans text-xs">
-      {/* Top Bar */}
-      <div className="bg-black border-b border-gray-200 py-2">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-3">
-          <div className="flex gap-6">
-            <a href="tel:+254704904678" className="flex items-center gap-1 text-white" >
-              <Phone className="w-4 h-4 text-green-400" /> +254 717 037785
-            </a>
-            <div className="flex items-center gap-1 text-white" >
-              <MapPin className="w-4 h-4 " />Kimilili, Khamulati. 
-            </div>
+    <header className="w-full text-xs">
+
+      {/* ============================== TOP BAR ============================== */}
+      <div className="bg-black py-2">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row gap-3 justify-between">
+          <div className="flex gap-6 text-white font-bold">
+            <span className="flex items-center gap-1">
+              <Phone className="w-4 h-4 text-green-500" />
+              +254 717 037785
+            </span>
+            <span className="flex items-center gap-1">
+              <MapPin className="w-4 h-4 text-green-500" />
+              Kimilili, Khamulati
+            </span>
           </div>
 
-          <div className="w-[600px] mx-auto bg-[#CFF5E7]">
+          <div className="hidden md:block w-[600px]">
             <AdvertRibbon />
           </div>
 
           <div className="flex items-center gap-3">
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
-                <LogOut className="w-4 h-4 mr-1 text-black" /> <span className="text-white">Logout</span>
+                <LogOut className="w-4 h-4 mr-1" /> Logout
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/auth">
-                  <User className="w-4 h-4 mr-1" /> <span className="text-xs text-gray-900 hover:text-orange-500 text-white">Login</span> 
-                </Link>
-              </Button>
+              <Link to="/auth">
+                <Button variant="ghost" size="sm">
+                  <User className="w-4 h-4 mr-1" /> Login
+                </Button>
+              </Link>
             )}
             <Cart />
-            <Button variant="ghost" className="p-0">
+            <Button variant="ghost">
               <Heart className="w-5 h-5" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Main Nav */}
+      {/* ============================== MAIN NAV ============================== */}
       <div className="sticky top-0 z-50 bg-white shadow-md">
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
-          <Link to="/" className="">
-          <span className="text-orange-600 text-2xl ml-2 font-extrabold">MAR'S-</span>
-          <span className="text-blue-600 text-2xl">prints.brand.shop</span>
-            
+
+          {/* Logo */}
+          <Link to="/" className="font-extrabold text-xl">
+            <span className="text-orange-600">MAR'S-</span>
+            <span className="text-blue-600">prints.brand.shop</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-4 flex-1 justify-center">
-            {/* Categories */}
+          {/* --------------------------- DESKTOP NAV --------------------------- */}
+          <nav className="hidden md:flex gap-4 flex-1 justify-center">
             <div
               className="relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              
-              <Button
-                className="
-                  bg-blue-600 text-white text-xs
-                  border border-blue-600
-                  hover:bg-white hover:text-blue-600
-                  transition-all rounded-full
-                "
-              >
-                Products
-                <ChevronDown className="ml-1 h-4 w-4" />
+              <Button className="bg-blue-600 text-white rounded-full">
+                Products <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
 
               <AnimatePresence>
@@ -160,54 +156,33 @@ export const Header = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute left-0 mt-2 w-[1100px] grid grid-cols-8 gap-4 p-4 bg-white rounded-lg shadow-xl"
+                    className="absolute left-0 mt-2 w-[1100px] grid grid-cols-6 gap-4 p-4 bg-white shadow-xl rounded-lg"
                   >
-                                          {products.map((product) => (
-                                  <div
-                                    key={product.title}
-                                    className="
-                                      flex flex-col items-center text-center p-2 rounded-lg
-                                      border border-gray-200 hover:border-blue-400
-                                      hover:shadow-md transition-all
-                                    "
-                                  >
-                                    <img src={product.image} className="w-16 h-16 rounded mb-1" />
-                                    <span className="font-medium">{product.title}</span>
-                                    <span className="text-[0.65rem]">{product.price}</span>
-
-                                    <Button
-                                      variant="outline"
-                                      className="
-                                        mt-1 text-xs rounded-full
-                                        border-blue-500 text-blue-600
-                                        hover:bg-blue-600 hover:text-white
-                                        transition-all px-1
-                                      "
-                                      onClick={() => navigate(`/product/${product.link.split("/").pop()}`)}
-                                    >
-                                      View Details
-                                    </Button>
-                                  </div>
-                                ))}
-
-                  
-
-                   
+                    {products.map((p) => (
+                      <button
+                        key={p.title}
+                        onClick={() => navigate(p.link)}
+                        className="border rounded-lg p-2 text-center hover:border-blue-500"
+                      >
+                        <img src={p.image} className="w-14 h-14 mx-auto mb-1" />
+                        <span>{p.title}</span>
+                      </button>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
             {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
-              <Link to={item === "Home" ? "/" : `/${item.toLowerCase()}`} key={item}>
-                <span className="px-3 py-2 hover:bg-gray-100 rounded-full text-xs">
+              <Link key={item} to={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
+                <span className="px-3 py-2 rounded-full hover:bg-gray-100">
                   {item}
                 </span>
               </Link>
             ))}
           </nav>
 
-          {/* Search */}
+          {/* Search Desktop */}
           <div className="hidden md:flex relative w-72">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
             <Input
@@ -215,14 +190,93 @@ export const Header = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder="Search products..."
-              className="pl-9 placeholder:text-xs rounded-full text-xs"
+              className="pl-9 rounded-full text-xs"
             />
           </div>
 
+          {/* Mobile Menu Button */}
           <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
+
+        {/* ============================ MOBILE MENU ============================ */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              className="md:hidden border-t bg-white overflow-hidden"
+            >
+              <div className="p-4 space-y-4">
+
+                {/* Mobile Search */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
+                  <Input
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    placeholder="Search..."
+                    className="pl-9 rounded-full"
+                  />
+                </div>
+
+                {/* Products Accordion */}
+                <button
+                  onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                  className="flex justify-between w-full font-semibold"
+                >
+                  Products
+                  <ChevronDown
+                    className={`transition ${mobileProductsOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {mobileProductsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="grid grid-cols-2 gap-3"
+                    >
+                      {products.map((p) => (
+                        <button
+                          key={p.title}
+                          onClick={() => {
+                            navigate(p.link);
+                            setMenuOpen(false);
+                            setMobileProductsOpen(false);
+                          }}
+                          className="border rounded-lg p-2 text-center text-xs"
+                        >
+                          <img src={p.image} className="w-12 h-12 mx-auto mb-1" />
+                          {p.title}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Links */}
+                {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      navigate(item === "Home" ? "/" : `/${item.toLowerCase()}`);
+                      setMenuOpen(false);
+                    }}
+                    className="block text-left font-medium"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
