@@ -105,7 +105,7 @@ export const FooterNew = () => {
             <ul className="space-y-1  text-xs text-black">
               <li>+254 717 037785</li>
               <li> marsprinters@gmail.com</li>
-              <li>Mombasa, Kenya</li>
+              <li>Kimilili, Kenya</li>
             </ul>
 
             <div className="flex space-x-3 mt-4">
