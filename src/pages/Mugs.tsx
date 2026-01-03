@@ -29,7 +29,7 @@ const Mugs = () => {
   return (
     
     <PageTransition>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-200">
         <Header />
 
         {/* Image + Text Section */}
@@ -54,9 +54,9 @@ const Mugs = () => {
           {/* Text Section */}
           <div className="w-full md:w-1/2">
             <h1 className="text-5xl font-bold mb-6">
-             Jelimo Creatives Apparels and Wearables
+            Apparels and Wearables
             </h1>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-8 text-xs">
               Step out in style with our premium branded apparel that speaks your brand’s language.
               From T-shirts and hoodies to caps and uniforms, we design and print wearables that
               blend comfort, creativity, and identity — helping you look as professional as you feel.

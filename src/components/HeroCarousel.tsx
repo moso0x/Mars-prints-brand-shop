@@ -16,9 +16,9 @@ const slides = [
     animation: "fade",
   },
   {
-    title: "Custom Mugs & Water Bottles",
+    title: "Custom Hoodies, T-shirts Caps",
     description: "Perfect for corporate gifts and promotional events.",
-    buttonText: "Explore Mugs",
+    buttonText: "Explore Apparels ",
     link: "/mugs",
     animation: "zoom",
   },

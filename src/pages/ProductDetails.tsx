@@ -194,7 +194,7 @@ const productData: any = {
   },
   "roll-up-banner-printing": {
     title: "Roll-up Banner Printing",
-    price: "From Ksh. 2000 per piece",
+    price: "From Ksh. 200 per piece",
     image: rollup,
     thumbs: [rollup, rollup1, rollup2, rollup3],
     description: "Premium roll-up banners ideal for exhibitions, conferences, and business advertising.",
