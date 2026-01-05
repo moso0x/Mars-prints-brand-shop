@@ -158,7 +158,7 @@ export const FeaturesSection = () => {
         >
           {/* CTA heading kept larger */}
           <p className="text-base font-semibold mb-4">
-            Have an idea or project you’d like to bring to life?
+           Mar's Studio Got you covered for all your Photography, Videography printing and branding needs!
           </p>
 
           <a
