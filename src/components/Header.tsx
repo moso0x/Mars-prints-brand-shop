@@ -95,17 +95,17 @@ export const Header = () => {
       <div className="bg-black py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row gap-3 justify-between">
           <div className="flex gap-6 text-white font-bold">
-            <span className="flex items-center gap-1">
-              <Phone className="w-4 h-4 text-green-500" />
+            <span className="flex items-center gap-1 font-etrabold">
+              <Phone className="w-4 h-4 text-green-300 font-etrabold" />
               +254 717 037785
             </span>
-            <span className="flex items-center gap-1">
-              <MapPin className="w-4 h-4 text-green-500" />
+            <span className="flex items-center gap-1 font-entrabold">
+              <MapPin className="w-4 h-4 text-green-300 font-entrabold " />
               Kimilili, Khamulati
             </span>
           </div>
 
-          <div className="hidden md:block w-[600px]">
+          <div className=" md:block w-[600px]">
             <AdvertRibbon />
           </div>
 
