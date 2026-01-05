@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import promotion1 from "@/assets/moreProducts-img/cap.jpg";
 import promotion2 from "@/assets/moreProducts-img/tableBanner.jpg";
@@ -117,7 +118,8 @@ export default function PrintingServicesCarousel() {
         <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
           <span className="text-black">Printing</span> |{" "}
           <span className="text-black">Branding</span> |{" "}
-          <span className="text-orange-600">Design Services</span> 
+          <span className="text-green-600">Services </span> 
+          
         </h2>
 
         <p className="mt-4 text-xs text-gray-500 max-w-2xl mx-auto">

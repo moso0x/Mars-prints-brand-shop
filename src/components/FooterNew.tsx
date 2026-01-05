@@ -43,21 +43,21 @@ const servicesList = [
 
 export const FooterNew = () => {
   return (
-    <footer className="bg-white text-black py-12 relative overflow-hidden font-poppins text-xs md:text-sm">
+    <footer className="bg-black text-white py-12 relative overflow-hidden font-poppins text-xs md:text-sm">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start">
-            <span className="text-orange-600 text-2xl ml-2 font-extrabold">MAR'S-</span>
-            <span className="text-blue-600 text-xl">prints.brand.shop</span>
-            <p className="text-blue-700 text-xs">
-              Mars Printers brings your ideas to life with custom printing and branding solutions that make your brand unforgettable.
+            <span className="text-orange-600 text-2xl ml-2 font-bold">MAR'S Studio </span>
+        
+            <p className="text-white font-bold  text-xl">
+               For Photography, Videography  Printing & Branding,  Services.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
               Quick Links
             </h4>
             <ul className="space-y-1">
@@ -81,15 +81,15 @@ export const FooterNew = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
               Services
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 max-h-80 overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 text-white max-h-80 overflow-y-auto">
               {servicesList.map((service) => (
                 <Link
                   key={service}
                   to="./shop"
-                  className="hover:text-blue-600 text-xs transition-colors duration-200 block text-gray-800"
+                  className="hover:text-blue-600 text-xs transition-colors duration-200 block text-white"
                 >
                   {service}
                 </Link>
@@ -99,10 +99,10 @@ export const FooterNew = () => {
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
               Contact Us
             </h4>
-            <ul className="space-y-1  text-xs text-black">
+            <ul className="space-y-1  text-xs text-white">
               <li>+254 717 037785</li>
               <li> marsprinters@gmail.com</li>
               <li>Kimilili, Kenya</li>
@@ -132,13 +132,13 @@ export const FooterNew = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between gap-2 pt-4 border-t border-gray-200">
-          <div className="text-center md:text-left text-xs text-blue-700">
+          <div className="text-center md:text-left text-xs text-gray-300">
             <p>
               &copy; {new Date().getFullYear()} <span className="font-medium">Mars  Custom Printing  & Branding Services</span>. All rights reserved.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 text-xs text-black justify-center md:justify-end">
+          <div className="flex flex-wrap gap-2 text-xs text-white justify-center md:justify-end">
             <Link to="/privacy" className="hover:text-red-600 transition-colors text-xs">
               Privacy Policy
             </Link>

@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "@/components/Header";
 import FooterNew from "@/components/FooterNew";
 import aboutImage from "@/assets/mugs.jpg"; 
-import { Star, Paintbrush, Clock } from "lucide-react"; // Icons
+
 
 export default function About() {
   return (

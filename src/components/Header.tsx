@@ -134,9 +134,9 @@ export const Header = () => {
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
 
           {/* Logo */}
-          <Link to="/" className="font-extrabold text-xl">
+          <Link to="/" className="font-bold text-xl">
             <span className="text-orange-600">MAR'S-</span>
-            <span className="text-blue-600">prints.brand.shop</span>
+            <span className="text-blue-600">STUDIO</span>
           </Link>
 
           {/* --------------------------- DESKTOP NAV --------------------------- */}
@@ -146,7 +146,7 @@ export const Header = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <Button className="bg-blue-600 text-white rounded-full">
+              <Button className="bg-blue-600 text-white text-xs rounded-full">
                 Products <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
 
@@ -261,7 +261,7 @@ export const Header = () => {
                 </AnimatePresence>
 
                 {/* Links */}
-                {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
+                {["Home", "Shop", "Contact", "About","Photography & Videography", "Feedback"].map((item) => (
                   <button
                     key={item}
                     onClick={() => {

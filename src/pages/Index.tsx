@@ -9,9 +9,11 @@ import { FooterNew } from "@/components/FooterNew";
 import { PageTransition } from "@/components/PageTransition";
 import CitiesWeDeliver from "@/components/CitiesWeDeliver";
 
+
 import  PrintingServicesCarousel  from "@/components/PrintingServicesCarousel";
 import { TicketsCarousel } from "@/components/TicketsCarousel";
 import FAQAccordion from "@/components/Faq";
+import PhotographyVideography from "@/components/PhotographyVideography";
 
 
 
@@ -24,7 +26,9 @@ const Index = () => {
         <Header />
         <main>
           <HeroCarousel />
+          <PhotographyVideography/>
           <PrintingServicesCarousel/>
+          
            <FeaturesSection /> 
            <ProductGrid />
           {/* <TicketsCarousel /> */}
