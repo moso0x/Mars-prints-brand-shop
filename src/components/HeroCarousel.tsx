@@ -107,7 +107,7 @@ export const HeroCarousel = () => {
               playsInline
               className="w-full h-full object-cover brightness-110 contrast-110 saturate-110"
             />
-            <div className="absolute inset-0 bg-black/25" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sky-600/30 to-black/50" />
           </div>
 
           {/* Text column with background image */}
@@ -120,7 +120,8 @@ export const HeroCarousel = () => {
             }}
           >
             {/* sky overlay */}
-            <div className="absolute inset-0 bg-sky-600/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sky-600/30 to-black/50" />
+
 
             {/* Dark overlay for contrast */}
             <div className="absolute inset-0 bg-black/40" />

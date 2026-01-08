@@ -72,7 +72,7 @@ export const FeaturesSection = () => {
 
           {/* Body text xs */}
           <p className="text-xs text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            At Mars Studio, we provide a full range of branding, design, and
+            At Mars, we provide a full range of branding, design, and
             printing services — from promotional items to complete brand identity
             development.
           </p>
@@ -95,12 +95,22 @@ export const FeaturesSection = () => {
                 transition={{ type: "spring", stiffness: 200, damping: 12 }}
                 className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
               >
-                <div className="relative">
-                  <motion.img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
-                  />
+               <div className="relative overflow-hidden">
+                <motion.img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
+                />
+
+                {/* 🌤 Ultra-subtle Sky Overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0.04) 45%, rgba(56,189,248,0) 100%)",
+                  }}
+                />
+
 
                   {/* Icons */}
                   <div className="absolute top-2 right-2 flex gap-2">

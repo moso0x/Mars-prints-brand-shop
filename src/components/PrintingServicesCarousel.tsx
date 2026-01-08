@@ -185,15 +185,29 @@ function ServiceRow({ service }) {
           className="flex gap-4 overflow-x-auto scroll-smooth py-2"
         >
           {service.images.map((img, i) => (
-            <div key={i} className="flex-shrink-0 w-48">
-              <img
-                src={img}
-                className="rounded-xl shadow-lg max-h-40 object-contain"
-              />
-              <p className="text-xs text-center mt-2 font-semibold">
-                {service.labels[i]}
-              </p>
-            </div>
+           <div key={i} className="flex-shrink-0 w-48">
+  <div className="relative rounded-xl overflow-hidden shadow-lg">
+    <img
+      src={img}
+      className="w-full max-h-40 object-contain"
+      alt={service.labels[i]}
+    />
+
+    {/* 🌤 Subtle Sky Overlay */}
+    <div
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        background:
+          "linear-gradient(to top, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0.05) 40%, rgba(56,189,248,0) 100%)",
+      }}
+    />
+  </div>
+
+  <p className="text-xs text-center mt-2 font-semibold">
+    {service.labels[i]}
+  </p>
+</div>
+
           ))}
         </div>
 

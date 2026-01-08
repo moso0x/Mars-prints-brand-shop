@@ -30,7 +30,7 @@ const Contact = () => {
     <PageTransition>
       {loading ? (
         <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-          <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-gray-200 border-t-sky-600 rounded-full animate-spin"></div>
           <p className="mt-2 text-gray-600 text-sm font-medium">Loading...</p>
         </div>
       ) : (
@@ -46,7 +46,7 @@ const Contact = () => {
           <div className="flex justify-center py-4">
             <motion.img
               src={contact}
-              className="w-20 rounded-xl shadow-sm border border-blue-100"
+              className="w-20 rounded-xl shadow-sm border border-sky-100"
               alt="Contact illustration"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -54,7 +54,7 @@ const Contact = () => {
           </div>
 
           <main className="containe pl-8 mx-auto px-4 py-8">
-            <motion.h1 className="text-3xl font-bold mb-2 text-center text-blue-700">
+            <motion.h1 className="text-3xl font-bold mb-2 text-center text-sky-700">
               Contact Us
             </motion.h1>
 
@@ -65,12 +65,12 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 md:pl-20 gap-6">
               {/* FORM CARD */}
               <motion.div
-                className="bg-white shadow-md rounded-xl p-4 border border-blue-100"
+                className="bg-white shadow-md rounded-xl p-4 border border-sky-100"
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-lg font-semibold mb-3 text-blue-700 text-xs">
+                <h2 className="text-lg font-semibold mb-3 text-sky-700 text-xs">
                   Your Details Help Us Connect
                 </h2>
 
@@ -80,7 +80,7 @@ const Contact = () => {
                     <Input
                       id="contact-name"
                       placeholder="Your name"
-                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 placeholder:text-xs focus:border-blue-500"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-sky-500 placeholder:text-xs focus:border-sky-500"
                     />
                   </div>
 
@@ -90,7 +90,7 @@ const Contact = () => {
                       id="contact-email"
                       type="email"
                       placeholder="your@email.com"
-                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                     />
                   </div>
 
@@ -100,7 +100,7 @@ const Contact = () => {
                       id="contact-phone"
                       type="tel"
                       placeholder="Your phone number"
-                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                     />
                   </div>
 
@@ -110,13 +110,13 @@ const Contact = () => {
                       id="contact-message"
                       placeholder="How can we help you?"
                       rows={4}
-                      className="placeholder:text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="placeholder:text-xs focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-50%  py-2 text-xs rounded-full bg-blue-600 hover:bg-blue-700 text-white"
+                    className="w-50%  py-2 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white"
                   >
                     Send Message
                   </Button>
@@ -125,18 +125,18 @@ const Contact = () => {
 
               {/* CONTACT INFO CARD */}
               <motion.div
-                className="bg-white shadow-md rounded-xl p-4 border border-blue-100"
+                className="bg-white shadow-md rounded-xl p-4 border border-sky-100"
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-lg font-semibold mb-3 text-blue-700">
+                <h2 className="text-lg font-semibold mb-3 text-sky-700">
                   Contact Information
                 </h2>
 
                 <div className="space-y-3 text-xs text-gray-700">
                   <div className="flex items-start gap-2">
-                    <Mail className="h-4 w-4 text-blue-600 mt-1" />
+                    <Mail className="h-4 w-4 text-sky-600 mt-1" />
                     <div>
                       <p className="font-medium">Email</p>
                       <p>marsprinters@gmail.com</p>
@@ -144,7 +144,7 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <Phone className="h-4 w-4 text-blue-600 mt-1" />
+                    <Phone className="h-4 w-4 text-sky-600 mt-1" />
                     <div>
                       <p className="font-medium">Phone</p>
                       <p> +254 717 037785</p>
@@ -152,7 +152,7 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <MapPin className="h-4 w-4 text-blue-600 mt-1" />
+                    <MapPin className="h-4 w-4 text-sky-600 mt-1" />
                     <div>
                       <p className="font-medium">Location</p>
                       <p>Nairobi, Kenya</p>
@@ -161,7 +161,7 @@ const Contact = () => {
                 </div>
 
                 <div className="mt-4 text-xs text-gray-700">
-                  <h3 className="font-semibold mb-2 text-blue-700">
+                  <h3 className="font-semibold mb-2 text-sky-700">
                     Business Hours
                   </h3>
                   <p>Monday – Friday: 8:00 AM – 6:00 PM</p>

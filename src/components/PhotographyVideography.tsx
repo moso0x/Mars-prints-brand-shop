@@ -27,7 +27,7 @@ import { Camera, Video, ArrowRight  } from "lucide-react";
 
 // undraw Icons 
 
-import moments from "@/assets/undraw/momemnts.png";
+import moments from "@/assets/undraw/branding.png";
 import videography from "@/assets/undraw/videography.png";
 import photography from "@/assets/undraw/photography.png";
 
@@ -59,17 +59,30 @@ const UndrawCard = ({ image, title }: { image: string; title: string }) => {
   return (
     <motion.div
       whileHover={{ y: -6 }}
-      className="relative h-56 rounded-xl overflow-hidden shadow-lg bg-white flex flex-col items-center justify-center p-6"
+      className="relative h-56 rounded-xl overflow-hidden shadow-lg bg-white"
     >
+      {/* Image */}
       <img
         src={image}
         alt={title}
-        className="w-40 h-40 object-contain mb-4"
+        className="absolute inset-0 w-full h-full object-contain p-6"
       />
 
-      <p className="text-sky-700 font-semibold text-sm text-center">
-        {title}
-      </p>
+      {/* 🌤 Sky Gradient Overlay */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(56,189,248,0.6) 0%, rgba(56,189,248,0.25) 45%, rgba(56,189,248,0) 100%)",
+        }}
+      />
+
+      {/* Text */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 z-10">
+        <p className="text-white font-semibold text-sm text-center drop-shadow-md">
+          {title}
+        </p>
+      </div>
     </motion.div>
   );
 };
@@ -79,7 +92,7 @@ const UndrawCard = ({ image, title }: { image: string; title: string }) => {
 const undrawServices = [
   { title2: " Photography", image:photography  },
   { title2: " videography", image:videography },
-  { title2: "Events", image:moments  },
+  { title2: "Branding Services ", image:moments  },
 
 ];
 /* ---------------------------- Rotating Image Card --------------------------- */
@@ -108,14 +121,28 @@ const RotatingImageCard = ({ images, title }: any) => {
         />
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-black/30" />
+      {/* 🌤 Sky Gradient Overlay */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(56,189,248,0.75) 0%, rgba(56,189,248,0.35) 45%, rgba(56,189,248,0) 100%)",
+        }}
+      />
 
-      <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-4 py-2">
-        <p className="text-white font-semibold text-sm">{title}</p>
+      {/* Optional subtle darkening for contrast */}
+      <div className="absolute inset-0 bg-black/10" />
+
+      {/* Text */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 z-10">
+        <p className="text-white font-semibold text-sm drop-shadow-md">
+          {title}
+        </p>
       </div>
     </div>
   );
 };
+
 
 const PhotographyVideography = () => {
   return (

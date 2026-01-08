@@ -138,8 +138,8 @@ const Shop = () => {
                         onClick={() => setSelectedCategory(category)}
                         className={`w-full text-left px-3 py-1.5 rounded text-xs transition ${
                           selectedCategory === category
-                            ? "bg-blue-600 text-white"
-                            : "hover:bg-blue-50 text-gray-700"
+                            ? "bg-sky-600 text-white"
+                            : "hover:bg-sky-50 text-gray-700"
                         }`}
                       >
                         {category}
@@ -156,7 +156,7 @@ const Shop = () => {
               <div className="mb-6 space-y-4">
                 <div className="flex flex-col sm:flex-row justify-between gap-4">
                   <div className="relative w-full sm:w-96">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-blue-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-sky-400" />
                     <Input
                       placeholder="Search products..."
                       value={searchQuery}
@@ -169,7 +169,7 @@ const Shop = () => {
                     <Button
                       size="icon"
                       variant={viewMode === "grid" ? "default" : "outline"}
-                      className="text-blue-600"
+                      className="text-sky-600"
                       onClick={() => setViewMode("grid")}
                     >
                       <LayoutGrid className="h-4 w-4" />
@@ -177,7 +177,7 @@ const Shop = () => {
                     <Button
                       size="icon"
                       variant={viewMode === "list" ? "default" : "outline"}
-                      className="text-blue-600"
+                      className="text-sky-600"
                       onClick={() => setViewMode("list")}
                     >
                       <List className="h-4 w-4" />
@@ -186,7 +186,7 @@ const Shop = () => {
                 </div>
 
                 <div className="flex justify-between items-center text-xs">
-                  <p className="text-blue-700">
+                  <p className="text-sky-700">
                     Showing {Math.min(visibleCount, filteredProducts.length)} of{" "}
                     {filteredProducts.length}
                   </p>
@@ -208,7 +208,7 @@ const Shop = () => {
               {/* LOADING */}
               {loading && (
                 <div className="flex justify-center py-12">
-                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  <Loader2 className="h-8 w-8 animate-spin text-sky-600" />
                 </div>
               )}
 
@@ -249,12 +249,12 @@ const Shop = () => {
                           <h3 className="font-semibold text-xs mb-1">
                             {product.title}
                           </h3>
-                          <p className="text-blue-600 text-xs font-medium mb-2">
+                          <p className="text-sky-600 text-xs font-medium mb-2">
                             {formatPrice(product.price)}
                           </p>
 
                           <Button
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-full"
+                            className="w-full bg-sky-600 hover:bg-sky-700 text-white text-xs rounded-full"
                             onClick={() =>
                               addToCart({
                                 title: product.title,
@@ -276,7 +276,7 @@ const Shop = () => {
               {!loading && visibleCount < filteredProducts.length && (
                 <div className="flex justify-center mt-8">
                   <Button
-                    className="bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-full px-6"
+                    className="bg-sky-600 hover:bg-sky-700 text-white text-xs rounded-full px-6"
                     onClick={() => setVisibleCount((p) => p + 10)}
                   >
                     Load More
