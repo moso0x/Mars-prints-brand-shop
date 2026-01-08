@@ -139,7 +139,7 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-sky-500 border-t-transparent" />
       </div>
     );
   }
@@ -177,7 +177,7 @@ const AdminDashboard = () => {
           <div className="p-4 border-b flex justify-between items-center">
             {!sidebarCollapsed && (
               <div>
-                <h1 className="text-xl font-bold text-blue-600">Admin</h1>
+                <h1 className="text-xl font-bold text-sky-600">Admin</h1>
                 <p className="text-xs text-muted-foreground">
                   Store Management
                 </p>
@@ -202,7 +202,7 @@ const AdminDashboard = () => {
                     }}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition ${
                       activeTab === item.id
-                        ? "bg-blue-600 text-white"
+                        ? "bg-sky-600 text-white"
                         : "hover:bg-muted"
                     } ${sidebarCollapsed ? "justify-center" : ""}`}
                   >
@@ -224,7 +224,7 @@ const AdminDashboard = () => {
         <main className="flex-1 flex flex-col">
           {/* HEADER */}
           <header className="sticky top-0 z-10 bg-white border-b px-6 py-3 flex justify-between">
-            <h2 className="text-lg font-semibold text-blue-700">
+            <h2 className="text-lg font-semibold text-sky-700">
               Admin Dashboard
             </h2>
 
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex gap-2">
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-blue-600 text-white">
+                      <AvatarFallback className="bg-sky-600 text-white">
                         {userName.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
@@ -265,14 +265,14 @@ const AdminDashboard = () => {
               <>
                 <div className="flex justify-between items-center">
                   <div>
-                    <h2 className="text-3xl font-bold text-blue-700">
+                    <h2 className="text-3xl font-bold text-sky-700">
                       Dashboard Overview
                     </h2>
                     <p className="text-muted-foreground">
                       Welcome to your admin dashboard
                     </p>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700">
+                  <Button className="bg-sky-600 hover:bg-sky-700">
                     <Plus className="mr-2" /> Add Product
                   </Button>
                 </div>
@@ -286,17 +286,17 @@ const AdminDashboard = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
                     >
-                      <Card className="shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-blue-100 hover:ring-1 hover:ring-blue-500/30">
+                      <Card className="shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-sky-100 hover:ring-1 hover:ring-sky-500/30">
                         <CardContent className="p-6 flex justify-between items-center">
                           <div>
                             <p className="text-sm text-muted-foreground">
                               {stat.title}
                             </p>
-                            <p className="text-2xl font-bold text-blue-700">
+                            <p className="text-2xl font-bold text-sky-700">
                               {stat.value}
                             </p>
                           </div>
-                          <div className="p-3 rounded-full bg-blue-600">
+                          <div className="p-3 rounded-full bg-sky-600">
                             <stat.icon className="text-white" />
                           </div>
                         </CardContent>
@@ -306,9 +306,9 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* QUICK ACTIONS */}
-               <Card className="shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-blue-100">
+               <Card className="shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-sky-100">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-blue-700">
+                      <CardTitle className="flex items-center gap-2 text-sky-700">
                         <TrendingUp size={20} />
                         Quick Actions
                       </CardTitle>

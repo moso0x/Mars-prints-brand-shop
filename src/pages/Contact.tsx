@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import toast from "react-hot-toast";
-import contact from "@/assets/contact-icon.jpg";
+import contact from "@/assets/contact-icon.png";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -46,7 +46,7 @@ const Contact = () => {
           <div className="flex justify-center py-4">
             <motion.img
               src={contact}
-              className="w-20 rounded-xl shadow-sm border border-sky-100"
+              className="w-80 rounded-xl shadow-sm border border-sky-100"
               alt="Contact illustration"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

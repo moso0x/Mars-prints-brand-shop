@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Camera, Video, ArrowRight } from "lucide-react";
+
+/* ---------------------------- Assets ---------------------------- */
 import aboutImage from "@/assets/image-collage.jpg";
 
 import camera from "@/assets/videoPhoto/camera.jpg";
@@ -21,16 +24,17 @@ import portrait3 from "@/assets/videoPhoto/portrait3.jpg";
 import videoService from "@/assets/videoPhoto/video-service.mp4";
 import videoServices from "@/assets/videoPhoto/videography_service.mp4";
 
-import { Camera, Video, ArrowRight } from "lucide-react";
-
 import moments from "@/assets/undraw/branding.png";
 import videography from "@/assets/undraw/videography.png";
 import photography from "@/assets/undraw/photography.png";
 
-/* ---------------------------- Animation Variants --------------------------- */
+/* ---------------------------- Animations ---------------------------- */
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.32 } },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.25 },
+  },
 };
 
 const itemVariants = {
@@ -38,43 +42,45 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-/* ---------------------------- Services --------------------------- */
+/* ---------------------------- Data ---------------------------- */
 const showcaseServices = [
-  { title: "Wedding Photography", images: [event3, event1, event2] },
-  { title: "Corporate Events", images: [event, camera, outdoor] },
-  { title: "Family Moments", images: [family, family1, family2, family3] },
-  { title: "Portrait Sessions", images: [portrait, portrait1, portrait3] },
-  { title: "Outdoor Photography", images: [outdoor, outdoor1, outdoor2] },
-  { title: "Creative Studio Work", images: [camera, portrait, event] },
+  { title: "Wedding Photography", images: [event3, event1, event2], category: "Weddings" },
+  { title: "Corporate Events", images: [event, camera, outdoor], category: "Corporate" },
+  { title: "Family Moments", images: [family, family1, family2, family3], category: "Family" },
+  { title: "Portrait Sessions", images: [portrait, portrait1, portrait3], category: "Portraits" },
+  { title: "Outdoor Photography", images: [outdoor, outdoor1, outdoor2], category: "Outdoor" },
+  { title: "Creative Studio Work", images: [camera, portrait, event], category: "Studio" },
 ];
+
+const categories = ["All", "Weddings", "Corporate", "Family", "Portraits", "Outdoor", "Studio"];
 
 const undrawServices = [
-  { title2: "Photography", image: photography },
-  { title2: "Videography", image: videography },
-  { title2: "Branding Services", image: moments },
+  { title: "Photography", image: photography },
+  { title: "Videography", image: videography },
+  { title: "Branding Services", image: moments },
 ];
 
-/* ---------------------------- Cards --------------------------- */
+/* ---------------------------- Components ---------------------------- */
 const UndrawCard = ({ image, title }: { image: string; title: string }) => (
   <motion.div
     whileHover={{ y: -6 }}
-    className="relative h-56 rounded-xl overflow-hidden shadow-lg bg-white"
+    className="relative h-56 rounded-xl overflow-hidden bg-white shadow-lg"
   >
-    <img
-      src={image}
-      alt={title}
-      className="absolute inset-0 w-full h-full object-contain p-6"
-    />
-    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-400/60 via-sky-300/30 to-transparent" />
-    <div className="absolute bottom-0 left-0 right-0 px-4 py-3">
-      <p className="text-white font-semibold text-sm text-center drop-shadow">
-        {title}
-      </p>
-    </div>
+    <img src={image} alt={title} className="absolute inset-0 w-full h-full object-contain p-6" />
+    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-500/60 to-transparent" />
+    <p className="absolute bottom-3 w-full text-center text-white font-semibold">
+      {title}
+    </p>
   </motion.div>
 );
 
-const RotatingImageCard = ({ images, title }: any) => {
+const RotatingImageCard = ({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -91,56 +97,49 @@ const RotatingImageCard = ({ images, title }: any) => {
         <motion.img
           key={index}
           src={images[index]}
+          className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
 
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-500/70 via-sky-400/30 to-transparent" />
-      <div className="absolute inset-0 bg-black/10" />
-
-      <div className="absolute bottom-0 left-0 right-0 px-4 py-3">
-        <p className="text-white font-semibold text-sm drop-shadow">{title}</p>
-      </div>
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-600/70 to-transparent" />
+      <p className="absolute bottom-3 left-4 text-white font-semibold text-sm">
+        {title}
+      </p>
     </div>
   );
 };
 
-/* ---------------------------- MAIN COMPONENT --------------------------- */
+/* ---------------------------- MAIN ---------------------------- */
 const PhotographyVideography = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredServices =
+    activeCategory === "All"
+      ? showcaseServices
+      : showcaseServices.filter((s) => s.category === activeCategory);
+
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 text-xs md:text-sm">
-      <h1 className="text-2xl text-center font-bold text-sky-600 mb-6">
+    <div className="max-w-6xl mx-auto px-6 py-16">
+      {/* HEADER */}
+      <h1 className="text-2xl font-bold text-center text-sky-600 mb-4">
         Photography & Videography Services
       </h1>
-
       <p className="text-center mb-16">
-        MARS Photography and Videography brings moments to life through creative
-        storytelling and stunning visuals.
+        Capturing moments through creative storytelling and cinematic visuals.
       </p>
 
-      {/* UNDRAW SECTION */}
-      <div className="mb-20 shadow-lg p-6 rounded-2xl bg-gray-200">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
-        >
-          {undrawServices.map((s, i) => (
-            <motion.div key={i} variants={itemVariants}>
-              <UndrawCard image={s.image} title={s.title2} />
-            </motion.div>
-          ))}
-        </motion.div>
+      {/* UNDRAW */}
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-20">
+        {undrawServices.map((s, i) => (
+          <UndrawCard key={i} image={s.image} title={s.title} />
+        ))}
       </div>
 
-      {/* TOP SECTION */}
-      <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
+      {/* TWO COLUMN SECTION */}
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
         {/* LEFT */}
         <motion.div
           variants={containerVariants}
@@ -159,16 +158,16 @@ const PhotographyVideography = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute inset-0 bg-black/50 p-6 flex flex-col justify-end">
+            <div className="absolute inset-0 bg-black/55 p-6 flex flex-col justify-end">
               <Camera className="text-sky-400 mb-2" />
-              <h3 className="text-lg font-semibold text-sky-100 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Photography
               </h3>
-              <ul className="list-disc list-inside text-sky-100 space-y-1">
-                <li>Corporate & Event Photography</li>
-                <li>Wedding & Engagement Shoots</li>
-                <li>Studio & Portrait Sessions</li>
-                <li>Family & Lifestyle Photography</li>
+              <ul className="text-white list-disc list-inside space-y-1">
+                <li>Corporate & Event Shoots</li>
+                <li>Wedding Photography</li>
+                <li>Portrait & Studio Sessions</li>
+                <li>Family Photography</li>
               </ul>
             </div>
           </motion.div>
@@ -186,15 +185,15 @@ const PhotographyVideography = () => {
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/55" />
+            <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 p-6 flex flex-col justify-end h-full">
               <Video className="text-sky-400 mb-2" />
-              <h3 className="text-lg font-semibold text-sky-100 mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 Videography
               </h3>
-              <ul className="list-disc list-inside text-sky-100 space-y-1">
-                <li>Wedding & Event Coverage</li>
-                <li>Corporate & Brand Videos</li>
+              <ul className="text-white list-disc list-inside space-y-1">
+                <li>Wedding Films</li>
+                <li>Corporate Videos</li>
                 <li>Social Media Content</li>
                 <li>Cinematic Storytelling</li>
               </ul>
@@ -202,23 +201,22 @@ const PhotographyVideography = () => {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT — IMAGE + LAPTOP VIDEO */}
+        {/* RIGHT – IMAGE + LAPTOP VIDEO */}
         <div
-          className="relative h-80 md:h-[420px] rounded-2xl overflow-hidden shadow-xl"
+          className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl"
           style={{
             backgroundImage: `url(${aboutImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-sky-500/40 via-sky-400/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-500/40 to-transparent" />
 
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-[300px] md:w-[360px]">
+            <div className="relative w-[320px]">
               {/* Screen */}
-              <div className="relative aspect-video rounded-lg bg-black border-[6px] border-gray-800 shadow-2xl overflow-hidden">
-                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-600 rounded-full z-20" />
-
+              <div className="relative aspect-video bg-black rounded-lg border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-600 rounded-full" />
                 <video
                   src={videoServices}
                   autoPlay
@@ -227,12 +225,11 @@ const PhotographyVideography = () => {
                   playsInline
                   className="w-full h-full object-cover"
                 />
-
                 <div className="absolute inset-0 bg-sky-500/20" />
               </div>
 
               {/* Base */}
-              <div className="mx-auto mt-1 h-3 w-[110%] bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl shadow-md" />
+              <div className="mx-auto mt-1 h-3 w-[110%] bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl" />
             </div>
           </div>
         </div>
@@ -240,35 +237,38 @@ const PhotographyVideography = () => {
 
       {/* PORTFOLIO */}
       <div className="mb-20">
-        <h2 className="text-xl font-bold text-center mb-8">
-          Our Photography & Videography Portfolio
-        </h2>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
-        >
-          {showcaseServices.map((s, i) => (
-            <motion.div key={i} variants={itemVariants}>
-              <RotatingImageCard images={s.images} title={s.title} />
-            </motion.div>
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 border text-sm transition ${
+                activeCategory === cat
+                  ? "bg-sky-600 text-white"
+                  : "border-gray-400 hover:border-sky-500"
+              }`}
+            >
+              {cat}
+            </button>
           ))}
-        </motion.div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {filteredServices.map((s, i) => (
+            <RotatingImageCard key={i} images={s.images} title={s.title} />
+          ))}
+        </div>
       </div>
 
       {/* CTA */}
       <div className="text-center">
-        <motion.a
-          href="/Contact"
-          whileHover={{ scale: 1.05 }}
-          className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white py-3 px-6 rounded-full font-semibold"
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-full font-semibold"
         >
-          Gallery
+         Get Quote
           <ArrowRight size={16} />
-        </motion.a>
+        </a>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, X } from "lucide-react";
+import { useState } from "react";
 import logo from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 
@@ -42,22 +43,25 @@ const servicesList = [
 ];
 
 export const FooterNew = () => {
+  const [showDeveloper, setShowDeveloper] = useState(false);
+
   return (
     <footer className="bg-black text-white py-12 relative overflow-hidden font-poppins text-xs md:text-sm">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start">
-            <span className="text-sky-600 text-2xl ml-2 font-bold">MAR'S Studio </span>
-        
-            <p className="text-sky-200 font-bold  text-xl">
-               For Photography, Videography  Printing & Branding,  Services.
+            <span className="text-sky-600 text-2xl ml-2 font-bold">
+              MAR'S Studio
+            </span>
+            <p className="text-sky-200 font-bold text-xl">
+              For Photography, Videography Printing & Branding Services.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
               Quick Links
             </h4>
             <ul className="space-y-1">
@@ -70,7 +74,7 @@ export const FooterNew = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="hover:text-[#05B45E] transition-colors text-xs duration-200"
+                    className="hover:text-[#05B45E] transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -81,15 +85,15 @@ export const FooterNew = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
               Services
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 text-white max-h-80 overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 max-h-80 overflow-y-auto">
               {servicesList.map((service) => (
                 <Link
                   key={service}
-                  to="./shop"
-                  className="hover:text-sky-400 text-xs transition-colors duration-200 block text-white"
+                  to="/shop"
+                  className="hover:text-sky-400 transition-colors duration-200 block"
                 >
                   {service}
                 </Link>
@@ -99,12 +103,12 @@ export const FooterNew = () => {
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
               Contact Us
             </h4>
-            <ul className="space-y-1  text-xs text-white">
+            <ul className="space-y-1">
               <li>+254 717 037785</li>
-              <li> marsprinters@gmail.com</li>
+              <li>marsprinters@gmail.com</li>
               <li>Kimilili, Kenya</li>
             </ul>
 
@@ -120,7 +124,7 @@ export const FooterNew = () => {
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:scale-110 transition-transform duration-200"
+                  className="hover:scale-110 transition-transform"
                   style={{ color }}
                 >
                   <Icon size={20} />
@@ -131,28 +135,86 @@ export const FooterNew = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between gap-2 pt-4 border-t border-gray-200">
-          <div className="text-center md:text-left text-xs text-gray-300">
-            <p>
-              &copy; {new Date().getFullYear()} <span className="font-medium">Mars  Custom Printing  & Branding Services</span>. All rights reserved.
-            </p>
-          </div>
+        <div className="flex flex-col md:flex-row justify-between gap-2 pt-4 border-t border-gray-700">
+          <p className="text-gray-300">
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="font-medium">
+              Mars Custom Printing & Branding Services
+            </span>
+            . All rights reserved.
+          </p>
 
-          <div className="flex flex-wrap gap-2 text-xs text-white justify-center md:justify-end">
-            <Link to="/privacy" className="hover:text-red-600 transition-colors text-xs">
+          <div className="flex flex-wrap gap-2 items-center">
+            <Link to="/privacy" className="hover:text-red-600">
               Privacy Policy
             </Link>
             <span className="text-red-600">|</span>
-            <span className="hover:text-red-600 cursor-pointer">Terms of Use</span>
+
+            <button className="hover:text-red-600">Terms of Use</button>
             <span className="text-red-600">|</span>
-            <span className="hover:text-red-600 cursor-pointer">Return Policy</span>
+
+            <button className="hover:text-red-600">Return Policy</button>
             <span className="text-red-600">|</span>
-            <span className="hover:text-red-600 cursor-pointer">Cookie Policy</span>
+
+            <button className="hover:text-red-600">Cookie Policy</button>
             <span className="text-red-600">|</span>
-            <span className="hover:text-red-600 cursor-pointer">All Products</span>
+
+            {/* Developer Button */}
+            <button
+              onClick={() => setShowDeveloper(true)}
+              className="hover:text-sky-400 underline underline-offset-4 transition"
+            >
+              Developer
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Developer Pop Card */}
+      {showDeveloper && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 z-40"
+            onClick={() => setShowDeveloper(false)}
+          />
+
+          {/* Card */}
+          <div className="fixed bottom-6 right-6 z-50 w-80 bg-white text-black rounded-2xl shadow-2xl p-5">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg font-semibold text-sky-600">
+                For App and Websites Needs!
+              </h3>
+              <button onClick={() => setShowDeveloper(false)}>
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="space-y-2 text-sm">
+                 <h3 className="text-lg font-semibold text-sky-600">
+              Contact:
+              </h3>
+              <p>
+                <span className="font-medium">Name:</span> Moses Mulumia
+               
+              </p>
+              <p> <span className="font-medium">Tel :</span> +254 742606050 </p>
+              <p>
+                <span className="font-medium">Email:</span>{" "}
+                <a
+                  href="mailto:mosesmulumia@gmail.com"
+                  className="text-sky-600 hover:underline"
+                >
+                  mosesmulumia@gmail.com
+                </a>
+              </p>
+              <p>
+                <span className="font-medium">Address:</span> Nairobi, Kenya
+              </p>
+            </div>
+          </div>
+        </>
+      )}
     </footer>
   );
 };

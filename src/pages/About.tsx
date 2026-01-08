@@ -42,7 +42,7 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {/* Card 1 */}
             <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-              <Star className="w-8 h-8 text-yellow-500 mb-4" />
+              {/* <Star className="w-8 h-8 text-yellow-500 mb-4" /> */}
               <h3 className="font-semibold  mb-2">Premium Quality</h3>
               <p className="text-gray-600 text-xs">
                 We use high-quality materials and advanced printing techniques to ensure every product looks professional and lasts long.
@@ -51,7 +51,7 @@ export default function About() {
 
             {/* Card 2 */}
             <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-              <Paintbrush className="w-8 h-8 text-blue-500 mb-4" />
+              {/* <Paintbrush className="w-8 h-8 text-blue-500 mb-4" /> */}
               <h3 className="font-semibold  mb-2">Creative Designs</h3>
               <p className="text-gray-600 text-xs">
                 Our team of designers works with you to create custom visuals that perfectly represent your brand and vision.
@@ -60,7 +60,7 @@ export default function About() {
 
             {/* Card 3 */}
             <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-              <Clock className="w-8 h-8 text-green-500 mb-4" />
+              {/* <Clock className="w-8 h-8 text-green-500 mb-4" /> */}
               <h3 className="font-semibold  mb-2">Fast & Reliable</h3>
               <p className="text-gray-600 text-xs">
                 We pride ourselves on timely delivery and excellent customer service, so your projects are always on schedule.

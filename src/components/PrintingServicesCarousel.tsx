@@ -118,7 +118,7 @@ export default function PrintingServicesCarousel() {
         <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
           <span className="text-black">Printing</span> |{" "}
           <span className="text-black">Branding</span> |{" "}
-          <span className="text-green-600">Services </span> 
+          <span className="text-sky-600">Services </span> 
           
         </h2>
 
