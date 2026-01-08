@@ -34,7 +34,7 @@ const Index = () => {
           {/* <TicketsCarousel /> */}
           {/* <EcoFriendlySection /> */}
           {/* <AboutSection />   */}
-          <CitiesWeDeliver/>
+          {/* <CitiesWeDeliver/> */}
             {/* <RatingsSection /> */}
         </main>
         {/* <FAQAccordion/> */}
