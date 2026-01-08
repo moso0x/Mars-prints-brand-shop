@@ -109,7 +109,7 @@ const AdvertRibbon = () => {
                     font-[Nabla]
                     text-lg sm:text-2xl
                     tracking-wide
-                    text-orange-800
+                    text-sky-800
                   "
                 >
                   {advertisements[currentAd].title}
@@ -137,7 +137,7 @@ const AdvertRibbon = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="absolute right-2 top-2 h-6 w-6 p-0 text-black hover:bg-orange-500/10 z-10"
+          className="absolute right-2 top-2 h-6 w-6 p-0 text-black hover:bg-sky-500/10 z-10"
           onClick={() => setIsVisible(false)}
         >
           <X className="h-3 w-3" />

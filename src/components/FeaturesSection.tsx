@@ -72,7 +72,7 @@ export const FeaturesSection = () => {
 
           {/* Body text xs */}
           <p className="text-xs text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            At Jelimo Creatives, we provide a full range of branding, design, and
+            At Mars Studio, we provide a full range of branding, design, and
             printing services — from promotional items to complete brand identity
             development.
           </p>
@@ -139,7 +139,7 @@ export const FeaturesSection = () => {
                   </p>
 
                   <Link to={`/product/${slug}`}>
-                    <button className="text-xs font-medium text-green-600 border border-white-600 rounded-full px-3 py-1 hover:bg-orange-600 hover:text-white transition-all duration-300">
+                    <button className="text-xs font-medium text-sky-600 border border-white-600 rounded-full px-3 py-1 hover:bg-orange-600 hover:text-white transition-all duration-300">
                       Order now
                     </button>
                   </Link>

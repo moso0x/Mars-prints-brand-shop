@@ -135,8 +135,8 @@ export const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="font-bold text-xl">
-            <span className="text-orange-600">MAR'S-</span>
-            <span className="text-blue-600">STUDIO</span>
+            <span className=" text-4xl text-sky-800">MAR'S</span> 
+            <span className="text-black-600">STUDIO</span>
           </Link>
 
           {/* --------------------------- DESKTOP NAV --------------------------- */}
