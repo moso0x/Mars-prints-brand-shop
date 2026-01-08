@@ -3,22 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import aboutImage from "@/assets/image-collage.jpg";
 
 import camera from "@/assets/videoPhoto/camera.jpg";
-import creative from "@/assets/videoPhoto/creative.jpg";
 import event from "@/assets/videoPhoto/event.jpg";
 import event1 from "@/assets/videoPhoto/event1.jpg";
 import event2 from "@/assets/videoPhoto/event2.jpg";
 import event3 from "@/assets/videoPhoto/event3.jpg";
 import family from "@/assets/videoPhoto/family.jpg";
+import family1 from "@/assets/videoPhoto/family1.jpg";
 import family2 from "@/assets/videoPhoto/family2.jpg";
 import family3 from "@/assets/videoPhoto/family3.jpg";
 import outdoor from "@/assets/videoPhoto/outodoor.jpg";
+import outdoor1 from "@/assets/videoPhoto/outdoor1.jpg";
 import outdoor2 from "@/assets/videoPhoto/outdoor2.jpg";
-import wedding from "@/assets/videoPhoto/wedding.jpg";
 import portrait from "@/assets/videoPhoto/portrait.jpg";
 import portrait1 from "@/assets/videoPhoto/portrait1.jpg";
 import portrait3 from "@/assets/videoPhoto/portrait3.jpg";
-import outdoor1 from "@/assets/videoPhoto/outdoor1.jpg";
-import family1 from "@/assets/videoPhoto/family1.jpg";
 
 import videoService from "@/assets/videoPhoto/video-service.mp4";
 import videoServices from "@/assets/videoPhoto/videography_service.mp4";
@@ -32,10 +30,7 @@ import photography from "@/assets/undraw/photography.png";
 /* ---------------------------- Animation Variants --------------------------- */
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.32 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.32 } },
 };
 
 const itemVariants = {
@@ -108,9 +103,7 @@ const RotatingImageCard = ({ images, title }: any) => {
       <div className="absolute inset-0 bg-black/10" />
 
       <div className="absolute bottom-0 left-0 right-0 px-4 py-3">
-        <p className="text-white font-semibold text-sm drop-shadow">
-          {title}
-        </p>
+        <p className="text-white font-semibold text-sm drop-shadow">{title}</p>
       </div>
     </div>
   );
@@ -129,7 +122,7 @@ const PhotographyVideography = () => {
         storytelling and stunning visuals.
       </p>
 
-      {/* Undraw Section */}
+      {/* UNDRAW SECTION */}
       <div className="mb-20 shadow-lg p-6 rounded-2xl bg-gray-200">
         <motion.div
           variants={containerVariants}
@@ -209,7 +202,7 @@ const PhotographyVideography = () => {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT — BACKGROUND IMAGE + VIDEO OVERLAY */}
+        {/* RIGHT — IMAGE + LAPTOP VIDEO */}
         <div
           className="relative h-80 md:h-[420px] rounded-2xl overflow-hidden shadow-xl"
           style={{
@@ -218,21 +211,28 @@ const PhotographyVideography = () => {
             backgroundPosition: "center",
           }}
         >
-          {/* Sky overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-sky-500/40 via-sky-400/20 to-transparent" />
 
-          {/* Framed video */}
-          <div className="absolute inset-0 flex items-center justify-center p-6">
-            <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border border-white/40 backdrop-blur-md shadow-2xl">
-              <video
-                src={videoServices}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-sky-500/20" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-[300px] md:w-[360px]">
+              {/* Screen */}
+              <div className="relative aspect-video rounded-lg bg-black border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-600 rounded-full z-20" />
+
+                <video
+                  src={videoServices}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute inset-0 bg-sky-500/20" />
+              </div>
+
+              {/* Base */}
+              <div className="mx-auto mt-1 h-3 w-[110%] bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl shadow-md" />
             </div>
           </div>
         </div>
