@@ -53,7 +53,7 @@ const Contact = () => {
             />
           </div>
 
-          <main className="container mx-auto px-4 py-8">
+          <main className="containe pl-8 mx-auto px-4 py-8">
             <motion.h1 className="text-3xl font-bold mb-2 text-center text-blue-700">
               Contact Us
             </motion.h1>
@@ -62,7 +62,7 @@ const Contact = () => {
               Let’s Build Your Brand — Message Us
             </motion.p>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 md:pl-20 gap-6">
               {/* FORM CARD */}
               <motion.div
                 className="bg-white shadow-md rounded-xl p-4 border border-blue-100"

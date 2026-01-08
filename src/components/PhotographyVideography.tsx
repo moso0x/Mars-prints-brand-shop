@@ -22,7 +22,15 @@ import outdoor1 from "@/assets/videoPhoto/outdoor1.jpg";
 import family1 from "@/assets/videoPhoto/family1.jpg";
 import video_service from "@/assets/videoPhoto/videography.mp4";
 import videoService from "@/assets/videoPhoto/video-service.mp4";
-import { Camera, Video } from "lucide-react";
+import { Camera, Video, ArrowRight  } from "lucide-react";
+
+
+// undraw Icons 
+
+import moments from "@/assets/undraw/momemnts.png";
+import videography from "@/assets/undraw/videography.png";
+import photography from "@/assets/undraw/photography.png";
+
 
 /* ---------------------------- Animation Variants --------------------------- */
 const containerVariants = {
@@ -47,7 +55,33 @@ const showcaseServices = [
   { title: "Outdoor Photography", images: [outdoor, outdoor1, outdoor2] },
   { title: "Creative Studio Work", images: [camera, portrait, event] },
 ];
+const UndrawCard = ({ image, title }: { image: string; title: string }) => {
+  return (
+    <motion.div
+      whileHover={{ y: -6 }}
+      className="relative h-56 rounded-xl overflow-hidden shadow-lg bg-white flex flex-col items-center justify-center p-6"
+    >
+      <img
+        src={image}
+        alt={title}
+        className="w-40 h-40 object-contain mb-4"
+      />
 
+      <p className="text-sky-700 font-semibold text-sm text-center">
+        {title}
+      </p>
+    </motion.div>
+  );
+};
+
+
+
+const undrawServices = [
+  { title2: " Photography", image:photography  },
+  { title2: " videography", image:videography },
+  { title2: "Events", image:moments  },
+
+];
 /* ---------------------------- Rotating Image Card --------------------------- */
 const RotatingImageCard = ({ images, title }: any) => {
   const [index, setIndex] = useState(0);
@@ -87,9 +121,29 @@ const PhotographyVideography = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 text-xs md:text-sm">
       {/* Header */}
-      <h1 className="text-4xl text-center font-bold text-green-600 mb-10">
+      <h1 className="text-2xl text-center font-bold text-sky-600 mb-10">
         Photography & Videography Services
       </h1>
+      <p className="text-black flex text-center justify-center ">MARS Photography and Videography brings moments to life through creative storytelling and stunning visuals. We specialize in capturing authentic emotions, powerful details, and cinematic scenes that turn events, people, and brands into unforgettable visual stories.</p>
+           {/* undraw  section images  */}
+                <div className="mb-20 shadow-lg p-6 rounded-2xl bg-gray-200">
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+                  >
+                    {undrawServices.map((service, index) => (
+                      <motion.div key={index} variants={itemVariants}>
+                        <UndrawCard
+                          image={service.image}
+                          title={service.title2}
+                        />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
 
       {/* Top Section */}
       <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
@@ -112,11 +166,11 @@ const PhotographyVideography = () => {
             }}
           >
             <div className="absolute inset-0 bg-black/50 p-6 flex flex-col justify-end">
-              <Camera className="text-green-400 mb-2" />
-              <h3 className="text-lg font-semibold text-green-100  mb-2">
+              <Camera className="text-sky-400 mb-2" />
+              <h3 className="text-lg font-semibold text-sky-100  mb-2">
                 Photography
               </h3>
-              <ul className="list-disc list-inside text-green-100 text-xs  space-y-1">
+              <ul className="list-disc list-inside text-sky-100 md:text-xs  space-y-1">
                 <li>Corporate & Event Photography</li>
                 <li>Wedding & Engagement Shoots</li>
                 <li>Studio & Portrait Sessions</li>
@@ -146,11 +200,11 @@ const PhotographyVideography = () => {
 
             {/* Content */}
             <div className="relative z-10 p-6 flex flex-col justify-end h-full">
-              <Video className="text-green-400 mb-2" />
-              <h3 className="text-lg font-semibold text-green-100 mb-2">
+              <Video className="text-sky-400 mb-2" />
+              <h3 className="text-lg font-semibold text-sky-100 mb-2">
                 Videography
               </h3>
-              <ul className="list-disc list-inside text-green-100 text-xs space-y-1">
+              <ul className="list-disc list-inside text-sky-100 md:text-xs space-y-1">
                 <li>Wedding & Event Coverage</li>
                 <li>Corporate & Brand Videos</li>
                 <li>Social Media Content</li>
@@ -170,9 +224,14 @@ const PhotographyVideography = () => {
         </div>
       </div>
 
+
+ 
+
+
+
       {/* WIDE ARRAY SECTION */}
       <div className="mb-20">
-        <h2 className="text-xl md:text-4xl font-bold text-green-600 mb-8 text-center">
+        <h2 className="text-xl md:text-2xl font-bold text-sky-00 mb-8 text-center">
         Our Photography & Videography Portfolio
         </h2>
 
@@ -195,17 +254,31 @@ const PhotographyVideography = () => {
       </div>
 
       {/* CTA */}
+
       <div className="text-center">
-        {/* <h2 className="text-xl md:text-2xl font-bold text-blue-600 mb-4">
-          Explore Our Creative Services
-        </h2> */}
-        <a
+        <motion.a
           href="/Contact"
-          className="inline-block text-xs bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full hover:bg-blue-700 font-semibold transition"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center gap-2 text-xs bg-sky-600 hover:bg-sky-700 text-white py-3 px-6 rounded-full font-semibold transition"
         >
-          Contact Us
-        </a>
-      </div>
+          <span>Gallery</span>
+
+          <motion.span
+            initial={{ x: 0 }}
+            animate={{ x: [0, 6, 0] }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="flex items-center"
+          >
+            <ArrowRight size={16} />
+          </motion.span>
+        </motion.a>
+</div>
+
     </div>
   );
 };

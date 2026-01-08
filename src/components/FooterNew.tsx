@@ -48,9 +48,9 @@ export const FooterNew = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start">
-            <span className="text-orange-600 text-2xl ml-2 font-bold">MAR'S Studio </span>
+            <span className="text-sky-600 text-2xl ml-2 font-bold">MAR'S Studio </span>
         
-            <p className="text-white font-bold  text-xl">
+            <p className="text-sky-200 font-bold  text-xl">
                For Photography, Videography  Printing & Branding,  Services.
             </p>
           </div>
@@ -89,7 +89,7 @@ export const FooterNew = () => {
                 <Link
                   key={service}
                   to="./shop"
-                  className="hover:text-blue-600 text-xs transition-colors duration-200 block text-white"
+                  className="hover:text-sky-400 text-xs transition-colors duration-200 block text-white"
                 >
                   {service}
                 </Link>

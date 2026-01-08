@@ -96,11 +96,11 @@ export const Header = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row gap-3 justify-between">
           <div className="flex gap-6 text-white font-bold">
             <span className="flex items-center gap-1 font-etrabold">
-              <Phone className="w-4 h-4 text-green-300 font-etrabold" />
+              <Phone className="w-4 h-4 text-sky-300 font-etrabold" />
               +254 717 037785
             </span>
             <span className="flex items-center gap-1 font-entrabold">
-              <MapPin className="w-4 h-4 text-green-300 font-entrabold " />
+              <MapPin className="w-4 h-4 text-sky-300 font-entrabold " />
               Kimilili, Khamulati
             </span>
           </div>
@@ -146,7 +146,7 @@ export const Header = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <Button className="bg-blue-600 text-white text-xs rounded-full">
+              <Button className="bg-sky-600 text-white text-xs rounded-full">
                 Products <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
 
@@ -162,7 +162,7 @@ export const Header = () => {
                       <button
                         key={p.title}
                         onClick={() => navigate(p.link)}
-                        className="border rounded-lg p-2 text-center hover:border-blue-500"
+                        className="border rounded-lg p-2 text-center hover:border-sky-500"
                       >
                         <img src={p.image} className="w-14 h-14 mx-auto mb-1" />
                         <span>{p.title}</span>
@@ -175,7 +175,7 @@ export const Header = () => {
 
             {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
               <Link key={item} to={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
-                <span className="px-3 py-2 rounded-full hover:bg-gray-100">
+                <span className="px-3 py-2 rounded-full hover:bg-sky-200">
                   {item}
                 </span>
               </Link>
@@ -190,7 +190,7 @@ export const Header = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder="Search products..."
-              className="pl-9 rounded-full text-xs"
+              className="pl-9 rounded-full placeholder:text-xs"
             />
           </div>
 

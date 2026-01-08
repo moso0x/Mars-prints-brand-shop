@@ -93,7 +93,7 @@ export const HeroCarousel = () => {
     slides[currentSlide].animation as keyof typeof textVariants;
 
   return (
-    <section className="w-full py-6 md:py-4">
+    <section className="w-full py-2 md:py-4">
       <div className="relative mx-auto max-w-7xl px-4 md:px-8 font-[EB Garamond] overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
 
@@ -119,8 +119,8 @@ export const HeroCarousel = () => {
               backgroundPosition: "center",
             }}
           >
-            {/* GREEN overlay */}
-            <div className="absolute inset-0 bg-green-600/50" />
+            {/* sky overlay */}
+            <div className="absolute inset-0 bg-sky-600/40" />
 
             {/* Dark overlay for contrast */}
             <div className="absolute inset-0 bg-black/40" />
@@ -135,16 +135,16 @@ export const HeroCarousel = () => {
                 exit="exit"
                 className="relative z-10 max-w-xl text-center md:text-left"
               >
-                <motion.h2 className="text-4xl md:text-6xl text-white font-[Nabla] mb-6">
+                <motion.h2 className="text-4xl md:text-6xl text-gray-200 font-bold font-[Nabla] mb-6">
                   {slides[currentSlide].title}
                 </motion.h2>
 
-                <motion.p className="text-sm md:text-lg mb-8 text-white/90">
+                <motion.p className="text-sm md:text-sm mb-8 font-bold text-sky-200/90">
                   {slides[currentSlide].description}
                 </motion.p>
 
                 <Link to={slides[currentSlide].link}>
-                  <Button className="bg-blue-600 text-white hover:bg-blue-700 text-xs px-4 py-2 rounded-full shadow-xl transition-transform hover:scale-110">
+                  <Button className="bg-sky-600 text-white hover:bg-sky-700 md:text-xs px-4 py-2 rounded-full shadow-xl transition-transform hover:scale-110">
                     {slides[currentSlide].buttonText}
                   </Button>
                 </Link>
@@ -176,8 +176,8 @@ export const HeroCarousel = () => {
                   onClick={() => goTo(i)}
                   className={`rounded-full transition-all ${
                     i === currentSlide
-                      ? "bg-blue-600 w-2 h-2"
-                      : "bg-white/50 w-2 h-2"
+                      ? "bg-sky-600 w-1 h-1"
+                      : "bg-white/50 w-1 h-1"
                   }`}
                 />
               ))}
