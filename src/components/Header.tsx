@@ -173,7 +173,7 @@ export const Header = () => {
               </AnimatePresence>
             </div>
 
-            {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
+            {["Home", "Shop", "Gallery", "About", "Feedback"].map((item) => (
               <Link key={item} to={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
                 <span className="px-3 py-2 rounded-full hover:bg-sky-200">
                   {item}
@@ -261,7 +261,7 @@ export const Header = () => {
                 </AnimatePresence>
 
                 {/* Links */}
-                {["Home", "Shop", "Contact", "About","Photography & Videography", "Feedback"].map((item) => (
+                {["Home", "Shop", "Gallery", "About","Photography & Videography", "Feedback"].map((item) => (
                   <button
                     key={item}
                     onClick={() => {
