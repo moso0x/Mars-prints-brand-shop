@@ -33,6 +33,7 @@ import babyshower from "@/assets/moreProducts-img/babyshower.jpg";
 import adhesive from "@/assets/moreProducts-img/adhesive.jpg";
 import teardrop from "@/assets/moreProducts-img/teardrop.jpg";
 import umbrella from "@/assets/moreProducts-img/umbrella.jpg";
+import logo from "@/assets/logo.png";
 
 /* -------------------------------- Products -------------------------------- */
 const products = [
@@ -95,12 +96,12 @@ export const Header = () => {
       <div className="bg-black py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row gap-3 justify-between">
           <div className="flex gap-6 text-white font-bold">
-            <span className="flex items-center gap-1 font-etrabold">
-              <Phone className="w-4 h-4 text-sky-300 font-etrabold" />
+            <span className="flex items-center text-white hover:text-[#AAC832] text-lg gap-1 ">
+              <Phone className="w-4 h-4 text-[#AAC832] font-etrabold" />
               +254 717 037785
             </span>
-            <span className="flex items-center gap-1 font-entrabold">
-              <MapPin className="w-4 h-4 text-sky-300 font-entrabold " />
+            <span className="flex items-center text-white hover:text-[#AAC832] gap-1 ">
+              <MapPin className="w-4 h-4  font-entrabold " />
               Kimilili, Khamulati
             </span>
           </div>
@@ -109,7 +110,7 @@ export const Header = () => {
             <AdvertRibbon />
           </div>
 
-          <div className="flex items-center gap-3 text-white">
+          <div className="flex items-center gap-3 text-white hover:text-[#AAC832]">
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-1" /> Logout
@@ -125,6 +126,10 @@ export const Header = () => {
             <Button variant="ghost">
               <Heart className="w-5 h-5" />
             </Button>
+               {/* Mobile Menu Button */}
+          <button className="md:hidden flex justify-end pl-20" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
           </div>
         </div>
       </div>
@@ -135,8 +140,9 @@ export const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="font-bold text-xl">
-            <span className=" text-4xl text-sky-600">MAR'S</span> 
-            <span className="text-black-600">STUDIO</span>
+          <img src={logo} alt="" className="w-80 h-80" />
+            {/* <span className=" text-4xl text-sky-600">MAR'S</span> 
+            <span className="text-black-600">STUDIO</span> */}
           </Link>
 
           {/* --------------------------- DESKTOP NAV --------------------------- */}
@@ -146,7 +152,7 @@ export const Header = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <Button className="bg-sky-600 text-white text-xs rounded-full">
+              <Button className="bg-[#468C1E] text-white text-xs rounded-full">
                 Products <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
 
@@ -173,9 +179,9 @@ export const Header = () => {
               </AnimatePresence>
             </div>
 
-            {["Home", "Shop", "Gallery", "About", "Feedback"].map((item) => (
+            {["Home", "Shop", "Contact", "About", "Feedback"].map((item) => (
               <Link key={item} to={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
-                <span className="px-3 py-2 rounded-full hover:bg-sky-200">
+                <span className="px-3 py-2 font-bold rounded-full hover:bg-[#AAC832]">
                   {item}
                 </span>
               </Link>
@@ -184,7 +190,7 @@ export const Header = () => {
 
           {/* Search Desktop */}
           <div className="hidden md:flex relative w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
+            <Search className="absolute text-[#468C1E] left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -194,10 +200,7 @@ export const Header = () => {
             />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X /> : <Menu />}
-          </button>
+       
         </div>
 
         {/* ============================ MOBILE MENU ============================ */}
@@ -261,7 +264,7 @@ export const Header = () => {
                 </AnimatePresence>
 
                 {/* Links */}
-                {["Home", "Shop", "Gallery", "About","Photography & Videography", "Feedback"].map((item) => (
+                {["Home", "Shop", "Contact", "About","Photography & Videography", "Feedback"].map((item) => (
                   <button
                     key={item}
                     onClick={() => {

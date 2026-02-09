@@ -27,11 +27,11 @@ export const Cart = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="relative hover:bg-blue-500/10 transition"
+          className="relative hover:bg-[#AAC832] transition"
         >
-          <ShoppingCart className="h-4 w-4 text-white" />
+          <ShoppingCart className="h-4 w-4 text-white hover:text-[#AAC832]" />
           {getTotalItems() > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-orange-800 text-white border-2 border-white shadow-md">
+            <Badge className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-white text-black font-bold border-2 border-white shadow-md">
               {getTotalItems()}
             </Badge>
           )}

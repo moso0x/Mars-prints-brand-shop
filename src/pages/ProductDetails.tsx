@@ -231,6 +231,17 @@ const productData: any = {
     "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",
   ],
 },
+"2026-calendar-printing": {
+  title: "Corporate Gifts Branding",
+  price: "From Ksh. 500 per item",
+  image: mug, // replace this with your corporate gift default image
+  thumbs: [corporate1, corporate2, corporate3, corporate4, corporate5, corporate], // replace with corporate gift images
+  description: "Premium branded corporate gifts ideal for events, promotions, awards, and company identity.",
+  features: [
+    "Ready for pickup in 2-3 days ",
+    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",
+  ],
+},
 };
 
 export default function ProductDetails() {

@@ -15,6 +15,41 @@ import mounted from "@/assets/mounted-photo.jpg";
 import corporate from "@/assets/corporate.jpg";
 import mug from "@/assets/mugs.jpg";
 
+/* ---------------------------- Motion Helpers ---------------------------- */
+const cinematicEase = [0.22, 1, 0.36, 1];
+
+const AnimatedText = ({
+  text,
+  fromX = 0,
+  fromY = 0,
+  delay = 0,
+}: {
+  text: string;
+  fromX?: number;
+  fromY?: number;
+  delay?: number;
+}) => (
+  <>
+    {text.split(" ").map((word, i) => (
+      <motion.span
+        key={i}
+        initial={{ opacity: 0, x: fromX, y: fromY }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        viewport={{ once: false }}
+        transition={{
+          delay: delay + i * 0.05,
+          duration: 0.9,
+          ease: cinematicEase,
+        }}
+        className="inline-block mr-1"
+      >
+        {word}
+      </motion.span>
+    ))}
+  </>
+);
+
+/* ---------------------------- Data ---------------------------- */
 const features = [
   { title: "Tote Bags Printing", price: "Starting at Ksh. 300", image: totebags },
   { title: "2026 Calendar Printing", price: "From Ksh. 100 per piece", image: calenders },
@@ -28,6 +63,7 @@ const features = [
   { title: "Corporate Gifts", price: "From Ksh. 580", image: corporate },
 ];
 
+/* ---------------------------- MAIN ---------------------------- */
 export const FeaturesSection = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
 
@@ -55,30 +91,28 @@ export const FeaturesSection = () => {
   };
 
   return (
-    <section className="py-16 bg-secondary">
+    <section className="py-16 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* Intro */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Heading (unchanged size) */}
+
+        {/* INTRO */}
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Printing & Branding Solutions
+            <AnimatedText
+              text="Printing & Branding Solutions"
+              fromX={-120}
+            />
           </h2>
 
-          {/* Body text xs */}
           <p className="text-xs text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            At Mars, we provide a full range of branding, design, and
-            printing services — from promotional items to complete brand identity
-            development.
+            <AnimatedText
+              text="At Mars, we provide a full range of branding, design, and printing services — from promotional items to complete brand identity development."
+              fromX={120}
+              delay={0.2}
+            />
           </p>
-        </motion.div>
+        </div>
 
-        {/* Feature Grid */}
+        {/* FEATURE GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {features.map((feature, index) => {
             const shortDescription =
@@ -91,32 +125,28 @@ export const FeaturesSection = () => {
             return (
               <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.9, ease: cinematicEase }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
+                className="rounded-xl overflow-hidden bg-white shadow-xl hover:shadow-2xl cursor-pointer relative"
               >
-               <div className="relative overflow-hidden">
-                <motion.img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-32 object-cover transition-transform duration-500 hover:scale-110"
-                />
+                {/* IMAGE */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-32 object-cover"
+                  />
 
-                {/* 🌤 Ultra-subtle Sky Overlay */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0.04) 45%, rgba(56,189,248,0) 100%)",
-                  }}
-                />
+                  <div className="absolute inset-0 bg-gradient-to-t from-sky-400/10 to-transparent" />
 
-
-                  {/* Icons */}
+                  {/* ICONS */}
                   <div className="absolute top-2 right-2 flex gap-2">
                     <button
                       onClick={() => handleWishlistToggle(feature.title)}
-                      className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
+                      className="p-1.5 rounded-full bg-white/80 shadow-md"
                     >
                       <Heart
                         size={16}
@@ -130,26 +160,25 @@ export const FeaturesSection = () => {
 
                     <button
                       onClick={() => handleShare(feature.title)}
-                      className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
+                      className="p-1.5 rounded-full bg-white/80 shadow-md"
                     >
-                      <Share2 size={16} className="text-gray-700" />
+                      <Share2 size={16} />
                     </button>
                   </div>
                 </div>
 
-                <div className="p-3 text-center hover:bg-gray-50 transition-colors">
-                  {/* Card heading (kept larger) */}
+                {/* CONTENT */}
+                <div className="p-3 text-center">
                   <h3 className="text-base font-semibold mb-1 text-primary">
-                    {feature.title}
+                    <AnimatedText text={feature.title} fromY={24} />
                   </h3>
 
-                  {/* xs text */}
-                  <p className="text-xs text-muted-foreground leading-snug mb-2">
-                    {shortDescription}
+                  <p className="text-xs text-muted-foreground mb-2">
+                    <AnimatedText text={shortDescription} fromY={24} delay={0.1} />
                   </p>
 
                   <Link to={`/product/${slug}`}>
-                    <button className="text-xs font-medium text-sky-600 border border-white-600 rounded-full px-3 py-1 hover:bg-orange-600 hover:text-white transition-all duration-300">
+                    <button className="text-xs font-medium text-sky-600 rounded-full px-3 py-1 hover:bg-orange-600 hover:text-white transition">
                       Order now
                     </button>
                   </Link>
@@ -160,24 +189,22 @@ export const FeaturesSection = () => {
         </div>
 
         {/* CTA */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* CTA heading kept larger */}
+        <div className="text-center mt-16">
           <p className="text-base font-semibold mb-4">
-           Mar's Studio Got you covered for all your Photography, Videography printing and branding needs!
+            <AnimatedText
+              text="Mar's Studio got you covered for all your photography, videography, printing and branding needs!"
+              fromY={32}
+            />
           </p>
 
           <a
             href="/contact"
-            className="inline-block text-xs rounded-full bg-black text-white font-semibold px-6 py-3 transition"
+            className="inline-block text-xs rounded-full bg-black text-white font-semibold px-6 py-3"
           >
-            Reach Us!
+            <AnimatedText text="Reach Us!" />
           </a>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );

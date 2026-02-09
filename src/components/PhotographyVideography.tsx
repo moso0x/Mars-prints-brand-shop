@@ -67,7 +67,7 @@ const UndrawCard = ({ image, title }: { image: string; title: string }) => (
     className="relative h-56 rounded-xl overflow-hidden bg-white shadow-lg"
   >
     <img src={image} alt={title} className="absolute inset-0 w-full h-full object-contain p-6" />
-    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-500/60 to-transparent" />
+    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-green-950/60 to-transparent" />
     <p className="absolute bottom-3 w-full text-center text-white font-semibold">
       {title}
     </p>
@@ -92,12 +92,12 @@ const RotatingImageCard = ({
   }, [images.length]);
 
   return (
-    <div className="relative h-56 rounded-xl overflow-hidden shadow-lg">
+    <div className="relative h-56  rounded-xl overflow-hidden shadow-lg">
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
           src={images[index]}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-[180%] object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -124,10 +124,10 @@ const PhotographyVideography = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16">
       {/* HEADER */}
-      <h1 className="text-2xl font-bold text-center text-sky-600 mb-4">
+      <h1 className="text-4xl font-bold text-center text-[#1E1E1E] mb-4">
         Photography & Videography Services
       </h1>
-      <p className="text-center mb-16">
+      <p className="text-center text-bold text-gray-600 mb-16">
         Capturing moments through creative storytelling and cinematic visuals.
       </p>
 
@@ -159,8 +159,8 @@ const PhotographyVideography = () => {
             }}
           >
             <div className="absolute inset-0 bg-black/55 p-6 flex flex-col justify-end">
-              <Camera className="text-sky-400 mb-2" />
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <Camera className="text-[#AAC832] mb-2" />
+              <h3 className="text-lg font-semibold text-[#8C8C8C] mb-2">
                 Photography
               </h3>
               <ul className="text-white list-disc list-inside space-y-1">
@@ -187,8 +187,8 @@ const PhotographyVideography = () => {
             />
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 p-6 flex flex-col justify-end h-full">
-              <Video className="text-sky-400 mb-2" />
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <Video className="text-[#AAC832] mb-2" />
+              <h3 className="text-lg font-semibold text-[#8C8C8C] mb-2">
                 Videography
               </h3>
               <ul className="text-white list-disc list-inside space-y-1">
@@ -203,7 +203,7 @@ const PhotographyVideography = () => {
 
         {/* RIGHT – IMAGE + LAPTOP VIDEO */}
         <div
-          className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl"
+          className="relative h-[520px] rounded-2xl overflow-hidden shadow-xl"
           style={{
             backgroundImage: `url(${aboutImage})`,
             backgroundSize: "cover",
@@ -229,7 +229,7 @@ const PhotographyVideography = () => {
               </div>
 
               {/* Base */}
-              <div className="mx-auto mt-1 h-3 w-[110%] bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl" />
+              <div className="mx-auto mt-1 h-3 w-[110%] bg-gradient-to-b from-gray-200 to-gray-400 rounded-b-xl" />
             </div>
           </div>
         </div>
@@ -253,7 +253,7 @@ const PhotographyVideography = () => {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6">
           {filteredServices.map((s, i) => (
             <RotatingImageCard key={i} images={s.images} title={s.title} />
           ))}

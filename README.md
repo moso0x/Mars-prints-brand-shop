@@ -1,5 +1,15 @@
 # Welcome to your Lovable project
 
+
+
+Black        #000000
+White        #FFFFFF
+Primary Green #AAC832
+Dark Green   #468C1E
+Dark Gray    #1E1E1E
+Mid Gray     #5A5A5A
+Light Gray   #8C8C8C
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/7c2e83c1-68bc-4f35-853e-dfdc7d56ec11

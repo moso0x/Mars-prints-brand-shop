@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Twitter, Linkedin, X } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
+
 import { Link } from "react-router-dom";
 
 const servicesList = [
@@ -51,12 +52,8 @@ export const FooterNew = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start">
-            <span className="text-sky-600 text-2xl ml-2 font-bold">
-              MAR'S Studio
-            </span>
-            <p className="text-sky-200 font-bold text-xl">
-              For Photography, Videography Printing & Branding Services.
-            </p>
+            <img src={logo} alt="" className="bg-white w-60 h-60 rounded-full" />
+         
           </div>
 
           {/* Quick Links */}

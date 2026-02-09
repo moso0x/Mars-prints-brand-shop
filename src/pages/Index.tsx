@@ -30,7 +30,7 @@ const Index = () => {
           <PrintingServicesCarousel/>
           
            <FeaturesSection /> 
-           {/* <ProductGrid /> */}
+            <ProductGrid /> 
           {/* <TicketsCarousel /> */}
           {/* <EcoFriendlySection /> */}
           {/* <AboutSection />   */}

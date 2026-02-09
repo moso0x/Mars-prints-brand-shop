@@ -119,7 +119,7 @@ const Shop = () => {
         <section className="h-20 bg-white flex items-center justify-center">
           <div className="text-center text-black">
             <h1 className="text-3xl font-bold">Shop</h1>
-            <p className="text-sm opacity-90">Home / Shop</p>
+            <p className="text-sm  text-[#468C1E] opacity-90">Home / Shop</p>
           </div>
         </section>
 
@@ -138,8 +138,8 @@ const Shop = () => {
                         onClick={() => setSelectedCategory(category)}
                         className={`w-full text-left px-3 py-1.5 rounded text-xs transition ${
                           selectedCategory === category
-                            ? "bg-sky-600 text-white"
-                            : "hover:bg-sky-50 text-gray-700"
+                            ? "bg-[#8C8C8C] text-white"
+                            : "hover:bg-[#AAC832] text-gray-700"
                         }`}
                       >
                         {category}
