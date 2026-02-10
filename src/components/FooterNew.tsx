@@ -43,6 +43,8 @@ const servicesList = [
   "Wedding Cards",
 ];
 
+// Primary Green [#AAC832]
+// Dark Green   [#468C1E]
 export const FooterNew = () => {
   const [showDeveloper, setShowDeveloper] = useState(false);
 
@@ -58,7 +60,7 @@ export const FooterNew = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#AAC832]/40 pb-1">
               Quick Links
             </h4>
             <ul className="space-y-1">
@@ -71,7 +73,7 @@ export const FooterNew = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="hover:text-[#05B45E] transition-colors duration-200"
+                    className="hover:text-[#AAC832] transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -82,7 +84,7 @@ export const FooterNew = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#AAC832]/40 pb-1">
               Services
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1 max-h-80 overflow-y-auto">
@@ -90,7 +92,7 @@ export const FooterNew = () => {
                 <Link
                   key={service}
                   to="/shop"
-                  className="hover:text-sky-400 transition-colors duration-200 block"
+                  className="hover:text-[#AAC832] transition-colors duration-200 block"
                 >
                   {service}
                 </Link>
@@ -100,7 +102,7 @@ export const FooterNew = () => {
 
           {/* Contact & Socials */}
           <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-[#05B45E]/40 pb-1">
+            <h4 className="text-lg font-semibold mb-3 border-b border-[#AAC832]/40 pb-1">
               Contact Us
             </h4>
             <ul className="space-y-1">
@@ -159,7 +161,7 @@ export const FooterNew = () => {
             {/* Developer Button */}
             <button
               onClick={() => setShowDeveloper(true)}
-              className="hover:text-sky-400 underline underline-offset-4 transition"
+              className="hover:text-[#AAC832] underline underline-offset-4 transition"
             >
               Developer
             </button>

@@ -67,7 +67,7 @@ const UndrawCard = ({ image, title }: { image: string; title: string }) => (
     className="relative h-56 rounded-xl overflow-hidden bg-white shadow-lg"
   >
     <img src={image} alt={title} className="absolute inset-0 w-full h-full object-contain p-6" />
-    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-green-950/60 to-transparent" />
+    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#AAC832]/60 to-transparent" />
     <p className="absolute bottom-3 w-full text-center text-white font-semibold">
       {title}
     </p>
@@ -104,7 +104,7 @@ const RotatingImageCard = ({
         />
       </AnimatePresence>
 
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-sky-600/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#AAC832]/70 to-transparent" />
       <p className="absolute bottom-3 left-4 text-white font-semibold text-sm">
         {title}
       </p>
@@ -163,7 +163,7 @@ const PhotographyVideography = () => {
               <h3 className="text-lg font-semibold text-[#8C8C8C] mb-2">
                 Photography
               </h3>
-              <ul className="text-white list-disc list-inside space-y-1">
+              <ul className="text-[#8C8C8C] text-sm font-bold list-disc list-inside space-y-1">
                 <li>Corporate & Event Shoots</li>
                 <li>Wedding Photography</li>
                 <li>Portrait & Studio Sessions</li>
@@ -191,7 +191,7 @@ const PhotographyVideography = () => {
               <h3 className="text-lg font-semibold text-[#8C8C8C] mb-2">
                 Videography
               </h3>
-              <ul className="text-white list-disc list-inside space-y-1">
+              <ul className="text-[#8C8C8C] text-sm font-bold  list-disc list-inside space-y-1">
                 <li>Wedding Films</li>
                 <li>Corporate Videos</li>
                 <li>Social Media Content</li>
@@ -210,7 +210,7 @@ const PhotographyVideography = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-sky-500/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/40 to-transparent" />
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-[320px]">
@@ -244,8 +244,8 @@ const PhotographyVideography = () => {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 border text-sm transition ${
                 activeCategory === cat
-                  ? "bg-sky-600 text-white"
-                  : "border-gray-400 hover:border-sky-500"
+                  ? "bg-[#AAC832] text-white"
+                  : "border-gray-400 hover:border-green-500"
               }`}
             >
               {cat}
@@ -264,7 +264,7 @@ const PhotographyVideography = () => {
       <div className="text-center">
         <a
           href="/contact"
-          className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-full font-semibold"
+          className="inline-flex items-center gap-2 bg-[#468C1E]    hover:bg-[#AAC832] text-white px-6 py-3 rounded-full font-semibold"
         >
          Get Quote
           <ArrowRight size={16} />

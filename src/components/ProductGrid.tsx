@@ -67,7 +67,7 @@ export const ProductGrid = () => {
             >
               <Card
                 className="overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all 
-                           bg-gradient-to-br from-[#6BB7FF]/20 to-[#005DFF]/2 border border-blue-100"
+                           bg-gradient-to-br from-[#AAC832]/20 to-[#005DFF]/2 border border-blue-100"
               >
                 <div className="overflow-hidden bg-secondary">
                   <motion.img
@@ -95,10 +95,10 @@ export const ProductGrid = () => {
                       size="sm"
                       onClick={() => addToCart(product)}
                       className="w-full flex items-center flex mx-auto justify-center gap-2 
-                                 bg-blue-600 text-white font-small text-xs
+                                 bg-[#468C1E] text-white font-small text-xs
                                   shadow-[0_4px_12px_rgba(0,212,90,0.4)] 
-                                 hover:bg-blue-700
-                                 transition-all duration-300 rounded-full py-1"
+                                 hover:bg-[#AAC832] transition-all duration-300 rounded-full py-1"
+                            
                     >
                       <ShoppingCart className="w-4 h-4 text-xs" />
                      <span className="text-xs">Add to Cart</span> 

@@ -27,7 +27,7 @@ const RouteChangeLoader = () => {
           <div className="loader" />
 
           <motion.p
-            className="mt-6 text-xs font-medium text-sky-700 dark:text-sky-300 tracking-wide"
+            className="mt-6 text-xs font-medium text-[#AAC832] dark:text-sky-300 tracking-wide"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -58,7 +58,7 @@ const RouteChangeLoader = () => {
 
             .loader::after {
               inset: 6px;
-              border-color: #0ea5e9; /* Tailwind sky-500 */
+              border-color: #AAC832; /* Tailwind sky-500 */
               animation:
                 prixClipFix 2s linear infinite,
                 rotate 0.5s linear infinite reverse;

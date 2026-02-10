@@ -8,6 +8,9 @@ import { PageTransition } from "@/components/PageTransition";
 import toast from "react-hot-toast";
 import feedback from "@/assets/feedback.png";
 
+
+// Primary Green [#AAC832]
+// Dark Green   #468C1E
 const Feedback = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +39,7 @@ const Feedback = () => {
             </div>
 
             {/* Heading */}
-            <h1 className="text-3xl font-bold text-center text-[#005DFF] mb-2">
+            <h1 className="text-3xl font-bold text-center text-[#468C1E] mb-2">
               Feedback
             </h1>
             <p className="text-center text-gray-600 mb-6 text-sm">
@@ -52,7 +55,7 @@ const Feedback = () => {
                 <Input
                   id="name"
                   placeholder="Your name"
-                  className="text-sm focus-visible:ring-[#005DFF] h-9"
+                  className="text-sm focus-visible:ring-[#AAC832]h-9"
                 />
               </div>
 
@@ -64,7 +67,7 @@ const Feedback = () => {
                   id="email"
                   type="email"
                   placeholder="your@email.com"
-                  className="text-sm focus-visible:ring-[#005DFF] h-9"
+                  className="text-sm focus-visible:ring-[#AAC832]h-9"
                 />
               </div>
 
@@ -82,7 +85,7 @@ const Feedback = () => {
 
               <div className="flex justify-center pt-2">
                 <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold 
+                  className="bg-[#468C1E] hover:bg-[#AAC832] text-white font-semibold 
                              rounded-full px-6 py-2 text-xs shadow-md hover:shadow-lg transition-all"
                   type="submit"
                 >

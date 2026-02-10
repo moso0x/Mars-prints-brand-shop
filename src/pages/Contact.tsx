@@ -54,7 +54,7 @@ const Contact = () => {
           </div>
 
           <main className="containe pl-8 mx-auto px-4 py-8">
-            <motion.h1 className="text-3xl font-bold mb-2 text-center text-sky-700">
+            <motion.h1 className="text-3xl font-bold mb-2 text-center text-[#AAC832]">
               Contact Us
             </motion.h1>
 
@@ -70,7 +70,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-lg font-semibold mb-3 text-sky-700 text-xs">
+                <h2 className="text-lg font-semibold mb-3 text-[#AAC832] text-xs">
                   Your Details Help Us Connect
                 </h2>
 
@@ -116,7 +116,7 @@ const Contact = () => {
 
                   <Button
                     type="submit"
-                    className="w-50%  py-2 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white"
+                    className="w-50%  py-2 text-xs rounded-full bg-[#AAC832] hover:bg-[#AAC832] text-white"
                   >
                     Send Message
                   </Button>
@@ -130,7 +130,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 120, damping: 16 }}
               >
-                <h2 className="text-lg font-semibold mb-3 text-sky-700">
+                <h2 className="text-lg font-semibold mb-3 text-[#AAC832]">
                   Contact Information
                 </h2>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                 </div>
 
                 <div className="mt-4 text-xs text-gray-700">
-                  <h3 className="font-semibold mb-2 text-sky-700">
+                  <h3 className="font-semibold mb-2 text-[#AAC832]">
                     Business Hours
                   </h3>
                   <p>Monday – Friday: 8:00 AM – 6:00 PM</p>

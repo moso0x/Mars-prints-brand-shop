@@ -118,7 +118,7 @@ export default function PrintingServicesCarousel() {
         <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
           <span className="text-black">Printing</span> |{" "}
           <span className="text-black">Branding</span> |{" "}
-          <span className="text-sky-600">Services </span> 
+          <span className="text-[#AAC832]">Services </span> 
           
         </h2>
 
@@ -175,7 +175,7 @@ function ServiceRow({ service }) {
       <div className="relative">
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-sky-600 text-white p-2 rounded-full"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#AAC832] text-white p-2 rounded-full"
         >
           <ArrowLeft size={20} />
         </button>
@@ -213,7 +213,7 @@ function ServiceRow({ service }) {
 
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-sky-600 text-white p-2 rounded-full"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#AAC832] text-white p-2 rounded-full"
         >
           <ArrowRight size={20} />
         </button>
@@ -233,7 +233,7 @@ function ServiceRow({ service }) {
       <div className="flex justify-center mt-6">
         <Link
           to="/shop"
-          className="px-6 py-2 text-xs font-semibold text-white bg-black rounded-full hover:bg-sky-600 transition flex items-center gap-2"
+          className="px-6 py-2 text-xs font-semibold text-white bg-black rounded-full hover:bg-[#AAC832] transition flex items-center gap-2"
         >
           Explore & Shop <ArrowRight size={18} />
         </Link>

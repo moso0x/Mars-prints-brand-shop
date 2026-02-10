@@ -12,6 +12,9 @@ import { FooterNew } from "@/components/FooterNew";
 import { Separator } from "@/components/ui/separator";
 import lock from "@/assets/lock.jpg";
 
+
+// Primary Green [#AAC832]
+// Dark Green   [#468C1E]
 const Auth = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -148,10 +151,7 @@ const Auth = () => {
       setGoogleLoading(false);
     }
   };
-//   #CFF5E7
-// #A0E4CB
-// #59C1BD
-// #0D4C92
+
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FBFF]">
@@ -166,7 +166,7 @@ const Auth = () => {
                 alt="lock"
               />
             </div>
-            <CardTitle className="text-2xl text-center text-sky-400 font-bold">
+            <CardTitle className="text-2xl text-center text-[#468C1E] font-bold">
               Welcome
             </CardTitle>
             <CardDescription className="text-center text-black">
@@ -205,13 +205,13 @@ const Auth = () => {
               <TabsList className="grid w-full grid-cols-2 bg-[#EAF4FF] rounded-full p-1">
                 <TabsTrigger
                   value="login"
-                  className=" text-xs data-[state=active]:bg-sky-600 data-[state=active]:text-white rounded-full transition-all duration-300"
+                  className=" text-xs data-[state=active]:bg-[#468C1E] data-[state=active]:text-white rounded-full transition-all duration-300"
                 >
                   Login
                 </TabsTrigger>
                 <TabsTrigger
                   value="signup"
-                  className="data-[state=active]:bg-sky-600  text-xs data-[state=active]:text-white rounded-full transition-all duration-300"
+                  className="data-[state=active]:bg-[#468C1E]  text-xs data-[state=active]:text-white rounded-full transition-all duration-300"
                 >
                   Sign Up
                 </TabsTrigger>
@@ -250,7 +250,7 @@ const Auth = () => {
                   {/* Solid sky Button */}
                   <Button
                     type="submit"
-                    className=" flex mx-auto w-[60%] bg-sky-400 text-gray-200 hover:bg-sky-500 font-semibold 
+                    className=" flex mx-auto w-[60%] bg-[#468C1E] text-gray-200 hover:bg-[#AAC832] font-semibold 
                                shadow-md hover:shadow-lg transition-all text-xs duration-300 rounded-full py-2"
                     disabled={loading}
                   >
@@ -262,7 +262,7 @@ const Auth = () => {
                       setForgotEmail(loginEmail);
                       setForgotOpen(true);
                     }}
-                    className="text-sky-600 text-xs underline hover:text-[#005DFF] transition-colors"
+                    className="text-[#468C1E] text-xs underline hover:text-[#005DFF] transition-colors"
                   >
                     Forgot Password?
                   </button>
@@ -318,7 +318,7 @@ const Auth = () => {
                   {/* Solid Sky Button */}
                   <Button
                     type="submit"
-                    className=" flex mx-auto w-[60%] bg-sky-400 text-gray-200 hover:bg-sky-500  font-semibold 
+                    className=" flex mx-auto w-[60%] bg-[#468C1E] text-gray-200 hover:bg-[#AAC832]  font-semibold 
                                shadow-md hover:shadow-lg text-xs transition-all duration-300 rounded-full py-2"
                     disabled={loading}
                   >
@@ -335,7 +335,7 @@ const Auth = () => {
           {forgotOpen && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-40">
               <div className="bg-white rounded-xl p-6 w-11/12 max-w-sm shadow-lg relative">
-                <h3 className="text-lg font-semibold text-sky-600 mb-3">Reset Password</h3>
+                <h3 className="text-lg font-semibold text-[#468C1E] mb-3">Reset Password</h3>
                 <p className="text-xs text-gray-500 mb-4">
                   Enter your email to receive a password reset link
                 </p>
@@ -349,7 +349,7 @@ const Auth = () => {
                 <div className="flex justify-between gap-2">
                   <Button
                     onClick={handleForgotSubmit}
-                    className="flex-1 bg-sky-600 text-white hover:bg-[#0B3F7F] text-xs rounded-full py-2"
+                    className="flex-1 bg-[#468C1E] text-white hover:bg-[#0B3F7F] text-xs rounded-full py-2"
                   >
                     Submit
                   </Button>
@@ -482,12 +482,12 @@ export default Auth;
 //     <div className="min-h-screen flex flex-col bg-white ">
 //       <Header />
 //       <main className="flex-1 flex items-center justify-center px-4 py-12">
-//         <Card className="w-full max-w-md shadow-lg border border-sky-600/30 rounded-2xl relative">
+//         <Card className="w-full max-w-md shadow-lg border border-[#468C1E]/30 rounded-2xl relative">
 //           <CardHeader>
 //             <div>
 //               <img src={lock} className="mx-auto w-10" alt="lock" />
 //             </div>
-//             <CardTitle className="text-2xl text-center text-sky-600 font-bold">Welcome</CardTitle>
+//             <CardTitle className="text-2xl text-center text-[#468C1E] font-bold">Welcome</CardTitle>
 //             <CardDescription className="text-center text-gray-600 text-xs">
 //               Sign in to your account or create a new one
 //             </CardDescription>
@@ -498,13 +498,13 @@ export default Auth;
 //               <TabsList className="grid w-full grid-cols-2 bg-white rounded-full p-1">
 //                 <TabsTrigger
 //                   value="login"
-//                   className="text-xs data-[state=active]:bg-sky-600 data-[state=active]:text-white rounded-full transition-all duration-300"
+//                   className="text-xs data-[state=active]:bg-[#468C1E] data-[state=active]:text-white rounded-full transition-all duration-300"
 //                 >
 //                   Login
 //                 </TabsTrigger>
 //                 <TabsTrigger
 //                   value="signup"
-//                   className="text-xs data-[state=active]:bg-sky-600 data-[state=active]:text-white rounded-full transition-all duration-300"
+//                   className="text-xs data-[state=active]:bg-[#468C1E] data-[state=active]:text-white rounded-full transition-all duration-300"
 //                 >
 //                   Sign Up
 //                 </TabsTrigger>
@@ -542,7 +542,7 @@ export default Auth;
 
 //                   <Button
 //                     type="submit"
-//                     className="w-full bg-sky-600 text-white hover:bg-[#0B3F7F] font-semibold rounded-full py-2 text-xs shadow-md hover:shadow-lg transition-all"
+//                     className="w-full bg-[#468C1E] text-white hover:bg-[#0B3F7F] font-semibold rounded-full py-2 text-xs shadow-md hover:shadow-lg transition-all"
 //                     disabled={loading}
 //                   >
 //                     {loading ? "Signing in..." : "Sign In"}
@@ -554,7 +554,7 @@ export default Auth;
 //                       setForgotEmail(loginEmail);
 //                       setForgotOpen(true);
 //                     }}
-//                     className="text-sky-600 text-xs underline hover:text-[#005DFF] transition-colors"
+//                     className="text-[#468C1E] text-xs underline hover:text-[#005DFF] transition-colors"
 //                   >
 //                     Forgot Password?
 //                   </button>
@@ -607,7 +607,7 @@ export default Auth;
 
 //                   <Button
 //                     type="submit"
-//                     className="w-full bg-sky-600 text-white hover:bg-[#0B3F7F] font-semibold rounded-full py-2 text-xs shadow-md hover:shadow-lg transition-all"
+//                     className="w-full bg-[#468C1E] text-white hover:bg-[#0B3F7F] font-semibold rounded-full py-2 text-xs shadow-md hover:shadow-lg transition-all"
 //                     disabled={loading}
 //                   >
 //                     {loading ? "Creating account..." : "Create Account"}
@@ -621,7 +621,7 @@ export default Auth;
 //           {forgotOpen && (
 //             <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
 //               <div className="bg-white rounded-xl p-6 w-11/12 max-w-sm shadow-lg relative">
-//                 <h3 className="text-lg font-semibold text-sky-600 mb-3">Reset Password</h3>
+//                 <h3 className="text-lg font-semibold text-[#468C1E] mb-3">Reset Password</h3>
 //                 <p className="text-xs text-gray-500 mb-4">
 //                   Enter your email to receive a password reset link
 //                 </p>
@@ -635,7 +635,7 @@ export default Auth;
 //                 <div className="flex justify-between gap-2">
 //                   <Button
 //                     onClick={handleForgotSubmit}
-//                     className="flex-1 bg-sky-600 text-white hover:bg-[#0B3F7F] text-xs rounded-full py-2"
+//                     className="flex-1 bg-[#468C1E] text-white hover:bg-[#0B3F7F] text-xs rounded-full py-2"
 //                   >
 //                     Submit
 //                   </Button>

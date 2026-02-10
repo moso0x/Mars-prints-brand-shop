@@ -29,7 +29,7 @@ const Index = () => {
           <PhotographyVideography/>
           <PrintingServicesCarousel/>
           
-           <FeaturesSection /> 
+           {/* <FeaturesSection />  */}
             <ProductGrid /> 
           {/* <TicketsCarousel /> */}
           {/* <EcoFriendlySection /> */}

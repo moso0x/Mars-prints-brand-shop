@@ -107,7 +107,7 @@ export const HeroCarousel = () => {
               playsInline
               className="w-full h-full object-cover brightness-110 contrast-110 saturate-110"
             />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sky-600/30 to-black/50" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#AAC832]/30 to-black/50" />
           </div>
 
           {/* Text column with background image */}
@@ -120,7 +120,7 @@ export const HeroCarousel = () => {
             }}
           >
             {/* sky overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sky-600/30 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#AAC832]/30 to-black/50" />
 
 
             {/* Dark overlay for contrast */}
@@ -145,7 +145,7 @@ export const HeroCarousel = () => {
                 </motion.p>
 
                 <Link to={slides[currentSlide].link}>
-                  <Button className="bg-sky-600 text-white hover:bg-sky-700 md:text-xs px-4 py-2 rounded-full shadow-xl transition-transform hover:scale-110">
+                  <Button className="bg-green-600 text-white hover:bg-[#AAC832]md:text-xs px-4 py-2 rounded-full shadow-xl transition-transform hover:scale-110">
                     {slides[currentSlide].buttonText}
                   </Button>
                 </Link>

@@ -44,11 +44,7 @@ npm i
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-```
-#CFF5E7
-#A0E4CB
-#59C1BD
-#0D4C92
+``
 
 **Edit a file directly in GitHub**
 

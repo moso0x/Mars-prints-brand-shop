@@ -18,10 +18,10 @@ export default function About() {
             </h1>
             <p className="text-gray-700 mb-4 leading-relaxed">
               At <span className="font-semibold">Mars Creative Studio</span>, we bring your ideas to life through{" "}
-              <span className="italic text-sky-600">Photography, Videography, Printing, and Branding</span>. From capturing stunning visuals to designing promotional materials, we ensure your brand stands out in every medium.
+              <span className="italic text-[#AAC832]">Photography, Videography, Printing, and Branding</span>. From capturing stunning visuals to designing promotional materials, we ensure your brand stands out in every medium.
             </p>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              Our mission is simple: <span className="italic text-sky-500">deliver high-quality, creative, and reliable media solutions</span> that help businesses, artists, and individuals showcase their vision and leave a lasting impression.
+              Our mission is simple: <span className="italic text-[#468C1E]">deliver high-quality, creative, and reliable media solutions</span> that help businesses, artists, and individuals showcase their vision and leave a lasting impression.
             </p>
             <p className="text-gray-700 leading-relaxed">
               With a passion for storytelling and a keen eye for detail, Mars Creative Studio is your trusted partner for all your photography, videography, printing, and branding needs.
@@ -34,7 +34,7 @@ export default function About() {
               className="w-full h-80 md:h-[400px] object-cover rounded-xl shadow-lg"
             />
             {/* Sky overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-sky-500/20 to-transparent rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#468C1E]/20 to-transparent rounded-xl"></div>
           </div>
         </div>
 
@@ -46,8 +46,8 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
            {/* Card 1 */}
 <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-  <Award className="w-16 h-16 mb-4 text-sky-500" />
-  <h3 className="font-semibold mb-2 text-sky-600">
+  <Award className="w-16 h-16 mb-4 text-[#468C1E]" />
+  <h3 className="font-semibold mb-2 text-[#AAC832]">
     Professional Quality
   </h3>
   <p className="text-gray-600 text-xs">
@@ -58,8 +58,8 @@ export default function About() {
 
 {/* Card 2 */}
 <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-  <Sparkles className="w-16 h-16 mb-4 text-sky-500" />
-  <h3 className="font-semibold mb-2 text-sky-600">
+  <Sparkles className="w-16 h-16 mb-4 text-[#468C1E]" />
+  <h3 className="font-semibold mb-2 text-[#AAC832]">
     Creative & Unique
   </h3>
   <p className="text-gray-600 text-xs">
@@ -70,8 +70,8 @@ export default function About() {
 
 {/* Card 3 */}
 <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center">
-  <Clock className="w-16 h-16 mb-4 text-sky-500" />
-  <h3 className="font-semibold mb-2 text-sky-600">
+  <Clock className="w-16 h-16 mb-4 text-[#468C1E]" />
+  <h3 className="font-semibold mb-2 text-[#AAC832]">
     Reliable & Timely
   </h3>
   <p className="text-gray-600 text-xs">
@@ -93,7 +93,7 @@ export default function About() {
           </p>
           <a
             href="/contact"
-            className="inline-block text-xs bg-sky-600 text-white py-3 px-6 rounded-full hover:bg-sky-700 font-semibold transition"
+            className="inline-block text-xs bg-[#AAC832] text-white py-3 px-6 rounded-full hover:bg-sky-700 font-semibold transition"
           >
             Get in Touch
           </a>
